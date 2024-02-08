@@ -71,6 +71,7 @@
     width: 100%;
     height: 45%;
     align-items: center;
+    justify-content: center;
 }
 
 .restoprofile, .restodesc, .restomenu{
@@ -160,6 +161,35 @@ progress[value]::-ms-fill {
 }
 progress[value]::-webkit-progress-bar {
     background-color: #ddd;
+}
+
+.flexmenulist{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flexmenuresto{
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.flexmenuresto > img{
+    height: 150%;
+    width: 80%;
+    border-radius: 80px;
+    border: 5px solid black;
+}
+
+.flexmenuresto > span{
+    font-family: cursive;
+    background-color: rgba(48, 37, 37, 0.692);
+    color: white;
+    position: absolute;
+    font-size: 25px;
+    border-radius: 90px;
 }
 
 
