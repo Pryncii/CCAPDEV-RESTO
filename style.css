@@ -250,7 +250,6 @@ progress[value]::-webkit-progress-bar {
 .userprofilereviews
 {
     height: 75%;
-    background-color: paleturquoise;
     display: flex;
     flex-direction: row;
 }
@@ -259,16 +258,16 @@ progress[value]::-webkit-progress-bar {
 {
     /*just an empty spacer for now*/
     width: 20%;
-    background-color: antiquewhite;
     padding: 10px;
+    background-color: rgb(227, 241, 227);
 }
 
 .userprofilereviewright
 {
     width: 80%;
-    background-color: pink;
     padding: 20px;
     border-top: 1px solid #448753;
+    background-color: rgb(227, 241, 227);
     display: flex;
     flex-direction: column;
 }
@@ -279,22 +278,76 @@ progress[value]::-webkit-progress-bar {
     font-size: 25px;
     color: #448753;
     font-family: georgia;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #448753;
+    padding-bottom: 20px;
 }
 
 .reviewlower
 {
     height: 95%;
     font-size: 25px;
-    background-color: darksalmon;
     color: #448753;
     font-family: georgia;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     flex-direction: column;
 }
 
+.reviewcontainer
+{
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    border-top: 1px solid #448753;
+    padding-bottom: 10px;
+}
 
+.reviewcontainerleft
+{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(227, 241, 227);
+}
+
+.reviewcontainerleft > img
+{
+    border-radius: 50%;
+    height: 100%;
+}
+
+.reviewcontainerright
+{
+    padding: 10px;
+    width: 75%;
+    background-color: rgb(227, 241, 227);
+    display: flex;
+    flex-direction: column;
+}
+
+.rctop
+{
+    height: 10%;
+    color: #448753;
+    font-family: georgia;
+    font-size: 20px;
+    align-items: center;
+    display: flex;
+}
+
+.rcmid
+{
+    height: 20%;
+}
+
+.rcbottom
+{
+    height: 70%;
+    color: #448753;
+    font-family: georgia;
+    font-size: 20px;
+}
 
 
