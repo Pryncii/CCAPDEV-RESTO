@@ -8,12 +8,19 @@
 }
 
 .flexheader{
+    position: fixed;
+    top: 0px;
     display: flex;
     border-bottom: 1px solid white;
     width: 100%;
     height: 70px;
     background-color: #448753;
     align-items: center;
+}
+
+.headerholder{
+    width: 100%;
+    height: 60px;
 }
 
 .headerleft, .headermiddle, .headerright{
@@ -102,11 +109,18 @@
     border: 1px solid #448753;
     padding-top: 15px;
     color: #448753;
+    text-align: justify;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .restodesc > span, .restomenu > span{
-    font-size: 30px;
+    font-size: 40px;
     border-bottom: 1px solid #448753;
+}
+
+.restodesc > p, .restomenu > ul{
+    font-size: 30px;
 }
 
 
@@ -162,7 +176,7 @@ progress {
 progress[value]::-webkit-progress-value,
 progress[value]::-moz-progress-bar,
 progress[value]::-ms-fill {
-    background-color: #448753; /* Green */
+    background-color: #448753;
 }
 progress[value]::-webkit-progress-bar {
     background-color: #ddd;
