@@ -59,6 +59,7 @@
 
 .headerright{
     justify-content: right;
+    padding-right: 20px;
 }
 
 .headerright > img{
@@ -386,7 +387,7 @@ a.button{
   text-decoration:none; 
   
   color:white;
-  brackground-color:transparent;
+  background-color:transparent;
   border:1px solid white;
   border-radius:100px;
   
@@ -404,4 +405,9 @@ a.button:hover{
   background-position: -100% 100%;
 }
 
+.spacer
+{
+    height: 70px;
+}
+/*for things to not get blocked by the header*/
 
