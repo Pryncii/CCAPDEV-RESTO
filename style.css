@@ -59,6 +59,7 @@
 
 .headerright{
     justify-content: right;
+    padding-right: 20px;
 }
 
 .headerright > img{
@@ -364,4 +365,9 @@ progress[value]::-webkit-progress-bar {
     font-size: 20px;
 }
 
+.spacer
+{
+    height: 70px;
+}
+/*for things to not get blocked by the header*/
 
