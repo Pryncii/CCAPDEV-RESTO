@@ -391,18 +391,22 @@ progress[value]::-webkit-progress-bar {
     display: flex;
     text-align: center;
     align-items: center;
+    border: solid white;
+    width: 80%;
+    margin: 10%;
+    border-radius: 40%;
 }
 
 .iconcontainer > img{
    padding: 8%;
-   height: 50%;
+   height: 55%;
    width: 20%;
+  
 }
 
 .iconcontainer > span{
-    font-size: 30px;
+    font-size: 35px;
     font-family: georgia;
     color: white;
-
 }
 
