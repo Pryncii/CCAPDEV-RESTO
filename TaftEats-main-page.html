@@ -46,7 +46,6 @@ body{
 .headerleft, .headermiddle, .headerright{
     display: flex;
     width: 33%;
-    margin-top: 5px; 
     align-items: center;
 }
 
@@ -111,11 +110,14 @@ height:10px;
 .dropdown {
   position: relative;
   display: inline-block;
+  padding-left: 15px;
 }
 /* Dropdown Button */
 .dropbtn {
   background-color: rgb(123, 240, 123);
   border: none;
+  display:flex;
+  justify-content: center;
 }
 
 #sidebar{
@@ -127,8 +129,7 @@ top:1cm;
 }
 .dropbtn > img{
     width: 75px;
-    height: 75px;
-    padding-left: 15px;}
+    height: 75px;}
 
 /* filters inside the dropdown */
 .dropdown-content .filter {
