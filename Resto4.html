@@ -3,6 +3,7 @@
 <head>
 <title>Resto</title>
 <link rel="stylesheet" href="style.css">
+<script src = "functions.js"></script>
 </head>
 <body>
     <div class = "flexrow">
@@ -12,10 +13,21 @@
                 <img src="Images/map.png">
                 <span>Location</span>
             </a>
-            <div class = "iconcontainer">
+            <button class = "iconcontainer" onclick="openForm()">
                 <img src="Images/leavereview.png">
                 <span>Leave Review</span>
-            </div>
+            </button>
+            <div class="form-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                  <h1>Write a Review</h1>
+              
+                  <label>0/500</label><br/>
+                  <textarea name="about-me" rows="10" cols="30">Your life.</textarea>
+              
+                  <button type="submit" class="btn">Login</button>
+                  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+              </div>
             <div class = "iconcontainer">
                 <img src="Images/review.png">
                 <span>Show Reviews</span>
