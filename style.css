@@ -452,11 +452,30 @@ progress[value]::-webkit-progress-bar {
     display: flex;
     text-align: center;
     align-items: center;
-    border: solid white;
+    border: 1px solid white;
     width: 80%;
     margin: 10%;
     border-radius: 40%;
+    height: 15%;
+    position: relative;
 }
+  
+  .iconcontainer::before {
+    background: hsl(120, 88%, 76%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
+    border-radius: 40%;
+  }
+  
+  .iconcontainer:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 
 .iconcontainer > img{
    padding: 8%;
@@ -470,4 +489,3 @@ progress[value]::-webkit-progress-bar {
     font-family: georgia;
     color: white;
 }
-
