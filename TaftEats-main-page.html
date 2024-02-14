@@ -94,8 +94,8 @@ body{
   height:100%;
   font-size: 16px;
   left: 0;
-  position:absolute;
   text-align: left;
+  position:absolute;
 }
 #go{
 
@@ -110,7 +110,6 @@ height:10px;
 .dropdown {
   position: relative;
   display: inline-block;
-  padding-left: 15px;
 }
 /* Dropdown Button */
 .dropbtn {
@@ -120,6 +119,10 @@ height:10px;
   justify-content: center;
 }
 
+#topsearch{
+  
+  padding-left: 15px;
+}
 #sidebar{
 background-color: seagreen;
 color: #ccc;
@@ -285,7 +288,7 @@ height:20px;
   left: 0;
   background-color: seagreen;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -303,11 +306,16 @@ height:20px;
   outline: none;
 }
 
-/* On mouse-over */
+
+/*
+
+/* On mouse-over 
 .sidenav a:hover, .dropdown-btn:hover {
   color: #f1f1f1;
+  background-color: #037c07;
 }
 
+*/
 /* Main content */
 .main {
   margin-left: 200px; /* Same as the width of the sidenav */
@@ -316,16 +324,11 @@ height:20px;
 }
 
 
-/* Add an active class to the active dropdown button */
-.active {
-  background-color: green;
-  color: white;
-}
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: yellowgreen;
+  background-color: rgb(31, 160, 87) ;
   min-width:100%;
 }
 
@@ -348,13 +351,16 @@ height:20px;
 <script>
 
 
-function toggleVisibility(ID) {
-  var dropdown = document.getElementById(ID);    
+function toggleVisibility(ID, button) {
+  var dropdown = document.getElementById(ID); 
+  var press =  document.getElementById(button); 
   if(dropdown.style.display == "inline-block") { // if is menuBox displayed, hide it
     dropdown.style.display = "none";
+    press.style.backgroundColor = "seagreen";
   }
   else { // if is menuBox hidden, display it
     dropdown.style.display = "inline-block";
+    press.style.backgroundColor = "#037c07";
   }
 }
 
@@ -406,7 +412,7 @@ div.classList.replace("tags-selected", "tags");
                 
 
 
-                <div class="dropdown">
+                <div id="topsearch" class="dropdown">
                 <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
                 <div id="advance-search"class="dropdown-content">
                     <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
@@ -449,20 +455,20 @@ div.classList.replace("tags-selected", "tags");
 
       <div id="menu" class="menu-contents">
         <div class="sidenav dropdown">
-          <button  class="dropdown-btn" onclick="toggleVisibility('contents1')">Benilde 
+          <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="contents1" class="dropdown-container">
             <a href="Resto2.html">Starbucks</a>
           </div>
-          <button  class="dropdown-btn" onclick="toggleVisibility('contents2')">UMall 
+          <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="contents2" class="dropdown-container">
             <a href="Resto.html">McDonalds</a>
             <a href="Resto3.html">KFC</a>
           </div>
-          <button  class="dropdown-btn" onclick="toggleVisibility('contents3')">Burgundy 
+          <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="contents3" class="dropdown-container">
