@@ -256,11 +256,72 @@ progress[value]::-webkit-progress-bar {
 
 .userprofilebio
 {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editpfp-button
+{
+    width: 200px;
+}
+
+.editbio-button
+{
+    width: 100px;
+}
+
+.report-button
+{
+    width: 100px;
+    height: 100%;
+    background-color: #aa3737;
+    color: white;
+    font-family: georgia;
+    border: #aa3737;
+    font-size: 15px;
+}
+
+  
+.editpfp-button:hover, .editbio-button:hover {
+    background-color: white;
+    border: 1px solid #448753;
+    color: #448753;
+}
+
+.report-button:hover{
+    background-color: white;
+    color: #aa3737;
+    border: 1px solid #aa3737;
+}
+
+.editpfp-button, .editbio-button
+{
+    transition-duration: 0.4s;
+    height: 100%;
+    background-color: #448753;
+    color: white;
+    font-family: georgia;
+    border: #448753;
+    font-size: 15px;
+}
+
+.userbio
+{
+    height: 70%;
     color: #448753;
     font-family: georgia;
     font-size: 20px;
     width: 80%;
     padding: 20px;
+}
+
+.usereditbio
+{
+    height: 20%;
+    width: 100%;
+    text-align: right;
 }
 
 .userprofilereviews
