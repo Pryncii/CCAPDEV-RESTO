@@ -344,7 +344,7 @@ body{
     padding-right: 20px;
 }
 
-.headerright > a> img{
+.headerright > img{
     width: 50px;
     border-radius: 50%;
 }
