@@ -117,7 +117,7 @@ body{
   .rate {
     float: left;
     height: 46px;
-    padding: 0 10px;
+    padding: 0 -9px;
   }
   .rate:not(:checked) > input {
     position:absolute;
@@ -367,8 +367,8 @@ body{
 }
 
 .restoprofile > img{
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    height: 90%;
     border-radius: 5%;
 }
 
@@ -420,7 +420,7 @@ body{
 }
 
 .revstars{
-    width: 33%;
+    width: 40%;
     height: 100%;
     transform: translate(60px, 40px);
 }
@@ -705,18 +705,18 @@ progress[value]::-webkit-progress-bar {
 
 
 .sidebar{
-    max-width: 16%;
+    width: 13%;
     height: 100%;
     background-color: #75b984;
     display: flex;
     flex-direction: column;
     position: fixed;
-    left: 9px;
     top: 70px;
 }
 
 .sidebaraside{
-    width: 30%;
+    width: 430px;
+    margin-right: 10px;
 }
 
 .iconcontainer{
@@ -727,7 +727,8 @@ progress[value]::-webkit-progress-bar {
     width: 80%;
     margin: 10%;
     border-radius: 40%;
-    height: 15%;
+    height: 14%;
+    padding: 2px;
     position: relative;
     background-color: transparent;
 }
@@ -751,13 +752,13 @@ progress[value]::-webkit-progress-bar {
 
 .iconcontainer > img{
    padding: 8%;
-   height: 55%;
-   width: 20%;
+   height: 45%;
+   width: 25%;
   
 }
 
 .iconcontainer > span{
-    font-size: 35px;
+    font-size: 22px;
     font-family: georgia;
     color: white;
 }
@@ -766,20 +767,22 @@ progress[value]::-webkit-progress-bar {
   .form-popup {
     display: none;
     position: fixed;
-    bottom: 0;
-    left: 10px;
+    bottom: -5px;
     z-index: 9;
-    max-width: 16%;
-    align-items: center;
-    justify-content: center;
+    max-width: 14.6%;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   
   .form-container {
-    max-width: 100%;
+    display: none;
+    max-width: 80%;
     padding: 5px;
     background-color:  #75b984;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .form-container input[type=text], .form-container input[type=password] {
