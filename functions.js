@@ -6,6 +6,22 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
+function openReviews() {
+  document.getElementById("reviews").style.display = "block";
+}
+
+function closeReviews() {
+  document.getElementById("reviews").style.display = "none";
+}
+
+function openComment() {
+  document.getElementById("commentForm").style.display = "block";
+}
+
+function closeComment() {
+  document.getElementById("commentForm").style.display = "none";
+}
+
 function toggleVisibility(ID) {
     var dropdown = document.getElementById(ID);    
     if(dropdown.style.display == "inline-block") { // if is menuBox displayed, hide it

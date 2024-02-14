@@ -3,7 +3,81 @@
 <head>
 <title>Resto</title>
 <link rel="stylesheet" href="style.css">
-<script src = "functions.js"></script>
+<script src = "functions.js"> </script>
+
+<style>
+.half-screen {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height:1000px;
+}
+
+.review-form {
+    display: none;
+    position: fixed;
+    left: 41%;
+    top: 70px;
+    bottom: -5px;
+    max-width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(117,185,132,0.4);
+}
+
+.review-container {
+    max-width: 80%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .review-box{
+    display: flex;
+    margin: 1%;
+    flex-direction: column;
+    width: 80%;
+    background-color: white;
+    border-radius: 80px;
+    border: 1px solid #448753;
+    padding: 20px;
+    color: #448753;
+    text-align: justify;
+}
+
+.review-box > p {
+    padding: 10px;
+}
+
+.review-profile{
+    display: flex;
+    width: 50%;
+    padding: 10px;
+    align-items: center;
+    font-size: medium;
+    text-align: center;
+}
+
+.review-profile > img{
+    padding: 10px;
+    border-radius: 50%;
+    width: 20%;
+}
+
+.comment-form {
+    display: none;
+}
+
+.comment-btn {
+    width: 100px;
+}
+
+</style>
+
+
 </head>
 <body>
     <div class = "flexrow">
@@ -43,7 +117,7 @@
                 </form>
               </div>
             <div class = "iconcontainer">
-                <img src="Images/review.png">
+                <img src="Images/review.png" onclick="openReviews()">
                 <span>Show Reviews</span>
             </div>
             <a href="RestaurantsPage.html" class = "iconcontainer" target="_blank">
@@ -163,6 +237,25 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="half-screen review-form" id="reviews">
+        <div class = "review-box">
+            <span>
+            <div class = "review-profile">
+                <img src = "Images/PFPs/profile.webp">
+                <span>Juan Dela Cruz<br/>★★★★★</span></div></span>
+            <p>
+                Great Food!
+            </p>
+            <button type="button" class="comment-btn" onclick="openComment()">Leave Comment</button>
+            <form class = "comment-form" id="commentForm">
+                    <textarea name="about-me" rows="10" cols="19">.</textarea>
+                    0/500
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeComment()">Close</button>
+            </form>
+        </div>
+        <button type="button" class="btn cancel" onclick="closeReviews()">Close</button>         
     </div>
 </body>
 </html>
