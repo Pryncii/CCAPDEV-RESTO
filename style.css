@@ -333,6 +333,11 @@ body{
     border-radius: 50%;
 }
 
+.headerright > img{
+    width: 50px;
+    border-radius: 50%;
+}
+
 .flexbody{
     display: flex;
     flex-direction: column;
