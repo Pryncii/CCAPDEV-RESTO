@@ -169,10 +169,10 @@ body{
   }
   
 .inside{
-    display:flex;
-    flex-direction: row;
-    height:100%;
-    width:100%;
+  display:flex;
+  flex-direction: row;
+  height:100%;
+  width:100%;
 }
 
 .content{
@@ -263,460 +263,460 @@ body{
 
 
 
-  
+
 .flexmain{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flexrow{
-    display: flex;
+  display: flex;
 }
 
 .flexheader{
-    position: fixed;
-    top: 0px;
-    display: flex;
-    border-bottom: 1px solid white;
-    width: 100%;
-    height: 70px;
-    background-color: #448753;
-    align-items: center;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  border-bottom: 1px solid white;
+  width: 100%;
+  height: 70px;
+  background-color: #448753;
+  align-items: center;
 }
 
 .headerholder{
-    width: 100%;
-    height: 60px;
+  width: 100%;
+  height: 60px;
 }
 
 .headerleft, .headermiddle, .headerright{
-    display: flex;
-    width: 33%;
-    margin-top: 5px; 
-    align-items: center;
+  display: flex;
+  width: 33%;
+  margin-top: 5px; 
+  align-items: center;
 }
 
 
 .headerleft > img{
-    width: 50px;
-    padding-right: 10px;
-    padding-left: 10px;
+  width: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .headerleft > p{
-    font-size: 25px;
-    font-family: georgia;
-    color: white;
+  font-size: 25px;
+  font-family: georgia;
+  color: white;
 }
 
 .form{
-    display: flex;
+  display: flex;
 }
 
 .headermiddle{
-    padding-left: 5px;
-    justify-content: center;
+  padding-left: 5px;
+  justify-content: center;
 }
 
 .headermiddle > img{
-    width: 50px;
-    padding-left: 5px;
+  width: 50px;
+  padding-left: 5px;
 }
 
 .headerright{
-    justify-content: right;
-    padding-right: 20px;
+  justify-content: right;
+  padding-right: 20px;
 }
 
 .headerright > a > img{
-    width: 50px;
-    border-radius: 50%;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .headerright > img{
-    width: 50px;
-    border-radius: 50%;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .flexbody{
-    display: flex;
-    flex-direction: column;
-    /*background-image: linear-gradient(to top, #006600 0%, #009933 100%);*/
-    background-color: #dbebd5;
-    height: 1000px;
+  display: flex;
+  flex-direction: column;
+  /*background-image: linear-gradient(to top, #006600 0%, #009933 100%);*/
+  background-color: #dbebd5;
+  height: 1000px;
 }
 
 .flexrestopart{
-    display: flex;
-    width: 100%;
-    height: 45%;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  height: 45%;
+  align-items: center;
+  justify-content: center;
 }
 
 .restoprofile, .restodesc, .restomenu{
-    display: flex;
-    align-items: center;
-    margin: 1%;
-    width: 33%;
+  display: flex;
+  align-items: center;
+  margin: 1%;
+  width: 33%;
 }
 
 .restoprofile{
-    height: 100%;
-    padding-top: 10px;
+  height: 100%;
+  padding-top: 10px;
 }
 
 .restoprofile > img{
-    width: 100%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     border-radius: 5%;
 }
 
 .restodesc, .restomenu{
-    flex-direction: column;
-    width: 30%;
-    height: 90%;
-    background-color: white;
-    border-radius: 80px;
-    border: 1px solid #448753;
-    padding-top: 15px;
-    color: #448753;
-    text-align: justify;
-    padding-right: 30px;
-    padding-left: 30px;
+  flex-direction: column;
+  width: 30%;
+  height: 90%;
+  background-color: white;
+  border-radius: 80px;
+  border: 1px solid #448753;
+  padding-top: 15px;
+  color: #448753;
+  text-align: justify;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .restodesc > span, .restomenu > span{
-    font-size: 40px;
-    border-bottom: 1px solid #448753;
+  font-size: 40px;
+  border-bottom: 1px solid #448753;
 }
 
 .restodesc > p, .restomenu > ul{
-    font-size: 30px;
+  font-size: 30px;
 }
 
 
 .revsummary{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 1%;
-    margin-right: 1%;
-    width: 55%;
-    height: 60%;
-    background-color: #448753;
-    border-radius: 5%;
-    transform: translate(0px, -40px);
-    text-align: left;
-    color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 55%;
+  height: 60%;
+  background-color: #448753;
+  border-radius: 5%;
+  transform: translate(0px, -40px);
+  text-align: left;
+  color: white;
 }
 
 .revsummary > p{
-    margin: 3px;
-    font-size: 20px;
-    font-family: georgia;
-    padding-left: 10%;
+  margin: 3px;
+  font-size: 20px;
+  font-family: georgia;
+  padding-left: 10%;
 
 }
 
 .revstars{
-    width: 40%;
+    width: 33%;
     height: 100%;
     transform: translate(60px, 40px);
 }
 
 .revstars > img{
-    width: 55%;
-    height: 95%;
+  width: 55%;
+  height: 95%;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    transform: translate(-40px, -40px);
+  border-collapse: collapse;
+  width: 100%;
+  transform: translate(-40px, -40px);
 }
 
 td {
-    text-align: left;
-    padding: 20px;
+  text-align: left;
+  padding: 20px;
 }
 
 progress {
-    width: 100%;
-    height: 20px; 
+  width: 100%;
+  height: 20px; 
 }
 
 progress[value]::-webkit-progress-value,
 progress[value]::-moz-progress-bar,
 progress[value]::-ms-fill {
-    background-color: #448753;
+  background-color: #448753;
 }
 progress[value]::-webkit-progress-bar {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 .flexmenulist{
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .flexmenuresto{
-    height: 50%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    position: relative;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .flexmenuresto > img{
-    height: 140%;
-    width: 90%;
-    border-radius: 80px;
-    border: 1px solid #448753;
+  height: 140%;
+  width: 90%;
+  border-radius: 80px;
+  border: 1px solid #448753;
 }
 
 .flexmenuresto > span{
-    font-family: georgia;
-    background-color: rgba(48, 37, 37, 0.692);
-    color: white;
-    position: absolute;
-    font-size: 25px;
-    border-radius: 90px;
+  font-family: georgia;
+  background-color: rgba(48, 37, 37, 0.692);
+  color: white;
+  position: absolute;
+  font-size: 25px;
+  border-radius: 90px;
 }
 
 .userprofileself
 {
-    height: 25%;
+  height: 25%;
 }
 
 .userprofileselfname
 {
-    height: 25%;
-    border-bottom: 1px solid #448753;
-    color: #448753;
-    font-size: 25px;
-    padding-left: 30px;
-    display: flex;
-    align-items: center;
-    font-family: georgia;
+  height: 25%;
+  border-bottom: 1px solid #448753;
+  color: #448753;
+  font-size: 25px;
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  font-family: georgia;
 }
 
 .userprofileselfpfpnbio
 {
-    height: 75%;
-    color: #448753;
-    font-family: georgia;
-    display: flex;
-    flex-direction: row;
+  height: 75%;
+  color: #448753;
+  font-family: georgia;
+  display: flex;
+  flex-direction: row;
 }
 
 .userprofilepfp
 {
-    padding: 10px;
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 10px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .userprofilepfp > img
 {
-    border-radius: 50%;
-    height: 100%;
+  border-radius: 50%;
+  height: 100%;
 }
 
 .userprofilebio
 {
-    width: 80%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .editpfp-button
 {
-    width: 200px;
+  width: 200px;
 }
 
 .editbio-button
 {
-    width: 100px;
+  width: 100px;
 }
 
 .report-button
 {
-    width: 100px;
-    height: 100%;
-    background-color: #aa3737;
-    color: white;
-    font-family: georgia;
-    border: #aa3737;
-    font-size: 15px;
+  width: 100px;
+  height: 100%;
+  background-color: #aa3737;
+  color: white;
+  font-family: georgia;
+  border: #aa3737;
+  font-size: 15px;
 }
 
-  
+
 .editpfp-button:hover, .editbio-button:hover {
-    background-color: white;
-    border: 1px solid #448753;
-    color: #448753;
+  background-color: white;
+  border: 1px solid #448753;
+  color: #448753;
 }
 
 .report-button:hover{
-    background-color: white;
-    color: #aa3737;
-    border: 1px solid #aa3737;
+  background-color: white;
+  color: #aa3737;
+  border: 1px solid #aa3737;
 }
 
 .editpfp-button, .editbio-button
 {
-    transition-duration: 0.4s;
-    height: 100%;
-    background-color: #448753;
-    color: white;
-    font-family: georgia;
-    border: #448753;
-    font-size: 15px;
+  transition-duration: 0.4s;
+  height: 100%;
+  background-color: #448753;
+  color: white;
+  font-family: georgia;
+  border: #448753;
+  font-size: 15px;
 }
 
 .userbio
 {
-    height: 70%;
-    color: #448753;
-    font-family: georgia;
-    font-size: 20px;
-    width: 80%;
-    padding: 20px;
+  height: 70%;
+  color: #448753;
+  font-family: georgia;
+  font-size: 20px;
+  width: 80%;
+  padding: 20px;
 }
 
 .usereditbio
 {
-    height: 20%;
-    width: 100%;
-    text-align: right;
+  height: 20%;
+  width: 100%;
+  text-align: right;
 }
 
 .userprofilereviews
 {
-    height: 75%;
-    display: flex;
-    flex-direction: row;
+  height: 75%;
+  display: flex;
+  flex-direction: row;
 }
 
 .userprofilereviewleft
 {
-    /*just an empty spacer for now*/
-    width: 20%;
-    padding: 10px;
-    background-color: rgb(227, 241, 227);
+  /*just an empty spacer for now*/
+  width: 20%;
+  padding: 10px;
+  background-color: rgb(227, 241, 227);
 }
 
 .userprofilereviewright
 {
-    width: 80%;
-    padding: 20px;
-    border-top: 1px solid #448753;
-    background-color: rgb(227, 241, 227);
-    display: flex;
-    flex-direction: column;
+  width: 80%;
+  padding: 20px;
+  border-top: 1px solid #448753;
+  background-color: rgb(227, 241, 227);
+  display: flex;
+  flex-direction: column;
 }
 
 .reviewupper
 {
-    height: 5%;
-    font-size: 25px;
-    color: #448753;
-    font-family: georgia;
-    padding-bottom: 20px;
+  height: 5%;
+  font-size: 25px;
+  color: #448753;
+  font-family: georgia;
+  padding-bottom: 20px;
 }
 
 .reviewlower
 {
-    height: 95%;
-    font-size: 25px;
-    color: #448753;
-    font-family: georgia;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: column;
+  height: 95%;
+  font-size: 25px;
+  color: #448753;
+  font-family: georgia;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .reviewcontainer
 {
-    display: flex;
-    flex-direction: row;
-    height: 30%;
-    border-top: 1px solid #448753;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  border-top: 1px solid #448753;
+  padding-bottom: 10px;
 }
 
 .reviewcontainerleft
 {
-    width: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background-color: rgb(227, 241, 227);
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgb(227, 241, 227);
 }
 
 .reviewcontainerleft > img
 {
-    border-radius: 50%;
-    height: 100%;
+  border-radius: 50%;
+  height: 100%;
 }
 
 .reviewcontainerright
 {
-    padding: 10px;
-    width: 75%;
-    background-color: rgb(227, 241, 227);
-    display: flex;
-    flex-direction: column;
+  padding: 10px;
+  width: 75%;
+  background-color: rgb(227, 241, 227);
+  display: flex;
+  flex-direction: column;
 }
 
 .rctop
 {
-    height: 10%;
-    color: #448753;
-    font-family: georgia;
-    font-size: 20px;
-    align-items: center;
-    display: flex;
+  height: 10%;
+  color: #448753;
+  font-family: georgia;
+  font-size: 20px;
+  align-items: center;
+  display: flex;
 }
 
 .rcmid
 {
-    height: 20%;
+  height: 20%;
 }
 
 .rcbottom
 {
-    height: 70%;
-    color: #448753;
-    font-family: georgia;
-    font-size: 20px;
+  height: 70%;
+  color: #448753;
+  font-family: georgia;
+  font-size: 20px;
 }
 
 .spacer{
-    height: 70px;
+  height: 70px;
 }
 /*for things to not get blocked by the header*/
 
 
 .sidebar{
-    width: 13%;
+    max-width: 16%;
     height: 100%;
     background-color: #75b984;
     display: flex;
     flex-direction: column;
     position: fixed;
+    left: 9px;
     top: 70px;
 }
 
 .sidebaraside{
-    width: 430px;
-    margin-right: 10px;
+    width: 30%;
 }
 
 .iconcontainer{
@@ -727,38 +727,37 @@ progress[value]::-webkit-progress-bar {
     width: 80%;
     margin: 10%;
     border-radius: 40%;
-    height: 14%;
-    padding: 2px;
+    height: 15%;
     position: relative;
     background-color: transparent;
 }
-  
-  .iconcontainer::before {
-    background: hsl(120, 88%, 76%);
-    content: "";
-    inset: 0;
-    position: absolute;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.5s ease-in-out;
-    z-index: -1;
-    border-radius: 40%;
-  }
-  
-  .iconcontainer:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+
+.iconcontainer::before {
+  background: hsl(120, 88%, 76%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+  border-radius: 40%;
+}
+
+.iconcontainer:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 .iconcontainer > img{
    padding: 8%;
-   height: 45%;
-   width: 25%;
+   height: 55%;
+   width: 20%;
   
 }
 
 .iconcontainer > span{
-    font-size: 22px;
+    font-size: 35px;
     font-family: georgia;
     color: white;
 }
@@ -767,22 +766,20 @@ progress[value]::-webkit-progress-bar {
   .form-popup {
     display: none;
     position: fixed;
-    bottom: -5px;
+    bottom: 0;
+    left: 10px;
     z-index: 9;
-    max-width: 14.6%;
+    max-width: 16%;
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
   
   .form-container {
-    display: none;
-    max-width: 80%;
+    max-width: 100%;
     padding: 5px;
     background-color:  #75b984;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-container input[type=text], .form-container input[type=password] {
@@ -817,8 +814,6 @@ progress[value]::-webkit-progress-bar {
     opacity: 1;
   }
 
-  a {
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-
-
