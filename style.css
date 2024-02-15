@@ -100,7 +100,7 @@ height:10px;
 .price-bound:before {
     position: absolute;
     padding-left: 5px;
-    content:"₱";
+    content:"\20B1";
 
 }
 /*alignment*/
@@ -112,43 +112,6 @@ height:10px;
     text-indent: 16px;
 }
 
-
-/*5 star rating*/
-.rate {
-  float: left;
-  height: 46px;
-  padding: 0 10px;
-}
-.rate:not(:checked) > input {
-  position:absolute;
-  top:-9999px;
-}
-.rate:not(:checked) > label {
-  float:right;
-  width:1em;
-  overflow:hidden;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:30px;
-  color:#ccc;
-}
-.rate:not(:checked) > label:before {
-  content: '★ ';
-}
-.rate > input:checked ~ label {
-  color: #ffc700;
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-  color: #deb217;
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-  color: #c59b08;
-}
 
 
 /*additional tags*/
@@ -812,26 +775,32 @@ progress[value]::-webkit-progress-bar {
   }
 
   /*5 star rating*/
+  /*looks like this radio button> o★_star <star */
 .rate {
     float: left;
     height: 46px;
     padding: 0 10px;
   }
   .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+    display:none; /*hides the buttons, only shows the stars/content */
   }
   .rate:not(:checked) > label {
+    
+    /*
+    sets label to right, and width to 1em, then overflow is hidden which hides the _star*/
     float:right;
     width:1em;
     overflow:hidden;
+    /*no wrap so text doesnt do down and be visible*/
     white-space:nowrap;
+    /*cursor changes to indicate clickable element*/
     cursor:pointer;
-    font-size:30px;
+    font-size:40px;
+    /*initial color / unrated*/
     color:#ccc;
   }
   .rate:not(:checked) > label:before {
-    content: '★ ';
+    content: '\2605';
   }
   .rate > input:checked ~ label {
     color: #ffc700;
