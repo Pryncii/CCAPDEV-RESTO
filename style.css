@@ -715,8 +715,8 @@ progress[value]::-webkit-progress-bar {
 }
 
 .sidebaraside{
-    width: 430px;
-
+    width: 30%;
+    background-color: #75b984;
 }
 
 .iconcontainer{
