@@ -322,12 +322,12 @@ height:20px;
     display: flex;
     align-items: center;
     margin: 1%;
-    max-width: 33%;
     
 }
 
 
 .restoprofile{
+    min-width: 33%;
     height: 100%;
     padding-top: 10px;
 }
