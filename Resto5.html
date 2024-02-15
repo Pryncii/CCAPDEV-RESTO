@@ -280,35 +280,38 @@
         </div>
         <div class = "sidebaraside"></div>
     </div> 
-    <div class="half-screen review-form" id="reviews">
-        <div class = "review-box">
-            <span>
-            <div class = "review-profile">
-                <img src = "Images/PFPs/profile.webp">
-                <span>Juan Dela Cruz<br/>★★★★★</span></div></span>
-            <p>
-                Great Food!
-            </p>
-            <div class="comment-box">
-                <button type="button" class="comment-btn" onclick="openComment(), openRelpies()">Show/Leave Comments</button>
-                <section>
-                <br/>
-                <form class = "comment-form" id="commentForm">
-                        <textarea name="about-me" rows="5" cols="60">.</textarea>
-                        0/500
-                        <button type="submit" class="btn">Submit</button>
-                </form>
-                <div class="comment-replies" id="commentReply">
-                    <br/> <br/> <br/>
+    <div class="half-screen" id="reviews">
+        <div class="review-form" id="reviews">
+            <div class = "review-box">
+                <span>
+                <div class = "review-profile">
                     <img src = "Images/PFPs/profile.webp">
-                    <span><strong>Juan Dela</strong><br/>Great review!</span></div></span>
+                    <span>Juan Dela Cruz<br/>★★★★★</span></div></span>
+                <p>
+                    Great Food!
+                </p>
+                <div class="comment-box">
+                    <button type="button" class="comment-btn" onclick="openComment(), openReplies()">Show/Leave Comments</button>
+                    <section>
+                    <br/>
+                    <form class = "comment-form" id="commentForm">
+                            <textarea name="about-me" rows="5" cols="60">.</textarea>
+                            0/500
+                            <button type="submit" class="btn">Submit</button>
+                    </form>
+                    <div class="comment-replies" id="commentReply">
+                        <br/> <br/> <br/>
+                        <img src = "Images/PFPs/profile.webp">
+                        <span><strong>Juan Dela</strong><br/>Great review!</span>
+                    
+                    </div>
+                    
+                    <button type="button" class="rclose-btn" onclick="closeReplies(), closeComment()">Close</button>
+                    </section>
                 </div>
-                
-            <button type="button" class="rclose-btn" onclick="closeRelpies(), closeComment()">Close</button>
-            </section>
-            </div>
-            <button type="button" class="rclose-btn" onclick="closeReviews()">Close</button>  
-        </div>      
-    </div>     
+                <button type="button" class="rclose-btn" onclick="closeReviews()">Close</button>  
+            </div>      
+        </div> 
+    </div>
 </body>
 </html>
