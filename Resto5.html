@@ -61,20 +61,57 @@
     text-align: center;
 }
 
-.review-profile > img{
+.review-profile > img, .comment-replies > img{
     padding: 10px;
     border-radius: 50%;
     width: 20%;
 }
 
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    align-items: center;
+    justify-content: right;
+    font-size: medium;
+    text-align: center;
+}
+
+.comment-textarea > textarea {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    font-size: medium;
+    text-align: center;
+}
+
 .comment-form {
     display: none;
+    width: 100%;
+}
+
+.comment-replies {
+    display: none;
+    width: 40%;
+    margin: 2%;
+    height: 10%;
+    align-items: center;
+    font-size: medium;
+    text-align: left;
+    color: black;
 }
 
 .comment-btn {
-    width: 100px;
+    width: 150px;
 }
 
+.rclose-btn {
+    cursor: pointer;
+    width: 10%;
+    margin-left: 70%;
+    margin-top:10px;
+}
 </style>
 
 
@@ -247,15 +284,26 @@
             <p>
                 Great Food!
             </p>
-            <button type="button" class="comment-btn" onclick="openComment()">Leave Comment</button>
-            <form class = "comment-form" id="commentForm">
-                    <textarea name="about-me" rows="10" cols="19">.</textarea>
-                    0/500
-                    <button type="submit" class="btn">Submit</button>
-                    <button type="button" class="btn cancel" onclick="closeComment()">Close</button>
-            </form>
-        </div>
-        <button type="button" class="btn cancel" onclick="closeReviews()">Close</button>         
-    </div>
+            <div class="comment-box">
+                <button type="button" class="comment-btn" onclick="openComment(), openRelpies()">Show/Leave Comments</button>
+                <section>
+                <br/>
+                <form class = "comment-form" id="commentForm">
+                        <textarea name="about-me" rows="5" cols="60">.</textarea>
+                        0/500
+                        <button type="submit" class="btn">Submit</button>
+                </form>
+                <div class="comment-replies" id="commentReply">
+                    <br/> <br/> <br/>
+                    <img src = "Images/PFPs/profile.webp">
+                    <span><strong>Juan Dela</strong><br/>Great review!</span></div></span>
+                </div>
+                
+            <button type="button" class="rclose-btn" onclick="closeRelpies(), closeComment()">Close</button>
+            </section>
+            </div>
+            <button type="button" class="rclose-btn" onclick="closeReviews()">Close</button>  
+        </div>      
+    </div>     
 </body>
 </html>

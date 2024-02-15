@@ -22,6 +22,14 @@ function closeComment() {
   document.getElementById("commentForm").style.display = "none";
 }
 
+function openRelpies() {
+  document.getElementById("commentReply").style.display = "flex";
+}
+
+function closeRelpies() {
+  document.getElementById("commentReply").style.display = "none";
+}
+
 function toggleVisibility(ID) {
     var dropdown = document.getElementById(ID);    
     if(dropdown.style.display == "inline-block") { // if is menuBox displayed, hide it
