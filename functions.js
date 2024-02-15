@@ -22,11 +22,11 @@ function closeComment() {
   document.getElementById("commentForm").style.display = "none";
 }
 
-function openRelpies() {
+function openReplies() {
   document.getElementById("commentReply").style.display = "flex";
 }
 
-function closeRelpies() {
+function closeReplies() {
   document.getElementById("commentReply").style.display = "none";
 }
 
