@@ -759,20 +759,14 @@ progress[value]::-webkit-progress-bar {
     position: fixed;
     bottom: -5px;
     z-index: 9;
+    max-height: 75%;
     max-width: 14.6%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-container {
-    display: none;
     max-width: 90%;
     padding: 5px;
     background-color:  #75b984;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-container input[type=text], .form-container input[type=password] {
@@ -812,7 +806,7 @@ progress[value]::-webkit-progress-bar {
 .rate {
     float: left;
     height: 46px;
-    padding: 0 10px;
+    padding-right: 0 10px;
   }
   .rate:not(:checked) > input {
     display:none; /*hides the buttons, only shows the stars/content */
@@ -828,7 +822,7 @@ progress[value]::-webkit-progress-bar {
     white-space:nowrap;
     /*cursor changes to indicate clickable element*/
     cursor:pointer;
-    font-size:40px;
+    font-size: 28px;
     /*initial color / unrated*/
     color:#ccc;
   }
