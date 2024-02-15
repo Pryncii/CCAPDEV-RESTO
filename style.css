@@ -441,7 +441,7 @@ progress[value]::-webkit-progress-bar {
     border: 5px solid black;
 }
 
-.flexmenuresto > img{
+.flexmenuresto > img, .flexmenuresto > a > img, .flexmenuresto > a{
     height: 100%;
     width: 100%;
     border-radius: 80px;
