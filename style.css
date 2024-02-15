@@ -759,6 +759,9 @@ progress[value]::-webkit-progress-bar {
     color: white;
 }
 
+#myForm{
+    display:none;
+}
   
   .form-popup {
     display: none;
