@@ -242,7 +242,7 @@ height:20px;
 }
 
 .headerholder{
-    height: 60px;
+    height: 90px;
 }
 
 .headerleft, .headermiddle, .headerright{
@@ -350,7 +350,6 @@ height:20px;
 .restodesc > p, .restomenu > ul{
     font-size: 30px;
 }
-
 
 .revsummary{
     display: flex;
@@ -509,7 +508,6 @@ progress[value]::-webkit-progress-bar {
     font-size: 15px;
 }
 
-  
 .editpfp-button:hover, .editbio-button:hover {
     background-color: white;
     border: 1px solid #448753;
@@ -563,6 +561,8 @@ progress[value]::-webkit-progress-bar {
     width: 20%;
     padding: 10px;
     background-color: rgb(227, 241, 227);
+    border: 1px solid #448753;
+
 }
 
 .userprofilereviewright
@@ -630,6 +630,46 @@ progress[value]::-webkit-progress-bar {
     flex-direction: column;
 }
 
+/*FRIENDS STUFF*/
+.friendcontainer
+{
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    padding-bottom: 10px;
+    background-color: rgb(227, 241, 227);
+}
+
+.friendcontainerleft
+{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(227, 241, 227);
+    padding-left: 30px;
+}
+
+.friendcontainerleft > img
+{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.friendcontainerright
+{
+    padding: 10px;
+    width: 75%;
+    background-color: rgb(227, 241, 227);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    color: #448753;
+    font-family: georgia;
+}
+
 .rctop
 {
     height: 10%;
@@ -654,7 +694,7 @@ progress[value]::-webkit-progress-bar {
 }
 
 .spacer{
-    height: 60px;
+    height: 90px;
 }
 /*for things to not get blocked by the header*/
 
