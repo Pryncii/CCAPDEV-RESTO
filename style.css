@@ -509,6 +509,7 @@ progress[value]::-webkit-progress-bar {
 
 .editpfp-button
 {
+    max-height: 30px;
     width: 200px;
 }
 
