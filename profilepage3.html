@@ -2,15 +2,18 @@
 <html>
 
 <head>
-    <title>Profile Page</title>
+    <title>Chester Profile</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src ="functions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class = "flexmain">
         <div class = "flexrow flexheader">
             <div class = "headerleft">
-                <img src = "Images/menuicon.png">
+                <img onclick="toggleMenu()" src = "Images/menuicon.png">
                 <p>TAFT EATS</p>
             </div>
 
@@ -61,122 +64,146 @@
         <div class = "flexrow headerholder">
         </div>
 
-        <div class = "flexbody">
-            <div class = "userprofileself">
-                <div class = "userprofileselfname">
-                    Ruiz, Chester
-                </div>
-                <div class = "userprofileselfpfpnbio">
-                    <div class = "userprofilepfp">
-                        <img src = "Images/PFPs/catpfp.png">
-                    </div>
-                    <div class = "userprofilebio">
-                        <div class = "userbio">
-                            Bio/Information: <br>The only human on earth who likes mushroom pepper steak.
-                        </div>
-
-                        <div class = "usereditbio">
-                            <button type="report-button" class = "report-button">Report User</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="inside">
+            <div id="menu" class="sidenav">
+              <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents1" class="dropdown-container">
+                <a href="Resto2.html">Starbucks</a>
+              </div>
+              <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents2" class="dropdown-container">
+                <a href="Resto.html">McDonalds</a>
+                <a href="Resto3.html">KFC</a>
+              </div>
+              <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents3" class="dropdown-container">
+                <a href="Resto4.html">Army Navy</a>
+              </div>
             </div>
-            <div class = "userprofilereviews">
-                <div class = "userprofilereviewleft">
-                    <div class = "reviewupper">
-                        Friends
+        <div class = "contentforotherpages">
+            <div class = "flexbody">
+                <div class = "userprofileself">
+                    <div class = "userprofileselfname">
+                        Ruiz, Chester
                     </div>
-                    <div class = "friendcontainer">
-                        <a href="profilepage2.html">
-                            <div class = "friendcontainerleft">
-                                <img src = "Images/PFPs/Blix.jpg">
-                            </div>
-                        </a>
-                        <div class = "friendcontainerright">
-                            Lingat, Blix
+                    <div class = "userprofileselfpfpnbio">
+                        <div class = "userprofilepfp">
+                            <img src = "Images/PFPs/catpfp.png">
                         </div>
-                    </div>
-                    <div class = "friendcontainer">
-                        <a href="profilepage.html">
-                            <div class = "friendcontainerleft">
-                                <img src = "Images/PFPs/Prince.jpg">
+                        <div class = "userprofilebio">
+                            <div class = "userbio">
+                                Bio/Information: <br>The only human on earth who likes mushroom pepper steak.
                             </div>
-                        </a>
-                        <div class = "friendcontainerright">
-                            Buencamino, Prince
-                        </div>
-                    </div>
-                    <div class = "friendcontainer">
-                        <a href="profilepage4.html">
-                            <div class = "friendcontainerleft">
-                                <img src = "Images/PFPs/Gaby.jpg">
+    
+                            <div class = "usereditbio">
+                                <button type="report-button" class = "report-button">Report User</button>
                             </div>
-                        </a>
-                        <div class = "friendcontainerright">
-                            Arco, Gaby
-                        </div>
-                    </div>
-                    <div class = "friendcontainer">
-                        <a href="profilepage5.html">
-                            <div class = "friendcontainerleft">
-                                <img src = "Images/PFPs/Micole.jpg">
-                            </div>
-                        </a>
-                        <div class = "friendcontainerright">
-                            Chua, Micole
                         </div>
                     </div>
                 </div>
-                <div class = "userprofilereviewright">
-                    <div class = "reviewupper">
-                        Recent Reviews
+                <div class = "userprofilereviews">
+                    <div class = "userprofilereviewleft">
+                        <div class = "reviewupper">
+                            Friends
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="profilepage2.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/PFPs/Blix.jpg">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Lingat, Blix
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="profilepage.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/PFPs/Prince.jpg">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Buencamino, Prince
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="profilepage4.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/PFPs/Gaby.jpg">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Arco, Gaby
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="profilepage5.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/PFPs/Micole.jpg">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Chua, Micole
+                            </div>
+                        </div>
                     </div>
-                    <div class = "reviewlower">
-                        <div class = "reviewcontainer">
-                            <div class = "reviewcontainerleft">
-                                <img src = "Images/kfcsquare.png">
-                            </div>
-                            <div class = "reviewcontainerright">
-                                <div class = "rctop">
-                                    <a href= "Resto3.html">KFC</a>
-                                </div>
-                                <div class = "rcmid">
-                                    ★★★☆☆
-                                </div>
-                                <div class = "rcbottom">
-                                    It's alright.
-                                </div>
-                            </div>
+                    <div class = "userprofilereviewright">
+                        <div class = "reviewupper">
+                            Recent Reviews
                         </div>
-                        <div class = "reviewcontainer">
-                            <div class = "reviewcontainerleft">
-                                <img src = "Images/mcdo-umall-square.jpg">
+                        <div class = "reviewlower">
+                            <div class = "reviewcontainer">
+                                <div class = "reviewcontainerleft">
+                                    <img src = "Images/kfcsquare.png">
+                                </div>
+                                <div class = "reviewcontainerright">
+                                    <div class = "rctop">
+                                        <a href= "Resto3.html">KFC</a>
+                                    </div>
+                                    <div class = "rcmid">
+                                        ★★★☆☆
+                                    </div>
+                                    <div class = "rcbottom">
+                                        It's alright.
+                                    </div>
+                                </div>
                             </div>
-                            <div class = "reviewcontainerright">
-                                <div class = "rctop">
-                                    <a href= "Resto.html">McDonalds</a>
+                            <div class = "reviewcontainer">
+                                <div class = "reviewcontainerleft">
+                                    <img src = "Images/mcdo-umall-square.jpg">
                                 </div>
-                                <div class = "rcmid">
-                                    ★★★★★
-                                </div>
-                                <div class = "rcbottom">
-                                    the mushroom pepper steak!
+                                <div class = "reviewcontainerright">
+                                    <div class = "rctop">
+                                        <a href= "Resto.html">McDonalds</a>
+                                    </div>
+                                    <div class = "rcmid">
+                                        ★★★★★
+                                    </div>
+                                    <div class = "rcbottom">
+                                        the mushroom pepper steak!
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class = "reviewcontainer">
-                            <div class = "reviewcontainerleft">
-                                <img src = "Images/Starbssquare.png">
-                            </div>
-                            <div class = "reviewcontainerright">
-                                <div class = "rctop">
-                                    <a href= "Resto2.html">Starbucks</a>
+                            <div class = "reviewcontainer">
+                                <div class = "reviewcontainerleft">
+                                    <img src = "Images/Starbssquare.png">
                                 </div>
-                                <div class = "rcmid">
-                                    ★★★★☆
-                                </div>
-                                <div class = "rcbottom">
-                                    expensive..
+                                <div class = "reviewcontainerright">
+                                    <div class = "rctop">
+                                        <a href= "Resto2.html">Starbucks</a>
+                                    </div>
+                                    <div class = "rcmid">
+                                        ★★★★☆
+                                    </div>
+                                    <div class = "rcbottom">
+                                        expensive..
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,6 +212,5 @@
             </div>
         </div>
     </div>
-    
 </body>
 </html>

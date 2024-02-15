@@ -75,7 +75,7 @@ body{
 .nav-bar-drop{
 
   
-  background-color: seagreen;
+  background-color: rgb(75, 148, 107);
   border: none;
   color:white;
 }
@@ -140,6 +140,12 @@ height:20px;
     flex-direction: row;
     height:100%;
     width:100%;
+    background-color: rgb(75, 148, 107);
+}
+
+.contentforotherpages
+{
+    width: 100%;
 }
 
 .content{
@@ -162,7 +168,7 @@ height:20px;
   */
   display:none;
   left: 0;
-  background-color: seagreen;
+  background-color: rgb(75, 148, 107);
   overflow-x: hidden;
   padding-top: 10px;
 }
@@ -204,7 +210,7 @@ height:20px;
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: rgb(31, 160, 87) ;
+  background-color: #75b984;
   min-width:100%;
 }
 
@@ -753,6 +759,9 @@ progress[value]::-webkit-progress-bar {
     color: white;
 }
 
+#myForm{
+    display:none;
+}
   
   .form-popup {
     display: none;
