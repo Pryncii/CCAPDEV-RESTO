@@ -426,15 +426,24 @@ progress[value]::-webkit-progress-bar {
 }
 
 .flexmenuresto{
-    height: 50%;
-    width: 50%;
+    height: 70%;
+    width: 40%;
     display: flex;
     justify-content: center;
+    transition: font-size 4s, width 1s, height 1s, border 0.1s;
+    border-radius: 80px;
+    margin: 1%;
+}
+
+.flexmenuresto:hover{
+    height: 80%;
+    width: 50%;
+    border: 5px solid black;
 }
 
 .flexmenuresto > img{
-    height: 140%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     border-radius: 80px;
     border: 1px solid #448753;
 }
