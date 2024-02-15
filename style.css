@@ -152,7 +152,7 @@ height:20px;
 .sidenav {
   height: 100%;
   width: 20%;
-  /* to make the sidebar follow the scroll (sticky)
+  /* to make the sidenav follow the scroll (sticky)
   position: relative;
   */
   display:none;
@@ -215,16 +215,6 @@ height:20px;
   float: right;
   padding-right: 8px;
 }
-
-
-
-
-
-
-
-
-
-
   
 .flexmain{
     display: flex;
@@ -241,7 +231,7 @@ height:20px;
     display: flex;
     border-bottom: 1px solid white;
     width: 100%;
-    height: 70px;
+    height: 10.5%;
     background-color: #448753;
     align-items: center;
 }
@@ -674,6 +664,7 @@ progress[value]::-webkit-progress-bar {
     flex-direction: column;
     position: fixed;
     top: 70px;
+    right: 0px;
 }
 
 .sidebaraside{
@@ -739,7 +730,7 @@ progress[value]::-webkit-progress-bar {
   
   .form-container {
     display: none;
-    max-width: 80%;
+    max-width: 90%;
     padding: 5px;
     background-color:  #75b984;
     display: flex;
