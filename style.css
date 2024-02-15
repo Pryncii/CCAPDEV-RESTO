@@ -275,7 +275,6 @@ body{
 }
 
 .headerholder{
-    width: 100%;
     height: 60px;
 }
 
@@ -348,7 +347,7 @@ body{
     display: flex;
     align-items: center;
     margin: 1%;
-    width: 33%;
+    max-width: 33%;
 }
 
 .restoprofile{
@@ -455,7 +454,6 @@ progress[value]::-webkit-progress-bar {
     width: 50%;
     display: flex;
     justify-content: center;
-    position: relative;
 }
 
 .flexmenuresto > img{
@@ -689,7 +687,7 @@ progress[value]::-webkit-progress-bar {
 }
 
 .spacer{
-    height: 70px;
+    height: 60px;
 }
 /*for things to not get blocked by the header*/
 
@@ -706,7 +704,7 @@ progress[value]::-webkit-progress-bar {
 }
 
 .sidebaraside{
-    width: 30%;
+    min-width: 13%;
     background-color: #75b984;
 }
 
