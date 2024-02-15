@@ -314,7 +314,7 @@ height:20px;
     display: flex;
     align-items: center;
     margin: 1%;
-    width: 33%;
+    max-width: 33%;
 }
 
 .restoprofile{
