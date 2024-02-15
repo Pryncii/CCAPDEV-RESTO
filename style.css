@@ -780,6 +780,7 @@ progress[value]::-webkit-progress-bar {
     bottom: -5px;
     z-index: 9;
     max-height: 75%;
+    min-height: 50%;
     max-width: 14.6%;
   }
   
