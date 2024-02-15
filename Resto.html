@@ -44,7 +44,7 @@
                 </form>
               </div>
             <div class = "iconcontainer">
-                <img src="Images/review.png">
+                <img src="Images/review.png" onclick="openReviews('reviews5')">
                 <span>Show Reviews</span>
             </div>
             <a href="RestaurantsPage.html" class = "iconcontainer" target="_blank">
@@ -52,56 +52,7 @@
                 <span>Eats Near</span>
             </a>
         </div>
-        <div class = "flexrow flexheader">
-            <div class = "headerleft" onclick="toggleMenu()">
-                <img src = "Images/menuicon.png">
-                <p>TAFT EATS</p>
-            </div>
-
-            <div class = "headermiddle">
-                <form>
-                    <input type="text" id="search-field" />
-                    <input type="submit" value="Search" />
-                </form>
-                <div class="dropdown">
-                    <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
-                    <div id="advance-search"class="dropdown-content">
-                        <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
-                        <div class="filter">
-                            <div class="label">Price Range </div>
-                            <div class="price-bound"><input type="text" id="lower-bound" /> </div>
-                             -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
-                        </div>
-                        <div class="filter" > <div class="label">Stars</div>
-                            <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text"> 5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text"> 4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text"> 3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text"> 2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text"> 1 star</label>
-                              </div>
-                            and above
-                        </div>
-                        <div class="filter"><div class="label">Additional Tags</div>
-                            <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
-                            <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
-                            <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
-                            <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
-                        </div>
-                    </div>
-                  </div>
-                
-            </div>
-
-            <div class = "headerright">
-                <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
-            </div>
-        </div>
+        
         <div class = "flexmain">
 
             <div class = "flexrow headerholder">
@@ -194,8 +145,149 @@
                 </div>
             </div>
         </div>
+        <div class="half-screen" id="reviews5">
+            <div class="review-form" id="reviews5">
+                <div class="btn-left">
+                    <button type="button" class="rclose-btn" onclick="closeReviews('reviews5')">×</button>
+                </div>
+                <div class = "review-box">
+                    <span>
+                    <div class = "review-profile">
+                        <a href="profilepage3.html"><img src = "Images/PFPs/catpfp.png"></a>
+                        <span><strong>Chester</strong><br/>★★★★★</span></div></span>
+                    <p>
+                        Great Food!
+                    </p>
+                    
+                    <div class="thumbs">
+                        <div class="like grow">
+                            <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review" onclick="toggleThumb('like-review','dislike-review')">127</i>
+                        </div>
+                          <div class="dislike grow">
+                            <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review" onclick="toggleThumb('dislike-review','like-review')">1</i>
+                        </div>
+                    </div>
+                    <div class="btn-right">
+                        <button type="button" class="comment-btn" id="commentButton" onclick="toggleComments('commentButton', 'commentForm', 'commentReply')">Show/Leave Comments</button>
+                    </div>
+                    <div class="comment-box">
+                        <section>
+                        <br/>
+                        <form class = "comment-form" id="commentForm">
+                                <textarea name="about-me" rows="5" cols="60">.</textarea>
+                                <div class="btn-center">
+                                0/500<br/>
+                                <button type="submit" class="btn">Submit</button>
+                                </div>
+                        </form>
+                        <div class="comment-replies" id="commentReply">
+                            <a href="profilepage4.html"><img src = "Images/PFPs/Gaby.jpg"></a>
+                            <span><br/><br/><strong>Gaby</strong><br/>
+                            <p>Great review!
+                            </p>
+                            </span>
+                        
+                        </div>
+                        
+                        </section>
+                    </div>
+                </div>   
+                <div class = "review-box">
+                    <span>
+                    <div class = "review-profile">
+                        <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
+                        <span><strong>Prince</strong><br/>★</span></div></span>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                    </p>
+                    
+                    <div class="thumbs">
+                        <div class="like grow">
+                            <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                        </div>
+                          <div class="dislike grow">
+                            <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                       </div>
+                    </div>
+                    <div class="btn-right">
+                        <button type="button" class="comment-btn" id="commentButton2" onclick="toggleComments('commentButton2', 'commentForm2', 'commentReply2')">Show/Leave Comments</button>
+                    </div>
+                    <div class="comment-box">
+                        <section>
+                        <br/>
+                        <form class = "comment-form" id="commentForm2">
+                                <textarea name="about-me" rows="5" cols="60">.</textarea>
+                                <div class="btn-center">
+                                0/500<br/>
+                                <button type="submit" class="btn">Submit</button>
+                                </div>
+                        </form>
+                        <div class="comment-replies" id="commentReply2">
+                            <a href="profilepage5.html"><img src = "Images/PFPs/Micole.jpg"></a>
+                            <span><br/><br/><strong>Micole</strong><br/>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            </p>
+                            </span>
+                        
+                        </div>
+                        
+                        </section>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
         <div class = "sidebaraside"></div>
-        
+    </div>
+    <div class = "flexrow flexheader">
+        <div class = "headerleft" onclick="toggleMenu()">
+            <img src = "Images/menuicon.png">
+            <p>TAFT EATS</p>
+        </div>
+
+        <div class = "headermiddle">
+            <form>
+                <input type="text" id="search-field" />
+                <input type="submit" value="Search" />
+            </form>
+            <div class="dropdown">
+                <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
+                <div id="advance-search"class="dropdown-content">
+                    <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
+                    <div class="filter">
+                        <div class="label">Price Range </div>
+                        <div class="price-bound"><input type="text" id="lower-bound" /> </div>
+                         -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
+                    </div>
+                    <div class="filter" > <div class="label">Stars</div>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text"> 5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text"> 4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text"> 3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text"> 2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text"> 1 star</label>
+                      </div>
+                    and above
+                </div>
+                    <div class="filter"><div class="label">Additional Tags</div>
+                        <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
+                        <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
+                        <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
+                        <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
+                    </div>
+                </div>
+              </div>
+            
+        </div>
+
+        <div class = "headerright">
+            <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
+        </div>
     </div>
     </div>
 </body>

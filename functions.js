@@ -6,12 +6,12 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function openReviews() {
-  document.getElementById("reviews").style.display = "block";
+function openReviews(id) {
+  document.getElementById(id).style.display = "block";
 }
 
-function closeReviews() {
-  document.getElementById("reviews").style.display = "none";
+function closeReviews(id) {
+  document.getElementById(id).style.display = "none";
 }
 
 function openComment(id) {
