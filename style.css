@@ -509,6 +509,7 @@ progress[value]::-webkit-progress-bar {
 
 .editpfp-button
 {
+    max-height: 30px;
     width: 200px;
 }
 
@@ -777,7 +778,7 @@ progress[value]::-webkit-progress-bar {
   .form-popup {
     display: none;
     position: fixed;
-    bottom: -5px;
+    bottom: 24%;
     z-index: 9;
     max-height: 75%;
     min-height: 50%;
@@ -785,9 +786,11 @@ progress[value]::-webkit-progress-bar {
   }
   
   .form-container {
-    max-width: 90%;
+    text-align: center;
+    max-width: 100%;
     padding: 5px;
-    background-color:  #75b984;
+    background-color: #8bc798;/**/
+    border: 1px solid black;
   }
   
   .form-container input[type=text], .form-container input[type=password] {
@@ -827,11 +830,12 @@ progress[value]::-webkit-progress-bar {
 .rate {
     float: left;
     height: 46px;
-    padding-right: 0 10px;
   }
+
   .rate:not(:checked) > input {
     display:none; /*hides the buttons, only shows the stars/content */
   }
+
   .rate:not(:checked) > label {
     
     /*
@@ -847,16 +851,20 @@ progress[value]::-webkit-progress-bar {
     /*initial color / unrated*/
     color:#ccc;
   }
+
   .rate:not(:checked) > label:before {
     content: '\2605';
   }
+
   .rate > input:checked ~ label {
     color: #ffc700;
   }
+
   .rate:not(:checked) > label:hover,
   .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
   }
+
   .rate > input:checked + label:hover,
   .rate > input:checked + label:hover ~ label,
   .rate > input:checked ~ label:hover,
@@ -864,6 +872,7 @@ progress[value]::-webkit-progress-bar {
   .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
   }
+
   a {
     text-decoration: none;
 }
