@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src = "functions.js"> </script>
+<script src="https://use.fontawesome.com/fe459689b4.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 .half-screen {
@@ -104,11 +105,10 @@
 }
 
 .comment-btn {
-    width:150px;
+    width:200px;
 }
 
 .btn-center{
-    display: none;
     justify-content: center;
 }
 
@@ -116,11 +116,41 @@
     margin-right: 5%;
     justify-content: left;
 }
+
+.btn-right{
+    justify-content: right;
+}
 .rclose-btn {
     cursor: pointer;
     margin-left: 70%;
     margin-top:10px;
 }
+
+.thumbs{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+  color: gray;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #448753;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #448753;
+}
+
 </style>
 
 </head>
@@ -268,14 +298,27 @@
                     <p>
                         Great Food!
                     </p>
+                    
+                    <div class="thumbs">
+                        <div class="like grow">
+                            <i class="fa fa-thumbs-up like" aria-hidden="true">127</i>
+                          </div>
+                          <div class="dislike grow">
+                            <i class="fa fa-thumbs-down like" aria-hidden="true">1</i>
+                          </div>
+                    </div>
+                    <div class="btn-right">
+                        <button type="button" class="comment-btn" id="commentButton" onclick="toggleComments()">Show/Leave Comments</button>
+                    </div>
                     <div class="comment-box">
-                        <button type="button" class="comment-btn" onclick="openComment(), openReplies(), openCloseBtn()">Show/Leave Comments</button>
                         <section>
                         <br/>
                         <form class = "comment-form" id="commentForm">
                                 <textarea name="about-me" rows="5" cols="60">.</textarea>
-                                0/500
+                                <div class="btn-center">
+                                0/500<br/>
                                 <button type="submit" class="btn">Submit</button>
+                                </div>
                         </form>
                         <div class="comment-replies" id="commentReply">
                             <br/> <br/> <br/>
@@ -284,9 +327,6 @@
                         
                         </div>
                         
-                        <div class="btn-center" id="closeBtn">
-                            <button type="button" class="rclose-btn" onclick="closeReplies(), closeComment(), closeCloseBtn()">Close</button>
-                        </div>
                         </section>
                     </div>
                 </div>   

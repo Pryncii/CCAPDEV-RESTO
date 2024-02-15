@@ -38,6 +38,29 @@ function closeCloseBtn() {
   document.getElementById("closeBtn").style.display = "none";
 }
 
+/*thumbs up and down */
+$('.like, .dislike').on('click', function(event) {
+  event.preventDefault();
+  $('.active').removeClass('active');
+  $(this).addClass('active');
+});
+
+function toggleComments() {
+  var button = document.getElementById('commentButton');
+  if (button.textContent === 'Show/Leave Comments') {
+      button.textContent = 'Close Comments';
+      openComment();
+      openReplies();
+      openCloseBtn();
+  } else {
+      button.textContent = 'Show/Leave Comments';
+      closeComment();
+      closeReplies();
+      closeCloseBtn();
+  }
+}
+
+
 function toggleVisibility(ID) {
     var dropdown = document.getElementById(ID);    
     if(dropdown.style.display == "inline-block") { // if is menuBox displayed, hide it
@@ -116,5 +139,4 @@ else{
     
 div.classList.replace("tags-selected", "tags");
 }
-
 }
