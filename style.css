@@ -693,12 +693,6 @@ progress[value]::-webkit-progress-bar {
     font-size: 20px;
 }
 
-.spacer{
-    height: 90px;
-}
-/*for things to not get blocked by the header*/
-
-
 .sidebar{
     width: 13%;
     height: 100%;
