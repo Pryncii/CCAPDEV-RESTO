@@ -239,6 +239,7 @@ height:20px;
 
 .flexheader{
     position: fixed;
+    z-index: 5;
     top: 0px;
     display: flex;
     border-bottom: 1px solid white;
@@ -443,6 +444,7 @@ progress[value]::-webkit-progress-bar {
     background-color: rgba(48, 37, 37, 0.692);
     color: white;
     position: absolute;
+    z-index: 1;
     font-size: 25px;
     border-radius: 90px;
 }
