@@ -14,49 +14,57 @@ function closeReviews() {
   document.getElementById("reviews").style.display = "none";
 }
 
-function openComment() {
-  document.getElementById("commentForm").style.display = "block";
+function openComment(id) {
+  document.getElementById(id).style.display = "block";
 }
 
-function closeComment() {
-  document.getElementById("commentForm").style.display = "none";
+function closeComment(id) {
+  document.getElementById(id).style.display = "none";
 }
 
-function openReplies() {
-  document.getElementById("commentReply").style.display = "flex";
+function openReplies(id) {
+  document.getElementById(id).style.display = "flex";
 }
 
-function closeReplies() {
-  document.getElementById("commentReply").style.display = "none";
-}
-
-function openCloseBtn() {
-  document.getElementById("closeBtn").style.display = "block";
-}
-
-function closeCloseBtn() {
-  document.getElementById("closeBtn").style.display = "none";
+function closeReplies(id) {
+  document.getElementById(id).style.display = "none";
 }
 
 /*thumbs up and down */
-$('.like, .dislike').on('click', function(event) {
-  event.preventDefault();
-  $('.active').removeClass('active');
-  $(this).addClass('active');
-});
+function activeThumb(id) {
+  var element = document.getElementById(id);
+  element.classList.add("active");
+}
 
-function toggleComments() {
-  var button = document.getElementById('commentButton');
+function deactivateThumb(id) {
+  var element = document.getElementById(id);
+  element.classList.remove("active");
+}
+
+function toggleThumb(id, id2) {
+  var element = document.getElementById(id);
+  var element2 = document.getElementById(id2);
+
+  if (element.classList.contains("active")) {
+    deactivateThumb(id);
+  } else if (element2.classList.contains("active")){
+      activeThumb(id);
+      deactivateThumb(id2);
+  } else {
+    activeThumb(id);
+  }
+}
+
+function toggleComments(id, id2, id3) {
+  var button = document.getElementById(id);
   if (button.textContent === 'Show/Leave Comments') {
       button.textContent = 'Close Comments';
-      openComment();
-      openReplies();
-      openCloseBtn();
+      openComment(id2);
+      openReplies(id3);
   } else {
       button.textContent = 'Show/Leave Comments';
-      closeComment();
-      closeReplies();
-      closeCloseBtn();
+      closeComment(id2);
+      closeReplies(id3);
   }
 }
 
