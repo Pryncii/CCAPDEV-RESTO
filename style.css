@@ -386,7 +386,7 @@ body{
     padding-left: 30px;
 }
 
-.restodesc > span, .restomenu > span{
+.restodesc > span, .restomenu > span, .review-box > span{
     font-size: 40px;
     border-bottom: 1px solid #448753;
 }
