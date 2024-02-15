@@ -560,9 +560,9 @@ progress[value]::-webkit-progress-bar {
     /*just an empty spacer for now*/
     width: 20%;
     padding: 10px;
+    padding-top: 20px;
     background-color: rgb(227, 241, 227);
     border: 1px solid #448753;
-
 }
 
 .userprofilereviewright
