@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Resto</title>
+<title>Coffee Bean</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src = "functions.js"> </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
@@ -11,7 +12,6 @@
   position: fixed;
   width: 100%;
   height:1000px;
-  justify-content: left;
 }
 
 .review-form {
@@ -131,14 +131,14 @@
                 <img src="Images/map.png">
                 <span>Location</span>
             </a>
-            <button class = "iconcontainer" onclick="openForm()">
+            <button type="button" class = "iconcontainer" onclick="openForm()">
                 <img src="Images/leavereview.png">
                 <span>Leave Review</span>
             </button>
             <div class="form-popup" id="myForm">
-                <form action="/action_page.php" class="form-container" id="myForm">
+                <form action="/action_page.php" class="form-container" >
                     <h1>Write a Review</h1>
-                    <div class="filter" > <div class="label"></div>
+                    <div class="filter" > <div class="label">Stars</div>
                         <div class="rate">
                             <input type="radio" id="star5" name="rate" value="5" />
                             <label for="star5" title="text"> 5 stars</label>
@@ -174,6 +174,29 @@
 
             <div class = "flexrow headerholder">
             </div>
+            <div class="inside">
+                <div id="menu" class="sidenav">
+                  <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents1" class="dropdown-container">
+                    <a href="Resto2.html">Starbucks</a>
+                  </div>
+                  <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents2" class="dropdown-container">
+                    <a href="Resto.html">McDonalds</a>
+                    <a href="Resto3.html">KFC</a>
+                  </div>
+                  <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents3" class="dropdown-container">
+                    <a href="Resto4.html">Army Navy</a>
+                  </div>
+                </div>
+            <div class = "contentforotherpages">
             <div class = "flexbody">
                 <div class = "flexrow flexrestopart">
                     <div class = "restoprofile">

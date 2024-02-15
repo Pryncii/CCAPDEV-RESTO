@@ -18,6 +18,7 @@ body{
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 9;
 }
 /* Dropdown Button */
 .dropbtn {
@@ -75,7 +76,7 @@ body{
 .nav-bar-drop{
 
   
-  background-color: seagreen;
+  background-color: rgb(75, 148, 107);
   border: none;
   color:white;
 }
@@ -140,6 +141,12 @@ height:20px;
     flex-direction: row;
     height:100%;
     width:100%;
+    background-color: rgb(75, 148, 107);
+}
+
+.contentforotherpages
+{
+    width: 100%;
 }
 
 .content{
@@ -162,7 +169,7 @@ height:20px;
   */
   display:none;
   left: 0;
-  background-color: seagreen;
+  background-color: rgb(75, 148, 107);
   overflow-x: hidden;
   padding-top: 10px;
 }
@@ -204,7 +211,7 @@ height:20px;
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: rgb(31, 160, 87) ;
+  background-color: #75b984;
   min-width:100%;
 }
 
@@ -232,6 +239,7 @@ height:20px;
 
 .flexheader{
     position: fixed;
+    z-index: 5;
     top: 0px;
     display: flex;
     border-bottom: 1px solid white;
@@ -315,7 +323,9 @@ height:20px;
     align-items: center;
     margin: 1%;
     max-width: 33%;
+    
 }
+
 
 .restoprofile{
     height: 100%;
@@ -348,7 +358,7 @@ height:20px;
 }
 
 .restodesc > p, .restomenu > ul{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .revsummary{
@@ -434,6 +444,7 @@ progress[value]::-webkit-progress-bar {
     background-color: rgba(48, 37, 37, 0.692);
     color: white;
     position: absolute;
+    z-index: 1;
     font-size: 25px;
     border-radius: 90px;
 }

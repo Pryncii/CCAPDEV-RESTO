@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Resto</title>
+<title>Army Navy</title>
 <link rel="stylesheet" href="style.css">
 <script src = "functions.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -104,6 +105,29 @@
         <div class = "flexmain">
             <div class = "flexrow headerholder">
             </div>
+            <div class="inside">
+                <div id="menu" class="sidenav">
+                  <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents1" class="dropdown-container">
+                    <a href="Resto2.html">Starbucks</a>
+                  </div>
+                  <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents2" class="dropdown-container">
+                    <a href="Resto.html">McDonalds</a>
+                    <a href="Resto3.html">KFC</a>
+                  </div>
+                  <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="contents3" class="dropdown-container">
+                    <a href="Resto4.html">Army Navy</a>
+                  </div>
+                </div>
+            <div class = "contentforotherpages">
             <div class = "flexbody">
                 <div class = "flexrow flexrestopart">
                     <div class = "restoprofile">
@@ -113,7 +137,7 @@
                     <div class = "restodesc">
                         <span>Description</span>
                         <p>
-                            A well-known restaurant that is renowned for thier tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!
+                            A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!
                         </p>
                     </div>
 
@@ -164,5 +188,6 @@
         </div>
         <div class = "sidebaraside"></div>
     </div>
+        </div>
 </body>
 </html>
