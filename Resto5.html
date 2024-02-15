@@ -7,171 +7,6 @@
 <script src = "functions.js"> </script>
 <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-.half-screen {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height:1000px;
-}
-
-.review-form {
-    display: none;
-    position: fixed;
-    left: 29%;
-    top: 80px;
-    bottom: -5px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    background: rgba(117,185,132,1);
-    max-height: 1000px; 
-    overflow-y: auto; 
-}
-
-.review-container {
-    max-width: 30%;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .review-box{
-    display: flex;
-    margin: 1%;
-    flex-direction: column;
-    width: 65%;
-    background-color: white;
-    border-radius: 50px;
-    border: 1px solid #448753;
-    padding: 20px;
-    color: #448753;
-    text-align: justify;
-}
-
-.review-box > p {
-    padding: 10px;
-    color: black;
-}
-
-.review-profile{
-    display: flex;
-    width: 50%;
-    padding: 10px;
-    align-items: center;
-    font-size: medium;
-    text-align: left;
-    color: green;
-}
-
-.review-profile > img, .comment-replies > img{
-    padding: 10px;
-    border-radius: 50%;
-    width: 20%;
-}
-
-.comment-box {
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    align-items: center;
-    justify-content: right;
-    font-size: medium;
-    text-align: center;
-}
-
-.btn-center > button {
-    width:100px;
-    height: 30px;
-    border: none;
-    background-color: #448753;
-    color: white;
-    font-size: xx-small;
-}
-
-.comment-textarea > textarea {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: right;
-    font-size: medium;
-    text-align: center;
-}
-
-.comment-form {
-    display: none;
-    width: 100%;
-}
-
-.comment-replies {
-    display: none;
-    width: 40%;
-    margin: 2%;
-    height: 10%;
-    align-items: center;
-    font-size: medium;
-    text-align: left;
-    color: black;
-}
-
-.comment-btn {
-    width:200px;
-    border: none;
-    background-color: #448753;
-    color: white;
-    font-size: x-small;
-    padding: 15px 32px;
-}
-
-.btn-center{
-    justify-content: center;
-}
-
-.btn-left{
-    margin-right: 5%;
-    justify-content: left;
-}
-
-.btn-right{
-    justify-content: right;
-}
-.rclose-btn {
-    background: red;
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-    margin-left: 70%;
-    margin-top:10px;
-}
-
-.thumbs{
-    display: inline-block;
-    width: 100%;
-    text-align: left;
-}
-
-.like,
-.dislike {
-  display: inline-block;
-  cursor: pointer;
-  margin: 5px;
-  color: gray;
-}
-
-.dislike:hover,
-.like:hover {
-  color: #448753;
-  transition: all .2s ease-in-out;
-  transform: scale(1.1);
-}
-
-.active {
-  color: #08b92e;
-}
-
-</style>
 
 </head>
 <body>
@@ -319,8 +154,8 @@
                 <div class = "review-box">
                     <span>
                     <div class = "review-profile">
-                        <img src = "Images/PFPs/profile.webp">
-                        <span>Juan Dela Cruz<br/>★★★★★</span></div></span>
+                        <a href="profilepage3.html"><img src = "Images/PFPs/catpfp.png"></a>
+                        <span><strong>Chester</strong><br/>★★★★★</span></div></span>
                     <p>
                         Great Food!
                     </p>
@@ -347,9 +182,11 @@
                                 </div>
                         </form>
                         <div class="comment-replies" id="commentReply">
-                            <br/> <br/> <br/>
-                            <img src = "Images/PFPs/profile.webp">
-                            <span><strong>Juan Dela</strong><br/>Great review!</span>
+                            <a href="profilepage2.html"><img src = "Images/PFPs/Blix.jpg"></a>
+                            <span><br/><br/><strong>Blix</strong><br/>
+                            <p>Great review!
+                            </p>
+                            </span>
                         
                         </div>
                         
@@ -359,10 +196,10 @@
                 <div class = "review-box">
                     <span>
                     <div class = "review-profile">
-                        <img src = "Images/PFPs/profile.webp">
-                        <span>SomeRandomDlsuStudent<br/>★</span></div></span>
+                        <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
+                        <span><strong>Prince</strong><br/>★</span></div></span>
                     <p>
-                        Overpriced!
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                     </p>
                     
                     <div class="thumbs">
@@ -387,9 +224,11 @@
                                 </div>
                         </form>
                         <div class="comment-replies" id="commentReply2">
-                            <br/> <br/> <br/>
-                            <img src = "Images/PFPs/profile.webp">
-                            <span><strong>Juan Dela</strong><br/>Great review!</span>
+                            <a href="profilepage5.html"><img src = "Images/PFPs/Micole.jpg"></a>
+                            <span><br/><br/><strong>Micole</strong><br/>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            </p>
+                            </span>
                         
                         </div>
                         

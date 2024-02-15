@@ -877,4 +877,167 @@ progress[value]::-webkit-progress-bar {
     text-decoration: none;
 }
 
+.half-screen {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height:1000px;
+}
+
+.review-form {
+    display: none;
+    position: fixed;
+    left: 30%;
+    top: 80px;
+    bottom: -5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background: rgba(117,185,132,1);
+    max-height: 1000px; 
+    overflow-y: auto; 
+}
+
+.review-container {
+    max-width: 30%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .review-box{
+    display: flex;
+    margin: 1%;
+    flex-direction: column;
+    width: 65%;
+    background-color: white;
+    border-radius: 50px;
+    border: 1px solid #448753;
+    padding: 20px;
+    color: #448753;
+    text-align: justify;
+}
+
+.review-box > p {
+    padding: 10px;
+    color: black;
+}
+
+.review-profile{
+    display: flex;
+    width: 50%;
+    padding: 1px;
+    align-items: center;
+    font-size: medium;
+    text-align: left;
+    color: green;
+}
+
+.review-profile > a > img, .comment-replies > a > img{
+    padding: 10px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content:center;
+    font-size: medium;
+    text-align: center;
+}
+
+.btn-center > button {
+    width:100px;
+    height: 30px;
+    border: none;
+    background-color: #448753;
+    color: white;
+    font-size: xx-small;
+}
+
+.comment-textarea > textarea {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    font-size: medium;
+    text-align: center;
+}
+
+.comment-form {
+    display: none;
+    width: 100%;
+}
+
+.comment-replies {
+    display: none;
+    min-width: 100%;
+    margin-top: 3%;
+    justify-content:left;
+    font-size: medium;
+    text-align: left;
+    color: black;
+}
+
+.comment-btn {
+    width:200px;
+    border: none;
+    background-color: #448753;
+    color: white;
+    font-size: x-small;
+    padding: 15px 32px;
+}
+
+.btn-center{
+    justify-content: center;
+}
+
+.btn-left{
+    margin-right: 5%;
+    justify-content: left;
+}
+
+.btn-right{
+    justify-content: right;
+}
+.rclose-btn {
+    background: red;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin-left: 70%;
+    margin-top:10px;
+}
+
+.thumbs{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+  color: gray;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #448753;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #08b92e;
+}
+
 
