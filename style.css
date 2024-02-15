@@ -18,6 +18,7 @@ body{
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 9;
 }
 /* Dropdown Button */
 .dropbtn {
@@ -321,7 +322,9 @@ height:20px;
     align-items: center;
     margin: 1%;
     max-width: 33%;
+    
 }
+
 
 .restoprofile{
     height: 100%;
@@ -354,7 +357,7 @@ height:20px;
 }
 
 .restodesc > p, .restomenu > ul{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .revsummary{
@@ -759,9 +762,6 @@ progress[value]::-webkit-progress-bar {
     color: white;
 }
 
-#myForm{
-    display:none;
-}
   
   .form-popup {
     display: none;
