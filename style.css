@@ -18,6 +18,7 @@ body{
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 9;
 }
 /* Dropdown Button */
 .dropbtn {
@@ -238,6 +239,7 @@ height:20px;
 
 .flexheader{
     position: fixed;
+    z-index: 5;
     top: 0px;
     display: flex;
     border-bottom: 1px solid white;
@@ -321,7 +323,9 @@ height:20px;
     align-items: center;
     margin: 1%;
     max-width: 33%;
+    
 }
+
 
 .restoprofile{
     height: 100%;
@@ -354,7 +358,7 @@ height:20px;
 }
 
 .restodesc > p, .restomenu > ul{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .revsummary{
@@ -440,6 +444,7 @@ progress[value]::-webkit-progress-bar {
     background-color: rgba(48, 37, 37, 0.692);
     color: white;
     position: absolute;
+    z-index: 1;
     font-size: 25px;
     border-radius: 90px;
 }
@@ -759,9 +764,6 @@ progress[value]::-webkit-progress-bar {
     color: white;
 }
 
-#myForm{
-    display:none;
-}
   
   .form-popup {
     display: none;
