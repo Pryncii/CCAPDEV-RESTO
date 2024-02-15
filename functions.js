@@ -30,6 +30,14 @@ function closeReplies() {
   document.getElementById("commentReply").style.display = "none";
 }
 
+function openCloseBtn() {
+  document.getElementById("closeBtn").style.display = "block";
+}
+
+function closeCloseBtn() {
+  document.getElementById("closeBtn").style.display = "none";
+}
+
 function toggleVisibility(ID) {
     var dropdown = document.getElementById(ID);    
     if(dropdown.style.display == "inline-block") { // if is menuBox displayed, hide it
