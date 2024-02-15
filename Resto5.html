@@ -13,10 +13,16 @@
   height:1000px;
 }
 
+#reviews{
+    display:none;
+    ;
+}
+
 .review-form {
     display: none;
     position: fixed;
-    left: 70%;
+    /*left:70%;*/
+    right: 0px;
     top: 70px;
     bottom: -5px;
     max-width: 60%;
@@ -122,12 +128,12 @@
                 <img src="Images/map.png">
                 <span>Location</span>
             </a>
-            <button class = "iconcontainer" onclick="openForm()">
+            <button type="button" class = "iconcontainer" onclick="openForm()">
                 <img src="Images/leavereview.png">
                 <span>Leave Review</span>
             </button>
             <div class="form-popup" id="myForm">
-                <form action="/action_page.php" class="form-container" id="myForm">
+                <form action="/action_page.php" class="form-container" >
                     <h1>Write a Review</h1>
                     <div class="filter" > <div class="label"></div>
                         <div class="rate">
