@@ -314,7 +314,7 @@ height:20px;
     display: flex;
     align-items: center;
     margin: 1%;
-    max-width: 33%;
+    width: 33%;
 }
 
 .restoprofile{
@@ -323,8 +323,8 @@ height:20px;
 }
 
 .restoprofile > img{
-    min-width: 100%;
-    min-height: 90%;
+    width: 100%;
+    height: 90%;
     border-radius: 5%;
 }
 
