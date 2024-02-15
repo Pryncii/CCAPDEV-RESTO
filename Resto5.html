@@ -3,13 +3,130 @@
 <head>
 <title>Resto</title>
 <link rel="stylesheet" href="style.css">
+<script src = "functions.js"> </script>
+
+<style>
+.half-screen {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height:1000px;
+}
+
+.review-form {
+    display: none;
+    position: fixed;
+    left: 41%;
+    top: 70px;
+    bottom: -5px;
+    max-width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(117,185,132,0.4);
+}
+
+.review-container {
+    max-width: 80%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .review-box{
+    display: flex;
+    margin: 1%;
+    flex-direction: column;
+    width: 80%;
+    background-color: white;
+    border-radius: 80px;
+    border: 1px solid #448753;
+    padding: 20px;
+    color: #448753;
+    text-align: justify;
+}
+
+.review-box > p {
+    padding: 10px;
+}
+
+.review-profile{
+    display: flex;
+    width: 50%;
+    padding: 10px;
+    align-items: center;
+    font-size: medium;
+    text-align: center;
+}
+
+.review-profile > img{
+    padding: 10px;
+    border-radius: 50%;
+    width: 20%;
+}
+
+.comment-form {
+    display: none;
+}
+
+.comment-btn {
+    width: 100px;
+}
+
+</style>
+
+
 </head>
 <body>
-    <div class = "flexmain">
-        <div class = "flexrow headerholder">
+    <div class = "flexrow">
+        <div class = "sidebaraside"></div>
+        <div class = "sidebar">
+            <a href="https://maps.app.goo.gl/RBHHpqZmKw3uqz3f9" class = "iconcontainer" target="_blank">
+                <img src="Images/map.png">
+                <span>Location</span>
+            </a>
+            <button class = "iconcontainer" onclick="openForm()">
+                <img src="Images/leavereview.png">
+                <span>Leave Review</span>
+            </button>
+            <div class="form-popup" id="myForm">
+                <form action="/action_page.php" class="form-container" id="myForm">
+                    <h1>Write a Review</h1>
+                    <div class="filter" > <div class="label"></div>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                          </div>
+                    </div>      
+                    <label></label><br/>
+                    
+                    <textarea name="about-me" rows="10" cols="19">.</textarea>
+                    0/500
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+            <div class = "iconcontainer">
+                <img src="Images/review.png" onclick="openReviews()">
+                <span>Show Reviews</span>
+            </div>
+            <a href="RestaurantsPage.html" class = "iconcontainer" target="_blank">
+                <img src="Images/resto.png">
+                <span>Eats Near</span>
+            </a>
         </div>
         <div class = "flexrow flexheader">
-            <div class = "headerleft">
+            <div class = "headerleft" onclick="toggleMenu()">
                 <img src = "Images/menuicon.png">
                 <p>TAFT EATS</p>
             </div>
@@ -19,75 +136,126 @@
                     <input type="text" id="search-field" />
                     <input type="submit" value="Search" />
                 </form>
-                <img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png">
+                <div class="dropdown">
+                    <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
+                    <div id="advance-search"class="dropdown-content">
+                        <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
+                        <div class="filter">
+                            <div class="label">Price Range </div>
+                            <div class="price-bound"><input type="text" id="lower-bound" /> </div>
+                             -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
+                        </div>
+                        <div class="filter" > <div class="label">Stars</div>
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                              </div>
+                            and above
+                        </div>
+                        <div class="filter"><div class="label">Additional Tags</div>
+                            <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
+                            <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
+                            <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
+                            <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
+                        </div>
+                    </div>
+                  </div>
+                
             </div>
 
             <div class = "headerright">
+                <a href="login.html"><img src = "Images/PFPs/profile.webp"></a>
+            </div>
+        </div>
+        <div class = "flexmain">
+
+            <div class = "flexrow headerholder">
+            </div>
+            <div class = "flexbody">
+                <div class = "flexrow flexrestopart">
+                    <div class = "restoprofile">
+                        <img src = "Images/coffeebean.jpg">
+                    </div>
+
+                    <div class = "restodesc">
+                        <span>Description</span>
+                        <p>
+                            A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!
+                        </p>
+                    </div>
+
+                    <div class = "restomenu">
+                        <span>Recommendations</span>
+                        <ul>
+                            <li>Ice-Blended Mocha</li>
+                            <li>3-cheese and Salmon Quiche</li>
+                            <li>Cold Brew Latte</li>
+                            <li>Ice-Blended Caramel</li>
+                            <li>Carrot Loaf</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class = "flexrow flexrestopart">
+                    <div class = "revsummary">
+                        <p>Name: The Coffee Bean & Tea Leaf</p>
+                        <p>Landmark: De La Salle University</p>
+                        <p>Posts: 100</p>
+                        <p>Reviews: 100</p>
+                        <p>Avg Rating: 4.5</p>
+                    </div>
+
+                    <div class = "revstars">
+                        <img src = "Images/STARS.png">
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td><progress value="80" max="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <td><progress value="50" max="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <td><progress value="70" max="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <td><progress value="90" max="100"></progress></td>
+                        </tr>
+                        <tr>
+                            <td><progress value="60" max="100"></progress></td>
+                        </tr>
+                    </table>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="half-screen review-form" id="reviews">
+        <div class = "review-box">
+            <span>
+            <div class = "review-profile">
                 <img src = "Images/PFPs/profile.webp">
-            </div>
+                <span>Juan Dela Cruz<br/>★★★★★</span></div></span>
+            <p>
+                Great Food!
+            </p>
+            <button type="button" class="comment-btn" onclick="openComment()">Leave Comment</button>
+            <form class = "comment-form" id="commentForm">
+                    <textarea name="about-me" rows="10" cols="19">.</textarea>
+                    0/500
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeComment()">Close</button>
+            </form>
         </div>
-
-        <div class = "flexbody">
-            <div class = "flexrow flexrestopart">
-                <div class = "restoprofile">
-                    <img src = "Images/coffeebean.jpg">
-                </div>
-
-                <div class = "restodesc">
-                    <span>Description</span>
-                    <p>
-                        A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!
-                    </p>
-                </div>
-
-                <div class = "restomenu">
-                    <span>Reccomended Items</span>
-                    <ul>
-                        <li>Ice-Blended Mocha</li>
-                        <li>3-cheese and Salmon Quiche</li>
-                        <li>Cold Brew Latte</li>
-                        <li>Ice-Blended Caramel</li>
-                        <li>Carrot Loaf</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class = "flexrow flexrestopart">
-                <div class = "revsummary">
-                    <p>Name: The Coffee Bean & Tea Leaf</p>
-                    <p>Landmark: De La Salle University</p>
-                    <p>Posts: 100</p>
-                    <p>Reviews: 100</p>
-                    <p>Avg Rating: 4.5</p>
-                </div>
-
-                <div class = "revstars">
-                    <img src = "Images/STARS.png">
-                </div>
-
-                <table>
-                    <tr>
-                        <td><progress value="80" max="100"></progress></td>
-                    </tr>
-                    <tr>
-                        <td><progress value="50" max="100"></progress></td>
-                    </tr>
-                    <tr>
-                        <td><progress value="70" max="100"></progress></td>
-                    </tr>
-                    <tr>
-                        <td><progress value="90" max="100"></progress></td>
-                    </tr>
-                    <tr>
-                        <td><progress value="60" max="100"></progress></td>
-                    </tr>
-                </table>
-                
-                
-
-                
-            </div>
-        </div>
+        <button type="button" class="btn cancel" onclick="closeReviews()">Close</button>         
     </div>
 </body>
 </html>

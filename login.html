@@ -14,7 +14,7 @@
     padding: 10px;
     display: flex;
     width: 490px;
-    height: 380px;
+    height: 300px;
     background-color: rgba(0, 0, 0, .75);
     align-items: center;
     justify-content: center;
@@ -35,13 +35,14 @@ section {
 
 /*Log in Box*/
 #login-box {
+    padding: 60px;
     background-color: hsla(120, 100%, 25%, 0);
     color:white;
     position: center;
     align-items: center;
 }
 
-input[type=text] {
+.loginform > input[type=text] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -182,19 +183,19 @@ div.classList.replace("tags-selected", "tags");
         <div id="contents3" class="dropdown-container">
           <a href="Resto5.html">Army Navy</a>
         </div>
-
       </div>
       <section>
         <div class = "flexlogin">
             <div id = "login-box">
-                <form>
+                <form class = "loginform">
                   <label for="fname">Username</label><br>
                   <input type="text" id="fname" name="fname"><br>
                   <label for="lname">Password</label><br>
                   <input type="text" id="lname" name="lname">
-                   <input type="submit" value="Submit" class = "loginsb">
-                   <a href="signup.html" style="color:#04AA6D">Create new account?</a>
+                  <input type="submit" value="Submit" class = "loginsb">
+                  <a href="signup.html" style="color:#04AA6D">Create new account?</a>
                 </form>
+        
             </div>
         </div>
       </section>
