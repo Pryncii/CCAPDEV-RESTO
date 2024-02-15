@@ -242,7 +242,7 @@ height:20px;
 }
 
 .headerholder{
-    height: 60px;
+    height: 90px;
 }
 
 .headerleft, .headermiddle, .headerright{
@@ -654,7 +654,7 @@ progress[value]::-webkit-progress-bar {
 }
 
 .spacer{
-    height: 60px;
+    height: 90px;
 }
 /*for things to not get blocked by the header*/
 
