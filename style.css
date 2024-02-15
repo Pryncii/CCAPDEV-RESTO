@@ -236,13 +236,13 @@ height:20px;
     display: flex;
     border-bottom: 1px solid white;
     width: 100%;
-    height: 10.5%;
+    min-height: 80px;
     background-color: #448753;
     align-items: center;
 }
 
 .headerholder{
-    height: 90px;
+    min-height: 80px;
 }
 
 .headerleft, .headermiddle, .headerright{
@@ -560,9 +560,9 @@ progress[value]::-webkit-progress-bar {
     /*just an empty spacer for now*/
     width: 20%;
     padding: 10px;
+    padding-top: 20px;
     background-color: rgb(227, 241, 227);
     border: 1px solid #448753;
-
 }
 
 .userprofilereviewright
@@ -693,12 +693,6 @@ progress[value]::-webkit-progress-bar {
     font-size: 20px;
 }
 
-.spacer{
-    height: 90px;
-}
-/*for things to not get blocked by the header*/
-
-
 .sidebar{
     width: 13%;
     height: 100%;
@@ -765,20 +759,14 @@ progress[value]::-webkit-progress-bar {
     position: fixed;
     bottom: -5px;
     z-index: 9;
+    max-height: 75%;
     max-width: 14.6%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-container {
-    display: none;
     max-width: 90%;
     padding: 5px;
     background-color:  #75b984;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   
   .form-container input[type=text], .form-container input[type=password] {
@@ -818,7 +806,7 @@ progress[value]::-webkit-progress-bar {
 .rate {
     float: left;
     height: 46px;
-    padding: 0 10px;
+    padding-right: 0 10px;
   }
   .rate:not(:checked) > input {
     display:none; /*hides the buttons, only shows the stars/content */
@@ -834,7 +822,7 @@ progress[value]::-webkit-progress-bar {
     white-space:nowrap;
     /*cursor changes to indicate clickable element*/
     cursor:pointer;
-    font-size:40px;
+    font-size: 28px;
     /*initial color / unrated*/
     color:#ccc;
   }
