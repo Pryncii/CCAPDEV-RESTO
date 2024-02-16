@@ -499,6 +499,26 @@ progress[value]::-webkit-progress-bar {
     height: 100%;
 }
 
+.userprofilepfp > span > img
+{
+    border-radius: 10%;
+    height: 25px;
+    transform: translateY(-225%);
+}
+
+.userprofilepfp:hover + .hidden
+{
+    display: block;
+    color: white;
+}
+
+.hidden{
+    display: none;
+    position: absolute;
+    background-color: #0e0c0c8f;
+    border-radius: 20px;
+}
+
 .userprofilebio
 {
     width: 80%;
