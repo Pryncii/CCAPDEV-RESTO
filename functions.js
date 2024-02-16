@@ -30,6 +30,11 @@ function closeReplies(id) {
   document.getElementById(id).style.display = "none";
 }
 
+function openEstabname() {
+  document.getElementById("estabName").style.display = "block";
+}
+
+
 /*thumbs up and down */
 function activeThumb(id) {
   var element = document.getElementById(id);
@@ -54,6 +59,8 @@ function toggleThumb(id, id2) {
     activeThumb(id);
   }
 }
+
+
 
 function toggleComments(id, id2, id3) {
   var button = document.getElementById(id);

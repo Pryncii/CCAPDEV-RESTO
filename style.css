@@ -1040,4 +1040,71 @@ progress[value]::-webkit-progress-bar {
   color: #08b92e;
 }
 
+.flexsignup {
+    padding: 10px;
+    display: flex;
+    width: 490px;
+    height: 460px;
+    background-color: rgba(0, 0, 0, .75);
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
+
+}
+
+.flexlogin {
+    padding: 10px;
+    display: flex;
+    width: 490px;
+    height: 300px;
+    background-color: rgba(0, 0, 0, .75);
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
+
+}
+
+
+
+.getin-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://miro.medium.com/v2/resize:fit:3840/1*s0F0i9hHCwc756pbaYCWrQ.png");
+
+  
+}
+
+/*Log in Box*/
+#login-box {
+    padding: 60px;
+    background-color: hsla(120, 100%, 25%, 0);
+    color:white;
+    position: center;
+    align-items: center;
+}
+
+.loginform > input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.loginsb {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.estab-name {
+    display: block;
+}
+
 
