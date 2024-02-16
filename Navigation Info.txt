@@ -1,0 +1,11 @@
+
+Index File = TaftEats-main-page.html
+profilepage.html = Logged in User
+
+Navigation For All Pages
+TaftEats-main-page > login > signup (create new account) > login (already have an account) 
+> Menu (submit) > RestaurantsPage (click any location) > Resto (click any restaurant)
+> profilepage (via pressing profile pic in the top right) > other profilepage (via clicking the friend's pfps)
+> profilepage (clicking Prince's pfp) > TaftEats-main-page (via the logout button)
+
+
