@@ -4,9 +4,11 @@
 <head>
 <title>TaftEats - Sign-up</title>
 
-<link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src = "functions.js"> </script>
+<script src="https://use.fontawesome.com/fe459689b4.js"></script>
 
 </head>
 
@@ -70,6 +72,13 @@
     <div class="headerholder"></div>
     <div class="inside">
         <div id="menu" class="sidenav">
+          <button id="home"   class="dropdown-btn" onclick="toggleVisibility('contents0', 'home')">Home 
+            <i class="fa fa-caret-down"></i>
+          </button>
+        <div id="contents0" class="dropdown-container">
+            <a href="Menu.html">Places</a>   
+            <a href="RestaurantsPage.html">Restaurants</a>
+        </div>
           <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
             <i class="fa fa-caret-down"></i>
           </button>
