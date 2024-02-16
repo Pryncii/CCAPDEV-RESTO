@@ -49,14 +49,27 @@ function deactivateThumb(id) {
 function toggleThumb(id, id2) {
   var element = document.getElementById(id);
   var element2 = document.getElementById(id2);
+  var number = parseInt(element.textContent);
+  var number2 = parseInt(element2.textContent);
 
   if (element.classList.contains("active")) {
     deactivateThumb(id);
+    var number = parseInt(element.textContent);
+    if (number!=0){
+      element.textContent = --number;
+    }
+  
   } else if (element2.classList.contains("active")){
       activeThumb(id);
       deactivateThumb(id2);
+      element.textContent = ++number;
+      if (number!=0){
+        element2.textContent = --number2;
+      }
   } else {
     activeThumb(id);
+    var number = parseInt(element.textContent);
+    element.textContent = ++number;
   }
 }
 
