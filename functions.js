@@ -31,7 +31,15 @@ function closeReplies(id) {
 }
 
 function openEstabname() {
-  document.getElementById("estabName").style.display = "block";
+  if (document.getElementById("estbowner-btn").checked) {
+    document.getElementById("ename").style.display = "inline";
+    document.getElementById("ename-label").style.display = "inline";
+  }
+  else {
+    document.getElementById("ename").style.display = "none";
+    document.getElementById("ename-label").style.display = "none";
+  }
+  
 }
 
 

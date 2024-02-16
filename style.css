@@ -1064,7 +1064,7 @@ progress[value]::-webkit-progress-bar {
     padding: 10px;
     display: flex;
     width: 490px;
-    height: 460px;
+    height: 480px;
     background-color: rgba(0, 0, 0, .75);
     align-items: center;
     justify-content: center;
@@ -1124,7 +1124,7 @@ progress[value]::-webkit-progress-bar {
 }
 
 .estab-name {
-    display: block;
+    display: none;
 }
 
 

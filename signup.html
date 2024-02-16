@@ -118,8 +118,13 @@
                       <label for="lname">Password</label><br>
                       <input type="text" id="password" name="password">
               
-                      <label for="ename">Establishment Name (if applicable)</label><br>
-                      <input type="text" id="ename" name="ename">
+                      Establishment Owner?
+                      <input type="radio" id="estbowner-btn" name="estbowner" value="yes" onchange="openEstabname()">
+                      <label for="estbowner">Yes</label>
+                      <input type="radio" id="estbowner-btn" name="estbowner" value="no" onchange="openEstabname()">
+                      <label for="estbowner">No</label><br>
+                      <label for="ename" class="estab-name" id="ename-label">Establishment Name</label><br>
+                      <input type="text" id="ename" name="ename" class="estab-name">
                       
                     <input type="submit" value="Get Started!" class = "loginsb">
                     <a href="login.html" style="color:#04AA6D">Already have an account?</a>
