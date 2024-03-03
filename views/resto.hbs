@@ -1,0 +1,161 @@
+
+<div class = "flexrow">
+    {{> sidebarResto}}
+    <div class = "flexmain">
+    <div class = "flexrow headerholder"></div>
+    {{> sidebar}}
+    <div class = "contentforotherpages">
+        <div class = "flexbody">
+            <div class = "flexrow flexrestopart">
+                <div class = "restoprofile">
+                    <img src = "Images/mcdo-umall.jpg">
+                </div>
+
+                <div class = "restodesc">
+                    <span>Description</span>
+                    <p>
+                        One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!
+                    </p>
+                </div>
+
+                <div class = "restomenu">
+                    <span>Recommendations</span>
+                    <ul>
+                        <li>Big Mac</li>
+                        <li>Potato Fries</li>
+                        <li>Chicken McNuggets</li>
+                        <li>Oreo McFlurry</li>
+                        <li>McChicken</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "flexrow flexrestopart">
+                <div class = "revsummary">
+                    <p>Name: McDonalds</p>
+                    <p>Landmark: University Mall</p>
+                    <p>Posts: 100</p>
+                    <p>Reviews: 100</p>
+                    <p>Avg Rating: 4.5</p>
+                </div>
+
+                <div class = "revstars">
+                    <img src = "Images/STARS.png">
+                </div>
+
+                <table>
+                    <tr>
+                        <td><progress value="80" max="100"></progress></td>
+                    </tr>
+                    <tr>
+                        <td><progress value="50" max="100"></progress></td>
+                    </tr>
+                    <tr>
+                        <td><progress value="70" max="100"></progress></td>
+                    </tr>
+                    <tr>
+                        <td><progress value="90" max="100"></progress></td>
+                    </tr>
+                    <tr>
+                        <td><progress value="60" max="100"></progress></td>
+                    </tr>
+                </table>  
+            </div>
+        </div>
+    </div>
+    <div class="half-screen" id="reviews5">
+        <div class="review-form" id="reviews5">
+            <div class="btn-left">
+                <button type="button" class="rclose-btn" onclick="closeReviews('reviews5')">×</button>
+            </div>
+            <div class = "review-box">
+                <span>
+                <div class = "review-profile">
+                    <a href="profilepage3.html"><img src = "Images/PFPs/catpfp.png"></a>
+                    <span><strong>Chester</strong><br/>★★★★★</span></div></span>
+                <p>
+                    Great Food!
+                </p>
+                
+                <div class="thumbs">
+                    <div class="like grow">
+                        <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review" onclick="toggleThumb('like-review','dislike-review')">127</i>
+                    </div>
+                        <div class="dislike grow">
+                        <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review" onclick="toggleThumb('dislike-review','like-review')">1</i>
+                    </div>
+                </div>
+                <div class="btn-right">
+                    <button type="button" class="comment-btn" id="commentButton" onclick="toggleComments('commentButton', 'commentForm', 'commentReply')">Show/Leave Comments</button>
+                </div>
+                <div class="comment-box">
+                    <section>
+                    <br/>
+                    <form class = "comment-form" id="commentForm">
+                            <textarea name="about-me" rows="5" cols="60">.</textarea>
+                            <div class="btn-center">
+                            0/500<br/>
+                            <button type="submit" class="btn">Submit</button>
+                            </div>
+                    </form>
+                    <div class="comment-replies" id="commentReply">
+                        <a href="Resto.html"><img src = "Images/mcdo-umall.jpg"></a>
+                        <span><br/><br/><strong>McDonalds</strong><br/>
+                        <p>Nice to hear you enjoyed your experience!
+                        </p>
+                        </span>
+                    
+                    </div>
+                    
+                    </section>
+                </div>
+            </div>   
+            <div class = "review-box">
+                <span>
+                <div class = "review-profile">
+                    <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
+                    <span><strong>Prince</strong><br/>★★★★★</span></div></span>
+                <p>
+                    Undebatebly the best fries and chicken nuggets in the world!
+                </p>
+                
+                <div class="thumbs">
+                    <div class="like grow">
+                        <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                    </div>
+                        <div class="dislike grow">
+                        <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                    </div>
+                </div>
+                <div class="btn-right">
+                    <button type="button" class="comment-btn" id="commentButton2" onclick="toggleComments('commentButton2', 'commentForm2', 'commentReply2')">Show/Leave Comments</button>
+                </div>
+                <div class="comment-box">
+                    <section>
+                    <br/>
+                    <form class = "comment-form" id="commentForm2">
+                            <textarea name="about-me" rows="5" cols="60">.</textarea>
+                            <div class="btn-center">
+                            0/500<br/>
+                            <button type="submit" class="btn">Submit</button>
+                            </div>
+                    </form>
+                    <div class="comment-replies" id="commentReply2">
+                        <a href="profilepage5.html"><img src = "Images/PFPs/Micole.jpg"></a>
+                        <span><br/><br/><strong>Micole</strong><br/>
+                        <p>Do not believe the words of this corporate lapdog!
+                        </p>
+                        </span>
+                    
+                    </div>
+                    
+                    </section>
+                </div>
+            </div>
+            
+        </div> 
+    </div>
+    <div class = "sidebaraside"></div>
+</div>
+{{> header}}
+</div>

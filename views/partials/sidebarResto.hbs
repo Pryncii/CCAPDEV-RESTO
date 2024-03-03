@@ -1,0 +1,43 @@
+<div class = "sidebar">
+    <a href="https://maps.app.goo.gl/RBHHpqZmKw3uqz3f9" class = "iconcontainer" target="_blank">
+        <img src="Images/map.png">
+        <span>Location</span>
+    </a>
+    <button class = "iconcontainer" onclick="openForm()">
+        <img src="Images/leavereview.png">
+        <span>Leave Review</span>
+    </button>
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container" id="myForm">
+            <h1>Write a Review</h1>
+            <div class="filter" > <div class="label"></div>
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="text"> 5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="text"> 4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text"> 3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="text"> 2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="text"> 1 star</label>
+                    </div>
+            </div>      
+            <label></label><br/>
+            
+            <textarea name="about-me" rows="10" cols="19">.</textarea>
+            0/500
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+        </div>
+    <div class = "iconcontainer">
+        <img src="Images/review.png" onclick="openReviews('reviews5')">
+        <span>Show Reviews</span>
+    </div>
+    <a href="RestaurantsPage.html" class = "iconcontainer" target="_blank">
+        <img src="Images/resto.png">
+        <span>Eats Near</span>
+    </a>
+</div>
