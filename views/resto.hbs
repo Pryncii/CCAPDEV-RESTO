@@ -21,11 +21,9 @@
                 <div class = "restomenu">
                     <span>Recommendations</span>
                     <ul>
-                        <li>Big Mac</li>
-                        <li>Potato Fries</li>
-                        <li>Chicken McNuggets</li>
-                        <li>Oreo McFlurry</li>
-                        <li>McChicken</li>
+                        {{#each restos.[0].recommendations}}
+                        <li>{{recom}}</li>
+                        {{/each}}
                     </ul>
                 </div>
             </div>

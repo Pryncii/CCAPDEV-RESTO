@@ -15,12 +15,14 @@ server.use(express.static('public'));
 
 const restodata = require('./initialdata');
 const initialresto = restodata.resto_data;
+console.log(initialresto[0]);
 
 server.get('/', function(req, resp){
     resp.render('resto',{
         layout      : 'index',
         title       : 'Restaurant',
-        restos   : initialresto
+        restos   : initialresto,
+        num: 0
     });
 });
 
