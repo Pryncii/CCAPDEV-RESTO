@@ -7,7 +7,33 @@ const resto_data = [
         landmark: 'University Mall',
         posts: 100,
         reviews: 100,
-        rating: 4.5
+        rating: 4.5,
+        revdata: [
+        {
+            revimg: "Images/PFPs/Prince.jpg",
+            revname: "Chester",
+            rev: "Great Food!",
+            comments: [
+                {
+                    comimg: "Images/PFPs/Prince.jpg",
+                    comname: "Mcdonalds",
+                    com: "Nice to hear you enjoyed your experience!"
+                }
+            ]
+        },
+        {
+            revimg: "Images/PFPs/Prince.jpg",
+            revname: "Prince",
+            rev: "Undebatebly the best fries and chicken nuggets in the world!",
+            comments: [
+                {
+                    comimg: "Images/PFPs/Prince.jpg",
+                    comname: "Micole",
+                    com: "Do not believe the words of this corporate lapdog!"
+                }
+            ]
+        }
+        ]
     },
 
     {
@@ -18,7 +44,33 @@ const resto_data = [
         landmark: 'Benilde',
         posts: 100,
         reviews: 100,
-        rating: 4.5
+        rating: 4.5,
+        revdata: [
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Chester",
+                rev: "Great Food!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Gaby",
+                        com: "I agree!"
+                    }
+                ]
+            },
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Prince",
+                rev: "Overrated but still good. But please bring back the spinach tree.",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Micole",
+                        com: "I disagree!"
+                    }
+                ]
+            }
+            ]
     },
 
     {
@@ -29,7 +81,33 @@ const resto_data = [
         landmark: 'University Mall',
         posts: 100,
         reviews: 100,
-        rating: 100
+        rating: 100,
+        revdata: [
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Chester",
+                rev: "Great Food!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Gaby",
+                        com: "Good Review!"
+                    }
+                ]
+            },
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Prince",
+                rev: "The chicken fillet is the worst fast food item I had ever.",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Micole",
+                        com: "Completely Agree, their sisig bowl is bad too!"
+                    }
+                ]
+            }
+            ]
     },
 
     {
@@ -40,7 +118,33 @@ const resto_data = [
         landmark: 'Burgundy',
         posts: 100,
         reviews: 100,
-        rating: 100
+        rating: 100,
+        revdata: [
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Chester",
+                rev: "Great Food!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Gaby",
+                        com: "Good Review!"
+                    }
+                ]
+            },
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Prince",
+                rev: "The breakfast burrito is giving!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Micole",
+                        com: "Nooo the food isn't worth it still!"
+                    }
+                ]
+            }
+            ]
     },
 
     {
@@ -51,8 +155,35 @@ const resto_data = [
         landmark: 'De La Salle University',
         posts: 100,
         reviews: 100,
-        rating: 100
+        rating: 100,
+        revdata: [
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Chester",
+                rev: "Great Food!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Gaby",
+                        com: "Good Review!"
+                    }
+                ]
+            },
+            {
+                revimg: "Images/PFPs/Prince.jpg",
+                revname: "Prince",
+                rev: "Much better than Starbucks!",
+                comments: [
+                    {
+                        comimg: "Images/PFPs/Prince.jpg",
+                        comname: "Micole",
+                        com: "Ha? Hatdog!"
+                    }
+                ]
+            }
+            ]
     },
 ]
+
 
 module.exports.resto_data = resto_data;
