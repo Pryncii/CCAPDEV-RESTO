@@ -1,0 +1,36 @@
+
+
+<div class = "flexmain">
+    {{> header}}
+</div>
+<div class="headerholder"></div>
+<div class="inside">
+    {{> sidebar}}
+    <section class = "getin-section">
+        <div class = "flexsignup">
+            <div id = "login-box">
+                <form class = "loginform">
+                    <label for="lname">User Email</label><br>
+                    <input type="text" id="email" name="email"><br>
+                    <label for="fname">Full Name</label><br>
+                    <input type="text" id="fname" name="fname"><br>
+                    <label for="fname">Username</label><br>
+                    <input type="text" id="username" name="username"><br>
+                    <label for="lname">Password</label><br>
+                    <input type="text" id="password" name="password">
+            
+                    Establishment Owner?
+                    <input type="radio" id="estbowner-btn" name="estbowner" value="yes" onchange="openEstabname()">
+                    <label for="estbowner">Yes</label>
+                    <input type="radio" id="estbowner-btn" name="estbowner" value="no" onchange="openEstabname()">
+                    <label for="estbowner">No</label><br>
+                    <label for="ename" class="estab-name" id="ename-label">Establishment Name</label><br>
+                    <input type="text" id="ename" name="ename" class="estab-name">
+                    
+                <input type="submit" value="Get Started!" class = "loginsb">
+                <a href="login-page" style="color:#04AA6D">Already have an account?</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

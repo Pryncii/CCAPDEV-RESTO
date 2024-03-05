@@ -55,9 +55,21 @@ console.log(initialresto[0]);
 server.get('/', function(req, resp){
     resp.render('main',{
         layout      : 'index',
-        title       : 'Restaurant',
-        restos   : initialresto[1],
-        num: 0
+        title       : 'Main Menu',
+    });
+});
+
+server.get('/login-page', function(req, resp){
+    resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+    });
+});
+
+server.get('/signup-page', function(req, resp){
+    resp.render('signup',{
+        layout      : 'index',
+        title       : 'Signup',
     });
 });
 
