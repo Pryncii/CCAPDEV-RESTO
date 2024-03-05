@@ -48,9 +48,9 @@ function errorFn(err){
     console.error(err);
 }
 
-const restodata = require('./initialdata');
-const initialresto = restodata.resto_data;
-console.log(initialresto[0]);
+const getRestoList = require('./initial').getRestoList;
+const restodata = getRestoList();
+console.log(restodata);
 
 server.get('/', function(req, resp){
     resp.render('main',{
