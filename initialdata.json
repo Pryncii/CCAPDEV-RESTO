@@ -1,7 +1,8 @@
 [
     {
-        "name": "Mcdonalds",
+        "name": "McDonalds",
         "image": "/common/Images/mcdo-umall.jpg",
+        "imagesquare": "/common/Images/mcdo-umall-square.jpg",
         "description": "One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!",
         "recommendations": [{"recom": "Big Mac"}, {"recom": "Potato Fries"}, {"recom": "Chicken Mcnuggets"}, {"recom": "Oreo Mcflurry"}, {"recom": "McChicken"}],
         "landmark": "University Mall",
@@ -10,12 +11,12 @@
         "rating": 4.5,
         "revdata": [
         {
-            "revimg": "/common/Images/PFPs/catpfp.jpg",
+            "revimg": "/common/Images/PFPs/catpfp.png",
             "revname": "Chester",
             "rev": "Great Food!",
             "comments": [
                 {
-                    "comimg": "/common/Images/mcdo-umall.jpg",
+                    "comimg": "/common/Images/mcdo-umall-square.jpg",
                     "comname": "Mcdonalds",
                     "com": "Nice to hear you enjoyed your experience!"
                 }
@@ -39,6 +40,7 @@
     {
         "name": "Starbucks",
         "image": "/common/Images/Starbs.png",
+        "imagesquare": "/common/Images/Starbssquare.png",
         "description": "The globally popular coffee shop known for their drinks and pastries. A ideal place to be productive while sipping on some Starbucks coffee!",
         "recommendations": [{"recom": "Caramel Machiatto"}, {"recom": "Cold Brew"}, {"recom": "Matcha Latte"}, {"recom": "Sausage Roll"}, {"recom": "Belgian Waffle"}],
         "landmark": "Benilde",
@@ -47,7 +49,7 @@
         "rating": 4.5,
         "revdata": [
             {
-                "revimg": "/common/Images/PFPs/catpfp.jpg",
+                "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Chester",
                 "rev": "Great Food!",
                 "comments": [
@@ -76,6 +78,7 @@
     {
         "name": "KFC",
         "image": "/common/Images/kfc.png",
+        "imagesquare": "/common/Images/kfcsquare.png",
         "description": " The globally popular fast food chain that is well known for their fried chicken. Satisfy your cravings with some fried chicken paired with their iconic gravy!",
         "recommendations": [{"recom": "1pc Fried Chicken"}, {"recom": "Zinger"}, {"recom": "Famous Bowl"}, {"recom": "Mushroom Soup"}, {"recom": "Sisig Bowl"}],
         "landmark": "University Mall",
@@ -84,7 +87,7 @@
         "rating": 100,
         "revdata": [
             {
-                "revimg": "/common/Images/PFPs/catpfp.jpg",
+                "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Chester",
                 "rev": "Great Food!",
                 "comments": [
@@ -113,6 +116,7 @@
     {
         "name": "Army Navy",
         "image": "/common/Images/armynavy.png",
+        "imagesquare": "/common/Images/armynavysquare.png",
         "description": "A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!",
         "recommendations": [{"recom": "Breakfast Burrito"}, {"recom": "Fearless Fried Chicken"}, {"recom": "Naked Burrito"}, {"recom": "Soft Taco"}, {"recom": "Quesadilla"}],
         "landmark": "Burgundy",
@@ -121,7 +125,7 @@
         "rating": 100,
         "revdata": [
             {
-                "revimg": "/common/Images/PFPs/catpfp.jpg",
+                "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Chester",
                 "rev": "Great Food!",
                 "comments": [
@@ -150,6 +154,7 @@
     {
         "name": "Coffee Bean",
         "image": "/common/Images/coffeebean.jpg",
+        "imagesquare": "/common/Images/coffeebean.jpg",
         "description": " A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!",
         "recommendations": [{"recom": "Ice-Blended Mocha"}, {"recom": "3-cheese and Salmon Quiche"}, {"recom": "Cold Brew Latte"}, {"recom": "Ice-Blended Caramel"}, {"recom": "Carrot Loaf"}],
         "landmark": "De La Salle University",
@@ -158,7 +163,7 @@
         "rating": 100,
         "revdata": [
             {
-                "revimg": "/common/Images/PFPs/catpfp.jpg",
+                "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Chester",
                 "rev": "Great Food!",
                 "comments": [
