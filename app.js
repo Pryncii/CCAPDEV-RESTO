@@ -53,7 +53,7 @@ const initialresto = restodata.resto_data;
 console.log(initialresto[0]);
 
 server.get('/', function(req, resp){
-    resp.render('menu',{
+    resp.render('main',{
         layout      : 'index',
         title       : 'Restaurant',
         restos   : initialresto[1],
