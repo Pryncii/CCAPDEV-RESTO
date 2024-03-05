@@ -308,6 +308,7 @@ height:20px;
     /*background-image: linear-gradient(to top, #006600 0%, #009933 100%);*/
     background-color: #dbebd5;
     height: 1000px;
+    width: 100%;
 }
 
 .flexrestopart{
