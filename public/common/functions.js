@@ -217,39 +217,16 @@ div.classList.replace("tags-selected", "tags");
 }
 
 $(document).ready(function(){
-  $("#check-btn").click(function(){
-    $.post('read-user',{ 
-        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
-      }, function(data, status){
-        if(status === 'success'){
-          const newItem = document.createElement('div');
-		  newItem.innerHTML = data.msg;
-          $('#result-area').append(newItem);
-        }//if
-      });//post
-  });//btn
-  $("#view-all-btn").click(function(){
+  $('input[type="submit"]').click(function(){
     //Get function does not have a body. Instead, it submits the
     //information in the URL as a parameter.
-    $.get('read-all-user/'+$('#vuser').val(),
+    $.get('restoquery/'+$('#search-field').val(),
       function(data, status){
+        window.location.href = '/restoquery/'+ $('#search-field').val()
         if(status === 'success'){
-          const newItem = document.createElement('div');
-		  newItem.innerHTML = data.msg;
-          $('#result-area').append(newItem);
+          alert("Showing all "+ data.name + " stores in Taft");
         }//if
       });//get
-  });//btn
-  $("#add-btn").click(function(){
-    $.post('create-user',{ 
-        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
-      }, function(data, status){
-        if(status === 'success'){
-          const newItem = document.createElement('div');
-		  newItem.innerHTML = data.msg;
-          $('#result-area').append(newItem);
-        }//if
-      });//post
   });//btn
   $("#edit-btn").click(function(){
     $.ajax({

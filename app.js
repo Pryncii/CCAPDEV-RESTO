@@ -116,6 +116,28 @@ server.get('/restopage/:landmark/', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.get('/restoquery/:name/', function(req, resp){
+    const searchQuery = { name: req.params.name };
+    restoModel.find(searchQuery).then(function(restos){
+      console.log('List successful');
+      let vals = new Array();
+      for(const item of restos){
+          vals.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+      }
+      resp.render('restomenu',{
+        layout: 'index',
+        title:  req.params.landmark,
+        restos:  vals
+      });
+    }).catch(errorFn);
+    resp.send({name: req.params.name});
+  });
+
 
   
 
