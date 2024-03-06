@@ -740,7 +740,8 @@ progress[value]::-webkit-progress-bar {
     padding: 10px;
     padding-top: 20px;
     background-color: rgb(227, 241, 227);
-    border: 1px solid #448753;
+    border-top: 1px solid #448753;
+    border-right: 1px solid #448753;
 }
 
 .userprofilereviewright
@@ -869,7 +870,6 @@ progress[value]::-webkit-progress-bar {
     color: #448753;
     font-family: georgia;
     font-size: 20px;
-    background-color: pink;
 }
 
 .sidebar{

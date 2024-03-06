@@ -96,7 +96,7 @@
                                         <a href= "profilepage.html">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
-                                        ★★★★★
+                                        {{this.revrating}}
                                     </div>
                                     <div class = "rcbottom2">
                                         {{this.rev}}
@@ -124,6 +124,7 @@
 
                                             <div class = "replytoreview" style="display: none;">
                                             <!--OTHER REPLIES TO THE REVIEW HERE-->
+                                            {{#if this.hascomments}}
                                             {{#each this.comments}}
                                                 <div class = "reviewcontainer3">
                                                     <div class = "reviewcontainerleft2">
@@ -152,8 +153,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             {{/each}}
+                                            {{/if}}  
+                                            </div>
+                                            
                                             
 
                                         </div>
@@ -168,6 +171,7 @@
                     </div>
                 </div>
             </div>
-            <div class = "flexbody"></div>
+            <div class="bottomoverflow">
+            </div>
         </div>
     </div>

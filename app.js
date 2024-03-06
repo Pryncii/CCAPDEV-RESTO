@@ -25,7 +25,9 @@ const commentSchema = new mongoose.Schema({
 const reviewSchema = new mongoose.Schema({
     revimg: { type: String },
     revname: { type: String },
+    revrating: { type: String},
     rev: { type: String },
+    hascomments: { type: Boolean },
     comments: [commentSchema]
 });
 
@@ -37,13 +39,26 @@ const restoSchema = new mongoose.Schema({
     description: { type: String },
     recommendations: [{ recom: { type: String } }],
     landmark: { type: String },
-    posts: { type: Number },
-    reviews: { type: Number },
     rating: { type: Number },
     revdata: [reviewSchema]
 },{ versionKey: false });
 
+const friendSchema = new mongoose.Schema({
+    friendname: { type: String },
+    friendimage: { type: String },
+});
+
+const userSchema = new mongoose.Schema({
+    name: { type: String },
+    urlname: { type: String },
+    image: { type: String },
+    description: {type: String},
+    friends: [friendSchema],
+    revdata: [reviewSchema]
+},{ versionKey: false });
+
 const restoModel = mongoose.model('restaurants', restoSchema);
+const userModel = mongoose.model('users', userSchema);
 
 function errorFn(err){
     console.log('Error found. Please trace!');
@@ -53,6 +68,10 @@ function errorFn(err){
 const getRestoList = require('./initial').getRestoList;
 const restodata = getRestoList();
 console.log(restodata);
+
+const getUserList = require('./usergetlist').getUserList;
+const userdata = getUserList();
+console.log(userdata);
 
 server.get('/', function(req, resp){
     resp.render('menu',{
@@ -75,6 +94,22 @@ server.get('/signup-page', function(req, resp){
     });
 });
 
+server.get('/profile-page/:urlname', function(req, resp){
+    const searchQuery = { urlname: req.params.urlname};
+
+    userModel.findOne(searchQuery).then(function(user){
+        console.log(JSON.stringify(user));
+        if(user != undefined && user._id != null){
+          const userJson = user.toJSON();
+          resp.render('profile',{
+              layout      : 'index',
+              title       : 'Profile',
+              userdata   : userJson
+            });
+        }
+      }).catch(errorFn);
+});
+
 console.log(restodata[0]);
 
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
@@ -86,7 +121,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         const restosJson = restos.toJSON();
         resp.render('restopage',{
             layout      : 'index',
-            title       : 'Main Menu',
+            title       : 'Restaurant',
             restodata   : restosJson,
             otherresto  : restodata
         });

@@ -1,0 +1,89 @@
+    <div class = "flexmain">
+        {{> header}}
+        
+        
+        <div class = "flexrow headerholder">
+        </div>
+
+        
+    <div class="inside">
+        {{> sidebar}}
+
+    <div class = "contentforotherpages">
+        <div>
+            <div class = "flexbody">
+                <div class = "userprofileself">
+                    <div class = "userprofileselfname">
+                        {{userdata.name}}
+                    </div>
+                    <div class = "userprofileselfpfpnbio">
+                        <div class = "userprofilepfp">
+                            <img src = "{{userdata.image}}">
+                        </div>
+                        <div class = "userprofilebio">
+                            <div class = "userbio">
+                                Bio/Information: <br>{{userdata.description}}
+                            </div>
+                            
+    
+                            <div class = "usereditbio">
+                                <button type="editpfp-button" class = "editpfp-button">Change Profile Picture</button>
+                                <button type="editbio-button" class = "editbio-button">Edit Bio</button>
+                                <button type="report-button" class = "report-button">Report User</button>
+                                <button type="report-button" class = "report-button"  onclick="window.location.href='TaftEats-main-page.html'">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "userprofilereviews">
+                    <div class = "userprofilereviewleft">
+                        <div class = "reviewupper">
+                            Friends
+                        </div>
+
+<!--FRIENDS LOOP HERE-->
+{{#each userdata.friends}}
+                        <div class = "friendcontainer">
+                            <a href="/profile-page/{{this.urlname}}">
+                                <div class = "friendcontainerleft">
+                                    <img src = "{{this.friendimage}}">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                {{this.friendname}}
+                            </div>
+                        </div>
+{{/each}}
+
+                    </div>
+                    <div class = "userprofilereviewright">
+                        <div class = "reviewupper">
+                            Recent Reviews
+                        </div>
+                        <div class = "reviewlower">
+<!--REVIEWS LOOP HERE-->
+{{#each userdata.reviews}}
+                            <div class = "reviewcontainer">
+                                <div class = "reviewcontainerleft">
+                                    <img src = "{{this.revimg}}">
+                                </div>
+                                <div class = "reviewcontainerright">
+                                    <div class = "rctop">
+                                        <a href= "Resto.html">{{this.revname}}</a>
+                                    </div>
+                                    <div class = "rcmid">
+                                        {{this.revrating}}
+                                    </div>
+                                    <div class = "rcbottom">
+                                        {{this.rev}}
+                                    </div>
+                                </div>
+                            </div>
+{{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
