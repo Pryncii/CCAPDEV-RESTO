@@ -31,6 +31,7 @@ const reviewSchema = new mongoose.Schema({
 
 const restoSchema = new mongoose.Schema({
     name: { type: String },
+    linkname: { type: String},
     image: { type: String },
     imagesquare: {type: String},
     description: { type: String },
@@ -54,7 +55,7 @@ const restodata = getRestoList();
 console.log(restodata);
 
 server.get('/', function(req, resp){
-    resp.render('main',{
+    resp.render('menu',{
         layout      : 'index',
         title       : 'Main Menu',
     });
@@ -75,14 +76,58 @@ server.get('/signup-page', function(req, resp){
 });
 
 console.log(restodata[0]);
-server.get('/restaurant', function(req, resp){
-    resp.render('restopage',{
-        layout      : 'index',
-        title       : 'Main Menu',
-        restodata   : restodata[0],
-        otherresto  : restodata,
-    });
-});
+
+server.get('/restaurant/:landmark/:linkname', function(req, resp){
+    const searchQuery = { landmark: req.params.landmark, 
+                          linkname: req.params.linkname};
+    restoModel.findOne(searchQuery).then(function(restos){
+      console.log(JSON.stringify(restos));
+      if(restos != undefined && restos._id != null){
+        const restosJson = restos.toJSON();
+        resp.render('restopage',{
+            layout      : 'index',
+            title       : 'Main Menu',
+            restodata   : restosJson,
+            otherresto  : restodata
+        });
+    }
+    }).catch(errorFn);
+  });
+
+server.get('/restopage/:landmark/', function(req, resp){
+    const searchQuery = { landmark: req.params.landmark };
+    restoModel.find(searchQuery).then(function(restos){
+      console.log('List successful');
+      let vals = new Array();
+      for(const item of restos){
+          vals.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+      }
+
+      resp.render('restomenu',{
+        layout: 'index',
+        title:  req.params.landmark,
+        restos:  vals
+      });
+    }).catch(errorFn);
+  });
+
+
+  
+
+function finalClose(){
+    console.log('Close connection at the end!');
+    mongoose.connection.close();
+    process.exit();
+}
+
+process.on('SIGTERM',finalClose);  
+process.on('SIGINT',finalClose);  
+process.on('SIGQUIT', finalClose);
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){

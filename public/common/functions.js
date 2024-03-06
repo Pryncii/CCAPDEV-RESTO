@@ -215,3 +215,59 @@ else{
 div.classList.replace("tags-selected", "tags");
 }
 }
+
+$(document).ready(function(){
+  $("#check-btn").click(function(){
+    $.post('read-user',{ 
+        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
+      }, function(data, status){
+        if(status === 'success'){
+          const newItem = document.createElement('div');
+		  newItem.innerHTML = data.msg;
+          $('#result-area').append(newItem);
+        }//if
+      });//post
+  });//btn
+  $("#view-all-btn").click(function(){
+    //Get function does not have a body. Instead, it submits the
+    //information in the URL as a parameter.
+    $.get('read-all-user/'+$('#vuser').val(),
+      function(data, status){
+        if(status === 'success'){
+          const newItem = document.createElement('div');
+		  newItem.innerHTML = data.msg;
+          $('#result-area').append(newItem);
+        }//if
+      });//get
+  });//btn
+  $("#add-btn").click(function(){
+    $.post('create-user',{ 
+        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
+      }, function(data, status){
+        if(status === 'success'){
+          const newItem = document.createElement('div');
+		  newItem.innerHTML = data.msg;
+          $('#result-area').append(newItem);
+        }//if
+      });//post
+  });//btn
+  $("#edit-btn").click(function(){
+    $.ajax({
+      /* This will contian the URL */
+      url: "update-user",
+      /* This will indicate the kind of method used */
+      type: "PUT",  //For delete, you can put DELETE here
+      /* This will contian hearer information to indicate JSon is used */
+      headers: { "Content-Type": "application/json" },
+      /* Data submitted using the Ajax function should be in a string form. */
+      data: JSON.stringify({ 
+        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
+      }),
+      success: function(data){
+        const newItem = document.createElement('div');
+		newItem.innerHTML = data.msg;
+        $('#result-area').append(newItem);
+      }
+    });
+  });//btn
+});//doc
