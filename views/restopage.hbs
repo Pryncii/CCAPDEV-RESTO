@@ -1,0 +1,173 @@
+    <div class = "flexmain">
+            {{> header}}
+        
+        <div class = "flexrow headerholder">
+        </div>
+
+        <div class="inside">
+            {{> sidebar}}
+
+        <div class = "contentforotherpages">
+            <div class = "flexbody">
+                <div class = "restopartandnamecontainer">
+                    <div class = "userprofileselfname">
+                        {{restodata.name}} ★★★★★
+                    </div>
+                    <div class = "flexrow flexrestopart">
+                        <div class = "restoprofile">
+                            <img src = "{{restodata.image}}">
+                        </div>
+    
+                        <div class = "descandbuttons">
+                            <div class = "restodesc" id="restodescid">
+                                <span>Description</span>
+                                <p>
+                                    {{restodata.description}}
+                                </p>
+                            </div>
+                            <div class = "usereditbio">
+                                <button type="map-button" class = "editbio-button" onclick="window.open('https://maps.app.goo.gl/RBHHpqZmKw3uqz3f9', '_blank')">Map</button>
+                                <button type="editpfp-button" class = "editpfp-button">Change Picture</button>
+                                <button type="editbio-button" class = "editbio-button">Edit Bio</button>
+                                <button type="report-button" class = "report-button">Report</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class = "userprofilereviews">
+                    <div class = "userprofilereviewleft">
+                        <div class = "reviewupper">
+                            Restaurant List
+                        </div>
+                        <!-- OTHER RESTO LOOP HERE -->
+                        {{#each otherresto}}
+                        <div class = "friendcontainer">
+                            <a href="Resto2.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "{{this.imagesquare}}">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                {{this.name}}
+                            </div>
+                        </div>
+                        {{/each}}
+                        
+                    </div>
+                    <div class = "userprofilereviewright">
+                        <div class = "reviewupper">
+                            Recent Reviews
+                        </div>
+                        <div class = "reviewlower">
+                            <div class = "reviewtext">
+                                <form action="/action_page.php" class="review-form-container" id="myForm">
+                                <textarea name="review" id="reviewcomment">Write a Review!</textarea>
+
+                                
+                                    
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="text"> 5 stars</label>
+                                            <input type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="text"> 4 stars</label>
+                                            <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="text"> 3 stars</label>
+                                            <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="text"> 2 stars</label>
+                                            <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="text"> 1 star</label>
+                                        </div>
+                                       
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                
+                                
+                                </form>
+                            </div>
+
+                        <!--OTHER REVIEWS HERE-->
+                        {{#each restodata.revdata}}
+                            <div class = "reviewcontainer2">
+                                <div class = "reviewcontainerleft2">
+                                    <img src = "{{this.revimg}}">
+                                </div>
+                                <div class = "reviewcontainerright2">
+                                    <div class = "rctop2">
+<!--REMEMBER TO CHANGE LINK!!!!!!!!-->
+                                        <a href= "profilepage.html">{{this.revname}}</a>
+                                    </div>
+                                    <div class = "rcmid2">
+                                        ★★★★★
+                                    </div>
+                                    <div class = "rcbottom2">
+                                        {{this.rev}}
+                                    </div> 
+                                    
+                                    <div class = "usereditbio2">
+                                        <div class="thumbs">
+                                            <div class="like grow">
+                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                            </div>
+                                            <div class="dislike grow">
+                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                            </div>
+                                            <button type="reply-button" class = "reply-button">Reply</button>
+                                            <button type="viewreplies-button" class = "viewreplies-button">View Replies</button>
+                                            <button type="edit-button" class = "editbio-button">Edit</button>
+                                            <button type="delete-button" class = "report-button">Delete</button>
+
+                                            <div class="reply-container"   style="display: none;">
+                                                <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
+                                                <div class = "usereditbio">
+                                                    <button type="button" class="reply-button">Reply</button>
+                                                </div>
+                                            </div>
+
+                                            <div class = "replytoreview" style="display: none;">
+                                            <!--OTHER REPLIES TO THE REVIEW HERE-->
+                                            {{#each this.comments}}
+                                                <div class = "reviewcontainer3">
+                                                    <div class = "reviewcontainerleft2">
+                                                        <img src = "{{this.comimg}}">
+                                                    </div>
+                                                    <div class = "reviewcontainerright2">
+                                                        <div class = "rctop2">
+<!--REMEMBER TO CHANGE LINK!!!!!!!!-->
+                                                            <a href= "profilepage.html">{{this.comname}}</a>
+                                                        </div>
+                                                        <div class = "rcbottom2">
+                                                            {{this.com}}
+                                                        </div> 
+                                                        
+                                                        <div class = "usereditbio2">
+                                                            <div class="thumbs">
+                                                                <div class="like grow">
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                                                </div>
+                                                                <div class="dislike grow">
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                                                </div>
+                                                                <button type="edit-button" class = "editbio-button">Edit</button>
+                                                                <button type="delete-button" class = "report-button">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "flexbody"></div>
+        </div>
+    </div>

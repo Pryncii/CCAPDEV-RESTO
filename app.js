@@ -32,6 +32,7 @@ const reviewSchema = new mongoose.Schema({
 const restoSchema = new mongoose.Schema({
     name: { type: String },
     image: { type: String },
+    imagesquare: {type: String},
     description: { type: String },
     recommendations: [{ recom: { type: String } }],
     landmark: { type: String },
@@ -70,6 +71,16 @@ server.get('/signup-page', function(req, resp){
     resp.render('signup',{
         layout      : 'index',
         title       : 'Signup',
+    });
+});
+
+console.log(restodata[0]);
+server.get('/restaurant', function(req, resp){
+    resp.render('restopage',{
+        layout      : 'index',
+        title       : 'Main Menu',
+        restodata   : restodata[0],
+        otherresto  : restodata,
     });
 });
 
