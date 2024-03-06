@@ -44,7 +44,7 @@ const restoSchema = new mongoose.Schema({
 const restoModel = mongoose.model('restaurants', restoSchema);
 
 function errorFn(err){
-    console.log('Error fond. Please trace!');
+    console.log('Error found. Please trace!');
     console.error(err);
 }
 
