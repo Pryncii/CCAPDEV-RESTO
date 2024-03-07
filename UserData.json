@@ -1,0 +1,264 @@
+[
+    {
+        "name": "Buencamino, Prince",
+        "urlname": "Buencamino_Prince",
+        "image": "/common/Images/PFPs/Prince.jpg",
+        "description": "Food Enjoyer, 2nd year CCS student who is perpetually hungry.",
+        "friends": 
+        [
+            {
+                "friendname": "Lingat, Blix",
+                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "urlname": "Lingat_Blix"
+            }, 
+            {
+                "friendname": "Ruiz, Chester",
+                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "urlname": "Ruiz_Chester"
+            }, 
+            {
+                "friendname": "Arco, Gaby",
+                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "urlname": "Arco_Gaby"
+            }, 
+            {
+                "friendname": "Chua, Micole",
+                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "urlname": "Chua_Micole"
+            }
+        ],
+        
+        "reviews": 
+        [
+        {
+            "revimg": "/common/Images/mcdo-umall-square.jpg",
+            "revname": "McDonalds",
+            "revrating": "★★★★★",
+            "rev": "Undebatebly the best fries and chicken nuggets in the world."
+        },
+        {
+            "revimg": "/common/Images/coffeebean.jpg",
+            "revname": "The Coffee Bean & Tea Leaf",
+            "revrating": "★★★★★",
+            "rev": "Much better than Starbucks!"
+        },
+        {
+            "revimg": "/common/Images/Starbssquare.png",
+            "revname": "Starbucks",
+            "revrating": "★★★★☆",
+            "rev": "Overrated but still good. But please bring back the spinach tree"
+        }
+        ]
+    },
+
+    {
+        "name": "Lingat, Blix",
+        "urlname": "Lingat_Blix",
+        "image": "/common/Images/PFPs/Blix.jpg",
+        "description": "Lover of all things Japan.",
+        "friends": 
+        [
+            {
+                "friendname": "Buencamino, Prince",
+                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "urlname": "Buencamino_Prince"
+            }, 
+            {
+                "friendname": "Ruiz, Chester",
+                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "urlname": "Ruiz_Chester"
+            }, 
+            {
+                "friendname": "Arco, Gaby",
+                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "urlname": "Arco_Gaby"
+            }, 
+            {
+                "friendname": "Chua, Micole",
+                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "urlname": "Chua_Micole"
+            }
+        ],
+        
+        "reviews": 
+        [
+        {
+            "revimg": "/common/Images/armynavysquare.png",
+            "revname": "Army Navy",
+            "revrating": "★★★★★",
+            "rev": "The tacos were magnificent, would come again!"
+        },
+        {
+            "revimg": "/common/Images/kfcsquare.png",
+            "revname": "KFC",
+            "revrating": "★★★★☆",
+            "rev": "Usually good but the mushroom soup I ordered was cold"
+        },
+        {
+            "revimg": "/common/Images/Starbssquare.png",
+            "revname": "Starbucks",
+            "revrating": "★★☆☆☆",
+            "rev": "Very expensive, especially with inflation!"
+        }
+        ]
+    },
+
+    {
+        "name": "Ruiz, Chester",
+        "urlname": "Ruiz_Chester",
+        "image": "/common/Images/PFPs/catpfp.png",
+        "description": "The only human on earth who likes mushroom pepper steak.",
+        "friends": 
+        [
+            {
+                "friendname": "Lingat, Blix",
+                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "urlname": "Lingat_Blix"
+            }, 
+            {
+                "friendname": "Buencamino, Prince",
+                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "urlname": "Buencamino_Prince"
+            }, 
+            {
+                "friendname": "Arco, Gaby",
+                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "urlname": "Arco_Gaby"
+            }, 
+            {
+                "friendname": "Chua, Micole",
+                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "urlname": "Chua_Micole"
+            }
+        ],
+        
+        "reviews": 
+        [
+        {
+            "revimg": "/common/Images/kfcsquare.png",
+            "revname": "KFC",
+            "revrating": "★★★☆☆",
+            "rev": "It's alright."
+        },
+        {
+            "revimg": "/common/Images/mcdo-umall-square.jpg",
+            "revname": "McDonalds",
+            "revrating": "★★★★★",
+            "rev": "the mushroom pepper steak!"
+        },
+        {
+            "revimg": "/common/Images/Starbssquare.png",
+            "revname": "Starbucks",
+            "revrating": "★★★★☆",
+            "rev": "expensive.. but it is popular for a reason."
+        }
+        ]
+    },
+
+    {
+        "name": "Arco, Gaby",
+        "urlname": "Arco_Gaby",
+        "image": "/common/Images/PFPs/Gaby.jpg",
+        "description": "Dimsum treats number 1 4evah.",
+        "friends": 
+        [
+            {
+                "friendname": "Lingat, Blix",
+                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "urlname": "Lingat_Blix"
+            }, 
+            {
+                "friendname": "Ruiz, Chester",
+                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "urlname": "Ruiz_Chester"
+            }, 
+            {
+                "friendname": "Buencamino, Prince",
+                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "urlname": "Buencamino_Prince"
+            }, 
+            {
+                "friendname": "Chua, Micole",
+                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "urlname": "Chua_Micole"
+            }
+        ],
+        
+        "reviews": 
+        [
+        {
+            "revimg": "/common/Images/mcdo-umall-square.jpg",
+            "revname": "McDonalds",
+            "revrating": "★★★★★",
+            "rev": "The breakfast options were fire as always!"
+        },
+        {
+            "revimg": "/common/Images/armynavysquare.png",
+            "revname": "Army Navy",
+            "revrating": "★★★★★",
+            "rev": "The carbonara was flavorful and worth the price!"
+        },
+        {
+            "revimg": "/common/Images/Starbssquare.png",
+            "revname": "Starbucks",
+            "revrating": "★★★★★",
+            "rev": "The drinks were good and the sticker rewards even better!"
+        }
+        ]
+    },
+
+    {
+        "name": "Chua, Micole",
+        "urlname": "Chua_Micole",
+        "image": "/common/Images/PFPs/Micole.jpg",
+        "description": "wagyu should not look like spam btw",
+        "friends": 
+        [
+            {
+                "friendname": "Lingat, Blix",
+                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "urlname": "Lingat_Blix"
+            }, 
+            {
+                "friendname": "Ruiz, Chester",
+                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "urlname": "Ruiz_Chester"
+            }, 
+            {
+                "friendname": "Arco, Gaby",
+                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "urlname": "Arco_Gaby"
+            }, 
+            {
+                "friendname": "Buencamino, Prince",
+                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "urlname": "Buencamino_Prince"
+            }
+        ],
+        
+        "reviews": 
+        [
+        {
+            "revimg": "/common/Images/coffeebean.jpg",
+            "revname": "The Coffee Bean & Tea Leaf",
+            "revrating": "★★☆☆☆",
+            "rev": "A steep price tag for mid drinks."
+        },
+        {
+            "revimg": "/common/Images/kfcsquare.png",
+            "revname": "KFC",
+            "revrating": "★★☆☆☆",
+            "rev": "The sisig bowl was too spicy, should've put more warnings"
+        },
+        {
+            "revimg": "/common/Images/Starbssquare.png",
+            "revname": "Starbucks",
+            "revrating": "☆☆☆☆☆",
+            "rev": "Somehow, even worse than coffee bean."
+        }
+        ]
+    }
+   
+]
+
+

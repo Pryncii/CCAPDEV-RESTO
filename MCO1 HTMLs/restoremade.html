@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Resto Remade</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src ="functions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class = "flexmain">
+        <div class = "flexrow flexheader">
+            <div class = "headerleft">
+                <img onclick="toggleMenu()" src = "Images/menuicon.png">
+                <p>TAFT EATS</p>
+            </div>
+
+            <div class = "headermiddle">
+                <form>
+                    <input type="text" id="search-field" />
+                    <input type="submit" value="Search" />
+                </form>
+                <div class="dropdown">
+                    <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
+                    <div id="advance-search"class="dropdown-content">
+                        <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
+                        <div class="filter">
+                            <div class="label">Price Range </div>
+                            <div class="price-bound"><input type="text" id="lower-bound" /> </div>
+                             -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
+                        </div>
+                        <div class="filter" > <div class="label">Stars</div>
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text"> 5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text"> 4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text"> 3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text"> 2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text"> 1 star</label>
+                              </div>
+                            and above
+                        </div>
+                        <div class="filter"><div class="label">Additional Tags</div>
+                            <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
+                            <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
+                            <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
+                            <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class = "headerright">
+                <a href="profilepage.html"><img src = "Images/PFPs/Prince.jpg"></a>
+            </div>
+        </div>
+        
+        <div class = "flexrow headerholder">
+        </div>
+
+        <div class="inside">
+            <div id="menu" class="sidenav">
+                <button id="home"   class="dropdown-btn" onclick="toggleVisibility('contents0', 'home')">Home 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                <div id="contents0" class="dropdown-container">
+                    <a href="Menu.html">Places</a>   
+                    <a href="RestaurantsPage.html">Restaurants</a>
+                </div>
+              <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents1" class="dropdown-container">
+                <a href="Resto2.html">Starbucks</a>
+              </div>
+              <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents2" class="dropdown-container">
+                <a href="Resto.html">McDonalds</a>
+                <a href="Resto3.html">KFC</a>
+              </div>
+              <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents3" class="dropdown-container">
+                <a href="Resto4.html">Army Navy</a>
+              </div>
+              <button id="dlsu" class="dropdown-btn" onclick="toggleVisibility('contents4','dlsu')">DLSU Manila 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="contents4" class="dropdown-container">
+                <a href="Resto5.html">Coffee and Tea Leaf</a>
+              </div>
+            </div>
+        <div class = "contentforotherpages">
+            <div class = "flexbody">
+                <div class = "restopartandnamecontainer">
+                    <div class = "userprofileselfname">
+                        McDonalds ★★★★★
+                    </div>
+                    <div class = "flexrow flexrestopart">
+                        <div class = "restoprofile">
+                            <img src = "Images/mcdo-umall.jpg">
+                        </div>
+    
+                        <div class = "descandbuttons">
+                            <div class = "restodesc" id="restodescid">
+                                <span>Description</span>
+                                <p>
+                                    One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!
+                                </p>
+                            </div>
+                            <div class = "usereditbio">
+                                <button type="map-button" class = "editbio-button" onclick="window.open('https://maps.app.goo.gl/RBHHpqZmKw3uqz3f9', '_blank')">Map</button>
+                                <button type="editpfp-button" class = "editpfp-button">Change Picture</button>
+                                <button type="editbio-button" class = "editbio-button">Edit Bio</button>
+                                <button type="report-button" class = "report-button">Report</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class = "userprofilereviews">
+                    <div class = "userprofilereviewleft">
+                        <div class = "reviewupper">
+                            Other Restaurants
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="Resto2.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/Starbssquare.png">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Starbucks
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="Resto3.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/kfcsquare.png">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                KFC
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="Resto4.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/armynavysquare.png">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                Army Navy
+                            </div>
+                        </div>
+                        <div class = "friendcontainer">
+                            <a href="Resto5.html">
+                                <div class = "friendcontainerleft">
+                                    <img src = "Images/coffeebean.jpg">
+                                </div>
+                            </a>
+                            <div class = "friendcontainerright">
+                                The Coffee Bean & Tea Leaf
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "userprofilereviewright">
+                        <div class = "reviewupper">
+                            Recent Reviews
+                        </div>
+                        <div class = "reviewlower">
+                            <div class = "reviewtext">
+                                <form action="/action_page.php" class="review-form-container" id="myForm">
+                                <textarea name="review" id="reviewcomment">Write a Review!</textarea>
+
+                                
+                                    
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="text"> 5 stars</label>
+                                            <input type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="text"> 4 stars</label>
+                                            <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="text"> 3 stars</label>
+                                            <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="text"> 2 stars</label>
+                                            <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="text"> 1 star</label>
+                                        </div>
+                                       
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                
+                                
+                                </form>
+                            </div>
+
+                        
+                            <div class = "reviewcontainer2">
+                                <div class = "reviewcontainerleft2">
+                                    <img src = "Images/PFPs/Prince.jpg">
+                                </div>
+                                <div class = "reviewcontainerright2">
+                                    <div class = "rctop2">
+                                        <a href= "profilepage.html">Buencamino, Prince</a>
+                                    </div>
+                                    <div class = "rcmid2">
+                                        ★★★★★
+                                    </div>
+                                    <div class = "rcbottom2">
+                                        Undebatebly the best fries and chicken nuggets in the world.
+                                    </div> 
+                                    
+                                    <div class = "usereditbio2">
+                                        <div class="thumbs">
+                                            <div class="like grow">
+                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                            </div>
+                                            <div class="dislike grow">
+                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                            </div>
+                                            <button type="reply-button" class = "reply-button">Reply</button>
+                                            <button type="viewreplies-button" class = "viewreplies-button">View Replies</button>
+                                            <button type="edit-button" class = "editbio-button">Edit</button>
+                                            <button type="delete-button" class = "report-button">Delete</button>
+
+                                            <div class="reply-container"   style="display: none;">
+                                                <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
+                                                <div class = "usereditbio">
+                                                    <button type="button" class="reply-button">Reply</button>
+                                                </div>
+                                            </div>
+
+                                            <div class = "replytoreview" style="display: none;">
+                                                <div class = "reviewcontainer3">
+                                                    <div class = "reviewcontainerleft2">
+                                                        <img src = "Images/PFPs/Prince.jpg">
+                                                    </div>
+                                                    <div class = "reviewcontainerright2">
+                                                        <div class = "rctop2">
+                                                            <a href= "profilepage.html">Buencamino, Prince</a>
+                                                        </div>
+                                                        <div class = "rcbottom2">
+                                                            Lies!
+                                                        </div> 
+                                                        
+                                                        <div class = "usereditbio2">
+                                                            <div class="thumbs">
+                                                                <div class="like grow">
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                                                </div>
+                                                                <div class="dislike grow">
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                                                </div>
+                                                                <button type="edit-button" class = "editbio-button">Edit</button>
+                                                                <button type="delete-button" class = "report-button">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class = "reviewcontainer3">
+                                                    <div class = "reviewcontainerleft2">
+                                                        <img src = "Images/PFPs/Prince.jpg">
+                                                    </div>
+                                                    <div class = "reviewcontainerright2">
+                                                        <div class = "rctop2">
+                                                            <a href= "profilepage.html">Buencamino, Prince</a>
+                                                        </div>
+                                                        <div class = "rcbottom2">
+                                                            Lies!
+                                                        </div> 
+                                                        
+                                                        <div class = "usereditbio2">
+                                                            <div class="thumbs">
+                                                                <div class="like grow">
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                                                </div>
+                                                                <div class="dislike grow">
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                                                </div>
+                                                                <button type="edit-button" class = "editbio-button">Edit</button>
+                                                                <button type="delete-button" class = "report-button">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class = "reviewcontainer2">
+                                <div class = "reviewcontainerleft2">
+                                    <img src = "Images/PFPs/Prince.jpg">
+                                </div>
+                                <div class = "reviewcontainerright2">
+                                    <div class = "rctop2">
+                                        <a href= "profilepage.html">Buencamino, Prince</a>
+                                    </div>
+                                    <div class = "rcmid2">
+                                        ★★★★★
+                                    </div>
+                                    <div class = "rcbottom2">
+                                        Undebatebly the best fries and chicken nuggets in the world.
+                                    </div> 
+                                    
+                                    <div class = "usereditbio2">
+                                        <div class="thumbs">
+                                            <div class="like grow">
+                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                            </div>
+                                            <div class="dislike grow">
+                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                            </div>
+                                            <button type="reply-button" class = "reply-button">Reply</button>
+                                            <button type="viewreplies-button" class = "viewreplies-button">View Replies</button>
+                                            <button type="edit-button" class = "editbio-button">Edit</button>
+                                            <button type="delete-button" class = "report-button">Delete</button>
+
+                                            <div class="reply-container"   style="display: none;">
+                                                <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
+                                                <div class = "usereditbio">
+                                                    <button type="button" class="reply-button">Reply</button>
+                                                </div>
+                                            </div>
+
+                                            <div class = "replytoreview" style="display: none;">
+                                                <div class = "reviewcontainer3">
+                                                    <div class = "reviewcontainerleft2">
+                                                        <img src = "Images/PFPs/Prince.jpg">
+                                                    </div>
+                                                    <div class = "reviewcontainerright2">
+                                                        <div class = "rctop2">
+                                                            <a href= "profilepage.html">Buencamino, Prince</a>
+                                                        </div>
+                                                        <div class = "rcbottom2">
+                                                            Lies!
+                                                        </div> 
+                                                        
+                                                        <div class = "usereditbio2">
+                                                            <div class="thumbs">
+                                                                <div class="like grow">
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                                                </div>
+                                                                <div class="dislike grow">
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                                                </div>
+                                                                <button type="edit-button" class = "editbio-button">Edit</button>
+                                                                <button type="delete-button" class = "report-button">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "flexbody"></div>
+        </div>
+    </div>
+</body>
+</html>

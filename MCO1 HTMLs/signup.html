@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>TaftEats - Sign-up</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src = "functions.js"> </script>
+<script src="https://use.fontawesome.com/fe459689b4.js"></script>
+
+</head>
+
+
+
+<body>
+    <div class = "flexmain">
+        <div class = "flexrow flexheader">
+            <div class = "headerleft">
+                <img onclick="toggleMenu()" src = "Images/menuicon.png">
+                <p>TAFT EATS</p>
+            </div>
+
+            <div class = "headermiddle">
+                <form>
+                    <input type="text" id="search-field" />
+                    <input type="submit" value="Search" />
+                </form>
+                
+
+
+                <div id="topsearch" class="dropdown">
+                <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
+                <div id="advance-search"class="dropdown-content">
+                    <div class="name">Advanced Search <a href = "example.com"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
+                    <div class="filter">
+                        <div class="label">Price Range </div>
+                        <div class="price-bound"><input type="text" id="lower-bound" /> </div>
+                         -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
+                    </div>
+                    <div class="filter" > <div class="label">Stars</div>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text"> 5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text"> 4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text"> 3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text"> 2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text"> 1 star</label>
+                          </div>
+                        and above
+                    </div>
+                    <div class="filter"><div class="label">Additional Tags</div>
+                        <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
+                        <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
+                        <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
+                        <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class = "headerright">
+                <a href="login.html"><img id="pfp" src = "Images/PFPs/profile.webp"></a>
+            </div>
+        </div>
+    </div>
+    <div class="headerholder"></div>
+    <div class="inside">
+        <div id="menu" class="sidenav">
+          <button id="home"   class="dropdown-btn" onclick="toggleVisibility('contents0', 'home')">Home 
+            <i class="fa fa-caret-down"></i>
+          </button>
+        <div id="contents0" class="dropdown-container">
+            <a href="Menu.html">Places</a>   
+            <a href="RestaurantsPage.html">Restaurants</a>
+        </div>
+          <button id="benilde"   class="dropdown-btn" onclick="toggleVisibility('contents1', 'benilde')">Benilde 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="contents1" class="dropdown-container">
+            <a href="Resto2.html">Starbucks</a>
+          </div>
+          <button  id="umall" class="dropdown-btn" onclick="toggleVisibility('contents2','umall')">UMall 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="contents2" class="dropdown-container">
+            <a href="Resto.html">McDonalds</a>
+            <a href="Resto3.html">KFC</a>
+          </div>
+          <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="contents3" class="dropdown-container">
+            <a href="Resto4.html">Army Navy</a>
+          </div>
+          <button id="dlsu" class="dropdown-btn" onclick="toggleVisibility('contents4','dlsu')">DLSU Manila 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="contents4" class="dropdown-container">
+            <a href="Resto5.html">Coffee and Tea Leaf</a>
+          </div>
+        </div>
+        <section class = "getin-section">
+            <div class = "flexsignup">
+                <div id = "login-box">
+                    <form class = "loginform">
+                      <label for="lname">User Email</label><br>
+                      <input type="text" id="email" name="email"><br>
+                      <label for="fname">Full Name</label><br>
+                      <input type="text" id="fname" name="fname"><br>
+                      <label for="fname">Username</label><br>
+                      <input type="text" id="username" name="username"><br>
+                      <label for="lname">Password</label><br>
+                      <input type="text" id="password" name="password">
+              
+                      Establishment Owner?
+                      <input type="radio" id="estbowner-btn" name="estbowner" value="yes" onchange="openEstabname()">
+                      <label for="estbowner">Yes</label>
+                      <input type="radio" id="estbowner-btn" name="estbowner" value="no" onchange="openEstabname()">
+                      <label for="estbowner">No</label><br>
+                      <label for="ename" class="estab-name" id="ename-label">Establishment Name</label><br>
+                      <input type="text" id="ename" name="ename" class="estab-name">
+                      
+                    <input type="submit" value="Get Started!" class = "loginsb">
+                    <a href="login.html" style="color:#04AA6D">Already have an account?</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</body>
+
+</html>
