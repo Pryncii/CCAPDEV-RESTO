@@ -228,23 +228,4 @@ $(document).ready(function(){
         }//if
       });//get
   });//btn
-  $("#edit-btn").click(function(){
-    $.ajax({
-      /* This will contian the URL */
-      url: "update-user",
-      /* This will indicate the kind of method used */
-      type: "PUT",  //For delete, you can put DELETE here
-      /* This will contian hearer information to indicate JSon is used */
-      headers: { "Content-Type": "application/json" },
-      /* Data submitted using the Ajax function should be in a string form. */
-      data: JSON.stringify({ 
-        vuser: $('#vuser').val(), vpass: $('#vpass').val() 
-      }),
-      success: function(data){
-        const newItem = document.createElement('div');
-		newItem.innerHTML = data.msg;
-        $('#result-area').append(newItem);
-      }
-    });
-  });//btn
 });//doc
