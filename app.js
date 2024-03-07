@@ -119,11 +119,17 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
       console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
         const restosJson = restos.toJSON();
+        const landmarkresto = [];
+        for(let i = 0; i < restodata.length; i++){
+            if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
+                landmarkresto.push(restodata[i]);
+            }
+        }
         resp.render('restopage',{
             layout      : 'index',
             title       : 'Restaurant',
             restodata   : restosJson,
-            otherresto  : restodata
+            otherresto  : landmarkresto
         });
     }
     }).catch(errorFn);
