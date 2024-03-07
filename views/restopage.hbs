@@ -11,6 +11,7 @@
             <div class = "flexbody">
                 <div class = "restopartandnamecontainer">
                     <div class = "userprofileselfname">
+<!--REMEMBER RESTO RATINGS-->
                         {{restodata.name}} ★★★★★
                     </div>
                     <div class = "flexrow flexrestopart">
@@ -37,7 +38,7 @@
                 <div class = "userprofilereviews">
                     <div class = "userprofilereviewleft">
                         <div class = "reviewupper">
-                            Restaurant List
+                            {{restodata.landmark}}
                         </div>
                         <!-- OTHER RESTO LOOP HERE -->
                         {{#each otherresto}}
@@ -93,7 +94,7 @@
                                 <div class = "reviewcontainerright2">
                                     <div class = "rctop2">
 <!--REMEMBER TO CHANGE LINK!!!!!!!!-->
-                                        <a href= "/profile-page/">{{this.revname}}</a>
+                                        <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
                                         {{this.revrating}}
@@ -133,7 +134,7 @@
                                                     <div class = "reviewcontainerright2">
                                                         <div class = "rctop2">
 <!--REMEMBER TO CHANGE LINK!!!!!!!!-->
-                                                            <a href= "profilepage.html">{{this.comname}}</a>
+                                                            <a href= "{{this.urlname}}">{{this.comname}}</a>
                                                         </div>
                                                         <div class = "rcbottom2">
                                                             {{this.com}}

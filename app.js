@@ -19,7 +19,8 @@ mongoose.connect('mongodb://localhost:27017/restodb');
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
-    com: { type: String }
+    com: { type: String },
+    urlname: { type: String}
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -28,7 +29,8 @@ const reviewSchema = new mongoose.Schema({
     revrating: { type: String},
     rev: { type: String },
     hascomments: { type: Boolean },
-    comments: [commentSchema]
+    comments: [commentSchema],
+    urlname: { type: String}
 });
 
 const restoSchema = new mongoose.Schema({
@@ -173,11 +175,17 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
       console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
         const restosJson = restos.toJSON();
+        const landmarkresto = [];
+        for(let i = 0; i < restodata.length; i++){
+            if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
+                landmarkresto.push(restodata[i]);
+            }
+        }
         resp.render('restopage',{
             layout      : 'index',
             title       : 'Restaurant',
             restodata   : restosJson,
-            otherresto  : restodata
+            otherresto  : landmarkresto
         });
     }
     }).catch(errorFn);
@@ -205,6 +213,61 @@ server.get('/restopage/:landmark/', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.get('/restoquery/:name/', function(req, resp){
+    const searchQuery = { name: req.params.name };
+    restoModel.find(searchQuery).then(function(restos){
+      console.log('List successful');
+      let vals = new Array();
+      for(const item of restos){
+          vals.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+      }
+      resp.render('restomenu',{
+        layout: 'index',
+        title:  req.params.landmark,
+        restos:  vals
+      });
+    }).catch(errorFn);
+    resp.send({name: req.params.name});
+  });
+
+  server.get('/showall/', function(req, resp){
+    
+    restoModel.find({}).then(function(restos){
+      console.log('List successful');
+      let vals = [];
+      let counts = 0;
+      let subval = [];
+      for(const item of restos){
+        console.log(item.name);
+        
+        subval.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+          console.log("subval");
+          console.log(subval);
+          counts+=1;
+          if(counts == 4){
+            counts=0;
+            vals.push( subval);
+            subval = new Array();
+          }
+      }
+      vals.push( subval);
+      resp.render('showall',{
+        layout: 'index',
+        title:  "Show All",
+        restos:  vals
+      });
+    }).catch(errorFn);
+  });
 
   
 

@@ -21,9 +21,11 @@
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
-                        "com": "Do not believe the words of this corporate lapdog!"
+                        "com": "Do not believe the words of this corporate lapdog!",
+                        "urlname":"/profile-page/Chua_Micole"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Buencamino_Prince"
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
@@ -36,9 +38,11 @@
                     {
                         "comimg": "/common/Images/mcdo-umall-square.jpg",
                         "comname": "McDonalds",
-                        "com": "Nice to hear you enjoyed your experience!"
+                        "com": "Nice to hear you enjoyed your experience!",
+                        "urlname": "/restaurant/U_Mall/mcdonalds"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Ruiz_Chester"
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
@@ -51,9 +55,11 @@
                     {
                         "comimg": "/common/Images/mcdo-umall-square.jpg",
                         "comname": "McDonalds",
-                        "com": "Nice to hear you enjoyed your experience!"
+                        "com": "Nice to hear you enjoyed your experience!",
+                        "urlname": "/restaurant/U_Mall/mcdonalds"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Arco_Gaby"
             }
         ]
     },
@@ -74,14 +80,16 @@
                 "revname": "Buencamino, Prince",
                 "revrating": "★★★★☆",
                 "rev": "Overrated but still good. But please bring back the spinach tree",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Buencamino_Prince"
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Ruiz, Chester",
                 "revrating": "★★★★☆",
                 "rev": "expensive.. but it is popular for a reason.",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Ruiz_Chester"
             },
             {
                 "revimg": "/common/Images/PFPs/Blix.jpg",
@@ -94,23 +102,27 @@
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
-                        "com": "I agree!"
+                        "com": "I agree!",
+                        "urlname": "/profile-page/Chua_Micole"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Lingat_Blix"
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
                 "revname": "Arco, Gaby",
                 "revrating": "★★★★★",
                 "rev": "The drinks were good and the sticker rewards even better!",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Arco_Gaby"
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
                 "revname": "Chua, Micole",
                 "revrating": "☆☆☆☆☆",
                 "rev": "Somehow, even worse than coffee bean.",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Chua_Micole"
             }
         ]
     },
@@ -137,16 +149,19 @@
                     {
                         "comimg": "/common/Images/kfcsquare.png",
                         "comname": "KFC",
-                        "com": "Sorry to hear about your experience! We will do better."
+                        "com": "Sorry to hear about your experience! We will do better.",
+                        "urlname": "/restaurant/U_Mall/kfc"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Lingat_Blix"
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Ruiz, Chester",
                 "revrating": "★★★☆☆",
                 "rev": "It's alright.",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Ruiz_Chester"
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
@@ -159,9 +174,11 @@
                     {
                         "comimg": "/common/Images/kfcsquare.png",
                         "comname": "KFC",
-                        "com": "Sorry to hear about your experience! We will do better."
+                        "com": "Sorry to hear about your experience! We will do better.",
+                        "urlname": "/restaurant/U_Mall/kfc"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Chua_Micole"
             }
         ]
     },
@@ -188,16 +205,19 @@
                     {
                         "comimg": "/common/Images/PFPs/Gaby.jpg",
                         "comname": "Arco, Gaby",
-                        "com": "I agree!!"
+                        "com": "I agree!!",
+                        "urlname": "/profile-page/Arco_Gaby"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Lingat_Blix"
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
                 "revname": "Arco, Gaby",
                 "revrating": "★★★★★",
                 "rev": "The carbonara was flavorful and worth the price!",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Arco_Gaby"
             }
         ]
     },
@@ -218,7 +238,8 @@
                 "revname": "Chua, Micole",
                 "revrating": "★★☆☆☆",
                 "rev": "A steep price tag for mid drinks.",
-                "hascomments": false
+                "hascomments": false,
+                "urlname": "/profile-page/Chua_Micole"
             },
             {
                 "revimg": "/common/Images/PFPs/Prince.jpg",
@@ -231,9 +252,11 @@
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
-                        "com": "Ha? Hatdog!"
+                        "com": "Ha? Hatdog!",
+                        "urlname": "/profile-page/Chua_Micole"
                     }
-                ]
+                ],
+                "urlname": "/profile-page/Buencamino_Prince"
             }
         ]
     }
