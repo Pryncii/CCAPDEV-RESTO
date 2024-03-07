@@ -9,23 +9,23 @@
     <section class = "getin-section">
         <div class = "flexsignup">
             <div id = "login-box">
-                <form class = "loginform">
+                <form class = "loginform" action = "/create-user" method="post">
                     <label for="lname">User Email</label><br>
                     <input type="text" id="email" name="email"><br>
-                    <label for="fname">Full Name</label><br>
+                    <label for="fname">Full Name/ Establishment Name</label><br>
                     <input type="text" id="fname" name="fname"><br>
                     <label for="fname">Username</label><br>
                     <input type="text" id="username" name="username"><br>
                     <label for="lname">Password</label><br>
-                    <input type="text" id="password" name="password">
+                    <input type="password" id="password" name="password">
             
                     Establishment Owner?
-                    <input type="radio" id="estbowner-btn" name="estbowner" value="yes" onchange="openEstabname()">
-                    <label for="estbowner">Yes</label>
-                    <input type="radio" id="estbowner-btn" name="estbowner" value="no" onchange="openEstabname()">
-                    <label for="estbowner">No</label><br>
-                    <label for="ename" class="estab-name" id="ename-label">Establishment Name</label><br>
-                    <input type="text" id="ename" name="ename" class="estab-name">
+                    <input type="radio" id="estbownerbtn1" name="estbowner" value="yes" onchange="openEstabl()">
+                    <label for="estbownerbtn1">Yes</label>
+                    <input type="radio" id="estbownerbtn0" name="estbowner" value="no" onchange="openEstabl()">
+                    <label for="estbownerbtn0">No</label><br>
+                    <label for="elandm" class="establ" id="elandm-label">Establishment Landmark</label><br>
+                    <input type="text" id="elandm" name="elandm" class="establ">
                     
                 <input type="submit" value="Get Started!" class = "loginsb">
                 <a href="login-page" style="color:#04AA6D">Already have an account?</a>

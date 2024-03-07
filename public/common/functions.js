@@ -30,14 +30,14 @@ function closeReplies(id) {
 document.getElementById(id).style.display = "none";
 }
 
-function openEstabname() {
-if (document.getElementById("estbowner-btn").checked) {
-  document.getElementById("ename").style.display = "inline";
-  document.getElementById("ename-label").style.display = "inline";
+function openEstabl() {
+if (document.getElementById("estbownerbtn1").checked) {
+  document.getElementById("elandm").style.display = "inline";
+  document.getElementById("elandm-label").style.display = "inline";
 }
 else {
-  document.getElementById("ename").style.display = "none";
-  document.getElementById("ename-label").style.display = "none";
+  document.getElementById("elandm").style.display = "none";
+  document.getElementById("elandm-label").style.display = "none";
 }
 
 }
@@ -227,5 +227,8 @@ $(document).ready(function(){
           alert("Showing all "+ data.name + " stores in Taft");
         }//if
       });//get
+
   });//btn
+
+
 });//doc

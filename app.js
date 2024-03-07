@@ -74,7 +74,7 @@ const userdata = getUserList();
 console.log(userdata);
 
 server.get('/', function(req, resp){
-    resp.render('menu',{
+    resp.render('main',{
         layout      : 'index',
         title       : 'Main Menu',
     });
@@ -86,6 +86,60 @@ server.get('/login-page', function(req, resp){
         title       : 'Login',
     });
 });
+
+server.post('/create-user', function(req, resp){
+
+    let newModel;
+    const selectedRadioValue = req.body.estbowner;
+
+    if (selectedRadioValue) {
+    console.log("Selected value:", selectedRadioValue);
+    } else {
+    console.log("No radio button selected");}
+
+    if (selectedRadioValue == "yes")
+    {
+       
+        newModel = new restoModel({
+            name: req.body.fname,
+            linkname: req.body.fname.replace(/ /g, "_"),
+            image: "/common/Images/PFPs/profile.webp",
+            imagesquare: "/common/Images/PFPs/profile.webp", 
+            description: "",
+            recommendations: [],
+            landmark: req.body.elandm.replace(/ /g, "_"),
+            rating: 0,
+            revdata: [],
+
+        });
+    
+    }
+
+    else {
+        newModel = new userModel({
+            name: req.body.fname,
+            urlname: req.body.fname.replace(/ /g, "_"),
+            image: "/common/Images/PFPs/profile.webp",
+            description: "",
+            friends: [],
+            reviews: [] });
+
+    }
+    
+      newModel.save().then(function(user){
+      console.log('User created');
+      console.log(JSON.stringify(user));
+        resp.render('result',{
+            layout: 'index',
+            title:  'Result page',
+            status: 'good',
+            msg:  'User created successfully'
+
+    
+          });
+      
+    }).catch(errorFn);
+  });
 
 server.get('/signup-page', function(req, resp){
     resp.render('signup',{
@@ -149,28 +203,6 @@ server.get('/restopage/:landmark/', function(req, resp){
         restos:  vals
       });
     }).catch(errorFn);
-  });
-
-  server.get('/restoquery/:name/', function(req, resp){
-    const searchQuery = { name: req.params.name };
-    restoModel.find(searchQuery).then(function(restos){
-      console.log('List successful');
-      let vals = new Array();
-      for(const item of restos){
-          vals.push({
-              name: item.name,
-              linkname: item.linkname,
-              image: item.imagesquare,
-              landmark: item.landmark
-          });
-      }
-      resp.render('restomenu',{
-        layout: 'index',
-        title:  req.params.landmark,
-        restos:  vals
-      });
-    }).catch(errorFn);
-    resp.send({name: req.params.name});
   });
 
 

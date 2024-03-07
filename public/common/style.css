@@ -1261,6 +1261,13 @@ progress[value]::-webkit-progress-bar {
   box-sizing: border-box;
 }
 
+.loginform > input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
 .loginsb {
   background-color: #04AA6D;
   border: none;
@@ -1271,7 +1278,7 @@ progress[value]::-webkit-progress-bar {
   cursor: pointer;
 }
 
-.estab-name {
+.establ {
     display: none;
 }
 
