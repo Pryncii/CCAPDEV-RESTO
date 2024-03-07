@@ -19,7 +19,8 @@ mongoose.connect('mongodb://localhost:27017/restodb');
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
-    com: { type: String }
+    com: { type: String },
+    urlname: { type: String}
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -28,7 +29,8 @@ const reviewSchema = new mongoose.Schema({
     revrating: { type: String},
     rev: { type: String },
     hascomments: { type: Boolean },
-    comments: [commentSchema]
+    comments: [commentSchema],
+    urlname: { type: String}
 });
 
 const restoSchema = new mongoose.Schema({
