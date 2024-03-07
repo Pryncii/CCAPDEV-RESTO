@@ -173,6 +173,39 @@ server.get('/restopage/:landmark/', function(req, resp){
     resp.send({name: req.params.name});
   });
 
+  server.get('/showall/', function(req, resp){
+    
+    restoModel.find({}).then(function(restos){
+      console.log('List successful');
+      let vals = [];
+      let counts = 0;
+      let subval = [];
+      for(const item of restos){
+        console.log(item.name);
+        
+        subval.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+          console.log("subval");
+          console.log(subval);
+          counts+=1;
+          if(counts == 4){
+            counts=0;
+            vals.push( subval);
+            subval = new Array();
+          }
+      }
+      vals.push( subval);
+      resp.render('showall',{
+        layout: 'index',
+        title:  "Show All",
+        restos:  vals
+      });
+    }).catch(errorFn);
+  });
 
   
 

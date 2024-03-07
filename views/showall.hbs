@@ -1,0 +1,23 @@
+
+
+<div class = "flexmain">
+    {{> header}}
+</div>
+<div class="headerholder"></div>
+<div class="inside">
+    {{> sidebar}}
+    <div class = "flexbody">
+        {{#each restos}}
+        <div class = "flexrestopart flexmenulist">
+            {{#each this}}
+            <div class = "flexmenuresto">
+                <span>{{name}}</span>
+                <a href = "/restaurant{{landmark}}/{{linkname}}">
+                <img src = "{{image}}">
+                </a>
+            </div>
+            {{/each}}
+        </div>{{/each}}
+        
+    </div>   
+</div>
