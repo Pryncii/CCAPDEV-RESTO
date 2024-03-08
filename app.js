@@ -150,6 +150,13 @@ server.get('/signup-page', function(req, resp){
     });
 });
 
+server.get('/menu-page', function(req, resp){
+    resp.render('menu',{
+        layout      : 'index',
+        title       : 'Signup',
+    });
+});
+
 server.get('/profile-page/:urlname', function(req, resp){
     const searchQuery = { urlname: req.params.urlname};
 

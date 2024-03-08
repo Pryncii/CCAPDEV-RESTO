@@ -330,7 +330,7 @@ height:20px;
 .flexrestopart{
     display: flex;
     width: 100%;
-    height: 85%;
+    height: 350px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -554,22 +554,22 @@ progress[value]::-webkit-progress-bar {
 
 .flexmenulist{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .flexmenuresto{
-    height: 70%;
-    width: 40%;
+    height: 300px;
+    width: 300px;
     display: flex;
     justify-content: center;
-    transition: font-size 4s, width 1s, height 1s, border 0.1s;
+    transition: font-size 4s, width 0.5s, height 0.5s, border 0.1s;
     border-radius: 80px;
     margin: 1%;
 }
 
 .flexmenuresto:hover{
-    height: 80%;
-    width: 50%;
+    height: 325px;
+    width: 325px;
     border: 5px solid black;
 }
 
