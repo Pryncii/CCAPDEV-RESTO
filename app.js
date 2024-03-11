@@ -36,6 +36,8 @@ const reviewSchema = new mongoose.Schema({
 const restoSchema = new mongoose.Schema({
     name: { type: String },
     linkname: { type: String},
+    user: { type: String },
+    pass: { type: String },
     image: { type: String },
     imagesquare: {type: String},
     description: { type: String },
@@ -53,6 +55,8 @@ const friendSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     name: { type: String },
     urlname: { type: String },
+    user: { type: String },
+    pass: { type: String },
     image: { type: String },
     description: {type: String},
     friends: [friendSchema],
@@ -83,7 +87,7 @@ server.get('/', function(req, resp){
 });
 
 //Use this to determine the user who's logged in
-const loggedInUser = userdata[0];
+let loggedInUser = userdata[0];
 console.log(loggedInUser);
 
 server.get('/login-page', function(req, resp){
@@ -95,7 +99,7 @@ server.get('/login-page', function(req, resp){
 
 server.post('/create-user', function(req, resp){
 
-    let newModel;
+    let newModel, model;
     const selectedRadioValue = req.body.estbowner;
 
     if (selectedRadioValue) {
@@ -109,6 +113,8 @@ server.post('/create-user', function(req, resp){
         newModel = new restoModel({
             name: req.body.fname,
             linkname: req.body.fname.replace(/ /g, "_"),
+            user: req.body.username,
+            pass: req.body.passoword,
             image: "/common/Images/PFPs/profile.webp",
             imagesquare: "/common/Images/PFPs/profile.webp", 
             description: "",
@@ -118,6 +124,7 @@ server.post('/create-user', function(req, resp){
             revdata: [],
 
         });
+        model = 0;
     
     }
 
@@ -125,86 +132,107 @@ server.post('/create-user', function(req, resp){
         newModel = new userModel({
             name: req.body.fname,
             urlname: req.body.fname.replace(/ /g, "_"),
+            user: req.body.username,
+            pass: req.body.passoword,
             image: "/common/Images/PFPs/profile.webp",
             description: "",
             friends: [],
             reviews: [] });
+        model = 1;
 
     }
     
       newModel.save().then(function(user){
       console.log('User created');
-      console.log(JSON.stringify(user));
-        resp.render('result',{
-            layout: 'index',
-            title:  'Result page',
-            status: 'good',
-            msg:  'User created successfully'
 
-    
-          });
+      console.log(JSON.stringify(user));
+
+      if (model == 1) {
+        const userJson = user.toJSON();
+        loggedInUser = userJson;
+        resp.render('profile',{
+            layout      : 'index',
+            title       : 'Profile',
+            userdata   : userJson,
+            user        : loggedInUser
+        });
+      } else {
+        const restosJson = user.toJSON();
+        const landmarkresto = [];
+        for(let i = 0; i < restodata.length; i++){
+            if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
+                landmarkresto.push(restodata[i]);
+            }
+        }
+        resp.render('restopage',{
+            layout      : 'index',
+            title       : 'Restaurant',
+            restodata   : restosJson,
+            otherresto  : landmarkresto,
+            user        : loggedInUser
+        });
+      }
+        
       
     }).catch(errorFn);
   });
 
-  /*
+
 server.post('/read-user', function(req, resp){
+    console.log('Finding user');
   const searchQuery = { user: req.body.user, pass: req.body.pass };
 
-  //The model can be found via a search query and the information is found
-  //in the login function. Access the information like a JSon array.
-  loginModel.findOne(searchQuery).then(function(login){
-    console.log('Finding user');
+  userModel.findOne(searchQuery).then(function(login) {
+            console.log('Finding user');
 
-    if(login != undefined && login._id != null){
-      resp.render('result',{
-        layout: 'index',
-        title:  'Result page',
-        status: 'good',
-        msg:    'User-name and password match!'
-      });
-    }else{
-      resp.render('result',{
-        layout: 'index',
-        title:  'Result page',
-        status: 'bad',
-        msg:  'User-name and password do not match!'
-      });
-    }
-  }).catch(errorFn);
-});
-*/
-
-server.get('/signup-page', function(req, resp){
-    resp.render('signup',{
-        layout      : 'index',
-        title       : 'Signup',
-    });
-});
-
-server.get('/menu-page', function(req, resp){
-    resp.render('menu',{
-        layout      : 'index',
-        title       : 'Signup',
-        user        : loggedInUser
-    });
-});
-
-server.get('/profile-page/:urlname', function(req, resp){
-    const searchQuery = { urlname: req.params.urlname};
-
-    userModel.findOne(searchQuery).then(function(user){
-        console.log(JSON.stringify(user));
-        if(user != undefined && user._id != null){
-          const userJson = user.toJSON();
-          resp.render('profile',{
-              layout      : 'index',
-              title       : 'Profile',
-              userdata   : userJson,
-              user        : loggedInUser
+            if (login && login._id) {
+                const userJson = login.toJSON();
+                loggedInUser = userJson;
+                resp.render('profile', {
+                    layout: 'index',
+                    title: 'Profile',
+                    userdata: userJson,
+                    user: loggedInUser
+                });
+            } else {
+                return restoModel.findOne(searchQuery);
+            }
+        })
+        .then(function(restos) {
+            if (restos && restos._id) {
+                const restosJson = restos.toJSON();
+                const landmarkresto = [];
+                for (let i = 0; i < restodata.length; i++) {
+                    if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
+                        landmarkresto.push(restodata[i]);
+                    }
+                }
+                resp.render('restopage', {
+                    layout: 'index',
+                    title: 'Restaurant',
+                    restodata: restosJson,
+                    otherresto: landmarkresto,
+                    user: loggedInUser
+                });
+            } else {
+                // If neither user nor restaurant found
+                resp.render('result', {
+                    layout: 'index',
+                    title: 'Result page',
+                    status: 'bad',
+                    msg: 'User-name and password do not match!'
+                });
+            }
+        })
+        .catch(function(error) {
+            console.error(error);
+            resp.render('result', {
+                layout: 'index',
+                title: 'Result page',
+                status: 'bad',
+                msg: 'An error occurred while processing your request.'
             });
-        }
-      }).catch(errorFn);
+        });
 });
 
 console.log(restodata[0]);

@@ -2,6 +2,8 @@
     {
         "name": "McDonalds",
         "linkname": "mcdonalds",
+        "user": "mcdo01",
+        "pass": "DLSU123",
         "image": "/common/Images/mcdo-umall.jpg",
         "imagesquare": "/common/Images/mcdo-umall-square.jpg",
         "description": "One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!",
@@ -66,6 +68,8 @@
     {
         "name": "Starbucks",
         "linkname": "starbucks",
+        "user": "starbs02",
+        "pass": "DLSU123",
         "image": "/common/Images/Starbs.png",
         "imagesquare": "/common/Images/Starbssquare.png",
         "description": "The globally popular coffee shop known for their drinks and pastries. A ideal place to be productive while sipping on some Starbucks coffee!",
@@ -128,6 +132,8 @@
     {
         "name": "KFC",
         "linkname": "kfc",
+        "user": "kfc03",
+        "pass": "DLSU123",
         "image": "/common/Images/kfc.png",
         "imagesquare": "/common/Images/kfcsquare.png",
         "description": " The globally popular fast food chain that is well known for their fried chicken. Satisfy your cravings with some fried chicken paired with their iconic gravy!",
@@ -183,6 +189,8 @@
     {
         "name": "Army Navy",
         "linkname": "army_navy",
+        "user": "armynavy04",
+        "pass": "DLSU123",
         "image": "/common/Images/armynavy.png",
         "imagesquare": "/common/Images/armynavysquare.png",
         "description": "A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!",
@@ -221,6 +229,8 @@
     {
         "name": "The Coffee Bean & Tea Leaf",
         "linkname": "coffee_bean",
+        "user": "coffbean05",
+        "pass": "DLSU123",
         "image": "/common/Images/coffeebean.jpg",
         "imagesquare": "/common/Images/coffeebean.jpg",
         "description": " A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!",
