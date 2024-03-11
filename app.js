@@ -97,6 +97,12 @@ server.get('/login-page', function(req, resp){
     });
 });
 
+server.get('/signup-page', function(req, resp){
+    resp.render('signup',{
+        layout      : 'index',
+        title       : 'Sign Up',
+    });
+});
 server.post('/create-user', function(req, resp){
 
     let newModel, model;
@@ -115,8 +121,8 @@ server.post('/create-user', function(req, resp){
             linkname: req.body.fname.replace(/ /g, "_"),
             user: req.body.username,
             pass: req.body.passoword,
-            image: "/common/Images/PFPs/profile.webp",
-            imagesquare: "/common/Images/PFPs/profile.webp", 
+            image: "/common/Images/PFPs/resto-default.jpg",
+            imagesquare: "/common/Images/PFPs/resto-default.jpg", 
             description: "",
             recommendations: [],
             landmark: req.body.elandm.replace(/ /g, "_"),
