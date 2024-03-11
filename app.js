@@ -82,6 +82,10 @@ server.get('/', function(req, resp){
     });
 });
 
+//Use this to determine the user who's logged in
+const loggedInUser = userdata[0];
+console.log(loggedInUser);
+
 server.get('/login-page', function(req, resp){
     resp.render('login',{
         layout      : 'index',
@@ -182,6 +186,7 @@ server.get('/menu-page', function(req, resp){
     resp.render('menu',{
         layout      : 'index',
         title       : 'Signup',
+        user        : loggedInUser
     });
 });
 
@@ -195,7 +200,8 @@ server.get('/profile-page/:urlname', function(req, resp){
           resp.render('profile',{
               layout      : 'index',
               title       : 'Profile',
-              userdata   : userJson
+              userdata   : userJson,
+              user        : loggedInUser
             });
         }
       }).catch(errorFn);
@@ -220,7 +226,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             layout      : 'index',
             title       : 'Restaurant',
             restodata   : restosJson,
-            otherresto  : landmarkresto
+            otherresto  : landmarkresto,
+            user        : loggedInUser
         });
     }
     }).catch(errorFn);
@@ -243,7 +250,8 @@ server.get('/restopage/:landmark/', function(req, resp){
       resp.render('restomenu',{
         layout: 'index',
         title:  req.params.landmark,
-        restos:  vals
+        restos:  vals,
+        user: loggedInUser
       });
     }).catch(errorFn);
   });
@@ -264,7 +272,8 @@ server.get('/restopage/:landmark/', function(req, resp){
       resp.render('restomenu',{
         layout: 'index',
         title:  req.params.landmark,
-        restos:  vals
+        restos:  vals,
+        user        : loggedInUser
       });
     }).catch(errorFn);
     resp.send({name: req.params.name});
@@ -299,7 +308,8 @@ server.get('/restopage/:landmark/', function(req, resp){
       resp.render('showall',{
         layout: 'index',
         title:  "Show All",
-        restos:  vals
+        restos:  vals,
+        user        : loggedInUser
       });
     }).catch(errorFn);
   });
