@@ -143,6 +143,34 @@ server.post('/create-user', function(req, resp){
     }).catch(errorFn);
   });
 
+  /*
+server.post('/read-user', function(req, resp){
+  const searchQuery = { user: req.body.user, pass: req.body.pass };
+
+  //The model can be found via a search query and the information is found
+  //in the login function. Access the information like a JSon array.
+  loginModel.findOne(searchQuery).then(function(login){
+    console.log('Finding user');
+
+    if(login != undefined && login._id != null){
+      resp.render('result',{
+        layout: 'index',
+        title:  'Result page',
+        status: 'good',
+        msg:    'User-name and password match!'
+      });
+    }else{
+      resp.render('result',{
+        layout: 'index',
+        title:  'Result page',
+        status: 'bad',
+        msg:  'User-name and password do not match!'
+      });
+    }
+  }).catch(errorFn);
+});
+*/
+
 server.get('/signup-page', function(req, resp){
     resp.render('signup',{
         layout      : 'index',
