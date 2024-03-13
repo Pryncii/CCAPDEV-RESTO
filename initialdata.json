@@ -9,7 +9,7 @@
         "imagesquare": "/common/Images/mcdo-umall-square.jpg",
         "description": "One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!",
         "landmark": "U_Mall",
-        "rating": 4.5,
+        "rating": "★★★★★",
         "revdata": 
         [
             {
@@ -19,7 +19,7 @@
                 "rev": "Undebatebly the best fries and chicken nuggets in the world!",
                 "hascomments": true,
                 "likes" : 127,
-                "dislikes": 10,
+                "dislikes": 30,
                 "comments": 
                 [
                     {
@@ -39,7 +39,7 @@
                 "revrating": "★★★★★",
                 "rev": "the mushroom pepper steak!",
                 "hascomments": true,
-                "likes" : 127,
+                "likes" : 107,
                 "dislikes": 10,
                 "comments": 
                 [
@@ -48,7 +48,7 @@
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed your experience!",
                         "likes" : 127,
-                        "dislikes": 10,
+                        "dislikes": 15,
                         "urlname": "/restaurant/U_Mall/mcdonalds"
                     }
                 ],
@@ -60,7 +60,7 @@
                 "revrating": "★★★★★",
                 "rev": "The breakfast options were fire as always!",
                 "hascomments": true,
-                "likes" : 127,
+                "likes" : 117,
                 "dislikes": 10,
                 "comments": 
                 [
@@ -88,7 +88,7 @@
         "imagesquare": "/common/Images/Starbssquare.png",
         "description": "The globally popular coffee shop known for their drinks and pastries. A ideal place to be productive while sipping on some Starbucks coffee!",
         "landmark": "Burgundy",
-        "rating": 4.5,
+        "rating": "★★★☆☆",
         "revdata": 
         [
             {
@@ -97,7 +97,7 @@
                 "revrating": "★★★★☆",
                 "rev": "Overrated but still good. But please bring back the spinach tree",
                 "hascomments": false,
-                "likes" : 127,
+                "likes" : 117,
                 "dislikes": 10,
                 "urlname": "/profile-page/Buencamino_Prince"
             },
@@ -107,7 +107,7 @@
                 "revrating": "★★★★☆",
                 "rev": "expensive.. but it is popular for a reason.",
                 "hascomments": false,
-                "likes" : 127,
+                "likes" : 327,
                 "dislikes": 10,
                 "urlname": "/profile-page/Ruiz_Chester"
             },
@@ -118,14 +118,14 @@
                 "rev": "Very expensive, especially with inflation!",
                 "hascomments": true,
                 "likes" : 127,
-                "dislikes": 10,
+                "dislikes": 13,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
                         "com": "I agree!",
-                        "likes" : 127,
+                        "likes" : 107,
                         "dislikes": 10,
                         "urlname": "/profile-page/Chua_Micole"
                     }
@@ -165,7 +165,7 @@
         "imagesquare": "/common/Images/kfcsquare.png",
         "description": " The globally popular fast food chain that is well known for their fried chicken. Satisfy your cravings with some fried chicken paired with their iconic gravy!",
         "landmark": "U_Mall",
-        "rating": 100,
+        "rating": "★★★★☆",
         "revdata": 
         [
             {
@@ -175,7 +175,7 @@
                 "rev": "Usually good but the mushroom soup I ordered was cold",
                 "hascomments": true,
                 "likes" : 127,
-                "dislikes": 10,
+                "dislikes": 54,
                 "comments": 
                 [
                     {
@@ -196,7 +196,7 @@
                 "rev": "It's alright.",
                 "hascomments": false,
                 "likes" : 127,
-                "dislikes": 10,
+                "dislikes": 34,
                 "urlname": "/profile-page/Ruiz_Chester"
             },
             {
@@ -233,7 +233,7 @@
         "imagesquare": "/common/Images/armynavysquare.png",
         "description": "A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!",
         "landmark": "Burgundy",
-        "rating": 100,
+        "rating": "★★★★★",
         "revdata": 
         [
             {
@@ -280,7 +280,7 @@
         "imagesquare": "/common/Images/coffeebean.jpg",
         "description": " A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!",
         "landmark": "DLSU",
-        "rating": 100,
+        "rating": "★★★★☆",
         "revdata": 
         [
             {
@@ -289,7 +289,7 @@
                 "revrating": "★★☆☆☆",
                 "rev": "A steep price tag for mid drinks.",
                 "hascomments": false,
-                "likes" : 127,
+                "likes" : 155,
                 "dislikes": 10,
                 "urlname": "/profile-page/Chua_Micole"
             },
@@ -300,7 +300,7 @@
                 "rev": "Much better than Starbucks!",
                 "hascomments": true,
                 "likes" : 127,
-                "dislikes": 10,
+                "dislikes": 199,
                 "comments": 
                 [
                     {
@@ -308,7 +308,7 @@
                         "comname": "Chua, Micole",
                         "com": "Ha? Hatdog!",
                         "likes" : 127,
-                        "dislikes": 10,
+                        "dislikes": 53,
                         "urlname": "/profile-page/Chua_Micole"
                     }
                 ],
