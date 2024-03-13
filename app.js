@@ -303,15 +303,6 @@ server.get('/restopage/:landmark/', function(req, resp){
               landmark: item.landmark
           });
       }
-      if(vals.length ==0){
-        vals.push({
-            name: "set up in progress",
-            linkname: "404",
-            image: "/common/Images/kfcsquare.png",
-            landmark: req.params.landmark
-
-        })
-      }
       resp.render('restomenu',{
         layout: 'index',
         title:  req.params.landmark,
