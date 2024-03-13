@@ -23,7 +23,10 @@
                 <div class = "restopartandnamecontainer">
                     <div class = "userprofileselfname">
 <!--REMEMBER RESTO RATINGS-->
-                        {{restodata.name}} ★★★★★
+                        {{restodata.name}} <div id="outer">
+                                        <div id="overlay" style="width:{{vrating}}%"></div>
+                                                <div id="inner"></div>
+                                            </div>
                     </div>
                     <div class = "flexrow flexrestopart">
                         <div class = "restoprofile">

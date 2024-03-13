@@ -283,7 +283,9 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             restodata   : restosJson,
             otherresto  : landmarkresto,
             user        : loggedInUser,
-            checkUser: isUser
+            checkUser: isUser,
+
+            vrating      : 100-((restosJson.rating/5)*100)
         });
     }
     }).catch(errorFn);
