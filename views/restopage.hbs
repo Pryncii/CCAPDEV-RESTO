@@ -110,7 +110,7 @@
                             </div>
 
                         <!--OTHER REVIEWS HERE-->
-                        {{#each restodata.revdata}}
+                        {{#each restodata.revdata as |review reviewIndex|}}
                             <div class = "reviewcontainer2">
                                 <div class = "reviewcontainerleft2">
                                     <img src = "{{this.revimg}}">
@@ -130,10 +130,10 @@
                                     <div class = "usereditbio2">
                                         <div class="thumbs">
                                             <div class="like grow">
-                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{@index}}" >127</i>
+                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{@index}}" >{{this.likes}}</i>
                                             </div>
                                             <div class="dislike grow">
-                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{@index}}" >1</i>
+                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{@index}}" >{{this.dislikes}}</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
@@ -152,7 +152,7 @@
                                             <div class = "replytoreview" style="display: none;">
                                             <!--OTHER REPLIES TO THE REVIEW HERE-->
                                             {{#if this.hascomments}}
-                                            {{#each this.comments}}
+                                            {{#each this.comments as |comment commentIndex|}}
                                                 <div class = "reviewcontainer3">
                                                     <div class = "reviewcontainerleft2">
                                                         <img src = "{{this.comimg}}">
@@ -169,10 +169,10 @@
                                                         <div class = "usereditbio2">
                                                             <div class="thumbs">
                                                                 <div class="like grow">
-                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review2" onclick="toggleThumb('like-review2','dislike-review2')">127</i>
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{reviewIndex}}-{{commentIndex}}" >{{this.likes}}</i>
                                                                 </div>
                                                                 <div class="dislike grow">
-                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{reviewIndex}}-{{commentIndex}}" >{{this.dislikes}}</i>
                                                                 </div>
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
                                                                 <button type="delete-button" class = "report-button" id = "deletereply">Delete</button>
