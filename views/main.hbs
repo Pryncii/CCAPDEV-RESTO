@@ -3,7 +3,11 @@
     {{> header}}
     <div class = "headerright">
         {{#if user.urlname}}<button type="logout-btn" class = "report-button"  onclick="window.location.href='/'">Logout</button>{{/if}}
+        {{#if checkUser}}
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
+        {{else}}
+        <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
+        {{/if}}
     </div>
 </div>
 </div>

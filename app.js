@@ -87,7 +87,8 @@ server.get('/', function(req, resp){
 });
 
 //Use this to determine the user who's logged in
-let loggedInUser = userdata[0];
+let loggedInUser;
+let isUser;
 console.log(loggedInUser);
 
 server.get('/login-page', function(req, resp){
@@ -160,7 +161,8 @@ server.post('/create-user', function(req, resp){
             layout      : 'index',
             title       : 'Profile',
             userdata   : userJson,
-            user        : loggedInUser
+            user        : loggedInUser,
+            checkUser: isUser
         });
       } else {
         const restosJson = user.toJSON();
@@ -175,7 +177,8 @@ server.post('/create-user', function(req, resp){
             title       : 'Restaurant',
             restodata   : restosJson,
             otherresto  : landmarkresto,
-            user        : loggedInUser
+            user        : loggedInUser,
+            checkUser: isUser
         });
       }
         
@@ -194,16 +197,20 @@ server.post('/read-user', function(req, resp){
             if (login && login._id) {
                 const userJson = login.toJSON();
                 loggedInUser = userJson;
+                isUser = true;
                 resp.render('profile', {
                     layout: 'index',
                     title: 'Profile',
                     userdata: userJson,
-                    user: loggedInUser
+                    user: loggedInUser,
+                    checkUser: isUser
                 });
             } else {
                 restoModel.findOne(searchQuery).then(function(restos) {
                     if (restos && restos._id) {
                         const restosJson = restos.toJSON();
+                        loggedInUser = restosJson;
+                        isUser = false;
                         const landmarkresto = [];
                         for (let i = 0; i < restodata.length; i++) {
                             if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
@@ -215,7 +222,8 @@ server.post('/read-user', function(req, resp){
                             title: 'Restaurant',
                             restodata: restosJson,
                             otherresto: landmarkresto,
-                            user: loggedInUser
+                            user: loggedInUser,
+                            checkUser: isUser
                         });
                     } else {
                         // If neither user nor restaurant found
@@ -261,7 +269,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             title       : 'Restaurant',
             restodata   : restosJson,
             otherresto  : landmarkresto,
-            user        : loggedInUser
+            user        : loggedInUser,
+            checkUser: isUser
         });
     }
     }).catch(errorFn);
@@ -293,7 +302,8 @@ server.get('/restopage/:landmark/', function(req, resp){
         layout: 'index',
         title:  req.params.landmark,
         restos:  vals,
-        user: loggedInUser
+        user: loggedInUser,
+        checkUser: isUser
       });
     }).catch(errorFn);
   });
@@ -301,8 +311,9 @@ server.get('/restopage/:landmark/', function(req, resp){
   server.get('/menu-page', function(req, resp){
     resp.render('menu',{
         layout      : 'index',
-        title       : 'Signup',
-        user        : loggedInUser
+        title       : 'Menu',
+        user        : loggedInUser,
+        checkUser: isUser
     });
 });
 
@@ -317,7 +328,8 @@ server.get('/profile-page/:urlname', function(req, resp){
               layout      : 'index',
               title       : 'Profile',
               userdata   : userJson,
-              user        : loggedInUser
+              user        : loggedInUser,
+              checkUser: isUser
             });
         }
       }).catch(errorFn);
@@ -340,7 +352,8 @@ server.get('/profile-page/:urlname', function(req, resp){
         layout: 'index',
         title:  req.params.landmark,
         restos:  vals,
-        user        : loggedInUser
+        user        : loggedInUser,
+        checkUser: isUser
       });
     }).catch(errorFn);
     resp.send({name: req.params.name});
@@ -376,7 +389,8 @@ server.get('/profile-page/:urlname', function(req, resp){
         layout: 'index',
         title:  "Show All",
         restos:  vals,
-        user        : loggedInUser
+        user        : loggedInUser,
+        checkUser: isUser
       });
     }).catch(errorFn);
   });
