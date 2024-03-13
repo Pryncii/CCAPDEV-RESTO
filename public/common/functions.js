@@ -217,10 +217,65 @@ div.classList.replace("tags-selected", "tags");
 }
 
 $(document).ready(function(){
-  $('input[type="submit"]').click(function(){
-
+  $('#search-field').parent().submit(function(event){
+    event.preventDefault();
     alert("Functionality coming in MCO3!");
-  });//btn
+});
+
+$('#changepic').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#changebio').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#reportuser').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+  
+$('#mapbutton').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#changerestopic').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#changerestobio').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#reportresto').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#review').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#reply').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#editcomment').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#deletecomment').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#replyedit').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+$('#deletereply').click(function(){
+  alert("Functionality coming in MCO3!");
+});//btn
+
+
+  
 
 
 });//doc
