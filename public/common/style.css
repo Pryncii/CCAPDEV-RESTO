@@ -1320,6 +1320,10 @@ progress[value]::-webkit-progress-bar {
     text-align: center;
     align-items: center;
   }
+
+  .red-text {
+    color: red;
+  }
   
 
 

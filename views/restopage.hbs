@@ -42,8 +42,10 @@
                             </div>
                             <div class = "usereditbio">
                                 <button type="map-button" id = "mapbutton" class = "editbio-button" >Map</button>
+                                {{#eq restodata.name user.name}}
                                 <button type="editpfp-button" id = "changerestopic" class = "editpfp-button">Change Picture</button>
                                 <button type="editbio-button" id = "changerestobio" class = "editbio-button">Edit Bio</button>
+                                {{/eq}}
                                 <button type="report-button" id = "reportresto"  class = "report-button">Report</button>
                             </div>
                         </div> 
@@ -138,10 +140,10 @@
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
-
+                                            {{#eq this.revname ../user.name}}
                                             <button type="edit-button" id = "editcomment" class = "editbio-button">Edit</button>
                                             <button type="delete-button" id = "deletecomment" class = "report-button">Delete</button>
-                                      
+                                            {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>

@@ -240,21 +240,20 @@ server.post('/read-user', function(req, resp){
                         });
                     } else {
                         // If neither user nor restaurant found
-                        resp.render('result', {
-                            layout: 'index',
-                            title: 'Result page',
-                            status: 'bad',
-                            msg: 'User-name and password do not match!'
+                        resp.render('login',{
+                            layout      : 'index',
+                            title       : 'Login',
+                            errorMessage: 'Username and password not found!'
                         });
+                   
                     }
                 })
                 .catch(function(error) {
                     console.error(error);
-                    resp.render('result', {
-                        layout: 'index',
-                        title: 'Result page',
-                        status: 'bad',
-                        msg: 'An error occurred while processing your request.'
+                    resp.render('login',{
+                        layout      : 'index',
+                        title       : 'Login',
+                        errorMessage: 'Username and password not found!'
                     });
                 });
             }

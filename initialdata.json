@@ -9,7 +9,7 @@
         "imagesquare": "/common/Images/mcdo-umall-square.jpg",
         "description": "One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!",
         "landmark": "U_Mall",
-        "rating": 4.5,
+        "rating": 5,
         "revdata": 
         [
             {
@@ -18,12 +18,16 @@
                 "revrating": "★★★★★",
                 "rev": "Undebatebly the best fries and chicken nuggets in the world!",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 30,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
                         "com": "Do not believe the words of this corporate lapdog!",
+                        "likes" : 127,
+                        "dislikes": 10,
                         "urlname":"/profile-page/Chua_Micole"
                     }
                 ],
@@ -35,12 +39,16 @@
                 "revrating": "★★★★★",
                 "rev": "the mushroom pepper steak!",
                 "hascomments": true,
+                "likes" : 107,
+                "dislikes": 10,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/mcdo-umall-square.jpg",
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed your experience!",
+                        "likes" : 127,
+                        "dislikes": 15,
                         "urlname": "/restaurant/U_Mall/mcdonalds"
                     }
                 ],
@@ -52,12 +60,16 @@
                 "revrating": "★★★★★",
                 "rev": "The breakfast options were fire as always!",
                 "hascomments": true,
+                "likes" : 117,
+                "dislikes": 10,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/mcdo-umall-square.jpg",
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed your experience!",
+                        "likes" : 127,
+                        "dislikes": 10,
                         "urlname": "/restaurant/U_Mall/mcdonalds"
                     }
                 ],
@@ -76,7 +88,7 @@
         "imagesquare": "/common/Images/Starbssquare.png",
         "description": "The globally popular coffee shop known for their drinks and pastries. A ideal place to be productive while sipping on some Starbucks coffee!",
         "landmark": "Burgundy",
-        "rating": 4.5,
+        "rating": 3,
         "revdata": 
         [
             {
@@ -85,6 +97,8 @@
                 "revrating": "★★★★☆",
                 "rev": "Overrated but still good. But please bring back the spinach tree",
                 "hascomments": false,
+                "likes" : 117,
+                "dislikes": 10,
                 "urlname": "/profile-page/Buencamino_Prince"
             },
             {
@@ -93,6 +107,8 @@
                 "revrating": "★★★★☆",
                 "rev": "expensive.. but it is popular for a reason.",
                 "hascomments": false,
+                "likes" : 327,
+                "dislikes": 10,
                 "urlname": "/profile-page/Ruiz_Chester"
             },
             {
@@ -101,12 +117,16 @@
                 "revrating": "★★☆☆☆",
                 "rev": "Very expensive, especially with inflation!",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 13,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
                         "com": "I agree!",
+                        "likes" : 107,
+                        "dislikes": 10,
                         "urlname": "/profile-page/Chua_Micole"
                     }
                 ],
@@ -118,6 +138,8 @@
                 "revrating": "★★★★★",
                 "rev": "The drinks were good and the sticker rewards even better!",
                 "hascomments": false,
+                "likes" : 127,
+                "dislikes": 10,
                 "urlname": "/profile-page/Arco_Gaby"
             },
             {
@@ -126,6 +148,8 @@
                 "revrating": "☆☆☆☆☆",
                 "rev": "Somehow, even worse than coffee bean.",
                 "hascomments": false,
+                "likes" : 127,
+                "dislikes": 10,
                 "urlname": "/profile-page/Chua_Micole"
             }
         ]
@@ -141,7 +165,7 @@
         "imagesquare": "/common/Images/kfcsquare.png",
         "description": " The globally popular fast food chain that is well known for their fried chicken. Satisfy your cravings with some fried chicken paired with their iconic gravy!",
         "landmark": "U_Mall",
-        "rating": 100,
+        "rating": 4,
         "revdata": 
         [
             {
@@ -150,12 +174,16 @@
                 "revrating": "★★★★☆",
                 "rev": "Usually good but the mushroom soup I ordered was cold",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 54,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/kfcsquare.png",
                         "comname": "KFC",
                         "com": "Sorry to hear about your experience! We will do better.",
+                        "likes" : 127,
+                        "dislikes": 10,
                         "urlname": "/restaurant/U_Mall/kfc"
                     }
                 ],
@@ -167,6 +195,8 @@
                 "revrating": "★★★☆☆",
                 "rev": "It's alright.",
                 "hascomments": false,
+                "likes" : 127,
+                "dislikes": 34,
                 "urlname": "/profile-page/Ruiz_Chester"
             },
             {
@@ -175,12 +205,16 @@
                 "revrating": "★★☆☆☆",
                 "rev": "The sisig bowl was too spicy, should've put more warnings",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 10,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/kfcsquare.png",
                         "comname": "KFC",
                         "com": "Sorry to hear about your experience! We will do better.",
+                        "likes" : 127,
+                        "dislikes": 10,
                         "urlname": "/restaurant/U_Mall/kfc"
                     }
                 ],
@@ -199,7 +233,7 @@
         "imagesquare": "/common/Images/armynavysquare.png",
         "description": "A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!",
         "landmark": "Burgundy",
-        "rating": 100,
+        "rating": 5,
         "revdata": 
         [
             {
@@ -208,12 +242,16 @@
                 "revrating": "★★★★★",
                 "rev": "The tacos were magnificent, would come again!",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 10,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/PFPs/Gaby.jpg",
                         "comname": "Arco, Gaby",
                         "com": "I agree!!",
+                        "likes" : 127,
+                        "dislikes": 10,
                         "urlname": "/profile-page/Arco_Gaby"
                     }
                 ],
@@ -225,6 +263,8 @@
                 "revrating": "★★★★★",
                 "rev": "The carbonara was flavorful and worth the price!",
                 "hascomments": false,
+                "likes" : 127,
+                "dislikes": 10,
                 "urlname": "/profile-page/Arco_Gaby"
             }
         ]
@@ -240,7 +280,7 @@
         "imagesquare": "/common/Images/coffeebean.jpg",
         "description": " A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!",
         "landmark": "DLSU",
-        "rating": 100,
+        "rating": 4,
         "revdata": 
         [
             {
@@ -249,6 +289,8 @@
                 "revrating": "★★☆☆☆",
                 "rev": "A steep price tag for mid drinks.",
                 "hascomments": false,
+                "likes" : 155,
+                "dislikes": 10,
                 "urlname": "/profile-page/Chua_Micole"
             },
             {
@@ -257,12 +299,16 @@
                 "revrating": "★★★★★",
                 "rev": "Much better than Starbucks!",
                 "hascomments": true,
+                "likes" : 127,
+                "dislikes": 199,
                 "comments": 
                 [
                     {
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
                         "com": "Ha? Hatdog!",
+                        "likes" : 127,
+                        "dislikes": 53,
                         "urlname": "/profile-page/Chua_Micole"
                     }
                 ],
