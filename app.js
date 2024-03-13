@@ -16,6 +16,7 @@ server.use(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restodb');
 
+
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
@@ -90,6 +91,7 @@ server.get('/', function(req, resp){
 let loggedInUser;
 let isUser;
 console.log(loggedInUser);
+
 
 server.get('/login-page', function(req, resp){
     resp.render('login',{
@@ -291,9 +293,9 @@ server.get('/restopage/:landmark/', function(req, resp){
       }
       if(vals.length ==0){
         vals.push({
-            name: "set up in progress",
+            name: "No restaurants here yet",
             linkname: "404",
-            image: "/common/Images/kfcsquare.png",
+            image: "/common/Images/constructioninprogress.png",
             landmark: req.params.landmark
 
         })
@@ -367,16 +369,12 @@ server.get('/profile-page/:urlname', function(req, resp){
       let counts = 0;
       let subval = [];
       for(const item of restos){
-        console.log(item.name);
-        
         subval.push({
               name: item.name,
               linkname: item.linkname,
               image: item.imagesquare,
               landmark: item.landmark
           });
-          console.log("subval");
-          console.log(subval);
           counts+=1;
           if(counts == 4){
             counts=0;
