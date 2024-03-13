@@ -4,9 +4,6 @@
     <div class = "headerright">
         {{#if user.urlname}}<button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>{{/if}}
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
-        {{else}}
-        <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
-        {{/if}}
     </div>
 </div>
 </div>
