@@ -5,11 +5,12 @@
     
     <div class = "headerright">
         <button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>
-        {{#if checkUser}}
+        {{#eq checkUser user.urlname}}
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
-        {{else}}
+        {{/eq}}
+        {{#eq checkUser user.linkname}}
         <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
-        {{/if}}
+        {{/eq}}
     </div>
 </div>
 </div>
