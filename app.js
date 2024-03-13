@@ -354,16 +354,12 @@ server.get('/profile-page/:urlname', function(req, resp){
       let counts = 0;
       let subval = [];
       for(const item of restos){
-        console.log(item.name);
-        
         subval.push({
               name: item.name,
               linkname: item.linkname,
               image: item.imagesquare,
               landmark: item.landmark
           });
-          console.log("subval");
-          console.log(subval);
           counts+=1;
           if(counts == 4){
             counts=0;
