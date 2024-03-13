@@ -96,6 +96,18 @@ element.classList.remove("active");
 function toggleThumb(id, id2) {
 var element = document.getElementById(id);
 var element2 = document.getElementById(id2);
+
+if (!element) {
+  console.error("Element with ID", id, "not found");
+  return;
+}
+
+if (!element2) {
+  console.error("Element with ID", id2, "not found");
+  return;
+}
+
+
 var number = parseInt(element.textContent);
 var number2 = parseInt(element2.textContent);
 
@@ -119,6 +131,30 @@ if (element.classList.contains("active")) {
   element.textContent = ++number;
 }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const likeButtons = document.querySelectorAll(".like");
+
+  likeButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+          // Get the IDs of the like and dislike buttons
+          console.log(button.id);
+          const likeId = button.id;
+          let likeId2;
+          if (likeId.includes("dislike")){
+            
+            likeId2 = likeId.replace("dislike", "like");
+          }
+          else {
+            likeId2 = likeId.replace("like", "dislike");
+          }
+          // Check if both elements exist
+          if (likeId && likeId2) {
+            toggleThumb(button.id, likeId2);
+          }
+      });
+  });
+});
 
 
 
