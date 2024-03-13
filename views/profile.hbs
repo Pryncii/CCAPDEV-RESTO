@@ -2,7 +2,7 @@
         {{> header}}
         
     <div class = "headerright">
-        {{#if user.urlname}}<button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>{{/if}}
+        <button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
     </div>
 </div>
