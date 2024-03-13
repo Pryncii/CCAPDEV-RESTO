@@ -33,10 +33,10 @@
                                 </p>
                             </div>
                             <div class = "usereditbio">
-                                <button type="map-button" class = "editbio-button" onclick="window.open('https://maps.app.goo.gl/RBHHpqZmKw3uqz3f9', '_blank')">Map</button>
-                                <button type="editpfp-button" class = "editpfp-button">Change Picture</button>
-                                <button type="editbio-button" class = "editbio-button">Edit Bio</button>
-                                <button type="report-button" class = "report-button">Report</button>
+                                <button type="map-button" id = "mapbutton" class = "editbio-button" >Map</button>
+                                <button type="editpfp-button" id = "changerestopic" class = "editpfp-button">Change Picture</button>
+                                <button type="editbio-button" id = "changerestobio" class = "editbio-button">Edit Bio</button>
+                                <button type="report-button" id = "reportresto"  class = "report-button">Report</button>
                             </div>
                         </div> 
                     </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class = "reviewlower">
                             <div class = "reviewtext">
-                                <form action="/action_page.php" class="review-form-container" id="myForm">
+                                <form class="review-form-container" id="myForm">
                                 <textarea name="review" id="reviewcomment">Write a Review!</textarea>
 
                                 
@@ -96,7 +96,7 @@
                                             <label for="star1" title="text"> 1 star</label>
                                         </div>
                                        
-                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                    <button type="submitreview-button" class="editbio-button" id = "review">Submit</button>
                                 
                                 
                                 </form>
@@ -129,14 +129,14 @@
                                                 <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
-                                            <button type="viewreplies-button" class = "viewreplies-button">View Replies</button>
-                                            <button type="edit-button" class = "editbio-button">Edit</button>
-                                            <button type="delete-button" class = "report-button">Delete</button>
+                                            <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
+                                            <button type="edit-button" id = "editcomment" class = "editbio-button">Edit</button>
+                                            <button type="delete-button" id = "deletecomment" class = "report-button">Delete</button>
 
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
                                                 <div class = "usereditbio">
-                                                    <button type="button" class="reply-button">Reply</button>
+                                                    <button type="button" class="reply-button"  id = "reply">Reply</button>
                                                 </div>
                                             </div>
 
@@ -165,8 +165,8 @@
                                                                 <div class="dislike grow">
                                                                     <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review2" onclick="toggleThumb('dislike-review2','like-review2')">1</i>
                                                                 </div>
-                                                                <button type="edit-button" class = "editbio-button">Edit</button>
-                                                                <button type="delete-button" class = "report-button">Delete</button>
+                                                                <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
+                                                                <button type="delete-button" class = "report-button" id = "deletereply">Delete</button>
                                                             </div>
                                                         </div>
                                                     </div>

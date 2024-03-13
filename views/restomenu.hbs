@@ -14,12 +14,22 @@
     <div class = "contentforotherpages">
         <div class = "flexbody">
             <div class = "flexrestopart flexmenulist">
-                {{#each restos}}
-                <a href="/restaurant/{{landmark}}/{{linkname}}" class = "flexmenuresto">
-                    <span>{{name}}</span>
-                    <img src = "{{image}}">  
-                </a>
-                {{/each}}
+                {{#if restos.length}}
+                 <!-- Display content if 'restos' array has items -->
+                    {{#each restos}}
+                    <a href="/restaurant/{{landmark}}/{{linkname}}" class = "flexmenuresto">
+                        <span>{{name}}</span>
+                        <img src = "{{image}}">  
+                    </a>
+                    {{/each}}
+
+                {{else}}
+                <!-- Display a message if 'restos' array is empty -->
+                    <div class = "flexmenuresto">
+                        <span>No restaurants here yet</span>
+                        <img src = "/common/Images/constructioninprogress.png">  
+                    </div>
+                {{/if}}
             </div>
         </div>
     </div>  
