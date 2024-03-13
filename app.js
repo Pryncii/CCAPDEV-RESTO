@@ -308,7 +308,8 @@ server.get('/profile-page/:urlname', function(req, resp){
           resp.render('profile',{
               layout      : 'index',
               title       : 'Profile',
-              userdata   : userJson
+              userdata   : userJson,
+              user        : loggedInUser
             });
         }
       }).catch(errorFn);
