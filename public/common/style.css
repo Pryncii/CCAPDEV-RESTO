@@ -1272,7 +1272,6 @@ progress[value]::-webkit-progress-bar {
   border: none;
   color: white;
   padding: 16px 32px;
-  text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -1280,5 +1279,19 @@ progress[value]::-webkit-progress-bar {
 .establ {
     display: none;
 }
+
+.logout-btn {
+    border: none;
+    margin: 20px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-color: #aa3737;
+    color: white;
+    font-family: georgia;
+    text-align: center;
+    align-items: center;
+  }
+  
 
 
