@@ -201,44 +201,44 @@ server.post('/read-user', function(req, resp){
                     user: loggedInUser
                 });
             } else {
-                return restoModel.findOne(searchQuery);
-            }
-        })
-        .then(function(restos) {
-            if (restos && restos._id) {
-                const restosJson = restos.toJSON();
-                const landmarkresto = [];
-                for (let i = 0; i < restodata.length; i++) {
-                    if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
-                        landmarkresto.push(restodata[i]);
+                restoModel.findOne(searchQuery).then(function(restos) {
+                    if (restos && restos._id) {
+                        const restosJson = restos.toJSON();
+                        const landmarkresto = [];
+                        for (let i = 0; i < restodata.length; i++) {
+                            if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
+                                landmarkresto.push(restodata[i]);
+                            }
+                        }
+                        resp.render('restopage', {
+                            layout: 'index',
+                            title: 'Restaurant',
+                            restodata: restosJson,
+                            otherresto: landmarkresto,
+                            user: loggedInUser
+                        });
+                    } else {
+                        // If neither user nor restaurant found
+                        resp.render('result', {
+                            layout: 'index',
+                            title: 'Result page',
+                            status: 'bad',
+                            msg: 'User-name and password do not match!'
+                        });
                     }
-                }
-                resp.render('restopage', {
-                    layout: 'index',
-                    title: 'Restaurant',
-                    restodata: restosJson,
-                    otherresto: landmarkresto,
-                    user: loggedInUser
-                });
-            } else {
-                // If neither user nor restaurant found
-                resp.render('result', {
-                    layout: 'index',
-                    title: 'Result page',
-                    status: 'bad',
-                    msg: 'User-name and password do not match!'
+                })
+                .catch(function(error) {
+                    console.error(error);
+                    resp.render('result', {
+                        layout: 'index',
+                        title: 'Result page',
+                        status: 'bad',
+                        msg: 'An error occurred while processing your request.'
+                    });
                 });
             }
         })
-        .catch(function(error) {
-            console.error(error);
-            resp.render('result', {
-                layout: 'index',
-                title: 'Result page',
-                status: 'bad',
-                msg: 'An error occurred while processing your request.'
-            });
-        });
+        
 });
 
 console.log(restodata[0]);
