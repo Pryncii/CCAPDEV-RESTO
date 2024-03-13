@@ -290,6 +290,30 @@ server.get('/restopage/:landmark/', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.get('/menu-page', function(req, resp){
+    resp.render('menu',{
+        layout      : 'index',
+        title       : 'Signup',
+        user        : loggedInUser
+    });
+});
+
+server.get('/profile-page/:urlname', function(req, resp){
+    const searchQuery = { urlname: req.params.urlname};
+
+    userModel.findOne(searchQuery).then(function(user){
+        console.log(JSON.stringify(user));
+        if(user != undefined && user._id != null){
+          const userJson = user.toJSON();
+          resp.render('profile',{
+              layout      : 'index',
+              title       : 'Profile',
+              userdata   : userJson
+            });
+        }
+      }).catch(errorFn);
+});
+
   server.get('/restoquery/:name/', function(req, resp){
     const searchQuery = { name: req.params.name };
     restoModel.find(searchQuery).then(function(restos){
