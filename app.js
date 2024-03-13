@@ -282,9 +282,9 @@ server.get('/restopage/:landmark/', function(req, resp){
       }
       if(vals.length ==0){
         vals.push({
-            name: "set up in progress",
+            name: "No restaurants here yet",
             linkname: "404",
-            image: "/common/Images/kfcsquare.png",
+            image: "/common/Images/constructioninprogress.png",
             landmark: req.params.landmark
 
         })
