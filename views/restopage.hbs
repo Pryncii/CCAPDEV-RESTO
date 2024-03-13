@@ -177,8 +177,10 @@
                                                                 <div class="dislike grow">
                                                                     <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{reviewIndex}}-{{commentIndex}}" >{{this.dislikes}}</i>
                                                                 </div>
+                                                                {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
                                                                 <button type="delete-button" class = "report-button" id = "deletereply">Delete</button>
+                                                                {{/eq}}
                                                             </div>
                                                         </div>
                                                     </div>
