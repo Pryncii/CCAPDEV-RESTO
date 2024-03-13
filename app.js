@@ -6,10 +6,22 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 const handlebars = require('express-handlebars');
+const hbs = handlebars.create({
+    extname: 'hbs',
+    helpers: {
+        eq: function (val1, val2, options) {
+            if (val1 === val2) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        }
+    }
+});
+
+// Set handlebars engine
+server.engine('hbs', hbs.engine);
 server.set('view engine', 'hbs');
-server.engine('hbs', handlebars.engine({
-    extname: 'hbs'
-}));
 
 server.use(express.static('public'));
 
