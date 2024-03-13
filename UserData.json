@@ -4,6 +4,7 @@
         "urlname": "Buencamino_Prince",
         "user": "prince01",
         "pass": "DLSU123",
+        "loggedIn": false,
         "image": "/common/Images/PFPs/Prince.jpg",
         "description": "Food Enjoyer, 2nd year CCS student who is perpetually hungry.",
         "friends": 
@@ -61,6 +62,7 @@
         "urlname": "Lingat_Blix",
         "user": "blix02",
         "pass": "DLSU123",
+        "loggedIn": false,
         "image": "/common/Images/PFPs/Blix.jpg",
         "description": "Lover of all things Japan.",
         "friends": 
@@ -118,6 +120,7 @@
         "urlname": "Ruiz_Chester",
         "user": "chester03",
         "pass": "DLSU123",
+        "loggedIn": false,
         "image": "/common/Images/PFPs/catpfp.png",
         "description": "The only human on earth who likes mushroom pepper steak.",
         "friends": 
@@ -175,6 +178,7 @@
         "urlname": "Arco_Gaby",
         "user": "gaby04",
         "pass": "DLSU123",
+        "loggedIn": false,
         "image": "/common/Images/PFPs/Gaby.jpg",
         "description": "Dimsum treats number 1 4evah.",
         "friends": 
@@ -232,6 +236,7 @@
         "urlname": "Chua_Micole",
         "user": "micole05",
         "pass": "DLSU123",
+        "loggedIn": false,
         "image": "/common/Images/PFPs/Micole.jpg",
         "description": "wagyu should not look like spam btw",
         "friends": 
