@@ -218,16 +218,8 @@ div.classList.replace("tags-selected", "tags");
 
 $(document).ready(function(){
   $('input[type="submit"]').click(function(){
-    //Get function does not have a body. Instead, it submits the
-    //information in the URL as a parameter.
-    $.get('restoquery/'+$('#search-field').val(),
-      function(data, status){
-        window.location.href = '/restoquery/'+ $('#search-field').val()
-        if(status === 'success'){
-          alert("Showing all "+ data.name + " stores in Taft");
-        }//if
-      });//get
 
+    alert("Functionality coming in MCO3!");
   });//btn
 
 
