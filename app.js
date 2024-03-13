@@ -209,7 +209,7 @@ server.post('/read-user', function(req, resp){
             if (login && login._id) {
                 const userJson = login.toJSON();
                 loggedInUser = userJson;
-                isUser = true;
+                isUser = loggedInUser['urlname'];
                 resp.render('profile', {
                     layout: 'index',
                     title: 'Profile',
@@ -222,7 +222,8 @@ server.post('/read-user', function(req, resp){
                     if (restos && restos._id) {
                         const restosJson = restos.toJSON();
                         loggedInUser = restosJson;
-                        isUser = false;
+                        isUser = loggedInUser['linkname'];
+                        console.log(isUser);
                         const landmarkresto = [];
                         for (let i = 0; i < restodata.length; i++) {
                             if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {

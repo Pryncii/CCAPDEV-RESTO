@@ -258,57 +258,58 @@ $(document).ready(function(){
     alert("Functionality coming in MCO3!");
 });
 
-$('#changepic').click(function(){
+$(document).on('click', '#changepic', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#changebio').click(function(){
+$(document).on('click', '#changebio', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#reportuser').click(function(){
+$(document).on('click', '#reportuser', function(){
   alert("Functionality coming in MCO3!");
-});//btn
-  
-$('#mapbutton').click(function(){
-  alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#changerestopic').click(function(){
+$(document).on('click', '#mapbutton', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#changerestobio').click(function(){
+$(document).on('click', '#changerestopic', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#reportresto').click(function(){
+$(document).on('click', '#changerestobio', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#review').click(function(){
+$(document).on('click', '#reportresto', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#reply').click(function(){
-  alert("Functionality coming in MCO3!");
-});//btn
 
-$('#editcomment').click(function(){
+$(document).on('click', '#review', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#deletecomment').click(function(){
+$(document).on('click', '#reply', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#replyedit').click(function(){
+$(document).on('click', '#editcomment', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
 
-$('#deletereply').click(function(){
+$(document).on('click', '#deletecomment', function(){
   alert("Functionality coming in MCO3!");
-});//btn
+});
+
+$(document).on('click', '#replyedit', function(){
+  alert("Functionality coming in MCO3!");
+});
+
+$(document).on('click', '#deletereply', function(){
+  alert("Functionality coming in MCO3!");
+});
 
 
   

@@ -3,7 +3,12 @@
         
     <div class = "headerright">
         <button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>
+        {{#eq checkUser user.urlname}}
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
+        {{/eq}}
+        {{#eq checkUser user.linkname}}
+        <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
+        {{/eq}}
     </div>
 </div>
         
@@ -34,8 +39,8 @@
     
                             <div class = "usereditbio">
                                 {{#eq user.urlname userdata.urlname}}
-                                <button type="editpfp-button" class = "editpfp-button">Change Profile Picture</button>
-                                <button type="editbio-button" class = "editbio-button">Edit Bio</button>
+                                <button type="editpfp-button" class = "editpfp-button" id = "changepic">Change Profile Picture</button>
+                                <button type="editbio-button" class = "editbio-button" id = "changebio">Edit Bio</button>
                                 {{/eq}}
                                 <button type="report-button" class = "report-button" id = "reportuser">Report User</button>
                             </div>
