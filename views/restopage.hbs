@@ -2,7 +2,7 @@
             {{> header}}
             
     <div class = "headerright">
-        {{#if user.urlname}}<button type="logout-btn" class = "report-button"  onclick="window.location.href='/'">Logout</button>{{/if}}
+        {{#if user.urlname}}<button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/'">Logout</button>{{/if}}
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
     </div>
 </div>
@@ -130,8 +130,10 @@
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
+                                   
                                             <button type="edit-button" id = "editcomment" class = "editbio-button">Edit</button>
                                             <button type="delete-button" id = "deletecomment" class = "report-button">Delete</button>
+                                      
 
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>

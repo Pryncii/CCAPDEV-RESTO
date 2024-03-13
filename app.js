@@ -16,6 +16,7 @@ server.use(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restodb');
 
+
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
@@ -89,6 +90,7 @@ server.get('/', function(req, resp){
 //Use this to determine the user who's logged in
 let loggedInUser = userdata[0];
 console.log(loggedInUser);
+
 
 server.get('/login-page', function(req, resp){
     resp.render('login',{
