@@ -101,7 +101,6 @@ server.get('/', function(req, resp){
 //Use this to determine the user who's logged in
 let loggedInUser;
 let isUser;
-console.log(loggedInUser);
 
 server.get('/login-page', function(req, resp){
     resp.render('login',{
@@ -133,7 +132,7 @@ server.post('/create-user', function(req, resp){
             name: req.body.fname,
             linkname: req.body.fname.replace(/ /g, "_"),
             user: req.body.username,
-            pass: req.body.passoword,
+            pass: req.body.password,
             image: "/common/Images/PFPs/resto-default.jpg",
             imagesquare: "/common/Images/PFPs/resto-default.jpg", 
             description: "",
@@ -152,7 +151,7 @@ server.post('/create-user', function(req, resp){
             name: req.body.fname,
             urlname: req.body.fname.replace(/ /g, "_"),
             user: req.body.username,
-            pass: req.body.passoword,
+            pass: req.body.password,
             image: "/common/Images/PFPs/profile.webp",
             description: "",
             friends: [],
@@ -261,8 +260,6 @@ server.post('/read-user', function(req, resp){
         
 });
 
-console.log(restodata[0]);
-
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
@@ -366,7 +363,14 @@ server.get('/profile-page/:urlname', function(req, resp){
 
   server.get('/showall/', function(req, resp){
     
-    restoModel.find({}).then(function(restos){
+    let searchQuery;
+    if(req.query.searchfield === undefined){
+        searchQuery = {};
+    } else {
+        searchQuery = {name: req.query.searchfield};
+    }
+    console.log(req.query.searchfield)
+    restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
       let vals = [];
       let counts = 0;
