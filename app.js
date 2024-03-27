@@ -139,6 +139,9 @@ server.post('/create-user', function(req, resp){
             recommendations: [],
             landmark: req.body.elandm.replace(/ /g, "_"),
             rating: 0,
+            category: req.body.category,
+            price: req.body.price,
+            maplink: req.body.maplink,
             revdata: [],
 
         });
@@ -402,6 +405,12 @@ server.get('/profile-page/:urlname', function(req, resp){
         checkUser: isUser
       });
     }).catch(errorFn);
+  });
+
+
+  server.post('/change-restobio', function(req, resp){
+    
+    
   });
 
   

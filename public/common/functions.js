@@ -34,10 +34,22 @@ function openEstabl() {
 if (document.getElementById("estbownerbtn1").checked) {
   document.getElementById("elandm").style.display = "inline";
   document.getElementById("elandm-label").style.display = "inline";
+  document.getElementById("category").style.display = "inline";
+  document.getElementById("category-label").style.display = "inline";
+  document.getElementById("map").style.display = "inline";
+  document.getElementById("map-label").style.display = "inline";
+  document.getElementById("price").style.display = "inline";
+  document.getElementById("price-label").style.display = "inline";
 }
 else {
   document.getElementById("elandm").style.display = "none";
   document.getElementById("elandm-label").style.display = "none";
+  document.getElementById("category").style.display = "none";
+  document.getElementById("category-label").style.display = "none";
+  document.getElementById("map").style.display = "none";
+  document.getElementById("map-label").style.display = "none";
+  document.getElementById("price").style.display = "inline";
+  document.getElementById("price-label").style.display = "inline";
 }
 
 }
@@ -263,11 +275,23 @@ $(document).on('click', '#changepic', function(){
 });
 
 $(document).on('click', '#changebio', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+        <form class="review-form-container" action = "change-userbio" method "post">
+            <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
+            <button type="submitreview-button" class="editbio-button">Submit</button>
+        </form>
+    `;
+    $('.userbio').html(newHtmlContent);
 });
 
 $(document).on('click', '#reportuser', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+        <form class="review-form-container" action = "report-user" method "post">
+            <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
+            <button type="submitreview-button" class="editbio-button">Submit</button>
+        </form>
+    `;
+    $('.userbio').html(newHtmlContent);
 });
 
 $(document).on('click', '#mapbutton', function(){
@@ -279,11 +303,23 @@ $(document).on('click', '#changerestopic', function(){
 });
 
 $(document).on('click', '#changerestobio', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+        <form class="review-form-container" action = "change-restobio" method "post">
+            <textarea name="restodesc" id="reviewcomment">Enter New Description!</textarea>
+            <button type="submitreview-button" class="editbio-button">Submit</button>
+        </form>
+    `;
+    $('.restodesc').html(newHtmlContent);
 });
 
 $(document).on('click', '#reportresto', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+        <form class="review-form-container" action = "report-resto" method "post">
+            <textarea name="restodesc" id="reviewcomment">What's the issue?</textarea>
+            <button type="submitreview-button" class="editbio-button">Submit</button>
+        </form>
+    `;
+    $('.restodesc').html(newHtmlContent);
 });
 
 

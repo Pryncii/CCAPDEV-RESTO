@@ -10,6 +10,9 @@
         "description": "One of the most popular fast food chain that is well known for their burgers, fries, and chicken nuggets. The perfect choice for quick meals!",
         "landmark": "U_Mall",
         "rating": 5,
+        "category": "fastfood",
+        "price": 2,
+        "maplink": "https://maps.app.goo.gl/nV6U4sp6NM7hys5n8",
         "revdata": 
         [
             {
@@ -89,6 +92,9 @@
         "description": "The globally popular coffee shop known for their drinks and pastries. A ideal place to be productive while sipping on some Starbucks coffee!",
         "landmark": "Burgundy",
         "rating": 3,
+        "category": "coffee",
+        "price": 4,
+        "maplink": "https://maps.app.goo.gl/7dp926xAywX5Z1sS9",
         "revdata": 
         [
             {
@@ -166,6 +172,9 @@
         "description": " The globally popular fast food chain that is well known for their fried chicken. Satisfy your cravings with some fried chicken paired with their iconic gravy!",
         "landmark": "U_Mall",
         "rating": 4,
+        "category": "fastfood",
+        "price": 2,
+        "maplink": "https://maps.app.goo.gl/5Z3jzCtxKD8zpo788",
         "revdata": 
         [
             {
@@ -234,6 +243,9 @@
         "description": "A well-known restaurant that is renowned for their tacos, burritos, and burgers. Chow down on a variety of comforting meals in Army Navy!",
         "landmark": "Burgundy",
         "rating": 5,
+        "category": "fastfood",
+        "price": 3,
+        "maplink": "https://maps.app.goo.gl/26PtNmxaXeLsbzrb6",
         "revdata": 
         [
             {
@@ -281,6 +293,9 @@
         "description": " A coffee shop that serves some of the best ice-blended coffee and drinks as well as a variety of pastries and meals. Relax and enjoy the view at the Coffee Bean and Tea Leaf!",
         "landmark": "DLSU",
         "rating": 4,
+        "category": "coffee",
+        "price": 4,
+        "maplink": "https://maps.app.goo.gl/wbhHNQggXdu29TQE7",
         "revdata": 
         [
             {
