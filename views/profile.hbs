@@ -75,6 +75,7 @@
                         <div class = "reviewlower">
 <!--REVIEWS LOOP HERE-->
 {{#each userdata.reviews}}
+{{#if notdeleted}}
                             <div class = "reviewcontainer">
                                 <div class = "reviewcontainerleft">
                                     <img src = "{{this.revimg}}">
@@ -91,6 +92,7 @@
                                     </div>
                                 </div>
                             </div>
+{{/if}}
 {{/each}}
                         </div>
                     </div>

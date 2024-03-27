@@ -31,10 +31,12 @@
                         "com": "Do not believe the words of this corporate lapdog!",
                         "likes" : 127,
                         "dislikes": 10,
-                        "urlname":"/profile-page/Chua_Micole"
+                        "urlname":"/profile-page/Chua_Micole",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Buencamino_Prince"
+                "urlname": "/profile-page/Buencamino_Prince",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
@@ -52,10 +54,12 @@
                         "com": "Nice to hear you enjoyed your experience!",
                         "likes" : 127,
                         "dislikes": 15,
-                        "urlname": "/restaurant/U_Mall/mcdonalds"
+                        "urlname": "/restaurant/U_Mall/mcdonalds",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Ruiz_Chester"
+                "urlname": "/profile-page/Ruiz_Chester",
+                "notdeleted": false
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
@@ -73,10 +77,12 @@
                         "com": "Nice to hear you enjoyed your experience!",
                         "likes" : 127,
                         "dislikes": 10,
-                        "urlname": "/restaurant/U_Mall/mcdonalds"
+                        "urlname": "/restaurant/U_Mall/mcdonalds",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Arco_Gaby"
+                "urlname": "/profile-page/Arco_Gaby",
+                "notdeleted": true
             }
         ]
     },
@@ -105,7 +111,8 @@
                 "hascomments": false,
                 "likes" : 117,
                 "dislikes": 10,
-                "urlname": "/profile-page/Buencamino_Prince"
+                "urlname": "/profile-page/Buencamino_Prince",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
@@ -115,7 +122,8 @@
                 "hascomments": false,
                 "likes" : 327,
                 "dislikes": 10,
-                "urlname": "/profile-page/Ruiz_Chester"
+                "urlname": "/profile-page/Ruiz_Chester",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Blix.jpg",
@@ -133,10 +141,12 @@
                         "com": "I agree!",
                         "likes" : 107,
                         "dislikes": 10,
-                        "urlname": "/profile-page/Chua_Micole"
+                        "urlname": "/profile-page/Chua_Micole",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Lingat_Blix"
+                "urlname": "/profile-page/Lingat_Blix",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
@@ -146,7 +156,8 @@
                 "hascomments": false,
                 "likes" : 127,
                 "dislikes": 10,
-                "urlname": "/profile-page/Arco_Gaby"
+                "urlname": "/profile-page/Arco_Gaby",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
@@ -156,7 +167,8 @@
                 "hascomments": false,
                 "likes" : 127,
                 "dislikes": 10,
-                "urlname": "/profile-page/Chua_Micole"
+                "urlname": "/profile-page/Chua_Micole",
+                "notdeleted": true
             }
         ]
     },
@@ -193,10 +205,12 @@
                         "com": "Sorry to hear about your experience! We will do better.",
                         "likes" : 127,
                         "dislikes": 10,
-                        "urlname": "/restaurant/U_Mall/kfc"
+                        "urlname": "/restaurant/U_Mall/kfc",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Lingat_Blix"
+                "urlname": "/profile-page/Lingat_Blix",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
@@ -206,7 +220,8 @@
                 "hascomments": false,
                 "likes" : 127,
                 "dislikes": 34,
-                "urlname": "/profile-page/Ruiz_Chester"
+                "urlname": "/profile-page/Ruiz_Chester",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
@@ -224,10 +239,12 @@
                         "com": "Sorry to hear about your experience! We will do better.",
                         "likes" : 127,
                         "dislikes": 10,
-                        "urlname": "/restaurant/U_Mall/kfc"
+                        "urlname": "/restaurant/U_Mall/kfc",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Chua_Micole"
+                "urlname": "/profile-page/Chua_Micole",
+                "notdeleted": true
             }
         ]
     },
@@ -264,10 +281,12 @@
                         "com": "I agree!!",
                         "likes" : 127,
                         "dislikes": 10,
-                        "urlname": "/profile-page/Arco_Gaby"
+                        "urlname": "/profile-page/Arco_Gaby",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Lingat_Blix"
+                "urlname": "/profile-page/Lingat_Blix",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
@@ -277,7 +296,8 @@
                 "hascomments": false,
                 "likes" : 127,
                 "dislikes": 10,
-                "urlname": "/profile-page/Arco_Gaby"
+                "urlname": "/profile-page/Arco_Gaby",
+                "notdeleted": true
             }
         ]
     },
@@ -306,7 +326,8 @@
                 "hascomments": false,
                 "likes" : 155,
                 "dislikes": 10,
-                "urlname": "/profile-page/Chua_Micole"
+                "urlname": "/profile-page/Chua_Micole",
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Prince.jpg",
@@ -322,12 +343,14 @@
                         "comimg": "/common/Images/PFPs/Micole.jpg",
                         "comname": "Chua, Micole",
                         "com": "Ha? Hatdog!",
-                        "likes" : 127,
+                        "likes" : 200,
                         "dislikes": 53,
-                        "urlname": "/profile-page/Chua_Micole"
+                        "urlname": "/profile-page/Chua_Micole",
+                        "notdeleted": true
                     }
                 ],
-                "urlname": "/profile-page/Buencamino_Prince"
+                "urlname": "/profile-page/Buencamino_Prince",
+                "notdeleted": true
             }
         ]
     }

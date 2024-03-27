@@ -343,12 +343,21 @@ $(document).on('click', '#replyedit', function(){
   alert("Functionality coming in MCO3!");
 });
 
-$(document).on('click', '#deletereply', function(){
-  alert("Functionality coming in MCO3!");
-});
+$(document).on('click', '.delete-comment', function(){
+  var commentId = $(this).data('comment-id');
+  console.log("commentId: " + commentId);
+  $.post('deletecomment',{
+    id: commentId
+  }, function(data, status){
+    if(status === 'success'){
+      
+  }
 
 
-  
+
+  }
+  );
+});  
 
 
 });//doc

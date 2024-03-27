@@ -32,7 +32,8 @@ const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
     com: { type: String },
-    urlname: { type: String}
+    urlname: { type: String},
+    notdeleted: { type: Boolean },
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -42,7 +43,8 @@ const reviewSchema = new mongoose.Schema({
     rev: { type: String },
     hascomments: { type: Boolean },
     comments: [commentSchema],
-    urlname: { type: String}
+    urlname: { type: String},
+    notdeleted: { type: Boolean }
 });
 
 const restoSchema = new mongoose.Schema({
@@ -409,11 +411,44 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
 
-  server.post('/change-restobio', function(req, resp){
+server.post('/change-restobio', function(req, resp){
     
     
+});
+
+server.post('/deletecomment', function(req, resp){
+    const updateQuery = { user: req.body.id };
+  
+  //user -> revdata
+  //resto -> revdata -> comment
+  
+//-----------------------------CHESTER WIP------------------------------
+  /*
+    loginModel.findOne(updateQuery).then(function(login) {
+      console.log('Update successful');
+      login.pass = req.body.pass;
+      login.save().then(function (result) {
+        if(result){
+          resp.render('result',{
+            layout: 'index',
+            title:  'Result page',
+            status: 'good',
+            msg:    'User updated successfully!'
+          });
+        }else{
+          resp.render('result',{
+            layout: 'index',
+            title:  'Result page',
+            status: 'bad',
+            msg:    'No user like this found!'
+          });
+        }
+      }).catch(errorFn);
+    }).catch(errorFn);
+    */
   });
 
+  
   
 
 function finalClose(){

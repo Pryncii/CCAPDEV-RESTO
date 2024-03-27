@@ -110,6 +110,7 @@
 
                         <!--OTHER REVIEWS HERE-->
                         {{#each restodata.revdata as |review reviewIndex|}}
+                        {{#if notdeleted}}
                             <div class = "reviewcontainer2">
                                 <div class = "reviewcontainerleft2">
                                     <img src = "{{this.revimg}}">
@@ -137,14 +138,14 @@
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
                                             {{#eq this.revname ../user.name}}
-                                            <button type="edit-button" id = "editcomment" class = "editbio-button">Edit</button>
-                                            <button type="delete-button" id = "deletecomment" class = "report-button">Delete</button>
+                                            <button type="edit-button" class = "editbio-button" id = "editcomment">Edit</button>
+                                            <button type="delete-button" class = "report-button" id = "deletecomment">Delete</button>
                                             {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
                                                 <div class = "usereditbio">
-                                                    <button type="button" class="reply-button"  id = "reply">Reply</button>
+                                                    <button type="button" class="reply-button" id = "reply">Reply</button>
                                                 </div>
                                             </div>
 
@@ -152,13 +153,13 @@
                                             <!--OTHER REPLIES TO THE REVIEW HERE-->
                                             {{#if this.hascomments}}
                                             {{#each this.comments as |comment commentIndex|}}
-                                                <div class = "reviewcontainer3">
+                                            {{#if notdeleted}}
+                                                <div class = "reviewcontainer3" id="comment-{{this._id}}">
                                                     <div class = "reviewcontainerleft2">
                                                         <img src = "{{this.comimg}}">
                                                     </div>
                                                     <div class = "reviewcontainerright2">
                                                         <div class = "rctop2">
-<!--REMEMBER TO CHANGE LINK!!!!!!!!-->
                                                             <a href= "{{this.urlname}}">{{this.comname}}</a>
                                                         </div>
                                                         <div class = "rcbottom2">
@@ -175,12 +176,13 @@
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
-                                                                <button type="delete-button" class = "report-button" id = "deletereply">Delete</button>
+                                                                <button type="delete-button" class = "report-button delete-comment" data-comment-id="{{comment._id}}">Delete</button>
                                                                 {{/eq}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            {{/if}}
                                             {{/each}}
                                             {{/if}}  
                                             </div>
@@ -191,6 +193,7 @@
                                     </div>
                                 </div>
                             </div>
+                        {{/if}}
                         {{/each}}
 
 
