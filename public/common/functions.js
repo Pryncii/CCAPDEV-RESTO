@@ -48,8 +48,8 @@ else {
   document.getElementById("category-label").style.display = "none";
   document.getElementById("map").style.display = "none";
   document.getElementById("map-label").style.display = "none";
-  document.getElementById("price").style.display = "inline";
-  document.getElementById("price-label").style.display = "inline";
+  document.getElementById("price").style.display = "none";
+  document.getElementById("price-label").style.display = "none";
 }
 
 }

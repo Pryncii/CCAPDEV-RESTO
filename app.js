@@ -53,9 +53,11 @@ const restoSchema = new mongoose.Schema({
     image: { type: String },
     imagesquare: {type: String},
     description: { type: String },
-    recommendations: [{ recom: { type: String } }],
     landmark: { type: String },
     rating: { type: Number },
+    category: { type: String },
+    price: { type: Number },
+    maplink: { type: String },
     revdata: [reviewSchema]
 },{ versionKey: false });
 
@@ -136,12 +138,11 @@ server.post('/create-user', function(req, resp){
             image: "/common/Images/PFPs/resto-default.jpg",
             imagesquare: "/common/Images/PFPs/resto-default.jpg", 
             description: "",
-            recommendations: [],
             landmark: req.body.elandm.replace(/ /g, "_"),
             rating: 0,
             category: req.body.category,
             price: req.body.price,
-            maplink: req.body.maplink,
+            maplink: req.body.map,
             revdata: [],
 
         });

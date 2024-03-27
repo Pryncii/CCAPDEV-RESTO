@@ -11,7 +11,7 @@
         "landmark": "U_Mall",
         "rating": 5,
         "category": "fastfood",
-        "price": 2,
+        "price": 150,
         "maplink": "https://maps.app.goo.gl/nV6U4sp6NM7hys5n8",
         "revdata": 
         [
@@ -93,7 +93,7 @@
         "landmark": "Burgundy",
         "rating": 3,
         "category": "coffee",
-        "price": 4,
+        "price": 250,
         "maplink": "https://maps.app.goo.gl/7dp926xAywX5Z1sS9",
         "revdata": 
         [
@@ -173,7 +173,7 @@
         "landmark": "U_Mall",
         "rating": 4,
         "category": "fastfood",
-        "price": 2,
+        "price": 125,
         "maplink": "https://maps.app.goo.gl/5Z3jzCtxKD8zpo788",
         "revdata": 
         [
@@ -244,7 +244,7 @@
         "landmark": "Burgundy",
         "rating": 5,
         "category": "fastfood",
-        "price": 3,
+        "price": 215,
         "maplink": "https://maps.app.goo.gl/26PtNmxaXeLsbzrb6",
         "revdata": 
         [
@@ -294,7 +294,7 @@
         "landmark": "DLSU",
         "rating": 4,
         "category": "coffee",
-        "price": 4,
+        "price": 250,
         "maplink": "https://maps.app.goo.gl/wbhHNQggXdu29TQE7",
         "revdata": 
         [
