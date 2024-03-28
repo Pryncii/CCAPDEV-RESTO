@@ -495,10 +495,55 @@ userModel.find({}).then(function(users){
     }
   }
 }).catch(errorFn);
-  
-
 });
 
+server.post('/replycomment', function(req, resp){
+  //const updateQuery = { user: req.body.id };
+  console.log("req.body.id: " + req.body.id);
+  console.log("req.body.reply: " + req.body.reply);
+  console.log("req.body.person: " + req.body.person);
+
+  userModel.findOne({name: req.body.person}).then(function(user){
+    console.log("user: " + user);
+    let userimage = user.image;
+    let userurl = user.urlname;
+    
+    restoModel.find({}).then(function(restos){
+      console.log('List successful');
+    
+      let found = 0; // all restaurants
+      for(let i = 0; i < restos.length && found == 0; i++)
+      { // all reviews in that restaurant
+        for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+        {
+          if(restos[i].revdata[j]["rev"] == req.body.id)
+          {
+            console.log("review found: " + restos[i].revdata[j]["rev"]);
+            console.log("revdatalength found: " + restos[i].revdata[j].comments.length);
+
+            let newComment = {
+              comimg: userimage,
+              comname: req.body.person,
+              com: req.body.reply,
+              likes: 0,
+              dislikes: 0,
+              urlname: userurl,
+              notdeleted: true
+            };
+    
+            restos[i].revdata[j].comments.push(newComment);
+            restos[i].revdata[j]["hascomments"] = true;
+            found = 1;
+            restos[i].save();
+            resp.sendStatus(200);
+          }
+        }
+      }
+    }).catch(errorFn);
+  }).catch(errorFn);
+
+  
+});
   
   
 

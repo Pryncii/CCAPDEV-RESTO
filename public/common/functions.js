@@ -327,9 +327,6 @@ $(document).on('click', '#review', function(){
   alert("Functionality coming in MCO3!");
 });
 
-$(document).on('click', '#reply', function(){
-  alert("Functionality coming in MCO3!");
-});
 
 $(document).on('click', '#editcomment', function(){
   alert("Functionality coming in MCO3!");
@@ -343,6 +340,7 @@ $(document).on('click', '#replyedit', function(){
   alert("Functionality coming in MCO3!");
 });
 
+// DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){
   var commentId = $(this).data('commentdelete-id');
   console.log("commentId: " + commentId);
@@ -353,13 +351,26 @@ $(document).on('click', '.delete-comment', function(){
     if(status === 'success'){
       console.log('Delete comment request successful');
       window.location.reload();
-  }
-
-
-
-  }
-  );
+    }
+  });
 });  
 
+$(document).on('click', '.reply-button', function(){
+  var reviewId = $(this).data('replyto-id');
+  var person = $(this).data('person');
+  var reply = document.getElementById("reply-text-"+reviewId).value;
+  console.log("reviewId: " + reviewId);
+  console.log("reply: " + reply);
+  console.log("person: " + person);
+
+  $.post('/replycomment',{
+    id: reviewId, reply: reply, person: person,
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Reply request successful');
+      window.location.reload();
+    }
+  });
+});  
 
 });//doc
