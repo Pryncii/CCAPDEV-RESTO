@@ -51,7 +51,7 @@
                     {
                         "comimg": "/common/Images/mcdo-umall-square.jpg",
                         "comname": "McDonalds",
-                        "com": "Nice to hear you enjoyed your experience!",
+                        "com": "Nice to hear you enjoyed you like our mushroom pepper steak!",
                         "likes" : 127,
                         "dislikes": 15,
                         "urlname": "/restaurant/U_Mall/mcdonalds",
@@ -59,7 +59,7 @@
                     }
                 ],
                 "urlname": "/profile-page/Ruiz_Chester",
-                "notdeleted": false
+                "notdeleted": true
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
@@ -236,7 +236,7 @@
                     {
                         "comimg": "/common/Images/kfcsquare.png",
                         "comname": "KFC",
-                        "com": "Sorry to hear about your experience! We will do better.",
+                        "com": "Sorry to hear about your experience! We will list down the spicy levels next time!",
                         "likes" : 127,
                         "dislikes": 10,
                         "urlname": "/restaurant/U_Mall/kfc",

@@ -344,13 +344,15 @@ $(document).on('click', '#replyedit', function(){
 });
 
 $(document).on('click', '.delete-comment', function(){
-  var commentId = $(this).data('comment-id');
+  var commentId = $(this).data('commentdelete-id');
   console.log("commentId: " + commentId);
-  $.post('deletecomment',{
-    id: commentId
+
+  $.post('/deletecomment',{
+    id: commentId,
   }, function(data, status){
     if(status === 'success'){
-      
+      console.log('Delete comment request successful');
+      window.location.reload();
   }
 
 

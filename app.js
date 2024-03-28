@@ -270,7 +270,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
     restoModel.findOne(searchQuery).then(function(restos){
-      console.log(JSON.stringify(restos));
+      //console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
         const restosJson = restos.toJSON();
         const landmarkresto = [];
@@ -329,7 +329,7 @@ server.get('/profile-page/:urlname', function(req, resp){
     const searchQuery = { urlname: req.params.urlname};
 
     userModel.findOne(searchQuery).then(function(user){
-        console.log(JSON.stringify(user));
+        //console.log(JSON.stringify(user));
         if(user != undefined && user._id != null){
           const userJson = user.toJSON();
           resp.render('profile',{
@@ -375,14 +375,14 @@ server.get('/profile-page/:urlname', function(req, resp){
     } else {
         searchQuery = {name: req.query.searchfield};
     }
-    console.log(req.query.searchfield)
+    //console.log(req.query.searchfield)
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
       let vals = [];
       let counts = 0;
       let subval = [];
       for(const item of restos){
-        console.log(item.name);
+        //console.log(item.name);
         
         subval.push({
               name: item.name,
@@ -390,8 +390,8 @@ server.get('/profile-page/:urlname', function(req, resp){
               image: item.imagesquare,
               landmark: item.landmark
           });
-          console.log("subval");
-          console.log(subval);
+          //console.log("subval");
+          //console.log(subval);
           counts+=1;
           if(counts == 4){
             counts=0;
@@ -417,36 +417,87 @@ server.post('/change-restobio', function(req, resp){
 });
 
 server.post('/deletecomment', function(req, resp){
-    const updateQuery = { user: req.body.id };
-  
+    //const updateQuery = { user: req.body.id };
+    console.log("req.body.id: " + req.body.id);
   //user -> revdata
   //resto -> revdata -> comment
-  
-//-----------------------------CHESTER WIP------------------------------
-  /*
-    loginModel.findOne(updateQuery).then(function(login) {
-      console.log('Update successful');
-      login.pass = req.body.pass;
-      login.save().then(function (result) {
-        if(result){
-          resp.render('result',{
-            layout: 'index',
-            title:  'Result page',
-            status: 'good',
-            msg:    'User updated successfully!'
-          });
-        }else{
-          resp.render('result',{
-            layout: 'index',
-            title:  'Result page',
-            status: 'bad',
-            msg:    'No user like this found!'
+
+// FOR DELETING COMMENTS THAT ARE IN REPLY OF REVIEWS
+restoModel.find({}).then(function(restos){
+  console.log('List successful');
+
+  let found = 0;
+  for(let i = 0; i < restos.length && found == 0; i++)
+  {
+    //console.log("revdatalength: " + restos[i].revdata.length);
+
+    for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+    {
+      for(let k = 0; k < restos[i].revdata[j].comments.length && found == 0; k++)
+      {
+        if(restos[i].revdata[j].comments[k]["com"] == req.body.id)
+        {
+          console.log("comment found: " + restos[i].revdata[j].comments[k]["com"]);
+          restos[i].revdata[j].comments[k]["notdeleted"] = false;
+          found = 1;
+
+          restos[i].save().then(function (result) {
+            if(result){
+              resp.sendStatus(200);
+            }
           });
         }
-      }).catch(errorFn);
-    }).catch(errorFn);
-    */
-  });
+      }
+    }
+  }
+}).catch(errorFn);
+
+// FOR DELETING COMMENTS THAT ARE IN REVIEW
+restoModel.find({}).then(function(restos){
+  console.log('List successful');
+
+  let found = 0; // all restaurants
+  for(let i = 0; i < restos.length && found == 0; i++)
+  { // all reviews in that restaurant
+    for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+    {
+      if(restos[i].revdata[j]["rev"] == req.body.id)
+      {
+        console.log("review found: " + restos[i].revdata[j]["rev"]);
+        restos[i].revdata[j]["notdeleted"] = false;
+        found = 1;
+        restos[i].save();
+      }
+    }
+  }
+}).catch(errorFn);
+
+// FOR DELETING COMMENTS THAT ARE IN PROFILE PAGE
+userModel.find({}).then(function(users){
+  console.log('List successful');
+
+  let found = 0; // all users
+  for(let i = 0; i < users.length && found == 0; i++)
+  { // all reviews in user
+    for(let j = 0; j < users[i].revdata.length && found == 0; j++)
+    {
+      if(users[i].revdata[j]["rev"] == req.body.id)
+      {
+        console.log("profile review found: " + users[i].revdata[j]["rev"]);
+        users[i].revdata[j]["notdeleted"] = false;
+        found = 1;
+        users[i].save().then(function (result) {
+          if(result){
+            resp.sendStatus(200);
+          }
+        });
+      }
+    }
+  }
+}).catch(errorFn);
+  
+
+});
 
   
   

@@ -139,11 +139,11 @@
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
                                             {{#eq this.revname ../user.name}}
                                             <button type="edit-button" class = "editbio-button" id = "editcomment">Edit</button>
-                                            <button type="delete-button" class = "report-button" id = "deletecomment">Delete</button>
+                                            <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.rev}}">Delete</button>
                                             {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
-                                                <textarea name="reply-text" id="reply-text" rows="5" cols="50"></textarea>
+                                                <textarea name="reply-text" id="reply-text-{{this._id}}" rows="5" cols="50"></textarea>
                                                 <div class = "usereditbio">
                                                     <button type="button" class="reply-button" id = "reply">Reply</button>
                                                 </div>
@@ -176,7 +176,7 @@
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
-                                                                <button type="delete-button" class = "report-button delete-comment" data-comment-id="{{comment._id}}">Delete</button>
+                                                                <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.com}}">Delete</button>
                                                                 {{/eq}}
                                                             </div>
                                                         </div>
