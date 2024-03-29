@@ -410,6 +410,72 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.get('/showalladvanced/', function(req, resp){
+    
+  // Initialize an empty search query object
+    let searchQuery = {};
+
+    // Check if lowerprice and/or upperprice are defined and non-empty
+    if (req.query.lowerprice !== '' || req.query.upperprice !== '') {
+        // Construct the price range query
+        searchQuery.price = {};
+        if (req.query.lowerprice !== '') {
+            searchQuery.price.$gte = req.query.lowerprice;
+        }
+        if (req.query.upperprice !== '') {
+            searchQuery.price.$lte = req.query.upperprice;
+        }
+    }
+
+    // Check if rate is defined and non-empty
+    if (req.query.rate !== '') {
+        // Add rating query to the search query
+        searchQuery.rating = { $gte: req.query.rate };
+        console.log(req.query.rate);
+    }
+
+    // Check if category is defined and non-empty
+    if (req.query.category !== '') {
+        // Add category query to the search query
+        searchQuery.category = req.query.category;
+        console.log(req.query.category);
+    }
+    console.log(searchQuery);
+    //console.log(req.query.searchfield)
+    restoModel.find(searchQuery).then(function(restos){
+      console.log('List successful');
+      let vals = [];
+      let counts = 0;
+      let subval = [];
+      for(const item of restos){
+        //console.log(item.name);
+        
+        subval.push({
+              name: item.name,
+              linkname: item.linkname,
+              image: item.imagesquare,
+              landmark: item.landmark
+          });
+          //console.log("subval");
+          //console.log(subval);
+          counts+=1;
+          if(counts == 4){
+            counts=0;
+            vals.push( subval);
+            subval = new Array();
+          }
+      }
+      vals.push( subval);
+      resp.render('showall',{
+        layout: 'index',
+        title:  "Show All",
+        restos:  vals,
+        user        : loggedInUser,
+        checkUser: isUser
+      });
+    }).catch(errorFn);
+  });
+
 
 server.post('/change-restobio', function(req, resp){
     

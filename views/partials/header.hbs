@@ -12,13 +12,13 @@
         </form>
         <div class="dropdown">
             <button class="dropbtn"><img src = "https://www.shareicon.net/data/2015/08/23/89533_more_512x512.png"></button>
-        <form action = "/showall/" method = "get">
+        <form action = "/showalladvanced/" method = "get">
             <div id="advance-search"class="dropdown-content">
-                <div class="name">Advanced Search <a onclick="alert('This function is not yet available! ')" href = "#"><img id="go"src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png"></a></div>
+                <div class="name">Advanced Search <input type="submit" value="Search" /></div>
                 <div class="filter">
                     <div class="label">Price Range </div>
-                    <div class="price-bound"><input type="text" id="lower-bound" /> </div>
-                        -  <div class="price-bound"><input type="text" id="upper-bound" /></div>
+                    <div class="price-bound"><input type="text" name = "lowerprice" id="lower-bound"/> </div>
+                        -  <div class="price-bound"><input type="text" name = "upperprice" id="upper-bound" /></div>
                 </div>
                 <div class="filter" > <div class="label">Stars</div>
                 <div class="rate">
@@ -35,13 +35,11 @@
                     </div>
                 and above
             </div>
-                <div class="filter"><div class="label">Additional Tags</div>
-                    <div class="tags" id="vegan" onclick="select('vegan')">Vegan</div>
-                    <div class="tags" id ="gcash" onclick="select('gcash')">Gcash Available</div>
-                    <div class="tags" id="wifi"onclick="select('wifi')">Free Wi-fi</div>
-                    <div class="tags" id="seat"onclick="select('seat')">Seating Area Available</div>
+                <div class="filter"><div class="label">Category(fastfood, coffee, etc.)</div>
+                    <input type="text" name ="category" />
                 </div>
             </div>
+            
         </form>
         </div>
         
