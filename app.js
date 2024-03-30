@@ -185,7 +185,7 @@ server.post('/create-user', function(req, resp){
         console.log(JSON.stringify(user));
   
           const restosJson = user.toJSON();
-          loggedInUser = restosJson;
+          
           const landmarkresto = [];
           for(let i = 0; i < restodata.length; i++){
               if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
@@ -194,17 +194,19 @@ server.post('/create-user', function(req, resp){
           }
           req.session.login_user = user._id;
           req.session.login_id = req.sessionID;
-          isUser = loggedInUser['linkname'];
-          resp.render('restopage',{
-              layout      : 'index',
-              title       : 'Restaurant',
-              restodata   : restosJson,
-              otherresto  : landmarkresto,
-              user        : loggedInUser,
-              checkUser: isUser
+          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+            loggedInUser = logged;
+            isUser = loggedInUser['linkname'];
+            resp.render('restopage',{
+                layout      : 'index',
+                title       : 'Restaurant',
+                restodata   : restosJson,
+                otherresto  : landmarkresto,
+                user        : loggedInUser,
+                checkUser: isUser
           });
-          
-        
+          })
+    
       }).catch(errorFn);
       });
        
@@ -228,17 +230,20 @@ server.post('/create-user', function(req, resp){
       
             console.log(JSON.stringify(user));
               const userJson = user.toJSON();
-              loggedInUser = userJson;
               req.session.login_user = user._id;
               req.session.login_id = req.sessionID;
-              isUser = loggedInUser['urlname'];
-              resp.render('profile',{
-                  layout      : 'index',
-                  title       : 'Profile',
-                  userdata   : userJson,
-                  user        : loggedInUser,
-                  checkUser: isUser
-              });
+              userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                loggedInUser = logged;
+                isUser = loggedInUser['urlname'];
+                resp.render('profile',{
+                    layout      : 'index',
+                    title       : 'Profile',
+                    userdata   : userJson,
+                    user        : loggedInUser,
+                    checkUser: isUser
+                });
+              })
+              
           
           }).catch(errorFn);
     
@@ -261,17 +266,22 @@ server.post('/read-user', function(req, resp){
                 bcrypt.compare(req.body.pass, login.pass, function(err, result) {
                   if(result){
                   const userJson = login.toJSON();
-                  loggedInUser = userJson;
-                  isUser = loggedInUser['urlname'];
+                  
                   req.session.login_user = login._id;
                   req.session.login_id = req.sessionID;
-                  resp.render('profile', {
-                      layout: 'index',
-                      title: 'Profile',
-                      userdata: userJson,
-                      user: loggedInUser,
-                      checkUser: isUser
-                  });
+                  userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                    loggedInUser = logged;
+                    console.log(loggedInUser)
+                    isUser = loggedInUser['urlname'];
+                    resp.render('profile', {
+                        layout: 'index',
+                        title: 'Profile',
+                        userdata: userJson,
+                        user: loggedInUser,
+                        checkUser: isUser
+                    });
+                  })
+                 
                 } else {
                     resp.render('login',{
                       layout      : 'index',
@@ -289,25 +299,28 @@ server.post('/read-user', function(req, resp){
                       bcrypt.compare(req.body.pass, restos.pass, function(err, result) {
                         if(result){
                           const restosJson = restos.toJSON();
-                          loggedInUser = restosJson;
-                          isUser = loggedInUser['linkname'];
                           console.log(isUser);
                           req.session.login_user = restos._id;
                           req.session.login_id = req.sessionID;
-                          const landmarkresto = [];
-                          for (let i = 0; i < restodata.length; i++) {
-                              if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
-                                  landmarkresto.push(restodata[i]);
-                              }
-                          }
-                          resp.render('restopage', {
-                              layout: 'index',
-                              title: 'Restaurant',
-                              restodata: restosJson,
-                              otherresto: landmarkresto,
-                              user: loggedInUser,
-                              checkUser: isUser
-                          });
+                          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                            loggedInUser = logged;
+                            isUser = loggedInUser['linkname'];
+                            const landmarkresto = [];
+                            for (let i = 0; i < restodata.length; i++) {
+                                if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
+                                    landmarkresto.push(restodata[i]);
+                                }
+                            }
+                            resp.render('restopage', {
+                                layout: 'index',
+                                title: 'Restaurant',
+                                restodata: restosJson,
+                                otherresto: landmarkresto,
+                                user: loggedInUser,
+                                checkUser: isUser
+                            });
+                          })
+                          
                         } else {
                           resp.render('login',{
                             layout      : 'index',
