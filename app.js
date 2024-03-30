@@ -116,11 +116,9 @@ server.get('/', function(req, resp){
   if (req.session.login_user && req.session.login_id) {
     req.session.destroy(function(err) {
       if (err) {
-        // Handle error if session destruction fails
         console.error('Error destroying session:', err);
         resp.status(500).send('Internal Server Error');
       } else {
-        // Redirect only after session destruction
         resp.redirect('/');
       }
     });
@@ -187,12 +185,16 @@ server.post('/create-user', function(req, resp){
         console.log(JSON.stringify(user));
   
           const restosJson = user.toJSON();
+          loggedInUser = restosJson;
           const landmarkresto = [];
           for(let i = 0; i < restodata.length; i++){
               if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
                   landmarkresto.push(restodata[i]);
               }
           }
+          req.session.login_user = user._id;
+          req.session.login_id = req.sessionID;
+          isUser = loggedInUser['linkname'];
           resp.render('restopage',{
               layout      : 'index',
               title       : 'Restaurant',
@@ -225,9 +227,11 @@ server.post('/create-user', function(req, resp){
             console.log('User created');
       
             console.log(JSON.stringify(user));
-      
               const userJson = user.toJSON();
               loggedInUser = userJson;
+              req.session.login_user = user._id;
+              req.session.login_id = req.sessionID;
+              isUser = loggedInUser['urlname'];
               resp.render('profile',{
                   layout      : 'index',
                   title       : 'Profile',
@@ -338,6 +342,10 @@ server.post('/read-user', function(req, resp){
 
 
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
     restoModel.findOne(searchQuery).then(function(restos){
@@ -423,6 +431,10 @@ server.get('/profile-page/:urlname', function(req, resp){
 });
 
   server.get('/restoquery/:name/', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = { name: req.params.name };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -447,7 +459,10 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
   server.get('/showall/', function(req, resp){
-    
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     let searchQuery;
     if(req.query.searchfield === undefined){
         searchQuery = {};
@@ -490,7 +505,10 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
   server.get('/showalladvanced/', function(req, resp){
-    
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
   // Initialize an empty search query object
     let searchQuery = {};
 
@@ -562,6 +580,10 @@ server.post('/change-restobio', function(req, resp){
 });
 
 server.post('/deletecomment', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     //const updateQuery = { user: req.body.id };
     console.log("req.body.id: " + req.body.id);
   //user -> revdata
@@ -643,6 +665,10 @@ userModel.find({}).then(function(users){
 });
 
 server.post('/replycomment', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
   //const updateQuery = { user: req.body.id };
   console.log("req.body.id: " + req.body.id);
   console.log("req.body.reply: " + req.body.reply);
@@ -692,6 +718,10 @@ server.post('/replycomment', function(req, resp){
 
 
 server.post('/leavereview', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     //const updateQuery = { user: req.body.id };
     console.log("req.body.person: " + req.body.person);
     console.log("req.body.rating: " + req.body.rating);
