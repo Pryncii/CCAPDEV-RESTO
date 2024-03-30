@@ -41,6 +41,13 @@ server.use(session({
   })
 }));
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+const default_user = "user1";
+const default_pass = "pass1";
+let encrypted_pass = "";
+
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
@@ -180,6 +187,10 @@ server.post('/create-user', function(req, resp){
     }
 
     else {
+      bcrypt.hash(default_pass, saltRounds, function(err, hash) {
+        encrypted_pass = hash;
+        console.log("Encrypted pass: "+encrypted_pass);
+      });
         newModel = new userModel({
             name: req.body.fname,
             urlname: req.body.fname.replace(/ /g, "_"),
