@@ -27,6 +27,19 @@ server.use(express.static('public'));
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restodb');
+const session = require('express-session');
+const mongoStore = require('connect-mongodb-session')(session);
+
+server.use(session({
+  secret: 'a secret fruit',
+  saveUninitialized: true, 
+  resave: false,
+  store: new mongoStore({ 
+    uri: 'mongodb://localhost:27017/restodb',
+    collection: 'mySession',
+    expires: 1000*60*60 // 1 hour
+  })
+}));
 
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
@@ -96,10 +109,24 @@ const userdata = getUserList();
 console.log(userdata);
 
 server.get('/', function(req, resp){
-    resp.render('main',{
-        layout      : 'index',
-        title       : 'Main Menu',
+  if (req.session.login_user && req.session.login_id) {
+    req.session.destroy(function(err) {
+      if (err) {
+        // Handle error if session destruction fails
+        console.error('Error destroying session:', err);
+        resp.status(500).send('Internal Server Error');
+      } else {
+        // Redirect only after session destruction
+        resp.redirect('/');
+      }
     });
+  } else {
+    // If no session to destroy, render the main menu
+    resp.render('main', {
+      layout: 'index',
+      title: 'Main Menu',
+    });
+  }
 });
 
 //Use this to determine the user who's logged in
@@ -215,6 +242,8 @@ server.post('/read-user', function(req, resp){
                 const userJson = login.toJSON();
                 loggedInUser = userJson;
                 isUser = loggedInUser['urlname'];
+                req.session.login_user = login._id;
+                req.session.login_id = req.sessionID;
                 resp.render('profile', {
                     layout: 'index',
                     title: 'Profile',
@@ -229,6 +258,8 @@ server.post('/read-user', function(req, resp){
                         loggedInUser = restosJson;
                         isUser = loggedInUser['linkname'];
                         console.log(isUser);
+                        req.session.login_user = login._id;
+                        req.session.login_id = req.sessionID;
                         const landmarkresto = [];
                         for (let i = 0; i < restodata.length; i++) {
                             if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
@@ -266,6 +297,7 @@ server.post('/read-user', function(req, resp){
         
 });
 
+
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
@@ -294,6 +326,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
   });
 
 server.get('/restopage/:landmark/', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     const searchQuery = { landmark: req.params.landmark };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -326,7 +362,11 @@ server.get('/restopage/:landmark/', function(req, resp){
 });
 
 server.get('/profile-page/:urlname', function(req, resp){
-    const searchQuery = { urlname: req.params.urlname};
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  const searchQuery = { urlname: req.params.urlname};
 
     userModel.findOne(searchQuery).then(function(user){
         //console.log(JSON.stringify(user));
