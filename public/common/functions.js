@@ -322,9 +322,50 @@ $(document).on('click', '#reportresto', function(){
     $('.restodesc').html(newHtmlContent);
 });
 
+function getRating(ratingElements){
+  var rating = "";
+  var stars = 0;
+
+  if (ratingElements.length > 0) {stars = ratingElements.length; }
+  console.log("ratingElements: " + ratingElements.length);
+  console.log("stars: " + stars);
+  for (var i = 0; i < 5; i++) {
+      if (i <= stars-1) {
+          rating += "★"; 
+      } else {
+          rating += "☆"; 
+      }
+  }
+
+  return rating;
+}
 
 $(document).on('click', '#review', function(){
-  alert("Functionality coming in MCO3!");
+  
+  var person = $(this).data('person');
+  var review = document.getElementById('reviewcomment').value;
+  console.log("person: " + person);
+  console.log("review: " + review);
+  var rating = ""; 
+
+  rating = getRating(document.querySelectorAll('input[name="rate-resto"]:checked'));
+
+  console.log("rating: " + rating);
+
+  console.log('IN review request');
+  $.post('/leavereview',{
+    review: review, person: person, rating: rating
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('review request successful');
+      $('#myForm')[0].reset(); // Use jQuery to reset form
+      $('input[name="rate-resto"]').prop('checked', false); // Clear radio buttons
+          var ratingElementsL = document.querySelectorAll('input[name="rate-resto"]:checked');
+          console.log("ratingElementsL: " + ratingElementsL.length);
+      window.location.reload();
+    }
+  });
+   
 });
 
 
@@ -339,6 +380,8 @@ $(document).on('click', '#deletecomment', function(){
 $(document).on('click', '#replyedit', function(){
   alert("Functionality coming in MCO3!");
 });
+
+
 
 // DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){

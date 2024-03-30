@@ -610,6 +610,56 @@ server.post('/replycomment', function(req, resp){
 
   
 });
+
+
+server.post('/leavereview', function(req, resp){
+    //const updateQuery = { user: req.body.id };
+    console.log("req.body.person: " + req.body.person);
+    console.log("req.body.rating: " + req.body.rating);
+  
+    userModel.findOne({name: req.body.person}).then(function(user){
+      console.log("user: " + user);
+      let userimage = user.image;
+      let userurl = user.urlname;
+      
+      restoModel.find({}).then(function(restos){
+        console.log('List successful');
+      
+        let found = 0; // all restaurants
+        for(let i = 0; i < restos.length && found == 0; i++)
+        { // all reviews in that restaurant
+          let j = restos[i].revdata.length;
+
+  
+              let newReview = {
+                revimg: userimage,
+                revname: req.body.person,
+                revrating: req.body.rating,
+                rev: req.body.review,
+                likes: 0,
+                dislikes: 0,
+                urlname: userurl,
+                notdeleted: true
+              };
+      
+              restos[i].revdata.push(newReview);
+
+              console.log("review found: " + restos[i].revdata[j]["rev"]);
+              console.log("review found: " + restos[i].revdata[j]["revrating"]);
+
+              restos[i].revdata[j]["hascomments"] = false;
+              found = 1;
+              restos[i].save();
+              resp.sendStatus(200);
+            
+          
+        }
+      }).catch(errorFn);
+    }).catch(errorFn);
+  
+    
+  });
+    
   
   
 
