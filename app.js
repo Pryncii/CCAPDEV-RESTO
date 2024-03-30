@@ -538,10 +538,13 @@ server.get('/profile-page/:urlname', function(req, resp){
     }
 
     // Check if rate is defined and non-empty
-    if (req.query.rate !== '') {
+    if (req.query.rate >= 1) {
         // Add rating query to the search query
         searchQuery.rating = { $gte: req.query.rate };
         console.log(req.query.rate);
+    } else {
+      searchQuery.rating = { $gte: 0 };
+      console.log(req.query.rate);
     }
 
     // Check if category is defined and non-empty
