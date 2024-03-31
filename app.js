@@ -84,8 +84,9 @@ const restoSchema = new mongoose.Schema({
 },{ versionKey: false });
 
 const friendSchema = new mongoose.Schema({
-    friendname: { type: String },
-    friendimage: { type: String },
+    otherusername: { type: String },
+    otheruserimage: { type: String },
+    urlname: { type: String }
 });
 
 const userSchema = new mongoose.Schema({
@@ -95,7 +96,7 @@ const userSchema = new mongoose.Schema({
     pass: { type: String },
     image: { type: String },
     description: {type: String},
-    friends: [friendSchema],
+    otherusers: [friendSchema],
     revdata: [reviewSchema]
 },{ versionKey: false });
 

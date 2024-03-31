@@ -7,26 +7,26 @@
         "loggedIn": false,
         "image": "/common/Images/PFPs/Prince.jpg",
         "description": "Food Enjoyer, 2nd year CCS student who is perpetually hungry.",
-        "friends": 
+        "otherusers": 
         [
             {
-                "friendname": "Lingat, Blix",
-                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "otherusername": "Lingat, Blix",
+                "otheruserimage": "/common/Images/PFPs/Blix.jpg",
                 "urlname": "Lingat_Blix"
             }, 
             {
-                "friendname": "Ruiz, Chester",
-                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "otherusername": "Ruiz, Chester",
+                "otheruserimage": "/common/Images/PFPs/catpfp.png",
                 "urlname": "Ruiz_Chester"
             }, 
             {
-                "friendname": "Arco, Gaby",
-                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "otherusername": "Arco, Gaby",
+                "otheruserimage": "/common/Images/PFPs/Gaby.jpg",
                 "urlname": "Arco_Gaby"
             }, 
             {
-                "friendname": "Chua, Micole",
-                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "otherusername": "Chua, Micole",
+                "otheruserimage": "/common/Images/PFPs/Micole.jpg",
                 "urlname": "Chua_Micole"
             }
         ],
@@ -68,26 +68,26 @@
         "loggedIn": false,
         "image": "/common/Images/PFPs/Blix.jpg",
         "description": "Lover of all things Japan.",
-        "friends": 
+        "otherusers": 
         [
             {
-                "friendname": "Buencamino, Prince",
-                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "otherusername": "Buencamino, Prince",
+                "otheruserimage": "/common/Images/PFPs/Prince.jpg",
                 "urlname": "Buencamino_Prince"
             }, 
             {
-                "friendname": "Ruiz, Chester",
-                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "otherusername": "Ruiz, Chester",
+                "otheruserimage": "/common/Images/PFPs/catpfp.png",
                 "urlname": "Ruiz_Chester"
             }, 
             {
-                "friendname": "Arco, Gaby",
-                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "otherusername": "Arco, Gaby",
+                "otheruserimage": "/common/Images/PFPs/Gaby.jpg",
                 "urlname": "Arco_Gaby"
             }, 
             {
-                "friendname": "Chua, Micole",
-                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "otherusername": "Chua, Micole",
+                "otheruserimage": "/common/Images/PFPs/Micole.jpg",
                 "urlname": "Chua_Micole"
             }
         ],
@@ -129,26 +129,26 @@
         "loggedIn": false,
         "image": "/common/Images/PFPs/catpfp.png",
         "description": "The only human on earth who likes mushroom pepper steak.",
-        "friends": 
+        "otherusers": 
         [
             {
-                "friendname": "Lingat, Blix",
-                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "otherusername": "Lingat, Blix",
+                "otheruserimage": "/common/Images/PFPs/Blix.jpg",
                 "urlname": "Lingat_Blix"
             }, 
             {
-                "friendname": "Buencamino, Prince",
-                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "otherusername": "Buencamino, Prince",
+                "otheruserimage": "/common/Images/PFPs/Prince.jpg",
                 "urlname": "Buencamino_Prince"
             }, 
             {
-                "friendname": "Arco, Gaby",
-                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "otherusername": "Arco, Gaby",
+                "otheruserimage": "/common/Images/PFPs/Gaby.jpg",
                 "urlname": "Arco_Gaby"
             }, 
             {
-                "friendname": "Chua, Micole",
-                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "otherusername": "Chua, Micole",
+                "otheruserimage": "/common/Images/PFPs/Micole.jpg",
                 "urlname": "Chua_Micole"
             }
         ],
@@ -190,26 +190,26 @@
         "loggedIn": false,
         "image": "/common/Images/PFPs/Gaby.jpg",
         "description": "Dimsum treats number 1 4evah.",
-        "friends": 
+        "otherusers": 
         [
             {
-                "friendname": "Lingat, Blix",
-                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "otherusername": "Lingat, Blix",
+                "otheruserimage": "/common/Images/PFPs/Blix.jpg",
                 "urlname": "Lingat_Blix"
             }, 
             {
-                "friendname": "Ruiz, Chester",
-                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "otherusername": "Ruiz, Chester",
+                "otheruserimage": "/common/Images/PFPs/catpfp.png",
                 "urlname": "Ruiz_Chester"
             }, 
             {
-                "friendname": "Buencamino, Prince",
-                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "otherusername": "Buencamino, Prince",
+                "otheruserimage": "/common/Images/PFPs/Prince.jpg",
                 "urlname": "Buencamino_Prince"
             }, 
             {
-                "friendname": "Chua, Micole",
-                "friendimage": "/common/Images/PFPs/Micole.jpg",
+                "otherusername": "Chua, Micole",
+                "otheruserimage": "/common/Images/PFPs/Micole.jpg",
                 "urlname": "Chua_Micole"
             }
         ],
@@ -251,26 +251,26 @@
         "loggedIn": false,
         "image": "/common/Images/PFPs/Micole.jpg",
         "description": "wagyu should not look like spam btw",
-        "friends": 
+        "otherusers": 
         [
             {
-                "friendname": "Lingat, Blix",
-                "friendimage": "/common/Images/PFPs/Blix.jpg",
+                "otherusername": "Lingat, Blix",
+                "otheruserimage": "/common/Images/PFPs/Blix.jpg",
                 "urlname": "Lingat_Blix"
             }, 
             {
-                "friendname": "Ruiz, Chester",
-                "friendimage": "/common/Images/PFPs/catpfp.png",
+                "otherusername": "Ruiz, Chester",
+                "otheruserimage": "/common/Images/PFPs/catpfp.png",
                 "urlname": "Ruiz_Chester"
             }, 
             {
-                "friendname": "Arco, Gaby",
-                "friendimage": "/common/Images/PFPs/Gaby.jpg",
+                "otherusername": "Arco, Gaby",
+                "otheruserimage": "/common/Images/PFPs/Gaby.jpg",
                 "urlname": "Arco_Gaby"
             }, 
             {
-                "friendname": "Buencamino, Prince",
-                "friendimage": "/common/Images/PFPs/Prince.jpg",
+                "otherusername": "Buencamino, Prince",
+                "otheruserimage": "/common/Images/PFPs/Prince.jpg",
                 "urlname": "Buencamino_Prince"
             }
         ],
