@@ -168,8 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-
 function toggleComments(id, id2, id3) {
 var button = document.getElementById(id);
 if (button.textContent === 'Show/Leave Comments') {
@@ -276,13 +274,27 @@ $(document).on('click', '#changepic', function(){
 
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-userbio" method "post">
+        <form class="review-form-container" onclick = "changeuserbio('userbio', {{userdata}})">
             <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
     `;
     $('.userbio').html(newHtmlContent);
 });
+
+function changeuserbio(elemname, user){
+  var element = $("[name="+elemname+"]");
+  const vuser = {
+    name: user.name,
+    urlname: user.urlname,
+    user: user.user,
+    pass: user.pass,
+    image: user.image,
+    description: element.textContent,
+    friends: user.friends,
+    revdata: user.revdata
+  }
+}
 
 $(document).on('click', '#reportuser', function(){
   var newHtmlContent = `

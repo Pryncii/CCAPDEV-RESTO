@@ -129,11 +129,11 @@
                                     
                                     <div class = "usereditbio2">
                                         <div class="thumbs">
-                                            <div class="like grow">
-                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{@index}}" >{{this.likes}}</i>
+                                            <div class="like grow" >
+                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{@index}}" >{{this.likes.length}}</i>
                                             </div>
                                             <div class="dislike grow">
-                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{@index}}" >{{this.dislikes}}</i>
+                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{@index}}" >{{this.dislikes.length}}</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             {{#if hascomments}}
@@ -171,10 +171,10 @@
                                                         <div class = "usereditbio2">
                                                             <div class="thumbs">
                                                                 <div class="like grow">
-                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{reviewIndex}}-{{commentIndex}}" >{{this.likes}}</i>
+                                                                    <i class="fa fa-thumbs-up like" aria-hidden="true" id="like-review-{{reviewIndex}}-{{commentIndex}}" >{{this.likes.length}}</i>
                                                                 </div>
                                                                 <div class="dislike grow">
-                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{reviewIndex}}-{{commentIndex}}" >{{this.dislikes}}</i>
+                                                                    <i class="fa fa-thumbs-down like" aria-hidden="true" id="dislike-review-{{reviewIndex}}-{{commentIndex}}" >{{this.dislikes.length}}</i>
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>

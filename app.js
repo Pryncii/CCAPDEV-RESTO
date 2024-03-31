@@ -59,9 +59,12 @@ const reviewSchema = new mongoose.Schema({
     revrating: { type: String},
     rev: { type: String },
     hascomments: { type: Boolean },
+    likes: {type: [String]},
+    dislikes: {type: [String]},
     comments: [commentSchema],
     urlname: { type: String},
     notdeleted: { type: Boolean }
+    
 });
 
 const restoSchema = new mongoose.Schema({
@@ -340,6 +343,8 @@ server.post('/read-user', function(req, resp){
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
+
+    //options.returnDocument='after'
     restoModel.findOne(searchQuery).then(function(restos){
       //console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
@@ -350,6 +355,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
                 landmarkresto.push(restodata[i]);
             }
         }
+        
         resp.render('restopage',{
             layout      : 'index',
             title       : 'Restaurant',
@@ -555,6 +561,26 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.post('/change-userbio', function(req, resp){
+    
+    const searchQuery = { user: req.body.user};
+    //look for the user
+    //compare if the password of the user matches the encrypted one 
+    userModel.findOne(searchQuery).then(function(login) {
+              console.log('Finding user');
+                    isUser = loggedInUser['urlname'];
+                    req.session.login_user = login._id;
+                    req.session.login_id = req.sessionID;
+                    resp.render('profile', {
+                        layout: 'index',
+                        title: 'Profile',
+                        userdata: userJson,
+                        user: loggedInUser,
+                        checkUser: isUser
+                    });
+                  
+                  });
+  });
 
 server.post('/change-restobio', function(req, resp){
     
@@ -670,8 +696,8 @@ server.post('/replycomment', function(req, resp){
               comimg: userimage,
               comname: req.body.person,
               com: req.body.reply,
-              likes: 0,
-              dislikes: 0,
+              likes: [],
+              dislikes: [],
               urlname: userurl,
               notdeleted: true
             };
@@ -715,8 +741,8 @@ server.post('/leavereview', function(req, resp){
                 revname: req.body.person,
                 revrating: req.body.rating,
                 rev: req.body.review,
-                likes: 0,
-                dislikes: 0,
+                likes: [],
+                dislikes: [],
                 urlname: userurl,
                 notdeleted: true
               };
