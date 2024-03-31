@@ -387,6 +387,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             }
         }
 
+        restos.rating = getratesum/restos.revdata.length;
+
         console.log("rating:"+(getratesum/restos.revdata.length));
         
         resp.render('restopage',{
@@ -815,6 +817,18 @@ server.post('/leavereview', function(req, resp){
               };
       
               restos[i].revdata.push(newReview);
+
+              let getratesum = 0;
+              for(let l = 0; l < restos[i].revdata.length; l++){
+                for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
+                    if(restos[i].revdata[l].revrating[k] == "★"){
+                        getratesum+= 1;
+                    }
+                }
+              }
+              
+              restos[i].rating = getratesum/restos[i].revdata.length;
+
 
               console.log("review found: " + restos[i].revdata[j]["rev"]);
               console.log("review found: " + restos[i].revdata[j]["revrating"]);
