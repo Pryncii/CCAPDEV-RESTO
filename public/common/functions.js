@@ -304,7 +304,7 @@ $(document).ready(function(){
 
 $(document).on('click', '#changepic', function(){
   var newHtmlContent = `
-  <form class="review-form-container" action = "change-profilepic" method ="post"">
+  <form class="review-form-container" action = "/change-profilepic/" method ="post"">
       <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
       <button type="submitreview-button" class="editbio-button">Submit</button>
   </form>
@@ -314,7 +314,7 @@ $('.userbio').html(newHtmlContent);
 
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-userbio" method ="post"">
+        <form class="review-form-container" action = "/change-userbio/" method ="post"">
             <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -325,7 +325,7 @@ $(document).on('click', '#changebio', function(){
 
 $(document).on('click', '#reportuser', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "report-user" method ="post">
+        <form class="review-form-container" action = "/report-user/" method ="post">
             <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -339,7 +339,7 @@ $(document).on('click', '#mapbutton', function(){
 
 $(document).on('click', '#changerestopic', function(){
   var newHtmlContent = `
-  <form class="review-form-container" action = "change-restopic" method ="post"">
+  <form class="review-form-container" action = "/change-restopic/" method ="post"">
       <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
       <button type="submitreview-button" class="editbio-button">Submit</button>
   </form>
@@ -349,7 +349,7 @@ $('.userbio').html(newHtmlContent);
 
 $(document).on('click', '#changerestobio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-restobio" method = "post">
+        <form class="review-form-container" action = "/change-restobio/" method = "post">
             <textarea name="restodesc" id="reviewcomment">Enter New Description!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -359,7 +359,7 @@ $(document).on('click', '#changerestobio', function(){
 
 $(document).on('click', '#reportresto', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "report-resto" method "post">
+        <form class="review-form-container" action = "/report-resto/" method "post">
             <textarea name="restodesc" id="reviewcomment">What's the issue?</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>

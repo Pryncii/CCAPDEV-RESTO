@@ -671,7 +671,7 @@ server.post('/reaction', function(req, resp){
       }
   });
     
-      resp.redirect('/?success=true');
+  resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
   server.post('/change-userbio', function(req, resp){
     const userbio= req.body.userbio;
@@ -684,8 +684,7 @@ server.post('/reaction', function(req, resp){
           console.log("Updated Docs : ", docs);
       }
   });
-    
-      resp.redirect('/?success=true');
+      resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
 
   server.post('/change-restopic', function(req, resp){
@@ -701,7 +700,7 @@ server.post('/reaction', function(req, resp){
       }
   });
     
-      resp.redirect('/?success=true');
+  resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
       
   });
 server.post('/change-restobio', function(req, resp){
@@ -717,7 +716,7 @@ server.post('/change-restobio', function(req, resp){
     }
 });
   
-    resp.redirect('/?success=true');
+    resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
     
 });
 
