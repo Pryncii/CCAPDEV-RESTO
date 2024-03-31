@@ -168,6 +168,26 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+function likedislike(restodata, user, action, revindex, comindex){
+
+  
+  const userModel = mongoose.model('users', userSchema);
+    if(comindex == -1){
+      //if review
+      if(action == like ){
+        //tryna like
+        
+        if(restodata.revdata[revindex].dislikes.contains(user.name)){
+          //tryna dislike
+        } 
+      
+    }
+    
+  }//if
+  /** */
+
+}
+
 function toggleComments(id, id2, id3) {
 var button = document.getElementById(id);
 if (button.textContent === 'Show/Leave Comments') {
@@ -269,7 +289,13 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '#changepic', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+  <form class="review-form-container" action = "change-profilepic" method ="post"">
+      <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
+      <button type="submitreview-button" class="editbio-button">Submit</button>
+  </form>
+`;
+$('.userbio').html(newHtmlContent);
 });
 
 $(document).on('click', '#changebio', function(){
@@ -298,7 +324,13 @@ $(document).on('click', '#mapbutton', function(){
 });
 
 $(document).on('click', '#changerestopic', function(){
-  alert("Functionality coming in MCO3!");
+  var newHtmlContent = `
+  <form class="review-form-container" action = "change-restopic" method ="post"">
+      <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
+      <button type="submitreview-button" class="editbio-button">Submit</button>
+  </form>
+`;
+$('.userbio').html(newHtmlContent);
 });
 
 $(document).on('click', '#changerestobio', function(){

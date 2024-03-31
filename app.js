@@ -362,6 +362,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
       resp.redirect('/?login=unlogged');
       return;
     }
+    
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
 
@@ -595,7 +596,20 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  server.post('/change-profilepic', function(req, resp){
+    const pic= req.body.userbio;
   
+    userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).then(function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated Docs : ", docs);
+      }
+  });
+    
+      resp.redirect('/?success=true');
+  });
   server.post('/change-userbio', function(req, resp){
     const userbio= req.body.userbio;
   
@@ -611,6 +625,22 @@ server.get('/profile-page/:urlname', function(req, resp){
       resp.redirect('/?success=true');
   });
 
+  server.post('/change-restopic', function(req, resp){
+    console.log("changerestoimg");
+    const img= req.body.userbio;
+    
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img}).then(function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated Docs : ", docs);
+      }
+  });
+    
+      resp.redirect('/?success=true');
+      
+  });
 server.post('/change-restobio', function(req, resp){
   console.log("changerestobio");
   const userbio= req.body.restodesc;
