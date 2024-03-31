@@ -303,7 +303,7 @@ $(document).on('click', '#changerestopic', function(){
 
 $(document).on('click', '#changerestobio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-restobio" method "post">
+        <form class="review-form-container" action = "change-restobio" method = "post">
             <textarea name="restodesc" id="reviewcomment">Enter New Description!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
