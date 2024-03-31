@@ -337,13 +337,14 @@ function getRating(ratingElements){
   return rating;
 }
 
-//ADD/EDIT/DELETE REVIEW
+//ADD/EDIT REVIEW
 var form = document.getElementById('myForm');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent the default form submission behavior
 
   var person = document.getElementById('review').getAttribute('data-person');
+  var resto = document.getElementById('review').getAttribute('data-resto');
   var review = document.getElementById('reviewcomment').value;
   console.log("person: " + person);
   console.log("review: " + review);
@@ -367,7 +368,7 @@ form.addEventListener('submit', function(event) {
   form.reset();
 
   $.post('/leavereview',{
-    review: review, person: person, rating: rating
+    review: review, person: person, rating: rating, resto: resto
   }, function(data, status){
     if(status === 'success'){
       console.log('review request successful');
@@ -381,21 +382,6 @@ form.addEventListener('submit', function(event) {
   });
    
 });
-
-$(document).on('click', '.delete-comment', function(){
-  var revId = $(this).data('commentdelete-id');
-  console.log("revId: " + revId);
-
-  $.post('/deletereviews',{
-    id: revId,
-  }, function(data, status){
-    if(status === 'success'){
-      console.log('Delete review request successful');
-      window.location.reload();
-    }
-  });
-}); 
-
 
 $(document).on('click', '#editcomment', function(){
   alert("Functionality coming in MCO3!");
