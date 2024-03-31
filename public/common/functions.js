@@ -274,7 +274,7 @@ $(document).on('click', '#changepic', function(){
 
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" onclick = "changeuserbio('userbio', {{userdata}})">
+        <form class="review-form-container" action = "change-userbio" method ="post"">
             <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -282,23 +282,10 @@ $(document).on('click', '#changebio', function(){
     $('.userbio').html(newHtmlContent);
 });
 
-function changeuserbio(elemname, user){
-  var element = $("[name="+elemname+"]");
-  const vuser = {
-    name: user.name,
-    urlname: user.urlname,
-    user: user.user,
-    pass: user.pass,
-    image: user.image,
-    description: element.textContent,
-    friends: user.friends,
-    revdata: user.revdata
-  }
-}
 
 $(document).on('click', '#reportuser', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "report-user" method "post">
+        <form class="review-form-container" action = "report-user" method ="post">
             <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>

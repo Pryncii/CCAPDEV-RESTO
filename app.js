@@ -26,7 +26,7 @@ server.set('view engine', 'hbs');
 server.use(express.static('public'));
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/restodb');
+mongoose.connect('mongodb://localhost:27017/restodb') .catch (error => console.log(error));
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
 
@@ -595,29 +595,35 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  
   server.post('/change-userbio', function(req, resp){
+    const userbio= req.body.userbio;
+  
+    userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated Docs : ", docs);
+      }
+  });
     
-    const searchQuery = { user: req.body.user};
-    //look for the user
-    //compare if the password of the user matches the encrypted one 
-    userModel.findOne(searchQuery).then(function(login) {
-              console.log('Finding user');
-                    isUser = loggedInUser['urlname'];
-                    req.session.login_user = login._id;
-                    req.session.login_id = req.sessionID;
-                    resp.render('profile', {
-                        layout: 'index',
-                        title: 'Profile',
-                        userdata: userJson,
-                        user: loggedInUser,
-                        checkUser: isUser
-                    });
-                  
-                  });
+      resp.redirect('/?success=true');
   });
 
 server.post('/change-restobio', function(req, resp){
-    
+  const userbio= req.body.userbio;
+  
+  userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+});
+  
+    resp.redirect('/?success=true');
     
 });
 
