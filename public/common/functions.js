@@ -168,8 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-
 function toggleComments(id, id2, id3) {
 var button = document.getElementById(id);
 if (button.textContent === 'Show/Leave Comments') {
@@ -276,7 +274,7 @@ $(document).on('click', '#changepic', function(){
 
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-userbio" method "post">
+        <form class="review-form-container" action = "change-userbio" method ="post"">
             <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -284,9 +282,10 @@ $(document).on('click', '#changebio', function(){
     $('.userbio').html(newHtmlContent);
 });
 
+
 $(document).on('click', '#reportuser', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "report-user" method "post">
+        <form class="review-form-container" action = "report-user" method ="post">
             <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>

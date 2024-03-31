@@ -26,7 +26,7 @@ server.set('view engine', 'hbs');
 server.use(express.static('public'));
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/restodb');
+mongoose.connect('mongodb://localhost:27017/restodb') .catch (error => console.log(error));
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
 
@@ -59,9 +59,12 @@ const reviewSchema = new mongoose.Schema({
     revrating: { type: String},
     rev: { type: String },
     hascomments: { type: Boolean },
+    likes: {type: [String]},
+    dislikes: {type: [String]},
     comments: [commentSchema],
     urlname: { type: String},
     notdeleted: { type: Boolean }
+    
 });
 
 const restoSchema = new mongoose.Schema({
@@ -361,6 +364,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
     }
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
+
+    //options.returnDocument='after'
     restoModel.findOne(searchQuery).then(function(restos){
       //console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
@@ -371,6 +376,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
                 landmarkresto.push(restodata[i]);
             }
         }
+        
         resp.render('restopage',{
             layout      : 'index',
             title       : 'Restaurant',
@@ -589,9 +595,35 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  
+  server.post('/change-userbio', function(req, resp){
+    const userbio= req.body.userbio;
+  
+    userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated Docs : ", docs);
+      }
+  });
+    
+      resp.redirect('/?success=true');
+  });
 
 server.post('/change-restobio', function(req, resp){
-    
+  const userbio= req.body.userbio;
+  
+  userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+});
+  
+    resp.redirect('/?success=true');
     
 });
 
@@ -712,8 +744,8 @@ server.post('/replycomment', function(req, resp){
               comimg: userimage,
               comname: req.body.person,
               com: req.body.reply,
-              likes: 0,
-              dislikes: 0,
+              likes: [],
+              dislikes: [],
               urlname: userurl,
               notdeleted: true
             };
@@ -764,8 +796,8 @@ server.post('/leavereview', function(req, resp){
                 revname: req.body.person,
                 revrating: req.body.rating,
                 rev: req.body.review,
-                likes: 0,
-                dislikes: 0,
+                likes: [],
+                dislikes: [],
                 urlname: userurl,
                 notdeleted: true
               };
