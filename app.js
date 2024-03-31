@@ -27,6 +27,23 @@ server.use(express.static('public'));
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restodb');
+const session = require('express-session');
+const mongoStore = require('connect-mongodb-session')(session);
+
+server.use(session({
+  secret: 'a secret fruit',
+  saveUninitialized: true, 
+  resave: false,
+  store: new mongoStore({ 
+    uri: 'mongodb://localhost:27017/restodb',
+    collection: 'mySession',
+    expires: 1000*60*60 // 1 hour
+  })
+}));
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+let encrypted_pass = "";
 
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
@@ -96,10 +113,22 @@ const userdata = getUserList();
 console.log(userdata);
 
 server.get('/', function(req, resp){
-    resp.render('main',{
-        layout      : 'index',
-        title       : 'Main Menu',
+  if (req.session.login_user && req.session.login_id) {
+    req.session.destroy(function(err) {
+      if (err) {
+        console.error('Error destroying session:', err);
+        resp.status(500).send('Internal Server Error');
+      } else {
+        resp.redirect('/');
+      }
     });
+  } else {
+    // If no session to destroy, render the main menu
+    resp.render('main', {
+      layout: 'index',
+      title: 'Main Menu',
+    });
+  }
 });
 
 //Use this to determine the user who's logged in
@@ -131,118 +160,176 @@ server.post('/create-user', function(req, resp){
 
     if (selectedRadioValue == "yes")
     {
-       
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        encrypted_pass = hash;
+        console.log("Encrypted pass: "+encrypted_pass);
         newModel = new restoModel({
-            name: req.body.fname,
-            linkname: req.body.fname.replace(/ /g, "_"),
-            user: req.body.username,
-            pass: req.body.password,
-            image: "/common/Images/PFPs/resto-default.jpg",
-            imagesquare: "/common/Images/PFPs/resto-default.jpg", 
-            description: "",
-            landmark: req.body.elandm.replace(/ /g, "_"),
-            rating: 0,
-            category: req.body.category,
-            price: req.body.price,
-            maplink: req.body.map,
-            revdata: [],
+          name: req.body.fname,
+          linkname: req.body.fname.replace(/ /g, "_"),
+          user: req.body.username,
+          pass: encrypted_pass,
+          image: "/common/Images/PFPs/resto-default.jpg",
+          imagesquare: "/common/Images/PFPs/resto-default.jpg", 
+          description: "",
+          landmark: req.body.elandm.replace(/ /g, "_"),
+          rating: 0,
+          category: req.body.category,
+          price: req.body.price,
+          maplink: req.body.map,
+          revdata: [],
 
-        });
-        model = 0;
+      });
+      newModel.save().then(function(user){
+        console.log('User created');
+  
+        console.log(JSON.stringify(user));
+  
+          const restosJson = user.toJSON();
+          
+          const landmarkresto = [];
+          for(let i = 0; i < restodata.length; i++){
+              if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
+                  landmarkresto.push(restodata[i]);
+              }
+          }
+          req.session.login_user = user._id;
+          req.session.login_id = req.sessionID;
+          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+            loggedInUser = logged;
+            isUser = loggedInUser['linkname'];
+            resp.render('restopage',{
+                layout      : 'index',
+                title       : 'Restaurant',
+                restodata   : restosJson,
+                otherresto  : landmarkresto,
+                user        : loggedInUser,
+                checkUser: isUser
+          });
+          })
     
+      }).catch(errorFn);
+      });
+       
     }
 
     else {
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        encrypted_pass = hash;
+        console.log("Encrypted pass: "+encrypted_pass);
         newModel = new userModel({
-            name: req.body.fname,
-            urlname: req.body.fname.replace(/ /g, "_"),
-            user: req.body.username,
-            pass: req.body.password,
-            image: "/common/Images/PFPs/profile.webp",
-            description: "",
-            friends: [],
-            reviews: [] });
-        model = 1;
-
+          name: req.body.fname,
+          urlname: req.body.fname.replace(/ /g, "_"),
+          user: req.body.username,
+          pass: encrypted_pass,
+          image: "/common/Images/PFPs/profile.webp",
+          description: "",
+          friends: [],
+          reviews: [] });
+          newModel.save().then(function(user){
+            console.log('User created');
+      
+            console.log(JSON.stringify(user));
+              const userJson = user.toJSON();
+              req.session.login_user = user._id;
+              req.session.login_id = req.sessionID;
+              userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                loggedInUser = logged;
+                isUser = loggedInUser['urlname'];
+                resp.render('profile',{
+                    layout      : 'index',
+                    title       : 'Profile',
+                    userdata   : userJson,
+                    user        : loggedInUser,
+                    checkUser: isUser
+                });
+              })
+              
+          
+          }).catch(errorFn);
+    
+      });
     }
     
-      newModel.save().then(function(user){
-      console.log('User created');
-
-      console.log(JSON.stringify(user));
-
-      if (model == 1) {
-        const userJson = user.toJSON();
-        loggedInUser = userJson;
-        resp.render('profile',{
-            layout      : 'index',
-            title       : 'Profile',
-            userdata   : userJson,
-            user        : loggedInUser,
-            checkUser: isUser
-        });
-      } else {
-        const restosJson = user.toJSON();
-        const landmarkresto = [];
-        for(let i = 0; i < restodata.length; i++){
-            if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
-                landmarkresto.push(restodata[i]);
-            }
-        }
-        resp.render('restopage',{
-            layout      : 'index',
-            title       : 'Restaurant',
-            restodata   : restosJson,
-            otherresto  : landmarkresto,
-            user        : loggedInUser,
-            checkUser: isUser
-        });
-      }
-        
-      
-    }).catch(errorFn);
   });
 
 
 server.post('/read-user', function(req, resp){
-    console.log('Finding user');
-  const searchQuery = { user: req.body.user, pass: req.body.pass };
-
+  console.log('Finding user');
+  
+  const searchQuery = { user: req.body.user};
+  //look for the user
+  //compare if the password of the user matches the encrypted one 
   userModel.findOne(searchQuery).then(function(login) {
             console.log('Finding user');
 
             if (login && login._id) {
-                const userJson = login.toJSON();
-                loggedInUser = userJson;
-                isUser = loggedInUser['urlname'];
-                resp.render('profile', {
-                    layout: 'index',
-                    title: 'Profile',
-                    userdata: userJson,
-                    user: loggedInUser,
-                    checkUser: isUser
-                });
+                bcrypt.compare(req.body.pass, login.pass, function(err, result) {
+                  if(result){
+                  const userJson = login.toJSON();
+                  
+                  req.session.login_user = login._id;
+                  req.session.login_id = req.sessionID;
+                  userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                    loggedInUser = logged;
+                    console.log(loggedInUser)
+                    isUser = loggedInUser['urlname'];
+                    resp.render('profile', {
+                        layout: 'index',
+                        title: 'Profile',
+                        userdata: userJson,
+                        user: loggedInUser,
+                        checkUser: isUser
+                    });
+                  })
+                 
+                } else {
+                    resp.render('login',{
+                      layout      : 'index',
+                      title       : 'Login',
+                      errorMessage: 'Username and password not found!'
+                  });
+                }
+              });
+            
+                
             } else {
                 restoModel.findOne(searchQuery).then(function(restos) {
                     if (restos && restos._id) {
-                        const restosJson = restos.toJSON();
-                        loggedInUser = restosJson;
-                        isUser = loggedInUser['linkname'];
-                        console.log(isUser);
-                        const landmarkresto = [];
-                        for (let i = 0; i < restodata.length; i++) {
-                            if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
-                                landmarkresto.push(restodata[i]);
+                      console.log("restos pass = "+restos.pass);
+                      bcrypt.compare(req.body.pass, restos.pass, function(err, result) {
+                        if(result){
+                          const restosJson = restos.toJSON();
+                          console.log(isUser);
+                          req.session.login_user = restos._id;
+                          req.session.login_id = req.sessionID;
+                          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                            loggedInUser = logged;
+                            isUser = loggedInUser['linkname'];
+                            const landmarkresto = [];
+                            for (let i = 0; i < restodata.length; i++) {
+                                if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
+                                    landmarkresto.push(restodata[i]);
+                                }
                             }
-                        }
-                        resp.render('restopage', {
-                            layout: 'index',
-                            title: 'Restaurant',
-                            restodata: restosJson,
-                            otherresto: landmarkresto,
-                            user: loggedInUser,
-                            checkUser: isUser
+                            resp.render('restopage', {
+                                layout: 'index',
+                                title: 'Restaurant',
+                                restodata: restosJson,
+                                otherresto: landmarkresto,
+                                user: loggedInUser,
+                                checkUser: isUser
+                            });
+                          })
+                          
+                        } else {
+                          resp.render('login',{
+                            layout      : 'index',
+                            title       : 'Login',
+                            errorMessage: 'Username and password not found!'
                         });
+                        }
+                    });
+                       
                     } else {
                         // If neither user nor restaurant found
                         resp.render('login',{
@@ -266,7 +353,12 @@ server.post('/read-user', function(req, resp){
         
 });
 
+
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = { landmark: req.params.landmark, 
                           linkname: req.params.linkname};
     restoModel.findOne(searchQuery).then(function(restos){
@@ -294,6 +386,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
   });
 
 server.get('/restopage/:landmark/', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     const searchQuery = { landmark: req.params.landmark };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -326,7 +422,11 @@ server.get('/restopage/:landmark/', function(req, resp){
 });
 
 server.get('/profile-page/:urlname', function(req, resp){
-    const searchQuery = { urlname: req.params.urlname};
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  const searchQuery = { urlname: req.params.urlname};
 
     userModel.findOne(searchQuery).then(function(user){
         //console.log(JSON.stringify(user));
@@ -344,6 +444,10 @@ server.get('/profile-page/:urlname', function(req, resp){
 });
 
   server.get('/restoquery/:name/', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = { name: req.params.name };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -368,7 +472,10 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
   server.get('/showall/', function(req, resp){
-    
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     let searchQuery;
     if(req.query.searchfield === undefined){
         searchQuery = {};
@@ -411,7 +518,10 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
   server.get('/showalladvanced/', function(req, resp){
-    
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
   // Initialize an empty search query object
     let searchQuery = {};
 
@@ -428,10 +538,13 @@ server.get('/profile-page/:urlname', function(req, resp){
     }
 
     // Check if rate is defined and non-empty
-    if (req.query.rate !== '') {
+    if (req.query.rate >= 1) {
         // Add rating query to the search query
         searchQuery.rating = { $gte: req.query.rate };
         console.log(req.query.rate);
+    } else {
+      searchQuery.rating = { $gte: 0 };
+      console.log(req.query.rate);
     }
 
     // Check if category is defined and non-empty
@@ -483,6 +596,10 @@ server.post('/change-restobio', function(req, resp){
 });
 
 server.post('/deletecomment', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     //const updateQuery = { user: req.body.id };
     console.log("req.body.id: " + req.body.id);
   //user -> revdata
@@ -564,6 +681,10 @@ userModel.find({}).then(function(users){
 });
 
 server.post('/replycomment', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
   //const updateQuery = { user: req.body.id };
   console.log("req.body.id: " + req.body.id);
   console.log("req.body.reply: " + req.body.reply);
@@ -613,6 +734,10 @@ server.post('/replycomment', function(req, resp){
 
 
 server.post('/leavereview', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     //const updateQuery = { user: req.body.id };
     console.log("req.body.person: " + req.body.person);
     console.log("req.body.rating: " + req.body.rating);
