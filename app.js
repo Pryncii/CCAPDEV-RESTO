@@ -660,6 +660,30 @@ server.post('/leavereview', function(req, resp){
     
   });
     
+server.post('/deletereviews', function(req, resp){
+    //const updateQuery = { user: req.body.id };
+    console.log("req.body.id: " + req.body.id);
+  //user -> revdata
+
+// FOR DELETING COMMENTS THAT ARE IN Restopage
+restoModel.find({}).then(function(restos){
+  console.log('List successful');
+
+  let found = 0; // all restaurants
+  for(let i = 0; i < restos.length && found == 0; i++)
+  { // all reviews in that restaurant
+    
+      if(restos[i].revdata[j]["rev"] == req.body.id)
+      {
+        console.log("review found: " + restos[i].revdata[j]["rev"]);
+        restos[i].revdata[j]["notdeleted"] = false;
+        found = 1;
+        restos[i].save();
+      }
+  }
+}).catch(errorFn);
+
+});
   
   
 

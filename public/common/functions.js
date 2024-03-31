@@ -338,6 +338,7 @@ function getRating(ratingElements){
   return rating;
 }
 
+//ADD/EDIT/DELETE REVIEW
 var form = document.getElementById('myForm');
 
 form.addEventListener('submit', function(event) {
@@ -381,6 +382,20 @@ form.addEventListener('submit', function(event) {
   });
    
 });
+
+$(document).on('click', '.delete-comment', function(){
+  var revId = $(this).data('commentdelete-id');
+  console.log("revId: " + revId);
+
+  $.post('/deletereviews',{
+    id: revId,
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Delete review request successful');
+      window.location.reload();
+    }
+  });
+}); 
 
 
 $(document).on('click', '#editcomment', function(){
