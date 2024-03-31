@@ -335,11 +335,9 @@ $(document).on('click', '#reportresto', function(){
 });
 
 function getRating(ratingElements){
+  var stars = ratingElements;
   var rating = "";
-  var stars = 0;
 
-  if (ratingElements.length > 0) {stars = ratingElements.length; }
-  console.log("ratingElements: " + ratingElements.length);
   console.log("stars: " + stars);
   for (var i = 0; i < 5; i++) {
       if (i <= stars-1) {
@@ -352,19 +350,35 @@ function getRating(ratingElements){
   return rating;
 }
 
-$(document).on('click', '#review', function(){
-  
-  var person = $(this).data('person');
+//ADD/EDIT/DELETE REVIEW
+var form = document.getElementById('myForm');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  var person = document.getElementById('review').getAttribute('data-person');
   var review = document.getElementById('reviewcomment').value;
   console.log("person: " + person);
   console.log("review: " + review);
   var rating = ""; 
 
-  rating = getRating(document.querySelectorAll('input[name="rate-resto"]:checked'));
+  var ratingElements = 0;
+  for (var i = 1; i <= 5; i++) {
+    console.log(ratingElements + "!");
+        if ($('#star' + i + '-resto').prop('checked')) {
+          ratingElements= i;
+        }
+  }
+
+
+  rating = getRating(ratingElements);
 
   console.log("rating: " + rating);
 
   console.log('IN review request');
+
+  form.reset();
+
   $.post('/leavereview',{
     review: review, person: person, rating: rating
   }, function(data, status){
@@ -375,10 +389,25 @@ $(document).on('click', '#review', function(){
           var ratingElementsL = document.querySelectorAll('input[name="rate-resto"]:checked');
           console.log("ratingElementsL: " + ratingElementsL.length);
       window.location.reload();
+      
     }
   });
    
 });
+
+$(document).on('click', '.delete-comment', function(){
+  var revId = $(this).data('commentdelete-id');
+  console.log("revId: " + revId);
+
+  $.post('/deletereviews',{
+    id: revId,
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Delete review request successful');
+      window.location.reload();
+    }
+  });
+}); 
 
 
 $(document).on('click', '#editcomment', function(){
