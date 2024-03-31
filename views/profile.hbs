@@ -50,19 +50,19 @@
                 <div class = "userprofilereviews">
                     <div class = "userprofilereviewleft">
                         <div class = "reviewupper">
-                            Friends
+                            Other Users
                         </div>
 
 <!--FRIENDS LOOP HERE-->
-{{#each userdata.friends}}
+{{#each userdata.otherusers}}
                         <div class = "friendcontainer">
                             <a href="/profile-page/{{this.urlname}}">
                                 <div class = "friendcontainerleft">
-                                    <img src = "{{this.friendimage}}">
+                                    <img src = "{{this.otheruserimage}}">
                                 </div>
                             </a>
                             <div class = "friendcontainerright">
-                                {{this.friendname}}
+                                {{this.otherusername}}
                             </div>
                         </div>
 {{/each}}
@@ -95,6 +95,7 @@
 {{/if}}
 {{/each}}
                         </div>
+
                     </div>
                 </div>
             </div>
