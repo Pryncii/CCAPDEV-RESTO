@@ -16,6 +16,7 @@ const hbs = handlebars.create({
                 return options.inverse(this);
             }
         }
+
     }
 });
 
@@ -607,6 +608,55 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
+  
+server.post('/reaction', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  //const updateQuery = { user: req.body.id };
+  const resto = req.body.resto;
+  const action = req.body.action;
+  const revindex = req.body.revindex;
+  const comindex = req.body.comindex;
+  var temprevindex = resto.revdata;
+  var opposite = "likes";
+  if(action == "likes"){
+    opposite = "dislikes";
+  }
+  //review
+  if(comindex == -1){
+    console.log("action array" + temprevindex[revindex][action]);
+      temprevindex[revindex][action].push(loggedInUser.user);
+      if(temprevindex[revindex][opposite].includes(loggedInUser.user)){
+        var indexofuser = temprevindex[revindex][opposite].indexOf(loggedInUser.userimage);
+        temprevindex[revindex][opposite].splice(indexofuser, indexofuser);
+        //arr.splice(1,1);
+      }
+    
+     
+  }else
+  {//comment
+    console.log("action array" + temprevindex[revindex][comindex][action]);
+    temprevindex[revindex][comindex][action].push(loggedInUser.user);
+    if(temprevindex[revindex][comindex][opposite].includes(loggedInUser.user)){
+      
+      var indexofuser = temprevindex[revindex][comindex][opposite].indexOf(loggedInUser.userimage);
+      temprevindex[revindex][comindex][opposite].splice(indexofuser,indexofuser);
+      //arr.splice(1,1);
+    }
+
+  }
+
+  restoModel.findOneAndUpdate({user:resto.user}, {revdata: temprevindex}).then(function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+});
+});
   server.post('/change-profilepic', function(req, resp){
     const pic= req.body.userbio;
   

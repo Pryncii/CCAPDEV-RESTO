@@ -168,25 +168,39 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-function likedislike(restodata, user, action, revindex, comindex){
+function likedislike(restodata, action, revindex, comindex){
 
-  
-  const userModel = mongoose.model('users', userSchema);
-    if(comindex == -1){
-      //if review
-      if(action == like ){
-        //tryna like
-        
-        if(restodata.revdata[revindex].dislikes.contains(user.name)){
-          //tryna dislike
-        } 
-      
-    }
+  alert("liking");
+        $.post('/reaction',{
+          resto: restodata, action: action, revindex :revindex, comindex:comindex
+        }, function(data, status){
+          if(status === 'success'){
+            console.log('like request successful');
+            window.location.reload();
+          }
+        });
     
   }//if
-  /** */
+  /** 
+$(document).on('click', '.reply-button', function(){
+  var reviewId = $(this).data('replyto-id');
+  var person = $(this).data('person');
+  var reply = document.getElementById("reply-text-"+reviewId).value;
+  console.log("reviewId: " + reviewId);
+  console.log("reply: " + reply);
+  console.log("person: " + person);
 
-}
+  $.post('/replycomment',{
+    id: reviewId, reply: reply, person: person,
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Reply request successful');
+      window.location.reload();
+    }
+  });
+});  */
+
+
 
 function toggleComments(id, id2, id3) {
 var button = document.getElementById(id);
