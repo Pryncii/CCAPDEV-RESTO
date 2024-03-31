@@ -623,9 +623,10 @@ server.get('/profile-page/:urlname', function(req, resp){
   });
 
 server.post('/change-restobio', function(req, resp){
-  const userbio= req.body.userbio;
+  console.log("changerestobio");
+  const userbio= req.body.restodesc;
   
-  userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+  restoModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
     if (err){
         console.log(err)
     }
