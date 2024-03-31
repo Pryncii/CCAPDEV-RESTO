@@ -376,6 +376,17 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
                 landmarkresto.push(restodata[i]);
             }
         }
+
+        let getratesum = 0;
+        for(let j = 0; j < restos.revdata.length; j++){
+            for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+                if(restos.revdata[j].revrating[k] == "★"){
+                    getratesum+= 1;
+                }
+            }
+        }
+
+        console.log("rating:"+(getratesum/restos.revdata.length));
         
         resp.render('restopage',{
             layout      : 'index',
@@ -384,8 +395,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             otherresto  : landmarkresto,
             user        : loggedInUser,
             checkUser: isUser,
-
-            vrating      : 100-((restosJson.rating/5)*100)
+            vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
         });
     }
     }).catch(errorFn);
