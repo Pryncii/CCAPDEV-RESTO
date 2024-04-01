@@ -36,7 +36,7 @@
                                 <div id = "info">
                                 Bio/Information: <br>{{userdata.description}}
                                 </div>
-                                <form class="review-form-container" action = "/report-user/" onclick="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
+                                <form class="review-form-container" action = "/report-user/" onsubmit="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
                                     <textarea name="reportmsg" id="reportmsg">What's the issue?</textarea>
                                     Reporting: 
                                     <input type="text" name ="username" value = "{{userdata.user}}" readonly>
