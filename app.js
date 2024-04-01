@@ -450,7 +450,7 @@ server.get('/profile-page/:urlname', function(req, resp){
     return;
   }
   const searchQuery = { urlname: req.params.urlname};
-
+  userModel.find({}).lean().then(function(alluser){
     userModel.findOne(searchQuery).then(function(user){
         //console.log(JSON.stringify(user));
         if(user != undefined && user._id != null){
@@ -460,10 +460,12 @@ server.get('/profile-page/:urlname', function(req, resp){
               title       : 'Profile',
               userdata   : userJson,
               user        : loggedInUser,
-              checkUser: isUser
+              checkUser: isUser,
+              otherusers: alluser
             });
         }
       }).catch(errorFn);
+    }).catch(errorFn);
 });
 
   server.get('/restoquery/:name/', function(req, resp){
