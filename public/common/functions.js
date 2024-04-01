@@ -437,7 +437,7 @@ form.addEventListener('submit', function(event) {
 
   form.reset();
 
-  if(review!="" && review.includes("Write a Review!")){
+  if(review!="" && !review.includes("Write a Review!")){
     $.post('/leavereview',{
     review: review, person: person, rating: rating, resto: resto
   }, function(data, status){
@@ -452,7 +452,7 @@ form.addEventListener('submit', function(event) {
     }
   });
   }else{
-    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting.");
+    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting." );
   }
   
    
