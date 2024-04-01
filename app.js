@@ -239,6 +239,7 @@ server.post('/create-user', function(req, resp){
       
             console.log(JSON.stringify(user));
               const userJson = user.toJSON();
+              userModel.find({}).lean().then(function(alluser){
               req.session.login_user = user._id;
               req.session.login_id = req.sessionID;
               userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
@@ -249,11 +250,11 @@ server.post('/create-user', function(req, resp){
                     title       : 'Profile',
                     userdata   : userJson,
                     user        : loggedInUser,
-                    checkUser: isUser
+                    checkUser: isUser,
+                    otherusers: alluser
                 });
               })
-              
-          
+            }).catch(errorFn);
           }).catch(errorFn);
     
       });
@@ -275,7 +276,7 @@ server.post('/read-user', function(req, resp){
                 bcrypt.compare(req.body.pass, login.pass, function(err, result) {
                   if(result){
                   const userJson = login.toJSON();
-                  
+                  userModel.find({}).lean().then(function(alluser){
                   req.session.login_user = login._id;
                   req.session.login_id = req.sessionID;
                   userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
@@ -287,9 +288,11 @@ server.post('/read-user', function(req, resp){
                         title: 'Profile',
                         userdata: userJson,
                         user: loggedInUser,
-                        checkUser: isUser
+                        checkUser: isUser,
+                        otherusers: alluser
                     });
                   })
+                })
                  
                 } else {
                     resp.render('login',{
@@ -449,8 +452,17 @@ server.get('/profile-page/:urlname', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
+  let searchQuery2;
+  let regex;
+    if(req.query.userfield === undefined){
+        searchQuery2 = {};
+    } else {
+        const substring = req.query.userfield;
+        regex = new RegExp(substring, 'i');
+        searchQuery2 = {name: regex};
+    }
   const searchQuery = { urlname: req.params.urlname};
-  userModel.find({}).lean().then(function(alluser){
+  userModel.find(searchQuery2).lean().then(function(alluser){
     userModel.findOne(searchQuery).then(function(user){
         //console.log(JSON.stringify(user));
         if(user != undefined && user._id != null){

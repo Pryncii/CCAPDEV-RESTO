@@ -62,15 +62,19 @@
                         </div>
 
 <!--FRIENDS LOOP HERE-->
-{{#each userdata.otherusers}}
+        <form action = "/profile-page/{{userdata.urlname}}" method = "get">
+            <input type="text" name ="userfield" />
+            <input type="submit" value="Search" />
+        </form>
+{{#each otherusers}}
                         <div class = "friendcontainer">
-                            <a href="/profile-page/{{this.urlname}}">
+                            <a href="/profile-page/{{urlname}}">
                                 <div class = "friendcontainerleft">
-                                    <img src = "{{this.otheruserimage}}">
+                                    <img src = "{{image}}">
                                 </div>
                             </a>
                             <div class = "friendcontainerright">
-                                {{this.otherusername}}
+                                {{name}}
                             </div>
                         </div>
 {{/each}}
