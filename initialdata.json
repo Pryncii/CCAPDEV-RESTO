@@ -84,7 +84,8 @@
                 "urlname": "/profile-page/Arco_Gaby",
                 "notdeleted": true
             }
-        ]
+        ],
+        "reportdata": ["unhealthy food"]
     },
 
     {
@@ -175,7 +176,8 @@
                 "urlname": "/profile-page/Chua_Micole",
                 "notdeleted": true
             }
-        ]
+        ],
+        "reportdata": ["coffee tastes like dirty water", "I never got my name spelt right"]
     },
 
     {
@@ -256,7 +258,8 @@
                 "urlname": "/profile-page/Chua_Micole",
                 "notdeleted": true
             }
-        ]
+        ],
+        "reportdata": ["I got diarrhea"]
     },
 
     {
@@ -312,7 +315,8 @@
                 "urlname": "/profile-page/Arco_Gaby",
                 "notdeleted": true
             }
-        ]
+        ],
+        "reportdata": []
     },
 
     {
@@ -368,7 +372,8 @@
                 "urlname": "/profile-page/Buencamino_Prince",
                 "notdeleted": true
             }
-        ]
+        ],
+        "reportdata": ["There are never empty seats"]
     }
 ]
 

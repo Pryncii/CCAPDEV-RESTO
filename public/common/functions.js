@@ -301,6 +301,20 @@ else { // if is menuBox hidden, display it
 }
 }
 
+function toggleReport(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    reportBox.style.display = "none";
+  }
+
+}
+
 /*change color of tags upon select*/
 function select(id) {
 
@@ -324,7 +338,7 @@ $(document).ready(function(){
 
 $(document).on('click', '#changepic', function(){
   var newHtmlContent = `
-  <form class="review-form-container" action = "change-profilepic" method ="post"">
+  <form class="review-form-container" action = "/change-profilepic/" method ="post"">
       <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
       <button type="submitreview-button" class="editbio-button">Submit</button>
   </form>
@@ -334,7 +348,7 @@ $('.userbio').html(newHtmlContent);
 
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-userbio" method ="post"">
+        <form class="review-form-container" action = "/change-userbio/" method ="post"">
             <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -344,13 +358,7 @@ $(document).on('click', '#changebio', function(){
 
 
 $(document).on('click', '#reportuser', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "report-user" method ="post">
-            <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.userbio').html(newHtmlContent);
+  toggleReport();
 });
 
 $(document).on('click', '#mapbutton', function(){
@@ -371,7 +379,7 @@ $(document).on('click', '#changerestopic', function(){
 
 $(document).on('click', '#changerestobio', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "change-restobio" method = "post">
+        <form class="review-form-container" action = "/change-restobio/" method = "post">
             <textarea name="restodesc" id="reviewcomment">Enter New Description!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
@@ -381,7 +389,7 @@ $(document).on('click', '#changerestobio', function(){
 
 $(document).on('click', '#reportresto', function(){
   var newHtmlContent = `
-        <form class="review-form-container" action = "report-resto" method "post">
+        <form class="review-form-container" action = "/report-resto/" method "post">
             <textarea name="restodesc" id="reviewcomment">What's the issue?</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
