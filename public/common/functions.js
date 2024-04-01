@@ -339,7 +339,7 @@ $(document).ready(function(){
 $(document).on('click', '#changepic', function(){
   var newHtmlContent = `
   <form class="review-form-container" action = "/change-profilepic/" method ="post"">
-      <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
+      <textarea name="userbio" >Enter New Image Link!</textarea>
       <button type="submitreview-button" class="editbio-button">Submit</button>
   </form>
 `;
@@ -349,7 +349,7 @@ $('.userbio').html(newHtmlContent);
 $(document).on('click', '#changebio', function(){
   var newHtmlContent = `
         <form class="review-form-container" action = "/change-userbio/" method ="post"">
-            <textarea name="userbio" id="reviewcomment">Enter New Bio!</textarea>
+            <textarea name="userbio" >Enter New Bio!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
     `;
@@ -368,7 +368,7 @@ $(document).on('click', '#mapbutton', function(){
 $(document).on('click', '#changerestopic', function(){
   var newHtmlContent = `
         <form class="review-form-container" action = "change-restopic" method = "post">
-            <textarea name="restodesc" id="reviewcomment">Enter New Image Link!</textarea>
+            <textarea name="restodesc" >Enter New Image Link!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
     `;
@@ -380,7 +380,7 @@ $(document).on('click', '#changerestopic', function(){
 $(document).on('click', '#changerestobio', function(){
   var newHtmlContent = `
         <form class="review-form-container" action = "/change-restobio/" method = "post">
-            <textarea name="restodesc" id="reviewcomment">Enter New Description!</textarea>
+            <textarea name="restodesc" >Enter New Description!</textarea>
             <button type="submitreview-button" class="editbio-button">Submit</button>
         </form>
     `;
