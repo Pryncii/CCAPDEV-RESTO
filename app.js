@@ -500,10 +500,12 @@ server.get('/profile-page/:urlname', function(req, resp){
       return;
     }
     let searchQuery;
+    let regex;
     if(req.query.searchfield === undefined){
         searchQuery = {};
     } else {
-        searchQuery = {name: req.query.searchfield};
+        regex = new RegExp(req.query.searchfield, 'i');
+        searchQuery = {name: regex};
     }
     //console.log(req.query.searchfield)
     restoModel.find(searchQuery).then(function(restos){
