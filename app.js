@@ -81,7 +81,8 @@ const restoSchema = new mongoose.Schema({
     category: { type: String },
     price: { type: Number },
     maplink: { type: String },
-    revdata: [reviewSchema]
+    revdata: [reviewSchema],
+    reportdata:  [{ type: String }]
 },{ versionKey: false });
 
 const friendSchema = new mongoose.Schema({
@@ -98,7 +99,8 @@ const userSchema = new mongoose.Schema({
     image: { type: String },
     description: {type: String},
     otherusers: [friendSchema],
-    revdata: [reviewSchema]
+    revdata: [reviewSchema],
+    reportdata:  [{ type: String }]
 },{ versionKey: false });
 
 const restoModel = mongoose.model('restaurants', restoSchema);
@@ -705,9 +707,18 @@ server.post('/reaction', function(req, resp){
   
   server.post('/report-user', function(req, resp){
 
-    const searchQuery = {user: req.body.username}
-    userModel.findOne(searchQuery).lean().then(function(user){
-      
+    const searchQuery = {user: req.body.username};
+    const report = req.body.reportmsg;
+    let reporteduser;
+
+    console.log(req.body.username);
+    console.log(req.body.reportmsg);
+    userModel.findOne(searchQuery).then(function(user){
+      user.reportdata.push(report);
+      user.save();
+      reporteduser = user.urlname;
+      console.log(reporteduser);
+    resp.redirect('/profile-page/'+reporteduser+'/');
     }).catch(errorFn);
       
   });
