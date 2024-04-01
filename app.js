@@ -706,18 +706,8 @@ server.post('/reaction', function(req, resp){
   server.post('/report-user', function(req, resp){
 
     const searchQuery = {user: req.body.username}
-    userModel.findOne(searchQuery).then(function(user){
-      //console.log(JSON.stringify(user));
-      if(user != undefined && user._id != null){
-        const userJson = user.toJSON();
-        resp.render('profile',{
-            layout      : 'index',
-            title       : 'Profile',
-            userdata   : userJson,
-            user        : loggedInUser,
-            checkUser: isUser
-          });
-      }
+    userModel.findOne(searchQuery).lean().then(function(user){
+      
     }).catch(errorFn);
       
   });

@@ -57,6 +57,9 @@
             "urlname": "/restaurant/Burgundy/starbucks",
             "notdeleted": true
         }
+        ],
+
+        "reportdata": ["Gives inaccurate reviews"
         ]
     },
 
@@ -118,7 +121,9 @@
             "urlname": "/restaurant/Burgundy/starbucks",
             "notdeleted": true
         }
-        ]
+        ],
+
+        "reportdata": []
     },
 
     {
@@ -179,7 +184,8 @@
             "urlname": "/restaurant/Burgundy/starbucks",
             "notdeleted": true
         }
-        ]
+        ],
+        "reportdata": []
     },
 
     {
@@ -240,7 +246,8 @@
             "urlname": "/restaurant/Burgundy/starbucks",
             "notdeleted": true
         }
-        ]
+        ],
+        "reportdata": ["Replies the same message all the time", "may be a bot"]
     },
 
     {
@@ -301,7 +308,8 @@
             "urlname": "/restaurant/Burgundy/starbucks",
             "notdeleted": true
         }
-        ]
+        ],
+        "reportdata": ["Extremely negative behavior", "Never likes anything", "Why is she allowed here."]
     }
    
 ]
