@@ -315,7 +315,7 @@ function toggleReport(){
 
 }
 
-/*//meant to be for alerting if form is empty bcus redirected straight to app.js
+//meant to be for alerting if form is empty bcus redirected straight to
 function alerting(id, action){
 
   console.log("alerting");
@@ -325,7 +325,7 @@ function alerting(id, action){
     alert("Your "+action+"seems incomplete. Please fil it up before submitting.");
   }
 }
-*/
+
 /*change color of tags upon select*/
 function select(id) {
 
