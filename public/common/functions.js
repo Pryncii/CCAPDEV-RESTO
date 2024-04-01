@@ -281,6 +281,20 @@ else { // if is menuBox hidden, display it
 }
 }
 
+function toggleReport(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    reportBox.style.display = "none";
+  }
+
+}
+
 /*change color of tags upon select*/
 function select(id) {
 
@@ -324,13 +338,7 @@ $(document).on('click', '#changebio', function(){
 
 
 $(document).on('click', '#reportuser', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/report-user/" method ="post">
-            <textarea name="userbio" id="reviewcomment">What's the issue?</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.userbio').html(newHtmlContent);
+  toggleReport();
 });
 
 $(document).on('click', '#mapbutton', function(){
