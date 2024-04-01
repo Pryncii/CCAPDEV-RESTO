@@ -193,26 +193,29 @@ server.post('/create-user', function(req, resp){
   
           const restosJson = user.toJSON();
           
+          /*
           const landmarkresto = [];
           for(let i = 0; i < restodata.length; i++){
               if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
                   landmarkresto.push(restodata[i]);
               }
-          }
-          req.session.login_user = user._id;
-          req.session.login_id = req.sessionID;
-          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
-            loggedInUser = logged;
-            isUser = loggedInUser['linkname'];
-            resp.render('restopage',{
-                layout      : 'index',
-                title       : 'Restaurant',
-                restodata   : restosJson,
-                otherresto  : landmarkresto,
-                user        : loggedInUser,
-                checkUser: isUser
-          });
+          }*/
+          restoModel.find({landmark: user.landmark, user: { $ne: user.user }}).lean().then(function(otherrestos) {
+            req.session.login_user = user._id;
+            req.session.login_id = req.sessionID;
+            restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+              loggedInUser = logged;
+              isUser = loggedInUser['linkname'];
+              resp.render('restopage',{
+                  layout      : 'index',
+                  title       : 'Restaurant',
+                  restodata   : restosJson,
+                  otherresto  : otherrestos,
+                  user        : loggedInUser,
+                  checkUser: isUser
+            });
           })
+        })
     
       }).catch(errorFn);
       });
@@ -300,13 +303,14 @@ server.post('/read-user', function(req, resp){
             
                 
             } else {
+              //find the username
                 restoModel.findOne(searchQuery).then(function(restos) {
                     if (restos && restos._id) {
                       console.log("restos pass = "+restos.pass);
+                      //see if they match
                       bcrypt.compare(req.body.pass, restos.pass, function(err, result) {
                         if(result){
                           const restosJson = restos.toJSON();
-                          console.log(isUser);
                           req.session.login_user = restos._id;
                           req.session.login_id = req.sessionID;
                           restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
