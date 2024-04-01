@@ -167,6 +167,7 @@ server.post('/create-user', function(req, resp){
 
     if (selectedRadioValue == "yes")
     {
+      //Enclose here to hash passwords
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
         encrypted_pass = hash;
         console.log("Encrypted pass: "+encrypted_pass);
@@ -186,13 +187,11 @@ server.post('/create-user', function(req, resp){
           revdata: [],
 
       });
+      //save and display the newModel
       newModel.save().then(function(user){
-        console.log('User created');
-  
-        console.log(JSON.stringify(user));
-  
+          console.log('User created');
+          console.log(JSON.stringify(user));
           const restosJson = user.toJSON();
-          
           /*
           const landmarkresto = [];
           for(let i = 0; i < restodata.length; i++){
@@ -310,27 +309,24 @@ server.post('/read-user', function(req, resp){
                       //see if they match
                       bcrypt.compare(req.body.pass, restos.pass, function(err, result) {
                         if(result){
+                          
                           const restosJson = restos.toJSON();
-                          req.session.login_user = restos._id;
-                          req.session.login_id = req.sessionID;
-                          restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
-                            loggedInUser = logged;
-                            isUser = loggedInUser['linkname'];
-                            const landmarkresto = [];
-                            for (let i = 0; i < restodata.length; i++) {
-                                if (restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname) {
-                                    landmarkresto.push(restodata[i]);
-                                }
-                            }
-                            resp.render('restopage', {
-                                layout: 'index',
-                                title: 'Restaurant',
-                                restodata: restosJson,
-                                otherresto: landmarkresto,
-                                user: loggedInUser,
-                                checkUser: isUser
-                            });
+                          restoModel.find({landmark: restos.landmark, user: { $ne: restos.user }}).lean().then(function(otherrestos) {
+                            req.session.login_user = restos._id;
+                            req.session.login_id = req.sessionID;
+                            restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
+                              loggedInUser = logged;
+                              isUser = loggedInUser['linkname'];
+                              resp.render('restopage', {
+                                  layout: 'index',
+                                  title: 'Restaurant',
+                                  restodata: restosJson,
+                                  otherresto: otherrestos,
+                                  user: loggedInUser,
+                                  checkUser: isUser
+                              });
                           })
+                        })
                           
                         } else {
                           resp.render('login',{
