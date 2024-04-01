@@ -179,7 +179,7 @@ server.post('/create-user', function(req, resp){
           image: "/common/Images/PFPs/resto-default.jpg",
           imagesquare: "/common/Images/PFPs/resto-default.jpg", 
           description: "",
-          landmark: req.body.elandm.replace(/ /g, "_"),
+          landmark: req.body.elandm[0],
           rating: 0,
           category: req.body.category,
           price: req.body.price,
@@ -731,14 +731,16 @@ server.post('/reaction', function(req, resp){
 
     console.log(req.body.username);
     console.log(req.body.reportmsg);
+    
     userModel.findOne(searchQuery).then(function(user){
       user.reportdata.push(report);
-      user.save();
+      if(report!="" && report!="What's the issue?"){user.save();}
       reporteduser = user.urlname;
       console.log(reporteduser);
       resp.redirect('/profile-page/'+reporteduser+'/');
     }).catch(errorFn);
-      
+  
+  
   });
 
   server.post('/report-resto', function(req, resp){
@@ -748,14 +750,17 @@ server.post('/reaction', function(req, resp){
     let reporteduser;
     let repuserlandmark;
 
-    restoModel.findOne(searchQuery).then(function(user){
+   
+       restoModel.findOne(searchQuery).then(function(user){
       user.reportdata.push(report);
-      user.save();
+       if(report!="" && report!="What's the issue?"){user.save();   }
       reporteduser = user.linkname;
       repuserlandmark = user.landmark
       resp.redirect('/restaurant/'+repuserlandmark+'/'+reporteduser+'/');
     }).catch(errorFn);
-      
+ 
+   
+       
   });
 server.post('/change-restobio', function(req, resp){
   if(req.session.login_id == undefined){
