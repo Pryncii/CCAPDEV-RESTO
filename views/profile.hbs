@@ -36,11 +36,11 @@
                                 <div id = "info">
                                 Bio/Information: <br>{{userdata.description}}
                                 </div>
-                                <form class="review-form-container" action = "/report-user/" method ="post" style="display: none;" id = "reporter">
-                                    <textarea name="reportmsg" >What's the issue?</textarea>
+                                <form class="review-form-container" action = "/report-user/" onclick="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
+                                    <textarea name="reportmsg" id="reportmsg">What's the issue?</textarea>
                                     Reporting: 
                                     <input type="text" name ="username" value = "{{userdata.user}}" readonly>
-                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                    <button type="submitreview-button" class="editbio-button"  >Submit</button>
                                 </form>
                             </div>
                             

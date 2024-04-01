@@ -39,8 +39,8 @@
                                 <p id = "info">
                                     {{restodata.description}}
                                 </p>
-                                <form class="review-form-container" action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
-                                    <textarea name="reportmsg" placeholder="What's the issue?"></textarea>
+                                <form class="review-form-container"  action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
+                                    <textarea name="reportmsg" id="reportmsg" placeholder="What's the issue?"></textarea>
                                     Reporting: 
                                     <input type="text" name ="restoname" value = "{{restodata.name}}" readonly>
                                     Near:

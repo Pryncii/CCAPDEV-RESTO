@@ -315,6 +315,17 @@ function toggleReport(){
 
 }
 
+/*//meant to be for alerting if form is empty bcus redirected straight to app.js
+function alerting(id, action){
+
+  console.log("alerting");
+  var element = document.getElementById(id);
+  var element2 = element.textContent;
+  if(element2=="" || element2=="What's the issue?"){
+    alert("Your "+action+"seems incomplete. Please fil it up before submitting.");
+  }
+}
+*/
 /*change color of tags upon select*/
 function select(id) {
 
@@ -361,9 +372,6 @@ $(document).on('click', '#reportuser', function(){
   toggleReport();
 });
 
-$(document).on('click', '#mapbutton', function(){
-  alert("Functionality coming in MCO3!");
-});
 
 $(document).on('click', '#changerestopic', function(){
   var newHtmlContent = `
@@ -437,7 +445,7 @@ form.addEventListener('submit', function(event) {
 
   form.reset();
 
-  if(review!="" && review.includes("Write a Review!")){
+  if(review!="" && !review.includes("Write a Review!")){
     $.post('/leavereview',{
     review: review, person: person, rating: rating, resto: resto
   }, function(data, status){
@@ -452,7 +460,7 @@ form.addEventListener('submit', function(event) {
     }
   });
   }else{
-    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting.");
+    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting." );
   }
   
    
