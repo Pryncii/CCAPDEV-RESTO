@@ -673,9 +673,9 @@ server.post('/reaction', function(req, resp){
       else{
           console.log("Updated Docs : ", docs);
       }
+      resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
     
-  resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
   server.post('/change-userbio', function(req, resp){
     if(req.session.login_id == undefined){
@@ -691,8 +691,8 @@ server.post('/reaction', function(req, resp){
       else{
           console.log("Updated Docs : ", docs);
       }
-  });
       resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
+  });
   });
 
   server.post('/change-restopic', function(req, resp){
@@ -716,8 +716,8 @@ server.post('/reaction', function(req, resp){
       else{
           console.log("Updated Docs : ", docs);
       }
+      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
   });
-  resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
       
   });
   
@@ -734,7 +734,24 @@ server.post('/reaction', function(req, resp){
       user.save();
       reporteduser = user.urlname;
       console.log(reporteduser);
-    resp.redirect('/profile-page/'+reporteduser+'/');
+      resp.redirect('/profile-page/'+reporteduser+'/');
+    }).catch(errorFn);
+      
+  });
+
+  server.post('/report-resto', function(req, resp){
+
+    const searchQuery = {name: req.body.restoname, landmark: req.body.landmark};
+    const report = req.body.reportmsg;
+    let reporteduser;
+    let repuserlandmark;
+
+    restoModel.findOne(searchQuery).then(function(user){
+      user.reportdata.push(report);
+      user.save();
+      reporteduser = user.linkname;
+      repuserlandmark = user.landmark
+      resp.redirect('/restaurant/'+repuserlandmark+'/'+reporteduser+'/');
     }).catch(errorFn);
       
   });
@@ -753,9 +770,9 @@ server.post('/change-restobio', function(req, resp){
     else{
         console.log("Updated Docs : ", docs);
     }
+    resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
 });
   
-    resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
     
 });
 

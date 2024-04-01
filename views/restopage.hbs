@@ -36,9 +36,17 @@
                         <div class = "descandbuttons">
                             <div class = "restodesc" id="restodescid">
                                 <span>Description</span>
-                                <p>
+                                <p id = "info">
                                     {{restodata.description}}
                                 </p>
+                                <form class="review-form-container" action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
+                                    <textarea name="reportmsg" id="reviewcomment">What's the issue?</textarea>
+                                    Reporting: 
+                                    <input type="text" name ="restoname" value = "{{restodata.name}}" readonly>
+                                    Near:
+                                    <input type="text" name ="landmark" value = "{{restodata.landmark}}" readonly>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
                             </div>
                             <div class = "usereditbio">
                                 <button type="map-button" onclick="window.location.href='{{restodata.maplink}}'" class = "editbio-button" >Map</button>

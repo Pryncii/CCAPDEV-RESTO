@@ -388,13 +388,7 @@ $(document).on('click', '#changerestobio', function(){
 });
 
 $(document).on('click', '#reportresto', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/report-resto/" method "post">
-            <textarea name="restodesc" id="reviewcomment">What's the issue?</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
+    toggleReport();
 });
 
 function getRating(ratingElements){
