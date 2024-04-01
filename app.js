@@ -619,52 +619,54 @@ server.post('/reaction', function(req, resp){
     return;
   }
   //const updateQuery = { user: req.body.id };
-  const resto = req.body.resto;
+  const restouser = req.body.resto;
   const action = req.body.action;
   const revindex = req.body.revindex;
   const comindex = req.body.comindex;
-  var temprevindex = resto.revdata;
-  var opposite = "likes";
-  if(action == "likes"){
-    opposite = "dislikes";
+  const doing = req.body.do;
+  var opposite="likes";
+  if(action==opposite){
+    opposite="dislikes";
   }
-  //review
+  restoModel.findOne({user: restouser}).then(function(vresto){
+  var temprevindex = vresto.revdata;
+   //review
   if(comindex == -1){
-    console.log("action array" + temprevindex[revindex][action]);
-      temprevindex[revindex][action].push(loggedInUser.user);
-      if(temprevindex[revindex][opposite].includes(loggedInUser.user)){
-        var indexofuser = temprevindex[revindex][opposite].indexOf(loggedInUser.userimage);
-        temprevindex[revindex][opposite].splice(indexofuser, indexofuser);
-        //arr.splice(1,1);
-      }
-    
+    console.log("action array" + temprevindex[revindex][comindex][action]);
      
   }else
-  {//comment
+  {//commen
     console.log("action array" + temprevindex[revindex][comindex][action]);
     temprevindex[revindex][comindex][action].push(loggedInUser.user);
-    if(temprevindex[revindex][comindex][opposite].includes(loggedInUser.user)){
-      
+    if(doing){
+      //push
       var indexofuser = temprevindex[revindex][comindex][opposite].indexOf(loggedInUser.userimage);
-      temprevindex[revindex][comindex][opposite].splice(indexofuser,indexofuser);
+    }else{
+
+    }
+      
+      
       //arr.splice(1,1);
     }
+  });
+ 
 
-  }
-
-  restoModel.findOneAndUpdate({user:resto.user}, {revdata: temprevindex}).then(function (err, docs) {
-    if (err){
-        console.log(err)
-    }
-    else{
-        console.log("Updated Docs : ", docs);
-    }
-});
+  
 });
   server.post('/change-profilepic', function(req, resp){
-    const pic= req.body.userbio;
-  
-    userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).then(function (err, docs) {
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
+    var pic= req.body.userbio;
+  var split = pic.split(".");
+  var fileformat = split[split.length-1];
+  console.log(split[split.length-1]);
+    if(fileformat!="png" && fileformat!="jpg"){
+      
+      pic = "/common/Images/PFPs/profile.webp";
+    }
+      userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).then(function (err, docs) {
       if (err){
           console.log(err)
       }
@@ -676,6 +678,10 @@ server.post('/reaction', function(req, resp){
   resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
   server.post('/change-userbio', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const userbio= req.body.userbio;
   
     userModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
@@ -690,9 +696,19 @@ server.post('/reaction', function(req, resp){
   });
 
   server.post('/change-restopic', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     console.log("changerestoimg");
-    const img= req.body.userbio;
-    
+    var img= req.body.restodesc;
+    var split = img.split(".");
+    var fileformat = split[split.length-1];
+    console.log(split[split.length-1]);
+      if(fileformat!="png" && fileformat!="jpg"){
+        
+        img = "/common/Images/PFPs/resto-default.jpg";
+      }
     restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img}).then(function (err, docs) {
       if (err){
           console.log(err)
@@ -723,6 +739,10 @@ server.post('/reaction', function(req, resp){
       
   });
 server.post('/change-restobio', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
   console.log("changerestobio");
   const userbio= req.body.restodesc;
   

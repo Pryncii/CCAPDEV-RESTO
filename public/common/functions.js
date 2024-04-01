@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function activeThumb(id) {
 var element = document.getElementById(id);
 element.classList.add("active");
+ 
 }
 
 function deactivateThumb(id) {
@@ -122,12 +123,13 @@ if (!element2) {
 
 var number = parseInt(element.textContent);
 var number2 = parseInt(element2.textContent);
-
+//"restodata.user-like-review-{{reviewIndex}}-{{commentIndex}}"
 if (element.classList.contains("active")) {
   deactivateThumb(id);
   var number = parseInt(element.textContent);
   if (number!=0){
     element.textContent = --number;
+   
   }
 
 } else if (element2.classList.contains("active")){
@@ -167,6 +169,24 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   });
 });
+/*
+$(document).ready(function(){
+  for(let i=0; i<=9; i++){
+    $(`#cell${i}`).dblclick(function(){
+      if($(`#cell${i}`).html()!=""){
+        alert("space already taken");
+        return;
+      }
+      //The proper symbol is being obtained already as
+      //well as setting the correct turn.
+      let symbol = 'X';
+      if(getTurn()===1)
+        symbol = 'O';
+      changeTurn();
+      saveAction(i, symbol);
+    });
+  }//end for
+});*/
 
 function likedislike(restodata, action, revindex, comindex){
 
@@ -347,12 +367,14 @@ $(document).on('click', '#mapbutton', function(){
 
 $(document).on('click', '#changerestopic', function(){
   var newHtmlContent = `
-  <form class="review-form-container" action = "/change-restopic/" method ="post"">
-      <textarea name="userbio" id="reviewcomment">Enter New Image Link!</textarea>
-      <button type="submitreview-button" class="editbio-button">Submit</button>
-  </form>
-`;
-$('.userbio').html(newHtmlContent);
+        <form class="review-form-container" action = "change-restopic" method = "post">
+            <textarea name="restodesc" id="reviewcomment">Enter New Image Link!</textarea>
+            <button type="submitreview-button" class="editbio-button">Submit</button>
+        </form>
+    `;
+    $('.restodesc').html(newHtmlContent);
+
+    
 });
 
 $(document).on('click', '#changerestobio', function(){
@@ -421,7 +443,8 @@ form.addEventListener('submit', function(event) {
 
   form.reset();
 
-  $.post('/leavereview',{
+  if(review!="" && review.includes("Write a Review!")){
+    $.post('/leavereview',{
     review: review, person: person, rating: rating, resto: resto
   }, function(data, status){
     if(status === 'success'){
@@ -434,6 +457,10 @@ form.addEventListener('submit', function(event) {
       
     }
   });
+  }else{
+    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting.");
+  }
+  
    
 });
 
@@ -473,7 +500,7 @@ $(document).on('click', '.reply-button', function(){
   console.log("reviewId: " + reviewId);
   console.log("reply: " + reply);
   console.log("person: " + person);
-
+if(reply!=""){
   $.post('/replycomment',{
     id: reviewId, reply: reply, person: person,
   }, function(data, status){
@@ -482,6 +509,10 @@ $(document).on('click', '.reply-button', function(){
       window.location.reload();
     }
   });
+}else{
+  alert("Kindly write a review before submitting.");
+}
+  
 });  
 
 });//doc
