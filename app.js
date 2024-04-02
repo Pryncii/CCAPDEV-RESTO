@@ -117,9 +117,10 @@ const alluserdata = getUserList();
 console.log(alluserdata);
 
 hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex) {
-    console.log(likeThumb);
-    console.log(reviewIndex);
+    //console.log(likeThumb);
+    //console.log(reviewIndex);
     console.log(likeThumb[reviewIndex]);
+
     if (likeThumb[reviewIndex] != 0) {
         return 'active'; 
     } else {
@@ -302,13 +303,13 @@ server.post('/create-user', function(req, resp){
 
 
 server.post('/read-user', function(req, resp){
-  console.log('Finding user');
+  //console.log('Finding user');
   
   const searchQuery = { user: req.body.user};
   //look for the user
   //compare if the password of the user matches the encrypted one 
   userModel.findOne(searchQuery).then(function(login) {
-            console.log('Finding user');
+            //console.log('Finding user');
 
             if (login && login._id) {
                 bcrypt.compare(req.body.pass, login.pass, function(err, result) {
@@ -319,7 +320,7 @@ server.post('/read-user', function(req, resp){
                   req.session.login_id = req.sessionID;
                   userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                     loggedInUser = logged;
-                    console.log(loggedInUser)
+                    //console.log(loggedInUser)
                     isUser = loggedInUser['urlname'];
                     resp.render('profile', {
                         layout: 'index',
@@ -478,6 +479,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         
     
   
+
 
         console.log("likes:"+likeThumb);
         console.log("dislikes:"+dislikeThumb);
@@ -682,19 +684,19 @@ server.get('/profile-page/:urlname', function(req, resp){
     if (req.query.rate >= 1) {
         // Add rating query to the search query
         searchQuery.rating = { $gte: req.query.rate };
-        console.log(req.query.rate);
+        //console.log(req.query.rate);
     } else {
       searchQuery.rating = { $gte: 0 };
-      console.log(req.query.rate);
+      //console.log(req.query.rate);
     }
 
     // Check if category is defined and non-empty
     if (req.query.category !== '') {
         // Add category query to the search query
         searchQuery.category = req.query.category;
-        console.log(req.query.category);
+        //console.log(req.query.category);
     }
-    console.log(searchQuery);
+    //console.log(searchQuery);
     //console.log(req.query.searchfield)
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -737,16 +739,16 @@ server.post('/reaction', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-  //const updateQuery = { user: req.body.id };
-  console.log("req.body.rev: " + req.body.rev);
-  console.log("req.body.person: " + req.body.person);
+
+  //console.log("req.body.rev: " + req.body.rev);
+  //console.log("req.body.person: " + req.body.person);
 
   userModel.findOne({name: req.body.person}).then(function(users){
-    console.log("username: " + users.user);
+    //console.log("username: " + users.user);
     let username = users.user;
     
     restoModel.find({}).then(function(restos){
-      console.log('List successful');
+      //console.log('List successful');
     
       let found = 0; // all restaurants
       for(let i = 0; i < restos.length && found == 0; i++)
@@ -755,29 +757,29 @@ server.post('/reaction', function(req, resp){
         {
           if(restos[i].revdata[j]["rev"] == req.body.rev)
           {
-            console.log("review found: " + restos[i].revdata[j]["rev"]);
-            console.log(req.body.eclass);
+            //console.log("review found: " + restos[i].revdata[j]["rev"]);
+            //console.log(req.body.eclass);
         
             if (req.body.action == "like"){
                 if (req.body.eclass == 1){
                     for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
                         if (restos[i].revdata[j].likes[x] == username){
                             let spliced = restos[i].revdata[j].likes.splice(x, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                            //console.log("Removed element: " + spliced); 
+                            //console.log("Remaining elements: " + restos[i].revdata[j].likes);
                         }
                     }
                 } else {
                     for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
                         if (restos[i].revdata[j].dislikes[y] == username){
                             let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                            //console.log("Removed element: " + spliced); 
+                            //console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
                         }
                     }
         
                     restos[i].revdata[j].likes.push(username);
-                    console.log("Likes: " + restos[i].revdata[j].likes); 
+                    //console.log("Likes: " + restos[i].revdata[j].likes); 
                 }
 
                 
@@ -786,20 +788,20 @@ server.post('/reaction', function(req, resp){
                     for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
                         if (restos[i].revdata[j].dislikes[y] == username){
                             let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                            //console.log("Removed element: " + spliced); 
+                            //console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
                         }
                     }
                 } else {
                     for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
                         if (restos[i].revdata[j].likes[x] == username){
                             let spliced = restos[i].revdata[j].likes.splice(x, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                            //console.log("Removed element: " + spliced); 
+                            //console.log("Remaining elements: " + restos[i].revdata[j].likes);
                         }
                     }
                     restos[i].revdata[j].dislikes.push(username);
-                    console.log("dislikes: " + restos[i].revdata[j].dislikes);
+                    //console.log("dislikes: " + restos[i].revdata[j].dislikes);
                 }
                 
             }
@@ -824,7 +826,7 @@ server.post('/reaction', function(req, resp){
   var split = pic.split(".");
   var fileformat = split[split.length-1];
   var errormsg = "";
-  console.log(split[split.length-1]);
+  //console.log(split[split.length-1]);
     if(fileformat!="png" && fileformat!="jpg"){
       
       pic = "/common/Images/PFPs/profile.webp";
@@ -851,7 +853,7 @@ server.post('/reaction', function(req, resp){
           console.log(err)
       }
       else{
-          console.log("Updated Docs : ", docs);
+          //console.log("Updated Docs : ", docs);
       }
       resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
   });
@@ -862,12 +864,12 @@ server.post('/reaction', function(req, resp){
       resp.redirect('/?login=unlogged');
       return;
     }
-    console.log("changerestoimg");
+    //console.log("changerestoimg");
     var img= req.body.restodesc;
     var split = img.split(".");
     var fileformat = split[split.length-1];
     var errormsg ="";
-    console.log(split[split.length-1]);
+    //console.log(split[split.length-1]);
       if(fileformat!="png" && fileformat!="jpg"){
         
         img = "/common/Images/PFPs/resto-default.jpg";
@@ -972,10 +974,10 @@ server.post('/deletecomment', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-  console.log("req.body.revin: " + req.body.revin);
-  console.log("req.body.comin: " + req.body.comin);
-  console.log("req.body.restoname: " + req.body.restoname);
-  console.log("req.body.username: " + req.body.username);
+  //console.log("req.body.revin: " + req.body.revin);
+  //console.log("req.body.comin: " + req.body.comin);
+  //console.log("req.body.restoname: " + req.body.restoname);
+  //console.log("req.body.username: " + req.body.username);
   //user -> revdata
   //resto -> revdata -> comment
 
@@ -1011,16 +1013,16 @@ server.post('/deletecomment', function(req, resp){
         restos[i].save();
       
         userModel.find({ name: req.body.username }).then(function(users){
-          for(let i = 0; i < users.length && found2 == 0; i++)
+          for(let k = 0; k < users.length && found2 == 0; k++)
           {
-            for(let j = 0; j < users[i].revdata.length && found2 == 0; j++)
+            for(let j = 0; j < users[k].revdata.length && found2 == 0; j++)
             { // make sure resto and review is the same as the one found
-              if(users[i].revdata[j]["rev"] == revcontent && users[i].revdata[j]["revname"] == revresto)
+              if(users[k].revdata[j]["rev"] == revcontent && users[k].revdata[j]["revname"] == revresto)
               {
-                console.log("profile review found: " + users[i].revdata[j]["rev"]);
-                users[i].revdata[j]["notdeleted"] = false;
+                console.log("profile review found: " + users[k].revdata[j]["rev"]);
+                users[k].revdata[j]["notdeleted"] = false;
                 found2 = 1;
-                users[i].save().then(function (result) {
+                users[k].save().then(function (result) {
                   if(result){
                     resp.sendStatus(200);
                   }
@@ -1090,119 +1092,197 @@ server.post('/leavereview', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-    //const updateQuery = { user: req.body.id };
-    console.log("req.body.person: " + req.body.person);
-    console.log("req.body.rating: " + req.body.rating);
-  
-    userModel.findOne({name: req.body.person}).then(function(user){
-      console.log("user: " + user);
-      console.log("user url: " + user.urlname);
-      let userimage = user.image;
-      let userurl = "/profile-page/"+user.urlname;
-      
-      //add to resto model
-      restoModel.find({}).then(function(restos){
-        console.log('List successful');
-      
-        let found = 0; // all restaurants
-        for(let i = 0; i < restos.length && found == 0; i++)
-        { // all reviews in that restaurant
-            if(restos[i].name == req.body.resto)
-          {
-          let j = restos[i].revdata.length;
+  //const updateQuery = { user: req.body.id };
+  console.log("req.body.person: " + req.body.person);
+  console.log("req.body.rating: " + req.body.rating);
 
-              let newReview = {
-                revimg: userimage,
-                revname: req.body.person,
-                revrating: req.body.rating,
-                rev: req.body.review,
-                likes: [],
-                dislikes: [],
-                urlname: userurl,
-                notdeleted: true
-              };
-      
-              restos[i].revdata.push(newReview);
+  userModel.findOne({name: req.body.person}).then(function(user){
+    console.log("user: " + user);
+    console.log("user url: " + user.urlname);
+    let userimage = user.image;
+    let userurl = "/profile-page/"+user.urlname;
+    
+    //add to resto model
+    restoModel.find({}).then(function(restos){
+      console.log('List successful');
+    
+      let found = 0; // all restaurants
+      for(let i = 0; i < restos.length && found == 0; i++)
+      { // all reviews in that restaurant
+        if(restos[i].name == req.body.resto)
+        {
+        let j = restos[i].revdata.length;
+        let newReview = {
+          revimg: userimage,
+          revname: req.body.person,
+          revrating: req.body.rating,
+          rev: req.body.review,
+          likes: [],
+          dislikes: [],
+          urlname: userurl,
+          notdeleted: true
+        };
 
-              
-      let getratesum = 0;
-      let undeleted = 0;
-      for(let l = 0; l < restos[i].revdata.length; l++){
-        if(restos[i].revdata[l]["notdeleted"]==true){
-        for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
-            if(restos[i].revdata[l].revrating[k] == "★" ){
-                getratesum+= 1;
-            }
-        }
-        undeleted+=1;
-      }
-      }
-      
-      restos[i].rating = getratesum/undeleted;
+        restos[i].revdata.push(newReview);
 
-
-              console.log("review found: " + restos[i].revdata[j]["rev"]);
-              console.log("review found: " + restos[i].revdata[j]["revrating"]);
-              console.log("review found: " + restos[i].revdata[j]["urlname"]);
-
-              restos[i].revdata[j]["hascomments"] = false;
-              found = 1;
-              restos[i].save();
-              console.log("Saved in review");
-          }
-          
-        }
-
-        restoModel.findOne({name: req.body.resto}).then(function(resto2){
-            console.log("resto: " + resto2);
-            console.log("resto url: " + resto2.urlname);
-            let restoimage = resto2.imagesquare;
-            let restourl = "/restaurant/"+ resto2.landmark +"/"+ resto2.linkname;
             
-            //add to resto model
-            userModel.find({}).then(function(users2){
-              console.log('List successful');
-            
-              let found = 0; // all users
-              for(let i = 0; i < users2.length && found == 0; i++)
-              { // all reviews by users
-                  if(users2[i].name == req.body.person)
-                {
-                let j = users2[i].revdata.length;
-      
-                    let newReview2 = {
-                      revimg: restoimage,
-                      revname: req.body.resto,
-                      revrating: req.body.rating,
-                      rev: req.body.review,
-                      urlname: restourl,
-                      notdeleted: true
-                    };
-            
-                    users2[i].revdata.push(newReview2);
-      
-                    console.log("review in users found: " + users2[i].revdata[j]["rev"]);
-                    console.log("review in users found: " + users2[i].revdata[j]["revrating"]);
-                    console.log("review in users found: " + users2[i].revdata[j]["urlname"]);
-      
-                    users2[i].revdata[j]["hascomments"] = false;
-                    found = 1;
-                    users2[i].save();
-                    resp.sendStatus(200);
+        let getratesum = 0;
+        let undeleted = 0;
+        for(let l = 0; l < restos[i].revdata.length; l++){
+          if(restos[i].revdata[l]["notdeleted"]==true){
+            for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
+                if(restos[i].revdata[l].revrating[k] == "★" ){
+                    getratesum+= 1;
                 }
-                
+            }
+            undeleted+=1;
+          }
+        }
+        
+        restos[i].rating = getratesum/undeleted;
+          console.log("review found: " + restos[i].revdata[j]["rev"]);
+          console.log("review found: " + restos[i].revdata[j]["revrating"]);
+          console.log("review found: " + restos[i].revdata[j]["urlname"]);
+
+          restos[i].revdata[j]["hascomments"] = false;
+          found = 1;
+          restos[i].save();
+          console.log("Saved in review");
+        }
+      }
+
+      restoModel.findOne({name: req.body.resto}).then(function(resto2){
+          console.log("resto: " + resto2);
+          console.log("resto url: " + resto2.urlname);
+          let restoimage = resto2.imagesquare;
+          let restourl = "/restaurant/"+ resto2.landmark +"/"+ resto2.linkname;
+          
+          //add to resto model
+          userModel.find({}).then(function(users2){
+            console.log('List successful');
+          
+            let found = 0; // all users
+            for(let i = 0; i < users2.length && found == 0; i++)
+            { // all reviews by users
+                if(users2[i].name == req.body.person)
+              {
+              let j = users2[i].revdata.length;
+    
+                  let newReview2 = {
+                    revimg: restoimage,
+                    revname: req.body.resto,
+                    revrating: req.body.rating,
+                    rev: req.body.review,
+                    urlname: restourl,
+                    notdeleted: true
+                  };
+          
+                  users2[i].revdata.push(newReview2);
+    
+                  console.log("review in users found: " + users2[i].revdata[j]["rev"]);
+                  console.log("review in users found: " + users2[i].revdata[j]["revrating"]);
+                  console.log("review in users found: " + users2[i].revdata[j]["urlname"]);
+    
+                  users2[i].revdata[j]["hascomments"] = false;
+                  found = 1;
+                  users2[i].save();
+                  resp.sendStatus(200);
               }
-            }).catch(errorFn);
+            }
           }).catch(errorFn);
       }).catch(errorFn);
     }).catch(errorFn);
+  }).catch(errorFn);
+});
+   
+server.post('/editreview', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  //const updateQuery = { user: req.body.id };
+  console.log("req.body.revin: " + req.body.revin);
+  console.log("req.body.person: " + req.body.person);
+  console.log("req.body.resto: " + req.body.resto);
+  console.log("req.body.newcom: " + req.body.newcom);
+  console.log("req.body.rating: " + req.body.rating);
 
-    
   
-    
-  });
-    
+  restoModel.find({ name : req.body.resto } ).then(function(restos){
+    console.log('Edit Review List Success');
   
+    let found = 0; // all restaurants
+    let found2 = 0;
+    for(let i = 0; i < restos.length && found == 0; i++)
+    { // all reviews in that restaurant
+
+      console.log("review found: " + restos[i].revdata[req.body.revin]["rev"]);
+      console.log("review found: " + restos[i].revdata[req.body.revin]["revrating"]);
+
+      let revcontent = restos[i].revdata[req.body.revin]["rev"];
+      restos[i].revdata[req.body.revin]["rev"] = req.body.newcom;
+      restos[i].revdata[req.body.revin]["revrating"] = req.body.rating;
+      found = 1;
+      restos[i].save();
+
+      userModel.find({ name: req.body.person }).then(function(users){
+        for(let k = 0; k < users.length && found2 == 0; k++)
+        {
+          for(let j = 0; j < users[k].revdata.length && found2 == 0; j++)
+          { // make sure resto and review is the same as the one found
+            if(users[k].revdata[j]["rev"] == revcontent && users[k].revdata[j]["revname"] == req.body.resto)
+            {
+              console.log("profile review found: " + users[k].revdata[j]["rev"]);
+              console.log("profile review found: " + users[k].revdata[j]["revrating"]);
+
+              users[k].revdata[j]["rev"] = req.body.newcom;
+              users[k].revdata[j]["revrating"] = req.body.rating;
+
+// RESTO SHOULD PROLLY UPDATE RATING
+              found2 = 1;
+              users[k].save().then(function (result) {
+                if(result){
+                  resp.sendStatus(200);
+                }
+              });
+            }
+          }
+        }
+      }).catch(errorFn);
+    }
+  }).catch(errorFn); 
+});
+
+server.post('/editcomment', function(req, resp){
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  //const updateQuery = { user: req.body.id };
+  console.log("req.body.revin: " + req.body.revin);
+  console.log("req.body.comin: " + req.body.comin);
+  console.log("req.body.person: " + req.body.person);
+  console.log("req.body.resto: " + req.body.resto);
+  console.log("req.body.newcom: " + req.body.newcom);
+
+  
+  restoModel.find({ name : req.body.resto } ).then(function(restos){
+    console.log('Edit Comment List Success');
+  
+    let found = 0; // all restaurants
+    for(let i = 0; i < restos.length && found == 0; i++)
+    { // all reviews in that restaurant
+
+      console.log("review found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
+      restos[i].revdata[req.body.revin].comments[req.body.comin]["com"] = req.body.newcom;
+      found = 1;
+      restos[i].save();
+      resp.sendStatus(200);
+
+    }
+  }).catch(errorFn); 
+});
+
 
 function finalClose(){
     console.log('Close connection at the end!');

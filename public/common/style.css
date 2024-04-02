@@ -686,6 +686,18 @@ progress[value]::-webkit-progress-bar {
     flex-direction: column;
 }
 
+.sendedit-button
+{
+    max-height: 30px;
+    width: 200px;
+}
+
+.sendeditreview-button
+{
+    max-height: 30px;
+    width: 200px;
+}
+
 .editpfp-button
 {
     max-height: 30px;
@@ -722,7 +734,7 @@ progress[value]::-webkit-progress-bar {
     font-size: 15px;
 }
 
-.editpfp-button:hover, .editbio-button:hover, .reply-button:hover, .viewreplies-button:hover {
+.editpfp-button:hover, .editbio-button:hover, .reply-button:hover, .viewreplies-button:hover, .sendedit-button:hover, .sendeditreview-button:hover {
     background-color: white;
     border: 1px solid #448753;
     color: #448753;
@@ -734,7 +746,7 @@ progress[value]::-webkit-progress-bar {
     border: 1px solid #aa3737;
 }
 
-.editpfp-button, .editbio-button, .reply-button, .viewreplies-button
+.editpfp-button, .editbio-button, .reply-button, .viewreplies-button, .sendedit-button, .sendeditreview-button
 {
     transition-duration: 0.4s;
     height: 100%;

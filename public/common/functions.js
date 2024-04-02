@@ -477,6 +477,48 @@ $(document).on('click', '#reportresto', function(){
     toggleReport();
 });
 
+$(document).on('click', '#editcomment', function(){
+  var reviewIndex = $(this).data('revindex');
+  toggleEditRev(reviewIndex);
+});
+
+function toggleEditRev(reviewIndex){
+  var editBox = document.getElementById('editrevform'+reviewIndex); 
+  var editBoxes = document.querySelectorAll('[id^="editrevform"]');
+
+  editBoxes.forEach(function(Box) {
+    Box.style.display = "none";
+  });
+
+  if(editBox.style.display == "none") { // if is menuBox displayed, hide it
+    editBox.style.display = "block";
+  }
+  else { // if is menuBox hidden, display it
+    editBox.style.display = "none";
+  }
+}
+
+$(document).on('click', '#replyedit', function(){
+  var reviewIndex = $(this).data('revindex');
+  var commentIndex = $(this).data('comindex');
+  toggleEditCom(reviewIndex, commentIndex);
+});
+
+function toggleEditCom(reviewIndex, commentIndex){
+  var editBox = document.getElementById('editform'+reviewIndex+"-"+commentIndex); 
+  var editBoxes = document.querySelectorAll('[id^="editform"]');
+
+  editBoxes.forEach(function(Box) {
+    Box.style.display = "none";
+  });
+
+  if(editBox.style.display == "none") { // if is menuBox displayed, hide it
+    editBox.style.display = "block";
+  }
+  else { // if is menuBox hidden, display it
+    editBox.style.display = "none";
+  }
+}
 
 function getRating(ratingElements){
   var stars = ratingElements;
@@ -494,7 +536,7 @@ function getRating(ratingElements){
   return rating;
 }
 
-//ADD/EDIT REVIEW
+//ADD REVIEW
 var form = document.getElementById('myForm');
 
 form.addEventListener('submit', function(event) {
@@ -528,8 +570,8 @@ form.addEventListener('submit', function(event) {
       console.log('review request successful');
       $('#myForm')[0].reset(); // Use jQuery to reset form
       $('input[name="rate-resto"]').prop('checked', false); // Clear radio buttons
-          var ratingElementsL = document.querySelectorAll('input[name="rate-resto"]:checked');
-          console.log("ratingElementsL: " + ratingElementsL.length);
+      var ratingElementsL = document.querySelectorAll('input[name="rate-resto"]:checked');
+      console.log("ratingElementsL: " + ratingElementsL.length);
       window.location.reload();
       
     }
@@ -539,15 +581,63 @@ form.addEventListener('submit', function(event) {
   }
 });
 
-$(document).on('click', '#editcomment', function(){
-  alert("Functionality coming in MCO3!");
+// EDIT REVIEW
+$(document).on('click', '.sendeditreview-button', function(){
+  var reviewIndex = $(this).data('revindex');
+  var restoname = $(this).data('resto');
+  var username = $(this).data('person');
+  var newcomment = $("#reviewcomment" + reviewIndex).val();
+
+  var rating = ""; 
+
+  var ratingElements = 0;
+  for (var i = 1; i <= 5; i++) {
+    console.log(ratingElements + "!");
+        if ($('#star' + i + '-resto'+reviewIndex).prop('checked')) {
+          ratingElements= i;
+        }
+  }
+  rating = getRating(ratingElements);
+  console.log("rating: " + rating);
+
+  console.log("reviewIndex: " + reviewIndex);
+  console.log("restoname: " + restoname);
+  console.log("username: " + username);
+  console.log("newcomment: " + newcomment);
+
+  $.post('/editreview',{
+    revin: reviewIndex, resto: restoname, person: username, newcom: newcomment, rating: rating
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Edit review request successful');
+      window.location.reload();
+    }
+  });
 });
 
-$(document).on('click', '#replyedit', function(){
-  alert("Functionality coming in MCO3!");
+// EDIT COMMENT
+$(document).on('click', '.sendedit-button', function(){
+  var reviewIndex = $(this).data('revindex');
+  var commentIndex = $(this).data('comindex');
+  var restoname = $(this).data('resto');
+  var username = $(this).data('person');
+  var newcomment = $("#reviewcomment" + reviewIndex + "-" + commentIndex).val();
+
+  console.log("reviewIndex: " + reviewIndex);
+  console.log("commentIndex: " + commentIndex);
+  console.log("restoname: " + restoname);
+  console.log("username: " + username);
+  console.log("newcomment: " + newcomment);
+
+  $.post('/editcomment',{
+    revin: reviewIndex, comin: commentIndex, resto: restoname, person: username, newcom: newcomment,
+  }, function(data, status){
+    if(status === 'success'){
+      console.log('Edit comment request successful');
+      window.location.reload();
+    }
+  });
 });
-
-
 
 // DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){
@@ -571,6 +661,7 @@ $(document).on('click', '.delete-comment', function(){
   });
 });  
 
+// REPLYING TO REVIEWS
 $(document).on('click', '.replysend-button', function(){
   var reviewId = $(this).data('replyto-id');
   var person = $(this).data('person');

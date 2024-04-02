@@ -120,7 +120,6 @@
                                         </div>
                                        
                                     <button type="submitreview-button" class="editbio-button" id = "review" data-person="{{user.name}}" data-resto="{{restodata.name}}">Submit</button>
-                                
                                 </form>
                             </div>
 
@@ -156,14 +155,33 @@
                                             <button type="viewreplies-button" id = "viewreply" class = "viewreplies-button">View Replies</button>
                                             {{/if}}
                                             {{#eq this.revname ../user.name}}
-                                            <button type="edit-button" class = "editbio-button" id = "editcomment">Edit</button>
+                                            <button type="edit-button" class = "editbio-button" id = "editcomment" data-revindex="{{reviewIndex}}">Edit</button>
                                             <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="-1" data-commentdelete-restoname="{{../restodata.name}}" data-commentdelete-username="{{this.revname}}">Delete</button>
                                             {{/eq}}
+<!--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+
+                                            <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
+                                            <textarea name="review" id="reviewcomment{{reviewIndex}}" placeholder="Edit your review!"></textarea>
+                                                    <div class="rate">
+                                                        <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
+                                                        <label for="star5-resto{{reviewIndex}}" title="text"> 5 stars</label>
+                                                        <input type="radio" id="star4-resto{{reviewIndex}}" name="rate-resto" value="4"  autocomplete= "off"/>
+                                                        <label for="star4-resto{{reviewIndex}}" title="text"> 4 stars</label>
+                                                        <input type="radio" id="star3-resto{{reviewIndex}}" name="rate-resto" value="3"  autocomplete= "off"/>
+                                                        <label for="star3-resto{{reviewIndex}}" title="text-resto"> 3 stars</label>
+                                                        <input type="radio" id="star2-resto{{reviewIndex}}" name="rate-resto" value="2"  autocomplete= "off"/>
+                                                        <label for="star2-resto{{reviewIndex}}" title="text"> 2 stars</label>
+                                                        <input type="radio" id="star1-resto{{reviewIndex}}" name="rate-resto" value="1"  autocomplete= "off"/>
+                                                        <label for="star1-resto{{reviewIndex}}" title="text"> 1 star</label>
+                                                    </div>
+                                                
+                                                <button type="button" class="sendeditreview-button" data-person="{{this.revname}}" data-resto="{{../restodata.name}}" data-revindex="{{reviewIndex}}">Submit</button>
+                                            </div>
 
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text-{{reviewIndex}}" rows="5" cols="50"></textarea>
                                                 <div class = "usereditbio">
-                                                    <button type="button" class="replysend-button" data-replyto-id="{{reviewIndex}}" data-person="{{../user.name}}" data-restoname="{{../restodata.name}}">Reply</button>
+                                                    <button type="button" class="replysend-button reply-button" data-replyto-id="{{reviewIndex}}" data-person="{{../user.name}}" data-restoname="{{../restodata.name}}">Reply</button>
                                                 </div>
                                             </div>
 
@@ -193,10 +211,18 @@
                                                                     <i class="fa fa-thumbs-down like {{isActive ../../cdThumbs commentIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
-                                                                <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
+                                                                <button type="edit-button" class = "editbio-button" id = "replyedit" data-revindex="{{reviewIndex}}" data-comindex="{{commentIndex}}">Edit</button>
                                                                 <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="{{commentIndex}}" data-commentdelete-restoname="{{../../restodata.name}}" data-commentdelete-username="{{this.comname}}">Delete</button>
                                                                 {{/eq}}
+
+                                                                
                                                             </div>
+                                                            <div class="reply-container"   style="display: none;" rows="5" cols="50" id = "editform{{reviewIndex}}-{{commentIndex}}">
+                                                                    <textarea name="reviewtextB" id="reviewcomment{{reviewIndex}}-{{commentIndex}}" placeholder="Edit your review!"></textarea>
+                                                                    <div class = "usereditbio">
+                                                                        <button type="button" class="sendedit-button" data-person="{{this.comname}}" data-resto="{{../../restodata.name}}" data-revindex="{{reviewIndex}}" data-comindex="{{commentIndex}}">Submit</button>
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
