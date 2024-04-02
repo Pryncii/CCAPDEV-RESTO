@@ -406,6 +406,8 @@ server.post('/read-user', function(req, resp){
 
                                 }
 
+                                restos.rating = getratesum/undeleted;
+
                               resp.render('restopage', {
                                   layout: 'index',
                                   title: 'Restaurant',
