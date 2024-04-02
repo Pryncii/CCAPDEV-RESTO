@@ -10,20 +10,64 @@
     <i class="fa fa-caret-down"></i>
     </button>
     <div id="contents2" class="dropdown-container">
-    <a href="/restaurant/U_Mall/mcdonalds">McDonalds</a>
-    <a href="/restaurant/U_Mall/kfc">KFC</a>
+    {{#each sresto.U_Mall}}
+    <a href="/restaurant/U_Mall/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
     </div>
     <button id="burgundy" class="dropdown-btn" onclick="toggleVisibility('contents3','burgundy')">Burgundy 
     <i class="fa fa-caret-down"></i>
     </button>
     <div id="contents3" class="dropdown-container">
-    <a href="/restaurant/Burgundy/army_navy">Army Navy</a>
-     <a href="/restaurant/Burgundy/starbucks">Starbucks</a>
+    {{#each sresto.Burgundy}}
+    <a href="/restaurant/Burgundy/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
     </div>
     <button id="dlsu" class="dropdown-btn" onclick="toggleVisibility('contents4','dlsu')">DLSU Manila 
     <i class="fa fa-caret-down"></i>
     </button>
     <div id="contents4" class="dropdown-container">
-    <a href="/restaurant/DLSU/coffee_bean">Coffee and Tea Leaf</a>
+    {{#each sresto.DLSU}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
+    </div>
+    <button id="egi" class="dropdown-btn" onclick="toggleVisibility('contents5','egi')">EGI Towers
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="contents5" class="dropdown-container">
+    {{#each sresto.EGI}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
+    </div>
+    <button id="archers" class="dropdown-btn" onclick="toggleVisibility('contents6','archers')">One Archers
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="contents6" class="dropdown-container">
+    {{#each sresto.Archers}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
+    </div>
+    <button id="G_Residences" class="dropdown-btn" onclick="toggleVisibility('contents7','G_Residences')">Green Residences
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="contents7" class="dropdown-container">
+    {{#each sresto.G_Residences}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
+    </div>
+    <button id="R_Square" class="dropdown-btn" onclick="toggleVisibility('contents8','R_Square')">R Square
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="contents8" class="dropdown-container">
+    {{#each sresto.R_Square}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
+    </div>
+    <button id="Man_Res" class="dropdown-btn" onclick="toggleVisibility('contents1','Man_Res')">Manila Residences
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="contents1" class="dropdown-container">
+    {{#each sresto.Man_Res}}
+    <a href="/restaurant/DLSU/{{this.linkname}}">{{this.name}}</a>
+    {{/each}}
     </div>
 </div>
