@@ -1292,7 +1292,6 @@ server.post('/editreview', function(req, resp){
               users[k].revdata[j]["rev"] = req.body.newcom;
               users[k].revdata[j]["revrating"] = req.body.rating;
 
-// RESTO SHOULD PROLLY UPDATE RATING
               found2 = 1;
               users[k].save().then(function (result) {
                 if(result){
