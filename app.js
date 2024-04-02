@@ -924,9 +924,10 @@ server.post('/reaction', function(req, resp){
         img = "/common/Images/PFPs/resto-default.jpg";
         errormsg = "?invalid-img-format"
       }
-    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img}).then(function () {
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img, imagesquare:img}).then(function () {
       
         loggedInUser.imagesquare=img;
+        loggedInUser.image=img;
 
       resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
    
