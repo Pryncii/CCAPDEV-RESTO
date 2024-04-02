@@ -195,7 +195,17 @@ server.get('/signup-page', function(req, resp){
 
 
 server.post('/create-user', [
-  check('fname').notEmpty(),
+  check('fname').custom((value, { req }) => {
+    return new Promise((resolve, reject) => {
+        userModel.findOne({ name: req.body.fname }).lean().then(function (userfound) {
+            if (userfound) {
+                reject('Other user exists');
+            } else {
+                resolve();
+            }
+        }).catch(err => reject(err)); // Handle database query errors
+    });
+}),
   check('username').notEmpty(),
   check('password').notEmpty(),
   check('map').custom((value, { req }) => {
