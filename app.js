@@ -207,7 +207,8 @@ server.post('/create-user', function(req, resp){
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
         encrypted_pass = hash;
         console.log("Encrypted pass: "+encrypted_pass);
-        newModel = new restoModel({
+        newModel = new 
+        restoModel({
           name: req.body.fname,
           linkname: req.body.fname.replace(/ /g, "_"),
           user: req.body.username,
