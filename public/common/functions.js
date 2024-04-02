@@ -303,10 +303,14 @@ else { // if is menuBox hidden, display it
 
 function toggleReport(){
   var infoBox = document.getElementById('info');
-  var reportBox = document.getElementById('reporter');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(reportBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
     reportBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
@@ -317,10 +321,14 @@ function toggleReport(){
 
 function toggleEditbio(){
   var infoBox = document.getElementById('info');
-  var bioBox = document.getElementById('biochanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
+    reportBox.style.display = "none";
     bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
@@ -330,14 +338,44 @@ function toggleEditbio(){
 
 function toggleEditpfp(){
   var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
   var pfpBox = document.getElementById('picchanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
     pfpBox.style.display = "inline-block";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
     pfpBox.style.display = "none";
+  }
+}
+
+function toggleEditdesc(){
+  var infoBox = document.getElementById('info');
+  var descBox = document.getElementById('descchanger');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    descBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    descBox.style.display = "none";
+  }
+}
+
+function toggleEditdesc(){
+  var infoBox = document.getElementById('info');
+  var descBox = document.getElementById('descchanger');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    descBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    descBox.style.display = "none";
   }
 }
 
