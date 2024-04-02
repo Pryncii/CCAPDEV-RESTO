@@ -36,7 +36,7 @@
                         <div class = "descandbuttons">
                             <div class = "restodesc" id="restodescid">
                                 <span>Description</span>
-                                <p id = "info">
+                                <p id = "info" style="display: inline-block;">
                                     {{restodata.description}}
                                 </p>
                                 <form class="review-form-container"  action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
@@ -47,9 +47,17 @@
                                     <input type="text" name ="landmark" value = "{{restodata.landmark}}" readonly>
                                     <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
+                                <form class="review-form-container" action = "/change-restopic/" method = "post" style="display: none;" id = "picchanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Image Link!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-restobio/" method = "post" style="display: none;" id = "biochanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Description!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
                             </div>
                             <div class = "usereditbio">
-                                <button type="map-button" onclick="window.location.href='{{restodata.maplink}}'" class = "editbio-button" >Map</button>
+                                <button type="map-button" onclick="openInNewTab('{{restodata.maplink}}')" class = "editbio-button" id = "mapbutton" >Map</button>
                                 {{#eq restodata.name user.name}}
                                 <button type="editpfp-button" id = "changerestopic" class = "editpfp-button">Change Picture</button>
                                 <button type="editbio-button" id = "changerestobio" class = "editbio-button">Edit Bio</button>
@@ -119,6 +127,7 @@
                         <!--OTHER REVIEWS HERE-->
                         {{#each restodata.revdata as |review reviewIndex|}}
                         {{#if notdeleted}}
+                        
                             <div class = "reviewcontainer2">
                                 <div class = "reviewcontainerleft2">
                                     <img src = "{{this.revimg}}">
@@ -136,11 +145,11 @@
                                     
                                     <div class = "usereditbio2">
                                         <div class="thumbs">
-                                            <div class="like grow" onclick="likedislike({{restodata}}, 'likes' ,{{@index}}, -1)">
-                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="{{restodata.user}}-like-review-{{@index}}--1" >{{this.likes.length}}</i>
+                                            <div class="like grow" >
+                                                <i class="fa fa-thumbs-up like {{isActive ../lThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.likes.length}}</i>
                                             </div>
-                                            <div class="dislike grow" onclick="likedislike({{restodata}}, 'dislikes' ,{{@index}}, -1)">
-                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{@index}}--1" >{{this.dislikes.length}}</i>
+                                            <div class="dislike grow" >
+                                                <i class="fa fa-thumbs-down like {{isActive ../dThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             {{#if hascomments}}

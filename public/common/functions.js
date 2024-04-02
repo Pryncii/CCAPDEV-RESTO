@@ -106,7 +106,7 @@ var element = document.getElementById(id);
 element.classList.remove("active");
 }
 
-function toggleThumb(id, id2) {
+function toggleThumb(id, id2, reviewId, person) {
 var element = document.getElementById(id);
 var element2 = document.getElementById(id2);
 
@@ -128,21 +128,23 @@ if (element.classList.contains("active")) {
   deactivateThumb(id);
   var number = parseInt(element.textContent);
   if (number!=0){
-    element.textContent = --number;
+    //element.textContent = --number;
    
   }
 
 } else if (element2.classList.contains("active")){
     activeThumb(id);
     deactivateThumb(id2);
-    element.textContent = ++number;
+    //element.textContent = ++number;
+    
     if (number!=0){
-      element2.textContent = --number2;
+      //element2.textContent = --number2;
+
     }
 } else {
   activeThumb(id);
   var number = parseInt(element.textContent);
-  element.textContent = ++number;
+  //element.textContent = ++number;
 }
 }
 
@@ -154,17 +156,40 @@ document.addEventListener("DOMContentLoaded", function() {
           // Get the IDs of the like and dislike buttons
           console.log(button.id);
           const likeId = button.id;
+          var reviewId = $(this).data('rev-id');
+          var person = $(this).data('person');
+          console.log("reviewId: " + reviewId);
+          console.log("person: " + person);
+          var element = document.getElementById(likeId);
+          let eclass = 0;
+          if (element.classList.contains("active")) {eclass = 1};
+
           let likeId2;
           if (likeId.includes("dislike")){
-            
             likeId2 = likeId.replace("dislike", "like");
+            $.post('/reaction',{
+              rev :reviewId, person: person, action: "dislike", eclass: eclass
+            }, function(data, status){
+              if(status === 'success'){
+                console.log('like request successful');
+                window.location.reload();
+              }
+            });
           }
           else {
             likeId2 = likeId.replace("like", "dislike");
+            $.post('/reaction',{
+             rev :reviewId, person: person, action: "like", eclass: eclass
+            }, function(data, status){
+              if(status === 'success'){
+                console.log('like request successful');
+                window.location.reload();
+              }
+            });
           }
           // Check if both elements exist
           if (likeId && likeId2) {
-            toggleThumb(button.id, likeId2);
+            toggleThumb(button.id, likeId2, reviewId, person);
           }
       });
   });
@@ -188,6 +213,7 @@ $(document).ready(function(){
   }//end for
 });*/
 
+/*
 function likedislike(restodata, action, revindex, comindex){
 
   alert("liking");
@@ -200,7 +226,8 @@ function likedislike(restodata, action, revindex, comindex){
           }
         });
     
-  }//if
+  }*/
+  //if
   /** 
 $(document).on('click', '.reply-button', function(){
   var reviewId = $(this).data('replyto-id');
@@ -303,10 +330,14 @@ else { // if is menuBox hidden, display it
 
 function toggleReport(){
   var infoBox = document.getElementById('info');
-  var reportBox = document.getElementById('reporter');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(reportBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
     reportBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
@@ -317,10 +348,14 @@ function toggleReport(){
 
 function toggleEditbio(){
   var infoBox = document.getElementById('info');
-  var bioBox = document.getElementById('biochanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
+    reportBox.style.display = "none";
     bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
@@ -330,15 +365,58 @@ function toggleEditbio(){
 
 function toggleEditpfp(){
   var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
   var pfpBox = document.getElementById('picchanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
     pfpBox.style.display = "inline-block";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
     pfpBox.style.display = "none";
   }
+}
+
+function toggleEditrestopfp(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+}
+
+function toggleEditrestobio(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+  }
+}
+
+function openInNewTab(url) {
+  // Open the URL in a new tab/window
+  window.open(url, '_blank');
 }
 
 //meant to be for alerting if form is empty bcus redirected straight to
@@ -388,30 +466,17 @@ $(document).on('click', '#reportuser', function(){
 
 
 $(document).on('click', '#changerestopic', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "change-restopic" method = "post">
-            <textarea name="restodesc" >Enter New Image Link!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
-
-    
+  toggleEditrestopfp();
 });
 
 $(document).on('click', '#changerestobio', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/change-restobio/" method = "post">
-            <textarea name="restodesc" >Enter New Description!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
+  toggleEditrestobio();
 });
 
 $(document).on('click', '#reportresto', function(){
     toggleReport();
 });
+
 
 function getRating(ratingElements){
   var stars = ratingElements;
