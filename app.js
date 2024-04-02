@@ -430,11 +430,29 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         let getratesum = 0;
         let likeThumb = "";
         let dislikeThumb = "";
+        let clikeThumb = "";
+        let cdislikeThumb = "";
         for(let j = 0; j < restos.revdata.length; j++){
             for(let k = 0; k < restos.revdata[j].revrating.length; k++){
                 if(restos.revdata[j].revrating[k] == "★"){
                     getratesum+= 1;
                 }
+            }
+            
+            if (restos.revdata[j].hascomments != false) {
+                for(let x = 0; x < restos.revdata[j].comments.length; x++){
+                    if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
+                        clikeThumb+= 1;
+                    }else {
+                        clikeThumb+= 0;
+                    }
+                    if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
+                        cdislikeThumb+= 1;
+                    }else {
+                        cdislikeThumb+= 0;
+                    }
+                }
+
             }
     
                 if(restos.revdata[j].likes.includes(loggedInUser.user)){
@@ -466,6 +484,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             user        : loggedInUser,
             lThumbs   : likeThumb,
             dThumbs: dislikeThumb,
+            clThumbs   : clikeThumb,
+            cdThumbs: cdislikeThumb,
             checkUser: isUser,
             vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
         });

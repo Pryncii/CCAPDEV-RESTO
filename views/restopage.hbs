@@ -187,10 +187,10 @@
                                                         <div class = "usereditbio2">
                                                             <div class="thumbs">
                                                                 <div class="like grow" >
-                                                                    <i class="fa fa-thumbs-up like {{isActive ../../lThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}" >{{this.likes.length}}</i>
+                                                                    <i class="fa fa-thumbs-up like {{isActive ../clThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}" >{{this.likes.length}}</i>
                                                                 </div>
                                                                 <div class="dislike grow" >
-                                                                    <i class="fa fa-thumbs-down like {{isActive ../../dThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
+                                                                    <i class="fa fa-thumbs-down like {{isActive ../cdThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
