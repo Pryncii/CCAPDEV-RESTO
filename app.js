@@ -840,85 +840,73 @@ server.post('/deletecomment', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-    console.log("req.body.id: " + req.body.id);
-    console.log("req.body.user: " + req.body.user);
+  console.log("req.body.revin: " + req.body.revin);
+  console.log("req.body.comin: " + req.body.comin);
+  console.log("req.body.restoname: " + req.body.restoname);
+  console.log("req.body.username: " + req.body.username);
   //user -> revdata
   //resto -> revdata -> comment
 
-// FOR DELETING COMMENTS THAT ARE IN REPLY OF REVIEWS
-restoModel.find({}).then(function(restos){
-  console.log('List successful');
+  if(req.body.comin != -1){
+    restoModel.find({ name: req.body.restoname }).then(function(restos){
 
-  let found = 0;
-  for(let i = 0; i < restos.length && found == 0; i++)
-  {
-    //console.log("revdatalength: " + restos[i].revdata.length);
-
-    for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+  
+    let found = 0;
+    for(let i = 0; i < restos.length && found == 0; i++)
     {
-      for(let k = 0; k < restos[i].revdata[j].comments.length && found == 0; k++)
-      {
-        if(restos[i].revdata[j].comments[k]["com"] == req.body.id && restos[i].revdata[j].comments[k]["comname"] == req.body.user)
-        {
-          console.log("comment found: " + restos[i].revdata[j].comments[k]["com"]);
-          restos[i].revdata[j].comments[k]["notdeleted"] = false;
-          found = 1;
+      
+      console.log("comment found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
+      restos[i].revdata[req.body.revin].comments[req.body.comin]["notdeleted"] = false;
+      found = 1;
 
-          restos[i].save().then(function (result) {
-            if(result){
-              resp.sendStatus(200);
-            }
-          });
+          
+      restos[i].save().then(function (result) {
+        if(result){
+          resp.sendStatus(200);
         }
-      }
+      });
     }
+    
+  }).catch(errorFn);
   }
-}).catch(errorFn);
-
-// FOR DELETING COMMENTS THAT ARE IN REVIEW
-restoModel.find({}).then(function(restos){
-  console.log('List successful');
-
-  let found = 0; // all restaurants
-  for(let i = 0; i < restos.length && found == 0; i++)
-  { // all reviews in that restaurant
-    for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
-    {
-      if(restos[i].revdata[j]["rev"] == req.body.id && restos[i].revdata[j]["revname"] == req.body.user)
+  else {
+    // FOR DELETING COMMENTS THAT ARE IN REVIEW
+    restoModel.find({ name: req.body.restoname }).then(function(restos){
+      let found = 0;
+      let found2 = 0;
+      for(let i = 0; i < restos.length && found == 0; i++)
       {
-        console.log("review found: " + restos[i].revdata[j]["rev"]);
-        restos[i].revdata[j]["notdeleted"] = false;
+        console.log("review found: " + restos[i].revdata[req.body.revin]["rev"]);
+        restos[i].revdata[req.body.revin]["notdeleted"] = false;
         found = 1;
+        let revcontent = restos[i].revdata[req.body.revin]["rev"];
+        let revresto = restos[i]["name"];
         restos[i].save();
-      }
-    }
-  }
-}).catch(errorFn);
-
-// FOR DELETING COMMENTS THAT ARE IN PROFILE PAGE
-userModel.find({}).then(function(users){
-  console.log('List successful');
-
-  let found = 0; // all users
-  for(let i = 0; i < users.length && found == 0; i++)
-  { // all reviews in user
-    for(let j = 0; j < users[i].revdata.length && found == 0; j++)
-    {
-      if(users[i].revdata[j]["rev"] == req.body.id && users[i]["name"] == req.body.user)
-      {
-        console.log("profile review found: " + users[i].revdata[j]["rev"]);
-        users[i].revdata[j]["notdeleted"] = false;
-        found = 1;
-        users[i].save().then(function (result) {
-          if(result){
-            resp.sendStatus(200);
+      
+        userModel.find({ name: req.body.username }).then(function(users){
+          for(let i = 0; i < users.length && found2 == 0; i++)
+          {
+            for(let j = 0; j < users[i].revdata.length && found2 == 0; j++)
+            { // make sure resto and review is the same as the one found
+              if(users[i].revdata[j]["rev"] == revcontent && users[i].revdata[j]["revname"] == revresto)
+              {
+                console.log("profile review found: " + users[i].revdata[j]["rev"]);
+                users[i].revdata[j]["notdeleted"] = false;
+                found2 = 1;
+                users[i].save().then(function (result) {
+                  if(result){
+                    resp.sendStatus(200);
+                  }
+                });
+              }
+            }
           }
-        });
+        }).catch(errorFn);
       }
-    }
+    }).catch(errorFn);
   }
-}).catch(errorFn);
 });
+
 
 server.post('/replycomment', function(req, resp){
   if(req.session.login_id == undefined){

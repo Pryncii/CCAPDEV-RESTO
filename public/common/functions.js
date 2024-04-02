@@ -472,13 +472,18 @@ $(document).on('click', '#replyedit', function(){
 
 // DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){
-  var commentId = $(this).data('commentdelete-id');
-  var userId = $(this).data('commentdelete-user');
-  console.log("commentId: " + commentId);
-  console.log("userId: " + userId);
+  var reviewIndex = $(this).data('commentdelete-revindex');
+  var commentIndex = $(this).data('commentdelete-comindex');
+  var restoname = $(this).data('commentdelete-restoname');
+  var username = $(this).data('commentdelete-username');
+
+  console.log("reviewIndex: " + reviewIndex);
+  console.log("commentIndex: " + commentIndex);
+  console.log("restoname: " + restoname);
+  console.log("username: " + username);
 
   $.post('/deletecomment',{
-    id: commentId, user: userId,
+    revin: reviewIndex, comin: commentIndex, restoname: restoname, username: username,
   }, function(data, status){
     if(status === 'success'){
       console.log('Delete comment request successful');
