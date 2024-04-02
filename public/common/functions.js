@@ -484,11 +484,6 @@ $(document).on('click', '#editcomment', function(){
 
 function toggleEditRev(reviewIndex){
   var editBox = document.getElementById('editrevform'+reviewIndex); 
-  var editBoxes = document.querySelectorAll('[id^="editrevform"]');
-
-  editBoxes.forEach(function(Box) {
-    Box.style.display = "none";
-  });
 
   if(editBox.style.display == "none") { // if is menuBox displayed, hide it
     editBox.style.display = "block";

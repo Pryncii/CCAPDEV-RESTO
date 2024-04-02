@@ -159,31 +159,32 @@
                                             <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="-1" data-commentdelete-restoname="{{../restodata.name}}" data-commentdelete-username="{{this.revname}}">Delete</button>
                                             {{/eq}}
 <!--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-
-                                            <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
-                                            <textarea name="review" id="reviewcomment{{reviewIndex}}" placeholder="Edit your review!"></textarea>
-                                                    <div class="rate">
-                                                        <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
-                                                        <label for="star5-resto{{reviewIndex}}" title="text"> 5 stars</label>
-                                                        <input type="radio" id="star4-resto{{reviewIndex}}" name="rate-resto" value="4"  autocomplete= "off"/>
-                                                        <label for="star4-resto{{reviewIndex}}" title="text"> 4 stars</label>
-                                                        <input type="radio" id="star3-resto{{reviewIndex}}" name="rate-resto" value="3"  autocomplete= "off"/>
-                                                        <label for="star3-resto{{reviewIndex}}" title="text-resto"> 3 stars</label>
-                                                        <input type="radio" id="star2-resto{{reviewIndex}}" name="rate-resto" value="2"  autocomplete= "off"/>
-                                                        <label for="star2-resto{{reviewIndex}}" title="text"> 2 stars</label>
-                                                        <input type="radio" id="star1-resto{{reviewIndex}}" name="rate-resto" value="1"  autocomplete= "off"/>
-                                                        <label for="star1-resto{{reviewIndex}}" title="text"> 1 star</label>
-                                                    </div>
-                                                
-                                                <button type="button" class="sendeditreview-button" data-person="{{this.revname}}" data-resto="{{../restodata.name}}" data-revindex="{{reviewIndex}}">Submit</button>
-                                            </div>
-
                                             <div class="reply-container"   style="display: none;">
-                                                <textarea name="reply-text" id="reply-text-{{reviewIndex}}" rows="5" cols="50"></textarea>
+                                                <textarea name="reply-text" id="reply-text-{{reviewIndex}}" rows="5" cols="50" placeholder="Write a reply!"></textarea>
                                                 <div class = "usereditbio">
                                                     <button type="button" class="replysend-button reply-button" data-replyto-id="{{reviewIndex}}" data-person="{{../user.name}}" data-restoname="{{../restodata.name}}">Reply</button>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
+                                                <textarea name="review" id="reviewcomment{{reviewIndex}}" rows="5" cols="50" placeholder="Edit your review!"></textarea>
+                                                <div class="rate">
+                                                    <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
+                                                    <label for="star5-resto{{reviewIndex}}" title="text"> 5 stars</label>
+                                                    <input type="radio" id="star4-resto{{reviewIndex}}" name="rate-resto" value="4"  autocomplete= "off"/>
+                                                    <label for="star4-resto{{reviewIndex}}" title="text"> 4 stars</label>
+                                                    <input type="radio" id="star3-resto{{reviewIndex}}" name="rate-resto" value="3"  autocomplete= "off"/>
+                                                    <label for="star3-resto{{reviewIndex}}" title="text-resto"> 3 stars</label>
+                                                    <input type="radio" id="star2-resto{{reviewIndex}}" name="rate-resto" value="2"  autocomplete= "off"/>
+                                                    <label for="star2-resto{{reviewIndex}}" title="text"> 2 stars</label>
+                                                    <input type="radio" id="star1-resto{{reviewIndex}}" name="rate-resto" value="1"  autocomplete= "off"/>
+                                                    <label for="star1-resto{{reviewIndex}}" title="text"> 1 star</label>
+                                                </div>
+                                                
+                                                <button type="button" class="sendeditreview-button" data-person="{{this.revname}}" data-resto="{{../restodata.name}}" data-revindex="{{reviewIndex}}">Submit</button>
+                                            </div>
+
+                                            
 
                                             <div class = "replytoreview" style="display: none;">
                                             <!--OTHER REPLIES TO THE REVIEW HERE-->
