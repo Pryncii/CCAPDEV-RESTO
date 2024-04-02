@@ -715,19 +715,19 @@ server.post('/reaction', function(req, resp){
     var pic= req.body.userbio;
   var split = pic.split(".");
   var fileformat = split[split.length-1];
+  var errormsg = "";
   console.log(split[split.length-1]);
     if(fileformat!="png" && fileformat!="jpg"){
       
       pic = "/common/Images/PFPs/profile.webp";
+      errormsg = "?invalid-img-format";
     }
-      userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).then(function (err, docs) {
-      if (err){
-          console.log(err)
-      }
-      else{
-          console.log("Updated Docs : ", docs);
-      }
-      resp.redirect('/profile-page/'+loggedInUser.urlname+'/');
+      userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).lean().then(function () {
+     
+        loggedInUser.image=pic;
+        
+        resp.redirect('/profile-page/'+loggedInUser.urlname+'/'+errormsg);
+      
   });
     
   });
@@ -758,19 +758,19 @@ server.post('/reaction', function(req, resp){
     var img= req.body.restodesc;
     var split = img.split(".");
     var fileformat = split[split.length-1];
+    var errormsg ="";
     console.log(split[split.length-1]);
       if(fileformat!="png" && fileformat!="jpg"){
         
         img = "/common/Images/PFPs/resto-default.jpg";
+        errormsg = "?invalid-img-format"
       }
-    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img}).then(function (err, docs) {
-      if (err){
-          console.log(err)
-      }
-      else{
-          console.log("Updated Docs : ", docs);
-      }
-      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img}).then(function () {
+      
+        loggedInUser.imagesquare=img;
+
+      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
+   
   });
       
   });
@@ -780,16 +780,19 @@ server.post('/reaction', function(req, resp){
     const searchQuery = {user: req.body.username};
     const report = req.body.reportmsg;
     let reporteduser;
-
+    var errormsg = "?invalid-report";
     console.log(req.body.username);
     console.log(req.body.reportmsg);
     
     userModel.findOne(searchQuery).then(function(user){
       user.reportdata.push(report);
-      if(report!="" && report!="What's the issue?"){user.save();}
+      if(report!="" && report!="What's the issue?"){
+        user.save();
+        errormsg = "";
+      }
       reporteduser = user.urlname;
       console.log(reporteduser);
-      resp.redirect('/profile-page/'+reporteduser+'/');
+      resp.redirect('/profile-page/'+reporteduser+'/'+errormsg);
     }).catch(errorFn);
   
   
@@ -801,14 +804,14 @@ server.post('/reaction', function(req, resp){
     const report = req.body.reportmsg;
     let reporteduser;
     let repuserlandmark;
-
+    var errormsg = "?invalid-report";
    
        restoModel.findOne(searchQuery).then(function(user){
       user.reportdata.push(report);
-       if(report!="" && report!="What's the issue?"){user.save();   }
+       if(report!="" && report!="What's the issue?"){user.save();  errormsg="" }
       reporteduser = user.linkname;
       repuserlandmark = user.landmark
-      resp.redirect('/restaurant/'+repuserlandmark+'/'+reporteduser+'/');
+      resp.redirect('/restaurant/'+repuserlandmark+'/'+reporteduser+'/'+errormsg);
     }).catch(errorFn);
  
    
