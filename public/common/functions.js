@@ -436,13 +436,9 @@ form.addEventListener('submit', function(event) {
         }
   }
 
-
   rating = getRating(ratingElements);
-
   console.log("rating: " + rating);
-
   console.log('IN review request');
-
   form.reset();
 
   if(review!="" && !review.includes("Write a Review!")){
@@ -462,15 +458,9 @@ form.addEventListener('submit', function(event) {
   }else{
     alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting." );
   }
-  
-   
 });
 
 $(document).on('click', '#editcomment', function(){
-  alert("Functionality coming in MCO3!");
-});
-
-$(document).on('click', '#deletecomment', function(){
   alert("Functionality coming in MCO3!");
 });
 
@@ -483,10 +473,12 @@ $(document).on('click', '#replyedit', function(){
 // DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){
   var commentId = $(this).data('commentdelete-id');
+  var userId = $(this).data('commentdelete-user');
   console.log("commentId: " + commentId);
+  console.log("userId: " + userId);
 
   $.post('/deletecomment',{
-    id: commentId,
+    id: commentId, user: userId,
   }, function(data, status){
     if(status === 'success'){
       console.log('Delete comment request successful');

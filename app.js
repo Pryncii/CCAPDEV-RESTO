@@ -85,12 +85,6 @@ const restoSchema = new mongoose.Schema({
     reportdata:  [{ type: String }]
 },{ versionKey: false });
 
-const friendSchema = new mongoose.Schema({
-    otherusername: { type: String },
-    otheruserimage: { type: String },
-    urlname: { type: String }
-});
-
 const userSchema = new mongoose.Schema({
     name: { type: String },
     urlname: { type: String },
@@ -98,7 +92,6 @@ const userSchema = new mongoose.Schema({
     pass: { type: String },
     image: { type: String },
     description: {type: String},
-    otherusers: [friendSchema],
     revdata: [reviewSchema],
     reportdata:  [{ type: String }]
 },{ versionKey: false });
@@ -116,8 +109,8 @@ const restodata = getRestoList();
 console.log(restodata);
 
 const getUserList = require('./usergetlist').getUserList;
-const userdata = getUserList();
-console.log(userdata);
+const alluserdata = getUserList();
+console.log(alluserdata);
 
 server.get('/', function(req, resp){
   if (req.session.login_user && req.session.login_id) {
@@ -248,10 +241,11 @@ server.post('/create-user', function(req, resp){
                 resp.render('profile',{
                     layout      : 'index',
                     title       : 'Profile',
-                    userdata   : userJson,
+                    userdata    : userJson,
                     user        : loggedInUser,
-                    checkUser: isUser,
-                    otherusers: alluser
+                    otherusers  : alluserdata,
+                    checkUser   : isUser,
+                    otherusers  : alluser,
                 });
               })
             }).catch(errorFn);
@@ -288,6 +282,7 @@ server.post('/read-user', function(req, resp){
                         title: 'Profile',
                         userdata: userJson,
                         user: loggedInUser,
+                        otherusers  : alluserdata,
                         checkUser: isUser,
                         otherusers: alluser
                     });
@@ -471,6 +466,7 @@ server.get('/profile-page/:urlname', function(req, resp){
               layout      : 'index',
               title       : 'Profile',
               userdata   : userJson,
+              otherusers  : alluserdata,
               user        : loggedInUser,
               checkUser: isUser,
               otherusers: alluser
@@ -802,8 +798,8 @@ server.post('/deletecomment', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-    //const updateQuery = { user: req.body.id };
     console.log("req.body.id: " + req.body.id);
+    console.log("req.body.user: " + req.body.user);
   //user -> revdata
   //resto -> revdata -> comment
 
@@ -820,7 +816,7 @@ restoModel.find({}).then(function(restos){
     {
       for(let k = 0; k < restos[i].revdata[j].comments.length && found == 0; k++)
       {
-        if(restos[i].revdata[j].comments[k]["com"] == req.body.id)
+        if(restos[i].revdata[j].comments[k]["com"] == req.body.id && restos[i].revdata[j].comments[k]["comname"] == req.body.user)
         {
           console.log("comment found: " + restos[i].revdata[j].comments[k]["com"]);
           restos[i].revdata[j].comments[k]["notdeleted"] = false;
@@ -846,7 +842,7 @@ restoModel.find({}).then(function(restos){
   { // all reviews in that restaurant
     for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
     {
-      if(restos[i].revdata[j]["rev"] == req.body.id)
+      if(restos[i].revdata[j]["rev"] == req.body.id && restos[i].revdata[j]["revname"] == req.body.user)
       {
         console.log("review found: " + restos[i].revdata[j]["rev"]);
         restos[i].revdata[j]["notdeleted"] = false;
@@ -866,7 +862,7 @@ userModel.find({}).then(function(users){
   { // all reviews in user
     for(let j = 0; j < users[i].revdata.length && found == 0; j++)
     {
-      if(users[i].revdata[j]["rev"] == req.body.id)
+      if(users[i].revdata[j]["rev"] == req.body.id && users[i]["name"] == req.body.user)
       {
         console.log("profile review found: " + users[i].revdata[j]["rev"]);
         users[i].revdata[j]["notdeleted"] = false;

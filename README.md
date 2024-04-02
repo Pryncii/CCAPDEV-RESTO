@@ -1,22 +1,22 @@
 "# CCAPDEV-RESTO" 
 
 
------------------- Install Command ------------------
+------------------------------------------ Install Command ------------------------------------------
 
 npm init
-npm i express express-handlebars body-parser mongoose
+npm i express express-handlebars body-parser express-session mongoose connect-mongodb-session bcrypt
 
------------------------ To Run -----------------------
+---------------------------------------------- To Run ----------------------------------------------
 
 node app.js
 
-------------------- MongoDB Import -------------------
+------------------------------------------ MongoDB Import ------------------------------------------
 
 initialdata.json to "restaurants" folder
 UserData.json to "users" folder
 
-------------------- To Access Page -------------------
+------------------------------------------ To Access Page ------------------------------------------
 
 http://localhost:3000/
 
-------------------------------------------------------
+-----------------------------------------------------------------------------------------------------

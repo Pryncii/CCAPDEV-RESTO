@@ -125,7 +125,6 @@
                                 </div>
                                 <div class = "reviewcontainerright2">
                                     <div class = "rctop2">
-<!--REMEMBER TO CHANGE LINK!!!!!!!!-->
                                         <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
@@ -149,7 +148,7 @@
                                             {{/if}}
                                             {{#eq this.revname ../user.name}}
                                             <button type="edit-button" class = "editbio-button" id = "editcomment">Edit</button>
-                                            <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.rev}}">Delete</button>
+                                            <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.rev}}" data-commentdelete-user="{{this.revname}}">Delete</button>
                                             {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
@@ -186,7 +185,7 @@
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
-                                                                <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.com}}">Delete</button>
+                                                                <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.com}}" data-commentdelete-user="{{this.comname}}">Delete</button>
                                                                 {{/eq}}
                                                             </div>
                                                         </div>
@@ -212,7 +211,8 @@
                     </div>
                 </div>
             </div>
-            <div class="bottomoverflow">
-            </div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
         </div>
     </div>
