@@ -7,7 +7,7 @@
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
         {{/eq}}
         {{#eq checkUser user.linkname}}
-        <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
+        <a href="/restaurant/{{user.landmark}}/{{user.linkname}}"><img src = "{{user.imagesquare}}"></a>
         {{/eq}}
     </div>
 </div>
@@ -36,7 +36,7 @@
                         <div class = "descandbuttons">
                             <div class = "restodesc" id="restodescid">
                                 <span>Description</span>
-                                <p id = "info">
+                                <p id = "info" style="display: inline-block;">
                                     {{restodata.description}}
                                 </p>
                                 <form class="review-form-container"  action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
@@ -45,6 +45,14 @@
                                     <input type="text" name ="restoname" value = "{{restodata.name}}" readonly>
                                     Near:
                                     <input type="text" name ="landmark" value = "{{restodata.landmark}}" readonly>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-restopic/" method = "post" style="display: none;" id = "picchanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Image Link!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-restobio/" method = "post" style="display: none;" id = "biochanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Description!"></textarea>
                                     <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
                             </div>
@@ -126,7 +134,6 @@
                                 </div>
                                 <div class = "reviewcontainerright2">
                                     <div class = "rctop2">
-<!--REMEMBER TO CHANGE LINK!!!!!!!!-->
                                         <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
@@ -150,7 +157,7 @@
                                             {{/if}}
                                             {{#eq this.revname ../user.name}}
                                             <button type="edit-button" class = "editbio-button" id = "editcomment">Edit</button>
-                                            <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.rev}}">Delete</button>
+                                            <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="-1" data-commentdelete-restoname="{{../restodata.name}}" data-commentdelete-username="{{this.revname}}">Delete</button>
                                             {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
@@ -187,7 +194,7 @@
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>
-                                                                <button type="delete-button" class = "report-button delete-comment" data-commentdelete-id="{{this.com}}">Delete</button>
+                                                                <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="{{commentIndex}}" data-commentdelete-restoname="{{../../restodata.name}}" data-commentdelete-username="{{this.comname}}">Delete</button>
                                                                 {{/eq}}
                                                             </div>
                                                         </div>
@@ -213,7 +220,8 @@
                     </div>
                 </div>
             </div>
-            <div class="bottomoverflow">
-            </div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
         </div>
     </div>

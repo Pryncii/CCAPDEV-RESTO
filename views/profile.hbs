@@ -7,16 +7,13 @@
         <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
         {{/eq}}
         {{#eq checkUser user.linkname}}
-        <a href="/showall/"><img src = "{{user.imagesquare}}"></a>
+        <a href="/restaurant/{{user.landmark}}/{{user.linkname}}"><img src = "{{user.imagesquare}}"></a>
         {{/eq}}
     </div>
-</div>
-        
-        
+</div>  
         <div class = "flexrow headerholder">
         </div>
-
-        
+ 
     <div class="inside">
         {{> sidebar}}
 
@@ -25,7 +22,7 @@
             <div class = "flexbody">
                 <div class = "userprofileself">
                     <div class = "userprofileselfname">
-                        {{userdata.name}}
+                        {{userdata.name}} ({{userdata.user}})
                     </div>
                     <div class = "userprofileselfpfpnbio">
                         <div class = "userprofilepfp">
@@ -33,14 +30,22 @@
                         </div>
                         <div class = "userprofilebio">
                             <div class = "userbio">
-                                <div id = "info">
+                                <div id = "info" style="display: inline-block;">
                                 Bio/Information: <br>{{userdata.description}}
                                 </div>
                                 <form class="review-form-container" action = "/report-user/" onsubmit="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
-                                    <textarea name="reportmsg" id="reportmsg">What's the issue?</textarea>
+                                    <textarea name="reportmsg" id="reportmsg" placeholder = "What's the issue?"></textarea>
                                     Reporting: 
                                     <input type="text" name ="username" value = "{{userdata.user}}" readonly>
                                     <button type="submitreview-button" class="editbio-button"  >Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-userbio/" method ="post" style="display: none;" id = "biochanger">
+                                    <textarea name="userbio" placeholder = "Enter New Bio!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-profilepic/" method ="post" style="display: none;" id = "picchanger">
+                                    <textarea name="userbio" placeholder = "Enter New Image Link!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
                             </div>
                             
@@ -61,7 +66,7 @@
                             Other Users
                         </div>
 
-<!--FRIENDS LOOP HERE-->
+<!--OTHER USER LOOP HERE-->
         <form action = "/profile-page/{{userdata.urlname}}" method = "get">
             <input type="text" name ="userfield" />
             <input type="submit" value="Search" />
@@ -111,6 +116,9 @@
                     </div>
                 </div>
             </div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
+            <div class="bottomoverflow"></div>
         </div>
     </div>
 </div>

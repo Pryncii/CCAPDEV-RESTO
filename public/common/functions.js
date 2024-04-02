@@ -327,16 +327,88 @@ else { // if is menuBox hidden, display it
 
 function toggleReport(){
   var infoBox = document.getElementById('info');
-  var reportBox = document.getElementById('reporter');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(reportBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
     reportBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
     reportBox.style.display = "none";
   }
 
+}
+
+function toggleEditbio(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+  }
+}
+
+function toggleEditpfp(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+}
+
+function toggleEditrestopfp(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+}
+
+function toggleEditrestobio(){
+  var infoBox = document.getElementById('info');
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    reportBox.style.display = "none";
+    bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+  }
 }
 
 //meant to be for alerting if form is empty bcus redirected straight to
@@ -372,23 +444,11 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '#changepic', function(){
-  var newHtmlContent = `
-  <form class="review-form-container" action = "/change-profilepic/" method ="post"">
-      <textarea name="userbio" >Enter New Image Link!</textarea>
-      <button type="submitreview-button" class="editbio-button">Submit</button>
-  </form>
-`;
-$('.userbio').html(newHtmlContent);
+  toggleEditpfp();
 });
 
 $(document).on('click', '#changebio', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/change-userbio/" method ="post"">
-            <textarea name="userbio" >Enter New Bio!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.userbio').html(newHtmlContent);
+  toggleEditbio();
 });
 
 
@@ -398,25 +458,11 @@ $(document).on('click', '#reportuser', function(){
 
 
 $(document).on('click', '#changerestopic', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "change-restopic" method = "post">
-            <textarea name="restodesc" >Enter New Image Link!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
-
-    
+  toggleEditrestopfp();
 });
 
 $(document).on('click', '#changerestobio', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/change-restobio/" method = "post">
-            <textarea name="restodesc" >Enter New Description!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
+  toggleEditrestobio();
 });
 
 $(document).on('click', '#reportresto', function(){
@@ -460,13 +506,9 @@ form.addEventListener('submit', function(event) {
         }
   }
 
-
   rating = getRating(ratingElements);
-
   console.log("rating: " + rating);
-
   console.log('IN review request');
-
   form.reset();
 
   if(review!="" && !review.includes("Write a Review!")){
@@ -486,15 +528,9 @@ form.addEventListener('submit', function(event) {
   }else{
     alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting." );
   }
-  
-   
 });
 
 $(document).on('click', '#editcomment', function(){
-  alert("Functionality coming in MCO3!");
-});
-
-$(document).on('click', '#deletecomment', function(){
   alert("Functionality coming in MCO3!");
 });
 
@@ -506,11 +542,18 @@ $(document).on('click', '#replyedit', function(){
 
 // DELETE COMMENT/REPLY
 $(document).on('click', '.delete-comment', function(){
-  var commentId = $(this).data('commentdelete-id');
-  console.log("commentId: " + commentId);
+  var reviewIndex = $(this).data('commentdelete-revindex');
+  var commentIndex = $(this).data('commentdelete-comindex');
+  var restoname = $(this).data('commentdelete-restoname');
+  var username = $(this).data('commentdelete-username');
+
+  console.log("reviewIndex: " + reviewIndex);
+  console.log("commentIndex: " + commentIndex);
+  console.log("restoname: " + restoname);
+  console.log("username: " + username);
 
   $.post('/deletecomment',{
-    id: commentId,
+    revin: reviewIndex, comin: commentIndex, restoname: restoname, username: username,
   }, function(data, status){
     if(status === 'success'){
       console.log('Delete comment request successful');
