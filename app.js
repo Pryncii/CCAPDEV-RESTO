@@ -415,18 +415,24 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             }
         }
 
-        let getratesum = 0;
-        for(let j = 0; j < restos.revdata.length; j++){
-            for(let k = 0; k < restos.revdata[j].revrating.length; k++){
-                if(restos.revdata[j].revrating[k] == "★"){
-                    getratesum+= 1;
-                }
+        
+      let getratesum = 0;
+      let undeleted = 0;
+      for(let l = 0; l < restos.revdata.length; l++){
+        if(restos.revdata[l]["notdeleted"]==true){
+        for(let k = 0; k < restos.revdata[l].revrating.length; k++){
+            if(restos.revdata[l].revrating[k] == "★" ){
+                getratesum+= 1;
             }
         }
+        undeleted+=1;
+      }
+      }
+      
+      restos.rating = getratesum/undeleted;
 
-        restos.rating = getratesum/restos.revdata.length;
 
-        console.log("rating:"+(getratesum/restos.revdata.length));
+        console.log("rating:"+(getratesum/undeleted));
         
         resp.render('restopage',{
             layout      : 'index',
@@ -435,7 +441,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             otherresto  : landmarkresto,
             user        : loggedInUser,
             checkUser: isUser,
-            vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
+            vrating      : 100-(getratesum/undeleted/5*100),
             sresto      : sresto
         });
     }
@@ -862,7 +868,21 @@ server.post('/deletecomment', function(req, resp){
       restos[i].revdata[req.body.revin].comments[req.body.comin]["notdeleted"] = false;
       found = 1;
 
-          
+      let getratesum = 0;
+      let undeleted = 0;
+      for(let l = 0; l < restos[i].revdata.length; l++){
+        if(restos[i].revdata[l]["notdeleted"]==true){
+        for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
+            if(restos[i].revdata[l].revrating[k] == "★" ){
+                getratesum+= 1;
+            }
+        }
+        undeleted+=1;
+      }
+      }
+      
+      restos[i].rating = getratesum/undeleted;
+
       restos[i].save().then(function (result) {
         if(result){
           resp.sendStatus(200);
@@ -1003,16 +1023,21 @@ server.post('/leavereview', function(req, resp){
       
               restos[i].revdata.push(newReview);
 
-              let getratesum = 0;
-              for(let l = 0; l < restos[i].revdata.length; l++){
-                for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
-                    if(restos[i].revdata[l].revrating[k] == "★"){
-                        getratesum+= 1;
-                    }
-                }
-              }
               
-              restos[i].rating = getratesum/restos[i].revdata.length;
+      let getratesum = 0;
+      let undeleted = 0;
+      for(let l = 0; l < restos[i].revdata.length; l++){
+        if(restos[i].revdata[l]["notdeleted"]==true){
+        for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
+            if(restos[i].revdata[l].revrating[k] == "★" ){
+                getratesum+= 1;
+            }
+        }
+        undeleted+=1;
+      }
+      }
+      
+      restos[i].rating = getratesum/undeleted;
 
 
               console.log("review found: " + restos[i].revdata[j]["rev"]);
