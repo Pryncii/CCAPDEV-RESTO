@@ -414,6 +414,11 @@ function toggleEditrestobio(){
   }
 }
 
+function openInNewTab(url) {
+  // Open the URL in a new tab/window
+  window.open(url, '_blank');
+}
+
 //meant to be for alerting if form is empty bcus redirected straight to
 function alerting(id, action){
 
@@ -471,6 +476,7 @@ $(document).on('click', '#changerestobio', function(){
 $(document).on('click', '#reportresto', function(){
     toggleReport();
 });
+
 
 function getRating(ratingElements){
   var stars = ratingElements;
