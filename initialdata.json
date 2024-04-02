@@ -76,7 +76,7 @@
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed your experience!",
                         "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                        "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "dislikes": [],
                         "urlname": "/restaurant/U_Mall/mcdonalds",
                         "notdeleted": true
                     }
@@ -110,7 +110,7 @@
                 "revrating": "★★★★☆",
                 "rev": "Overrated but still good. But please bring back the spinach tree",
                 "hascomments": false,
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["prince01", "blix02", "micole05"],
                 "dislikes": ["mcdo01"],
                 "urlname": "/profile-page/Buencamino_Prince",
                 "notdeleted": true
@@ -122,7 +122,7 @@
                 "rev": "expensive.. but it is popular for a reason.",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Ruiz_Chester",
                 "notdeleted": true
@@ -134,7 +134,7 @@
                 "rev": "Very expensive, especially with inflation!",
                 "hascomments": true,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["prince01", "blix02", "micole05"],
                 "dislikes": ["mcdo01"],
                 "comments": 
                 [
@@ -144,7 +144,7 @@
                         "com": "I agree!",
                         
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01"],
+                "dislikes": [],
                         "urlname": "/profile-page/Chua_Micole",
                         "notdeleted": true
                     }
