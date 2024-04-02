@@ -142,7 +142,6 @@ var sresto = {
 restoModel.find({}).then(function(aresto){
 for(r of aresto){
   sresto[r.landmark].push({linkname: r.linkname, name: r.name});
-  
 }
 });
 
@@ -216,9 +215,9 @@ server.post('/create-user', function(req, resp){
           image: "/common/Images/PFPs/resto-default.jpg",
           imagesquare: "/common/Images/PFPs/resto-default.jpg", 
           description: "",
-          landmark: req.body.elandm[0],
+          landmark: req.body.elandm,
           rating: 0,
-          category: req.body.category,
+          category: req.body.categoryy,
           price: req.body.price,
           maplink: req.body.map,
           revdata: [],

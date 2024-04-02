@@ -34,8 +34,8 @@ function openEstabl() {
 if (document.getElementById("estbownerbtn1").checked) {
   document.getElementById("elandm").style.display = "inline";
   document.getElementById("elandm-label").style.display = "inline";
-  document.getElementById("category").style.display = "inline";
-  document.getElementById("category-label").style.display = "inline";
+  document.getElementById("categoryy").style.display = "inline";
+  document.getElementById("categoryy-label").style.display = "inline";
   document.getElementById("map").style.display = "inline";
   document.getElementById("map-label").style.display = "inline";
   document.getElementById("price").style.display = "inline";
@@ -44,8 +44,8 @@ if (document.getElementById("estbownerbtn1").checked) {
 else {
   document.getElementById("elandm").style.display = "none";
   document.getElementById("elandm-label").style.display = "none";
-  document.getElementById("category").style.display = "none";
-  document.getElementById("category-label").style.display = "none";
+  document.getElementById("categoryy").style.display = "none";
+  document.getElementById("categoryy-label").style.display = "none";
   document.getElementById("map").style.display = "none";
   document.getElementById("map-label").style.display = "none";
   document.getElementById("price").style.display = "none";
