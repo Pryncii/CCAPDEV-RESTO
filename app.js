@@ -436,11 +436,12 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         let clikeThumb = "";
         let cdislikeThumb = "";
         for(let j = 0; j < restos.revdata.length; j++){
-            for(let k = 0; k < restos.revdata[j].revrating.length; k++){
-                if(restos.revdata[j].revrating[k] == "★"){
-                    getratesum+= 1;
-                }
-            }
+          if(restos.revdata[j]["notdeleted"]==true){
+          for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+              if(restos.revdata[j].revrating[k] == "★" ){
+                  getratesum+= 1;
+              }
+          }
             
             if (restos.revdata[j].hascomments != false) {
                 for(let x = 0; x < restos.revdata[j].comments.length; x++){
@@ -457,21 +458,23 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
                 }
 
             }
-    
-                if(restos.revdata[j].likes.includes(loggedInUser.user)){
-                    likeThumb+= 1;
-                }else {
-                    likeThumb+= 0;
-                }
-            
-           
-                if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
-                    dislikeThumb+= 1;
-                }else {
-                    dislikeThumb+= 0;
-                }
-            
+          undeleted+=1;
+          if(restos.revdata[j].likes.includes(loggedInUser.user)){
+              likeThumb+= 1;
+          }else {
+              likeThumb+= 0;
+          }
+          if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+              dislikeThumb+= 1;
+          }else {
+              dislikeThumb+= 0;
+          }
+  
         }
+        }
+        
+    
+  
 
         console.log("likes:"+likeThumb);
         console.log("dislikes:"+dislikeThumb);
@@ -479,7 +482,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         console.log("cdislikes:"+cdislikeThumb);
         restos.rating = getratesum/restos.revdata.length;
 
-        console.log("rating:"+(getratesum/restos.revdata.length));
+
+        console.log("rating:"+(getratesum/undeleted));
         
         resp.render('restopage',{
             layout      : 'index',
@@ -493,6 +497,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             cdThumbs: cdislikeThumb,
             checkUser: isUser,
             vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
+            sresto      : sresto
         });
     }
     }).catch(errorFn);
@@ -1115,16 +1120,21 @@ server.post('/leavereview', function(req, resp){
       
               restos[i].revdata.push(newReview);
 
-              let getratesum = 0;
-              for(let l = 0; l < restos[i].revdata.length; l++){
-                for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
-                    if(restos[i].revdata[l].revrating[k] == "★"){
-                        getratesum+= 1;
-                    }
-                }
-              }
               
-              restos[i].rating = getratesum/restos[i].revdata.length;
+      let getratesum = 0;
+      let undeleted = 0;
+      for(let l = 0; l < restos[i].revdata.length; l++){
+        if(restos[i].revdata[l]["notdeleted"]==true){
+        for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
+            if(restos[i].revdata[l].revrating[k] == "★" ){
+                getratesum+= 1;
+            }
+        }
+        undeleted+=1;
+      }
+      }
+      
+      restos[i].rating = getratesum/undeleted;
 
 
               console.log("review found: " + restos[i].revdata[j]["rev"]);
