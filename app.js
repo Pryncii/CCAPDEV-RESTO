@@ -435,43 +435,46 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         let dislikeThumb = "";
         let clikeThumb = "";
         let cdislikeThumb = "";
+        let undeleted = 0;
+        
         for(let j = 0; j < restos.revdata.length; j++){
           if(restos.revdata[j]["notdeleted"]==true){
-          for(let k = 0; k < restos.revdata[j].revrating.length; k++){
-              if(restos.revdata[j].revrating[k] == "★" ){
-                  getratesum+= 1;
-              }
-          }
-            
-            if (restos.revdata[j].hascomments != false) {
-                for(let x = 0; x < restos.revdata[j].comments.length; x++){
-                    if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
-                        clikeThumb+= 1;
-                    }else {
-                        clikeThumb+= 0;
-                    }
-                    if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
-                        cdislikeThumb+= 1;
-                    }else {
-                        cdislikeThumb+= 0;
+                for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+                    if(restos.revdata[j].revrating[k] == "★" ){
+                        getratesum+= 1;
                     }
                 }
+                undeleted+=1;
+                
+                if (restos.revdata[j].hascomments != false) {
+                    for(let x = 0; x < restos.revdata[j].comments.length; x++){
+                        if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
+                            clikeThumb+= 1;
+                        }else {
+                            clikeThumb+= 0;
+                        }
+                        if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
+                            cdislikeThumb+= 1;
+                        }else {
+                            cdislikeThumb+= 0;
+                        }
+                    }
 
+                }
+                if(restos.revdata[j].likes.includes(loggedInUser.user)){
+                    likeThumb+= 1;
+                }else {
+                    likeThumb+= 0;
+                }
+                if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+                    dislikeThumb+= 1;
+                }else {
+                    dislikeThumb+= 0;
+                }
             }
-          undeleted+=1;
-          if(restos.revdata[j].likes.includes(loggedInUser.user)){
-              likeThumb+= 1;
-          }else {
-              likeThumb+= 0;
-          }
-          if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
-              dislikeThumb+= 1;
-          }else {
-              dislikeThumb+= 0;
-          }
-  
+    
         }
-        }
+        
         
     
   
@@ -480,7 +483,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         console.log("dislikes:"+dislikeThumb);
         console.log("clikes:"+clikeThumb);
         console.log("cdislikes:"+cdislikeThumb);
-        restos.rating = getratesum/restos.revdata.length;
+        restos.rating = getratesum/undeleted;
+
 
 
         console.log("rating:"+(getratesum/undeleted));
@@ -496,7 +500,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             clThumbs   : clikeThumb,
             cdThumbs: cdislikeThumb,
             checkUser: isUser,
-            vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
+            vrating      : 100-(((getratesum/undeleted)/5)*100),
             sresto      : sresto
         });
     }
