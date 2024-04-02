@@ -353,29 +353,37 @@ function toggleEditpfp(){
   }
 }
 
-function toggleEditdesc(){
+function toggleEditrestopfp(){
   var infoBox = document.getElementById('info');
-  var descBox = document.getElementById('descchanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');     
+  if(pfpBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
-    descBox.style.display = "inline-block";
+    reportBox.style.display = "none";
+    bioBox.style.display = "none";
+    pfpBox.style.display = "inline-block";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
-    descBox.style.display = "none";
+    pfpBox.style.display = "none";
   }
 }
 
-function toggleEditdesc(){
+function toggleEditrestobio(){
   var infoBox = document.getElementById('info');
-  var descBox = document.getElementById('descchanger');     
-  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+  var reportBox = document.getElementById('reporter');
+  var bioBox = document.getElementById('biochanger'); 
+  var pfpBox = document.getElementById('picchanger');    
+  if(bioBox.style.display == "none") { // if is menuBox displayed, hide it
     infoBox.style.display = "none";
-    descBox.style.display = "inline-block";
+    reportBox.style.display = "none";
+    bioBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
   }
   else { // if is menuBox hidden, display it
     infoBox.style.display = "inline-block";
-    descBox.style.display = "none";
+    bioBox.style.display = "none";
   }
 }
 
@@ -426,25 +434,11 @@ $(document).on('click', '#reportuser', function(){
 
 
 $(document).on('click', '#changerestopic', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "change-restopic" method = "post">
-            <textarea name="restodesc" >Enter New Image Link!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
-
-    
+  toggleEditrestopfp();
 });
 
 $(document).on('click', '#changerestobio', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/change-restobio/" method = "post">
-            <textarea name="restodesc" >Enter New Description!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.restodesc').html(newHtmlContent);
+  toggleEditrestobio();
 });
 
 $(document).on('click', '#reportresto', function(){

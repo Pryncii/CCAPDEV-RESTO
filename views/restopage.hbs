@@ -47,6 +47,14 @@
                                     <input type="text" name ="landmark" value = "{{restodata.landmark}}" readonly>
                                     <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
+                                <form class="review-form-container" action = "/change-restopic/" method = "post" style="display: none;" id = "picchanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Image Link!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
+                                <form class="review-form-container" action = "/change-restobio/" method = "post" style="display: none;" id = "biochanger">
+                                    <textarea name="restodesc" placeholder = "Enter New Description!"></textarea>
+                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                </form>
                             </div>
                             <div class = "usereditbio">
                                 <button type="map-button" onclick="window.location.href='{{restodata.maplink}}'" class = "editbio-button" >Map</button>
