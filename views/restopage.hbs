@@ -161,9 +161,9 @@
                                             {{/eq}}
 
                                             <div class="reply-container"   style="display: none;">
-                                                <textarea name="reply-text" id="reply-text-{{this.rev}}" rows="5" cols="50"></textarea>
+                                                <textarea name="reply-text" id="reply-text-{{reviewIndex}}" rows="5" cols="50"></textarea>
                                                 <div class = "usereditbio">
-                                                    <button type="button" class="reply-button" data-replyto-id="{{this.rev}}" data-person="{{../user.name}}">Reply</button>
+                                                    <button type="button" class="replysend-button" data-replyto-id="{{reviewIndex}}" data-person="{{../user.name}}" data-restoname="{{../restodata.name}}">Reply</button>
                                                 </div>
                                             </div>
 
