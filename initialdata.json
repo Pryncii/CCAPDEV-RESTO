@@ -30,7 +30,7 @@
                         "comname": "Chua, Micole",
                         "com": "Do not believe the words of this corporate lapdog!",
                         "likes" : [],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "dislikes": ["mcdo01", "prince01", "blix02"],
                         "urlname":"/profile-page/Chua_Micole",
                         "notdeleted": true
                     }
@@ -45,7 +45,7 @@
                 "rev": "the mushroom pepper steak!",
                 "hascomments": true,
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "dislikes": ["mcdo01"],
                 "comments": 
                 [
                     {
@@ -53,7 +53,7 @@
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed you like our mushroom pepper steak!",
                         "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "dislikes": ["mcdo01"],
                         "urlname": "/restaurant/U_Mall/mcdonalds",
                         "notdeleted": true
                     }
@@ -68,7 +68,7 @@
                 "rev": "The breakfast options were fire as always!",
                 "hascomments": true,
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "dislikes": ["mcdo01"],
                 "comments": 
                 [
                     {
@@ -111,7 +111,7 @@
                 "rev": "Overrated but still good. But please bring back the spinach tree",
                 "hascomments": false,
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "dislikes": ["mcdo01"],
                 "urlname": "/profile-page/Buencamino_Prince",
                 "notdeleted": true
             },
@@ -135,7 +135,7 @@
                 "hascomments": true,
                 
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "dislikes": ["mcdo01"],
                 "comments": 
                 [
                     {
@@ -144,7 +144,7 @@
                         "com": "I agree!",
                         
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "dislikes": ["mcdo01"],
                         "urlname": "/profile-page/Chua_Micole",
                         "notdeleted": true
                     }
@@ -159,7 +159,7 @@
                 "rev": "The drinks were good and the sticker rewards even better!",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Arco_Gaby",
                 "notdeleted": true
@@ -171,8 +171,8 @@
                 "rev": "Somehow, even worse than coffee bean.",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "likes" : ["prince01", "micole05"],
+                "dislikes": ["mcdo01", "blix02"],
                 "urlname": "/profile-page/Chua_Micole",
                 "notdeleted": true
             }
@@ -203,7 +203,7 @@
                 "rev": "Usually good but the mushroom soup I ordered was cold",
                 "hascomments": true,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "comments": 
                 [
@@ -212,8 +212,8 @@
                         "comname": "KFC",
                         "com": "Sorry to hear about your experience! We will do better.",
                         
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "likes" : ["micole05"],
+                        "dislikes": ["mcdo01", "prince01", "blix02"],
                         "urlname": "/restaurant/U_Mall/kfc",
                         "notdeleted": true
                     }
@@ -228,8 +228,8 @@
                 "rev": "It's alright.",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "likes" : ["prince01", "micole05"],
+                "dislikes": ["mcdo01", "blix02"],
                 "urlname": "/profile-page/Ruiz_Chester",
                 "notdeleted": true
             },
@@ -240,7 +240,7 @@
                 "rev": "The sisig bowl was too spicy, should've put more warnings",
                 "hascomments": true,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "comments": 
                 [
@@ -249,8 +249,8 @@
                         "comname": "KFC",
                         "com": "Sorry to hear about your experience! We will list down the spicy levels next time!",
                         
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "likes" : ["prince01", "micole05"],
+                        "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/restaurant/U_Mall/kfc",
                         "notdeleted": true
                     }
@@ -285,7 +285,7 @@
                 "rev": "The tacos were magnificent, would come again!",
                 "hascomments": true,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "comments": 
                 [
@@ -294,8 +294,8 @@
                         "comname": "Arco, Gaby",
                         "com": "I agree!!",
                         
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                        "likes" : ["prince01", "micole05"],
+                        "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/profile-page/Arco_Gaby",
                         "notdeleted": true
                     }
@@ -310,7 +310,7 @@
                 "rev": "The carbonara was flavorful and worth the price!",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Arco_Gaby",
                 "notdeleted": true
@@ -342,7 +342,7 @@
                 "rev": "A steep price tag for mid drinks.",
                 "hascomments": false,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Chua_Micole",
                 "notdeleted": true
@@ -354,7 +354,7 @@
                 "rev": "Much better than Starbucks!",
                 "hascomments": true,
                 
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "comments": 
                 [
@@ -363,8 +363,8 @@
                         "comname": "Chua, Micole",
                         "com": "Ha? Hatdog!",
                         
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01", "prince01", "blix02"],
+                "likes" : ["prince01", "micole05"],
+                "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/profile-page/Chua_Micole",
                         "notdeleted": true
                     }

@@ -106,7 +106,7 @@ var element = document.getElementById(id);
 element.classList.remove("active");
 }
 
-function toggleThumb(id, id2) {
+function toggleThumb(id, id2, reviewId, person) {
 var element = document.getElementById(id);
 var element2 = document.getElementById(id2);
 
@@ -128,21 +128,23 @@ if (element.classList.contains("active")) {
   deactivateThumb(id);
   var number = parseInt(element.textContent);
   if (number!=0){
-    element.textContent = --number;
+    //element.textContent = --number;
    
   }
 
 } else if (element2.classList.contains("active")){
     activeThumb(id);
     deactivateThumb(id2);
-    element.textContent = ++number;
+    //element.textContent = ++number;
+    
     if (number!=0){
-      element2.textContent = --number2;
+      //element2.textContent = --number2;
+
     }
 } else {
   activeThumb(id);
   var number = parseInt(element.textContent);
-  element.textContent = ++number;
+  //element.textContent = ++number;
 }
 }
 
@@ -154,17 +156,37 @@ document.addEventListener("DOMContentLoaded", function() {
           // Get the IDs of the like and dislike buttons
           console.log(button.id);
           const likeId = button.id;
+          var reviewId = $(this).data('rev-id');
+          var person = $(this).data('person');
+          console.log("reviewId: " + reviewId);
+          console.log("person: " + person);
+
           let likeId2;
           if (likeId.includes("dislike")){
-            
             likeId2 = likeId.replace("dislike", "like");
+            $.post('/reaction',{
+              rev :reviewId, person: person, action: "dislike"
+            }, function(data, status){
+              if(status === 'success'){
+                console.log('like request successful');
+                window.location.reload();
+              }
+            });
           }
           else {
             likeId2 = likeId.replace("like", "dislike");
+            $.post('/reaction',{
+             rev :reviewId, person: person, action: "like"
+            }, function(data, status){
+              if(status === 'success'){
+                console.log('like request successful');
+                window.location.reload();
+              }
+            });
           }
           // Check if both elements exist
           if (likeId && likeId2) {
-            toggleThumb(button.id, likeId2);
+            toggleThumb(button.id, likeId2, reviewId, person);
           }
       });
   });
@@ -188,6 +210,7 @@ $(document).ready(function(){
   }//end for
 });*/
 
+/*
 function likedislike(restodata, action, revindex, comindex){
 
   alert("liking");
@@ -200,7 +223,8 @@ function likedislike(restodata, action, revindex, comindex){
           }
         });
     
-  }//if
+  }*/
+  //if
   /** 
 $(document).on('click', '.reply-button', function(){
   var reviewId = $(this).data('replyto-id');
