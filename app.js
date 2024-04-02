@@ -722,27 +722,52 @@ server.post('/reaction', function(req, resp){
           if(restos[i].revdata[j]["rev"] == req.body.rev)
           {
             console.log("review found: " + restos[i].revdata[j]["rev"]);
-
+            console.log(req.body.eclass);
+        
             if (req.body.action == "like"){
-                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
-                    if (restos[i].revdata[j].dislikes[y] == username){
-                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
-                        console.log("Removed element: " + spliced); 
-                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                if (req.body.eclass == 1){
+                    for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                        if (restos[i].revdata[j].likes[x] == username){
+                            let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                            console.log("Removed element: " + spliced); 
+                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                        }
                     }
+                } else {
+                    for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                        if (restos[i].revdata[j].dislikes[y] == username){
+                            let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                            console.log("Removed element: " + spliced); 
+                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                        }
+                    }
+        
+                    restos[i].revdata[j].likes.push(username);
+                    console.log("Likes: " + restos[i].revdata[j].likes); 
                 }
-                restos[i].revdata[j].likes.push(username);
-                console.log("Likes: " + restos[i].revdata[j].likes); 
+
+                
             } else {
-                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
-                    if (restos[i].revdata[j].likes[x] == username){
-                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
-                        console.log("Removed element: " + spliced); 
-                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                if (req.body.eclass == 1){ 
+                    for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                        if (restos[i].revdata[j].dislikes[y] == username){
+                            let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                            console.log("Removed element: " + spliced); 
+                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                        }
                     }
+                } else {
+                    for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                        if (restos[i].revdata[j].likes[x] == username){
+                            let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                            console.log("Removed element: " + spliced); 
+                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                        }
+                    }
+                    restos[i].revdata[j].dislikes.push(username);
+                    console.log("dislikes: " + restos[i].revdata[j].dislikes);
                 }
-                restos[i].revdata[j].dislikes.push(username);
-                console.log("dislikes: " + restos[i].revdata[j].dislikes);
+                
             }
             
             restos[i].save();

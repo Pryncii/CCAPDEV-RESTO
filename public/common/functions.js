@@ -160,12 +160,15 @@ document.addEventListener("DOMContentLoaded", function() {
           var person = $(this).data('person');
           console.log("reviewId: " + reviewId);
           console.log("person: " + person);
+          var element = document.getElementById(likeId);
+          let eclass = 0;
+          if (element.classList.contains("active")) {eclass = 1};
 
           let likeId2;
           if (likeId.includes("dislike")){
             likeId2 = likeId.replace("dislike", "like");
             $.post('/reaction',{
-              rev :reviewId, person: person, action: "dislike"
+              rev :reviewId, person: person, action: "dislike", eclass: eclass
             }, function(data, status){
               if(status === 'success'){
                 console.log('like request successful');
@@ -176,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
           else {
             likeId2 = likeId.replace("like", "dislike");
             $.post('/reaction',{
-             rev :reviewId, person: person, action: "like"
+             rev :reviewId, person: person, action: "like", eclass: eclass
             }, function(data, status){
               if(status === 'success'){
                 console.log('like request successful');
