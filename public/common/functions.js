@@ -315,6 +315,32 @@ function toggleReport(){
 
 }
 
+function toggleEditbio(){
+  var infoBox = document.getElementById('info');
+  var bioBox = document.getElementById('biochanger');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    bioBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    bioBox.style.display = "none";
+  }
+}
+
+function toggleEditpfp(){
+  var infoBox = document.getElementById('info');
+  var pfpBox = document.getElementById('picchanger');     
+  if(infoBox.style.display == "inline-block") { // if is menuBox displayed, hide it
+    infoBox.style.display = "none";
+    pfpBox.style.display = "inline-block";
+  }
+  else { // if is menuBox hidden, display it
+    infoBox.style.display = "inline-block";
+    pfpBox.style.display = "none";
+  }
+}
+
 //meant to be for alerting if form is empty bcus redirected straight to
 function alerting(id, action){
 
@@ -348,23 +374,11 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '#changepic', function(){
-  var newHtmlContent = `
-  <form class="review-form-container" action = "/change-profilepic/" method ="post"">
-      <textarea name="userbio" >Enter New Image Link!</textarea>
-      <button type="submitreview-button" class="editbio-button">Submit</button>
-  </form>
-`;
-$('.userbio').html(newHtmlContent);
+  toggleEditpfp();
 });
 
 $(document).on('click', '#changebio', function(){
-  var newHtmlContent = `
-        <form class="review-form-container" action = "/change-userbio/" method ="post"">
-            <textarea name="userbio" >Enter New Bio!</textarea>
-            <button type="submitreview-button" class="editbio-button">Submit</button>
-        </form>
-    `;
-    $('.userbio').html(newHtmlContent);
+  toggleEditbio();
 });
 
 
