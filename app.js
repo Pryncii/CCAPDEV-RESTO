@@ -112,7 +112,27 @@ const getUserList = require('./usergetlist').getUserList;
 const alluserdata = getUserList();
 console.log(alluserdata);
 
+
+var sresto = {
+  U_Mall:[],
+  Burgundy:[],
+  DLSU: [],
+  EGI:[],
+  Archers:[],
+  G_Residences:[],
+  R_Square:[],
+  Man_Res:[]
+}
+restoModel.find({}).then(function(aresto){
+for(r of aresto){
+  sresto[r.landmark].push({linkname: r.linkname, name: r.name});
+  
+}
+});
+
 server.get('/', function(req, resp){
+
+
   if (req.session.login_user && req.session.login_id) {
     req.session.destroy(function(err) {
       if (err) {
@@ -127,6 +147,7 @@ server.get('/', function(req, resp){
     resp.render('main', {
       layout: 'index',
       title: 'Main Menu',
+      sresto: sresto
     });
   }
 });
@@ -136,18 +157,24 @@ let loggedInUser;
 let isUser;
 
 server.get('/login-page', function(req, resp){
+ 
     resp.render('login',{
         layout      : 'index',
         title       : 'Login',
+        sresto      : sresto
     });
 });
 
 server.get('/signup-page', function(req, resp){
+  
     resp.render('signup',{
         layout      : 'index',
         title       : 'Sign Up',
+        sresto      : sresto
     });
 });
+
+
 server.post('/create-user', function(req, resp){
 
     let newModel, model;
@@ -204,7 +231,8 @@ server.post('/create-user', function(req, resp){
                   restodata   : restosJson,
                   otherresto  : otherrestos,
                   user        : loggedInUser,
-                  checkUser: isUser
+                  checkUser   : isUser,
+                  sresto      : sresto
             });
           })
         })
@@ -246,6 +274,7 @@ server.post('/create-user', function(req, resp){
                     otherusers  : alluserdata,
                     checkUser   : isUser,
                     otherusers  : alluser,
+                    sresto      : sresto
                 });
               })
             }).catch(errorFn);
@@ -284,7 +313,8 @@ server.post('/read-user', function(req, resp){
                         user: loggedInUser,
                         otherusers  : alluserdata,
                         checkUser: isUser,
-                        otherusers: alluser
+                        otherusers: alluser,
+                        sresto      : sresto
                     });
                   })
                 })
@@ -293,7 +323,8 @@ server.post('/read-user', function(req, resp){
                     resp.render('login',{
                       layout      : 'index',
                       title       : 'Login',
-                      errorMessage: 'Username and password not found!'
+                      errorMessage: 'Username and password not found!',
+                      sresto      : sresto
                   });
                 }
               });
@@ -321,7 +352,8 @@ server.post('/read-user', function(req, resp){
                                   restodata: restosJson,
                                   otherresto: otherrestos,
                                   user: loggedInUser,
-                                  checkUser: isUser
+                                  checkUser: isUser,
+                                  sresto      : sresto
                               });
                           })
                         })
@@ -330,7 +362,8 @@ server.post('/read-user', function(req, resp){
                           resp.render('login',{
                             layout      : 'index',
                             title       : 'Login',
-                            errorMessage: 'Username and password not found!'
+                            errorMessage: 'Username and password not found!',
+                            sresto      : sresto
                         });
                         }
                     });
@@ -340,7 +373,8 @@ server.post('/read-user', function(req, resp){
                         resp.render('login',{
                             layout      : 'index',
                             title       : 'Login',
-                            errorMessage: 'Username and password not found!'
+                            errorMessage: 'Username and password not found!',
+                            sresto      : sresto
                         });
                    
                     }
@@ -350,7 +384,8 @@ server.post('/read-user', function(req, resp){
                     resp.render('login',{
                         layout      : 'index',
                         title       : 'Login',
-                        errorMessage: 'Username and password not found!'
+                        errorMessage: 'Username and password not found!',
+                        sresto      : sresto
                     });
                 });
             }
@@ -401,6 +436,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             user        : loggedInUser,
             checkUser: isUser,
             vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
+            sresto      : sresto
         });
     }
     }).catch(errorFn);
@@ -428,7 +464,8 @@ server.get('/restopage/:landmark/', function(req, resp){
         title:  req.params.landmark,
         restos:  vals,
         user: loggedInUser,
-        checkUser: isUser
+        checkUser: isUser,
+        sresto      : sresto
       });
     }).catch(errorFn);
   });
@@ -438,7 +475,8 @@ server.get('/restopage/:landmark/', function(req, resp){
         layout      : 'index',
         title       : 'Menu',
         user        : loggedInUser,
-        checkUser: isUser
+        checkUser: isUser,
+        sresto      : sresto
     });
 });
 
@@ -469,7 +507,8 @@ server.get('/profile-page/:urlname', function(req, resp){
               otherusers  : alluserdata,
               user        : loggedInUser,
               checkUser: isUser,
-              otherusers: alluser
+              otherusers: alluser,
+              sresto      : sresto
             });
         }
       }).catch(errorFn);
@@ -498,7 +537,8 @@ server.get('/profile-page/:urlname', function(req, resp){
         title:  req.params.landmark,
         restos:  vals,
         user        : loggedInUser,
-        checkUser: isUser
+        checkUser: isUser,
+        sresto      : sresto
       });
     }).catch(errorFn);
     resp.send({name: req.params.name});
@@ -547,7 +587,8 @@ server.get('/profile-page/:urlname', function(req, resp){
         title:  "Show All",
         restos:  vals,
         user        : loggedInUser,
-        checkUser: isUser
+        checkUser: isUser,
+        sresto      : sresto
       });
     }).catch(errorFn);
   });
@@ -619,7 +660,8 @@ server.get('/profile-page/:urlname', function(req, resp){
         title:  "Show All",
         restos:  vals,
         user        : loggedInUser,
-        checkUser: isUser
+        checkUser: isUser,
+        sresto      : sresto
       });
     }).catch(errorFn);
   });
