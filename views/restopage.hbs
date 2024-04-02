@@ -146,10 +146,10 @@
                                     <div class = "usereditbio2">
                                         <div class="thumbs">
                                             <div class="like grow" >
-                                                <i class="fa fa-thumbs-up like {{isActive ../lThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.likes.length}}</i>
+                                                <i class="fa fa-thumbs-up like {{isActive ../lThumbs reviewIndex -1}}" aria-hidden="true" id="{{../restodata.user}}-like-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.likes.length}}</i>
                                             </div>
                                             <div class="dislike grow" >
-                                                <i class="fa fa-thumbs-down like {{isActive ../dThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
+                                                <i class="fa fa-thumbs-down like {{isActive ../dThumbs reviewIndex -1}}" aria-hidden="true" id="{{../restodata.user}}-dislike-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             {{#if hascomments}}
@@ -187,10 +187,10 @@
                                                         <div class = "usereditbio2">
                                                             <div class="thumbs">
                                                                 <div class="like grow" >
-                                                                    <i class="fa fa-thumbs-up like {{isActive ../../clThumbs commentIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}" >{{this.likes.length}}</i>
+                                                                    <i class="fa fa-thumbs-up like {{isActive ../../clThumbs reviewIndex commentIndex}}" aria-hidden="true" id="{{../../restodata.user}}-like-review-{{reviewIndex}}-{{commentIndex}}-com" data-rev-id="{{../this.rev}}" data-person="{{../../user.name}}" >{{this.likes.length}}</i>
                                                                 </div>
                                                                 <div class="dislike grow" >
-                                                                    <i class="fa fa-thumbs-down like {{isActive ../../cdThumbs commentIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{reviewIndex}}-{{commentIndex}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
+                                                                    <i class="fa fa-thumbs-down like {{isActive ../../cdThumbs reviewIndex commentIndex}}" aria-hidden="true" id="{{../../restodata.user}}-dislike-review-{{reviewIndex}}-{{commentIndex}}-com" data-rev-id="{{../this.rev}}" data-person="{{../../user.name}}">{{this.dislikes.length}}</i>
                                                                 </div>
                                                                 {{#eq this.comname ../../user.name}}
                                                                 <button type="edit-button" class = "editbio-button" id = "replyedit">Edit</button>

@@ -116,11 +116,16 @@ const getUserList = require('./usergetlist').getUserList;
 const alluserdata = getUserList();
 console.log(alluserdata);
 
-hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex) {
+hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex, commentIndex) {
     console.log(likeThumb);
     console.log(reviewIndex);
-    console.log(likeThumb[reviewIndex]);
-    if (likeThumb[reviewIndex] != 0) {
+    
+    let like = likeThumb[reviewIndex];
+    if (commentIndex != -1) {like = likeThumb[reviewIndex][commentIndex];}
+
+    console.log("thumbval:"+like);
+
+    if (like != 0) {
         return 'active'; 
     } else {
         return ''; 
@@ -364,8 +369,8 @@ server.post('/read-user', function(req, resp){
                               let getratesum = 0;
                                 let likeThumb = "";
                                 let dislikeThumb = "";
-                                let clikeThumb = "";
-                                let cdislikeThumb = "";
+                                let clikeThumb = [];
+                                let cdislikeThumb = [];
                                 let undeleted = 0;
 
                                 for(let j = 0; j < restos.revdata.length; j++){
@@ -376,22 +381,25 @@ server.post('/read-user', function(req, resp){
                                             }
                                         }
                                         undeleted+=1;
-                                        
+                                        let likeComm = "";
+                                        let dislikeComm = "";
                                         if (restos.revdata[j].hascomments != false) {
+                                            
                                             for(let x = 0; x < restos.revdata[j].comments.length; x++){
                                                 if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
-                                                    clikeThumb+= 1;
+                                                    likeComm+= 1;
                                                 }else {
-                                                    clikeThumb+= 0;
+                                                    likeComm+= 0;
                                                 }
                                                 if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
-                                                    cdislikeThumb+= 1;
+                                                    dislikeComm+= 1;
                                                 }else {
-                                                    cdislikeThumb+= 0;
+                                                    dislikeComm+= 0;
                                                 }
                                             }
-
                                         }
+                                        clikeThumb.push(likeComm);
+                                        cdislikeThumb.push(dislikeComm);
                                         if(restos.revdata[j].likes.includes(loggedInUser.user)){
                                             likeThumb+= 1;
                                         }else {
@@ -486,8 +494,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         let getratesum = 0;
         let likeThumb = "";
         let dislikeThumb = "";
-        let clikeThumb = "";
-        let cdislikeThumb = "";
+        let clikeThumb = [];
+        let cdislikeThumb = [];
         let undeleted = 0;
         
         for(let j = 0; j < restos.revdata.length; j++){
@@ -498,22 +506,26 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
                     }
                 }
                 undeleted+=1;
-                
+                let likeComm = "";
+                let dislikeComm = "";
                 if (restos.revdata[j].hascomments != false) {
+                    
                     for(let x = 0; x < restos.revdata[j].comments.length; x++){
+                       
                         if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
-                            clikeThumb+= 1;
+                            likeComm+= 1;
                         }else {
-                            clikeThumb+= 0;
+                            likeComm+= 0;
                         }
                         if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
-                            cdislikeThumb+= 1;
+                            dislikeComm+= 1;
                         }else {
-                            cdislikeThumb+= 0;
+                            dislikeComm+= 0;
                         }
                     }
-
                 }
+                clikeThumb.push(likeComm);
+                cdislikeThumb.push(dislikeComm);
                 if(restos.revdata[j].likes.includes(loggedInUser.user)){
                     likeThumb+= 1;
                 }else {
@@ -784,7 +796,8 @@ server.get('/profile-page/:urlname', function(req, resp){
     }).catch(errorFn);
   });
 
-  
+
+
 server.post('/reaction', function(req, resp){
   if(req.session.login_id == undefined){
     resp.redirect('/?login=unlogged');
@@ -793,76 +806,261 @@ server.post('/reaction', function(req, resp){
   //const updateQuery = { user: req.body.id };
   console.log("req.body.rev: " + req.body.rev);
   console.log("req.body.person: " + req.body.person);
+  console.log("req.body.person: " + req.body.comin);
+  let comin = req.body.comin;
 
   userModel.findOne({name: req.body.person}).then(function(users){
-    console.log("username: " + users.user);
-    let username = users.user;
-    
-    restoModel.find({}).then(function(restos){
-      console.log('List successful');
-    
-      let found = 0; // all restaurants
-      for(let i = 0; i < restos.length && found == 0; i++)
-      { // all reviews in that restaurant
-        for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
-        {
-          if(restos[i].revdata[j]["rev"] == req.body.rev)
-          {
-            console.log("review found: " + restos[i].revdata[j]["rev"]);
-            console.log(req.body.eclass);
-        
-            if (req.body.action == "like"){
-                if (req.body.eclass == 1){
-                    for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
-                        if (restos[i].revdata[j].likes[x] == username){
-                            let spliced = restos[i].revdata[j].likes.splice(x, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
-                        }
-                    }
-                } else {
-                    for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
-                        if (restos[i].revdata[j].dislikes[y] == username){
-                            let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
-                        }
-                    }
-        
-                    restos[i].revdata[j].likes.push(username);
-                    console.log("Likes: " + restos[i].revdata[j].likes); 
-                }
 
+    if (users && users._id) {
+        console.log("username: " + users.user);
+        let username = users.user;
+        
+        restoModel.find({}).then(function(restos){
+        console.log('List successful');
+        
+        let found = 0; // all restaurants
+        for(let i = 0; i < restos.length && found == 0; i++)
+        { // all reviews in that restaurant
+            for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+            {
+            if(restos[i].revdata[j]["rev"] == req.body.rev)
+            {
+                console.log("review found: " + restos[i].revdata[j]["rev"]);
+                console.log(req.body.eclass);
+            
+                if (req.body.iscom == 1) {
+                        if (req.body.action == "like"){
+                            if (req.body.eclass == 1){
+                                for (let x = 0; x < restos[i].revdata[j].comments[comin].likes.length; x++){
+                                    if (restos[i].revdata[j].comments[comin].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].likes);
+                                    }
+                                }
+                            } else {
+                                for (let y = 0; y < restos[i].revdata[j].comments[comin].dislikes.length; y++){
+                                    if (restos[i].revdata[j].comments[comin].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].dislikes);
+                                    }
+                                }
+                    
+                                restos[i].revdata[j].comments[comin].likes.push(username);
+                                console.log("Likes: " + restos[i].revdata[j].comments[comin].likes); 
+                            }
+
+                            
+                        } else {
+                            if (req.body.eclass == 1){ 
+                                for (let y = 0; y < restos[i].revdata[j].comments[comin].dislikes.length; y++){
+                                    if (restos[i].revdata[j].comments[comin].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].dislikes);
+                                    }
+                                }
+                            } else {
+                                for (let x = 0; x < restos[i].revdata[j].comments[comin].likes.length; x++){
+                                    if (restos[i].revdata[j].comments[comin].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].likes);
+                                    }
+                                }
+                                restos[i].revdata[j].comments[comin].dislikes.push(username);
+                                console.log("dislikes: " + restos[i].revdata[j].comments[comin].dislikes);
+                            }
+                            
+                        }
+                    
+                        
+
+                    } else {
                 
-            } else {
-                if (req.body.eclass == 1){ 
-                    for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
-                        if (restos[i].revdata[j].dislikes[y] == username){
-                            let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                        if (req.body.action == "like"){
+                            if (req.body.eclass == 1){
+                                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                                    if (restos[i].revdata[j].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                                    }
+                                }
+                            } else {
+                                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                                    if (restos[i].revdata[j].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                                    }
+                                }
+                    
+                                restos[i].revdata[j].likes.push(username);
+                                console.log("Likes: " + restos[i].revdata[j].likes); 
+                            }
+
+                            
+                        } else {
+                            if (req.body.eclass == 1){ 
+                                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                                    if (restos[i].revdata[j].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                                    }
+                                }
+                            } else {
+                                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                                    if (restos[i].revdata[j].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                                    }
+                                }
+                                restos[i].revdata[j].dislikes.push(username);
+                                console.log("dislikes: " + restos[i].revdata[j].dislikes);
+                            }
+                            
                         }
+                    
+                        
                     }
-                } else {
-                    for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
-                        if (restos[i].revdata[j].likes[x] == username){
-                            let spliced = restos[i].revdata[j].likes.splice(x, 1); 
-                            console.log("Removed element: " + spliced); 
-                            console.log("Remaining elements: " + restos[i].revdata[j].likes);
-                        }
-                    }
-                    restos[i].revdata[j].dislikes.push(username);
-                    console.log("dislikes: " + restos[i].revdata[j].dislikes);
-                }
+                
+                restos[i].save();
                 
             }
-            
-            restos[i].save();
-            resp.sendStatus(200);
-          }
+            }
         }
-      }
-    }).catch(errorFn);
+        resp.sendStatus(200);
+        }).catch(errorFn);
+    } else {
+        restoModel.findOne({name: req.body.person}).then(function(resusers){
+            console.log("username: " + resusers.user);
+            let username = resusers.user;
+            
+            restoModel.find({}).then(function(restos){
+            console.log('List successful');
+            
+            let found = 0; // all restaurants
+            for(let i = 0; i < restos.length && found == 0; i++)
+            { // all reviews in that restaurant
+                for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+                {
+                if(restos[i].revdata[j]["rev"] == req.body.rev)
+                {
+                    console.log("review found: " + restos[i].revdata[j]["rev"]);
+                    console.log(req.body.eclass);
+                    if (req.body.iscom == 1) {
+                        if (req.body.action == "like"){
+                            if (req.body.eclass == 1){
+                                for (let x = 0; x < restos[i].revdata[j].comments[comin].likes.length; x++){
+                                    if (restos[i].revdata[j].comments[comin].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].likes);
+                                    }
+                                }
+                            } else {
+                                for (let y = 0; y < restos[i].revdata[j].comments[comin].dislikes.length; y++){
+                                    if (restos[i].revdata[j].comments[comin].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].dislikes);
+                                    }
+                                }
+                    
+                                restos[i].revdata[j].comments[comin].likes.push(username);
+                                console.log("Likes: " + restos[i].revdata[j].comments[comin].likes); 
+                            }
+
+                            
+                        } else {
+                            if (req.body.eclass == 1){ 
+                                for (let y = 0; y < restos[i].revdata[j].comments[comin].dislikes.length; y++){
+                                    if (restos[i].revdata[j].comments[comin].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].comments.dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].dislikes);
+                                    }
+                                }
+                            } else {
+                                for (let x = 0; x < restos[i].revdata[j].comments[comin].likes.length; x++){
+                                    if (restos[i].revdata[j].comments[comin].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].comments[comin].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].comments[comin].likes);
+                                    }
+                                }
+                                restos[i].revdata[j].comments[comin].dislikes.push(username);
+                                console.log("dislikes: " + restos[i].revdata[j].comments[comin].dislikes);
+                            }
+                            
+                        }
+                    
+
+                    } else {
+                
+                        if (req.body.action == "like"){
+                            if (req.body.eclass == 1){
+                                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                                    if (restos[i].revdata[j].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                                    }
+                                }
+                            } else {
+                                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                                    if (restos[i].revdata[j].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                                    }
+                                }
+                    
+                                restos[i].revdata[j].likes.push(username);
+                                console.log("Likes: " + restos[i].revdata[j].likes); 
+                            }
+
+                            
+                        } else {
+                            if (req.body.eclass == 1){ 
+                                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                                    if (restos[i].revdata[j].dislikes[y] == username){
+                                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                                    }
+                                }
+                            } else {
+                                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                                    if (restos[i].revdata[j].likes[x] == username){
+                                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                                        console.log("Removed element: " + spliced); 
+                                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                                    }
+                                }
+                                restos[i].revdata[j].dislikes.push(username);
+                                console.log("dislikes: " + restos[i].revdata[j].dislikes);
+                            }
+                            
+                        }
+                    
+                       
+                    }
+            
+                }
+                }
+                restos[i].save();
+            }
+            resp.sendStatus(200);
+            }).catch(errorFn);
+
+        }).catch(errorFn);
+
+    }
   }).catch(errorFn);
   });
  

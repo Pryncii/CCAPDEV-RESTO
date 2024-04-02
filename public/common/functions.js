@@ -163,12 +163,18 @@ document.addEventListener("DOMContentLoaded", function() {
           var element = document.getElementById(likeId);
           let eclass = 0;
           if (element.classList.contains("active")) {eclass = 1};
+          let isCom = 0;
+          var split = likeId.split("-", 6);
+          console.log(split);
+          let comIn = 0;
+          let revIn = split[5];
+          if (button.id.includes("com")) {isCom = 1; comIn = split[4];};
 
           let likeId2;
           if (likeId.includes("dislike")){
             likeId2 = likeId.replace("dislike", "like");
             $.post('/reaction',{
-              rev :reviewId, person: person, action: "dislike", eclass: eclass
+              rev :reviewId, person: person, action: "dislike", eclass: eclass, iscom: isCom, comin: comIn, revin: revIn
             }, function(data, status){
               if(status === 'success'){
                 console.log('like request successful');
@@ -179,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function() {
           else {
             likeId2 = likeId.replace("like", "dislike");
             $.post('/reaction',{
-             rev :reviewId, person: person, action: "like", eclass: eclass
+             rev :reviewId, person: person, action: "like", eclass: eclass, iscom: isCom, comin: comIn, revin: revIn
             }, function(data, status){
               if(status === 'success'){
                 console.log('like request successful');
