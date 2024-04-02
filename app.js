@@ -2,7 +2,7 @@
 
 const express = require('express');
 const server = express();
-
+const {check, validationResult} = require('express-validator');
 const bodyParser = require('body-parser');
 server.use(express.json()); 
 server.use(express.urlencoded({ extended: true }));
@@ -190,8 +190,28 @@ server.get('/signup-page', function(req, resp){
 });
 
 
-server.post('/create-user', function(req, resp){
-
+server.post('/create-user', [
+  check('fname').notEmpty(),
+  check('username').notEmpty(),
+  check('password').notEmpty(),
+  check('map').custom((value, { req }) => {
+      if (req.body.estbowner === "yes" && !value) {
+          throw new Error('Map field is required');
+      }
+      return true;
+  }),
+  check('price').custom((value, { req }) => {
+      if (req.body.estbowner === "yes" && (!value || isNaN(value))) {
+          throw new Error('Price field is required');
+      }
+      return true;
+  })
+], function(req, resp){
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      resp.redirect('/signup-page?=form_error');
+      return
+    }
     let newModel, model;
     const selectedRadioValue = req.body.estbowner;
 
@@ -302,9 +322,19 @@ server.post('/create-user', function(req, resp){
   });
 
 
-server.post('/read-user', function(req, resp){
+server.post('/read-user', [ check('user').notEmpty(),
+                          check('pass').notEmpty()], function(req, resp){
   //console.log('Finding user');
-  
+  const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+        errorMessage: 'Fields cannot be empty!',
+        sresto      : sresto
+       });
+      return
+    }
   const searchQuery = { user: req.body.user};
   //look for the user
   //compare if the password of the user matches the encrypted one 
