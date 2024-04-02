@@ -53,7 +53,7 @@
                         "comname": "McDonalds",
                         "com": "Nice to hear you enjoyed you like our mushroom pepper steak!",
                         "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                        "dislikes": ["mcdo01"],
+                        "dislikes": [],
                         "urlname": "/restaurant/U_Mall/mcdonalds",
                         "notdeleted": true
                     }
@@ -363,8 +363,8 @@
                         "comname": "Chua, Micole",
                         "com": "Ha? Hatdog!",
                         
-                "likes" : ["prince01", "micole05"],
-                "dislikes": ["mcdo01", "blix02"],
+                        "likes" : ["prince01", "micole05"],
+                        "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/profile-page/Chua_Micole",
                         "notdeleted": true
                     }

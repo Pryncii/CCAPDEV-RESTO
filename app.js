@@ -52,6 +52,8 @@ const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
     com: { type: String },
+    likes: {type: [String]},
+    dislikes: {type: [String]},
     urlname: { type: String},
     notdeleted: { type: Boolean },
 });
@@ -117,6 +119,7 @@ console.log(alluserdata);
 hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex) {
     console.log(likeThumb);
     console.log(reviewIndex);
+    console.log(likeThumb[reviewIndex]);
     if (likeThumb[reviewIndex] != 0) {
         return 'active'; 
     } else {
@@ -470,8 +473,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             
         }
 
-        console.log(likeThumb);
-        console.log(dislikeThumb);
+        console.log("likes:"+likeThumb);
+        console.log("dislikes:"+dislikeThumb);
+        console.log("clikes:"+clikeThumb);
+        console.log("cdislikes:"+cdislikeThumb);
         restos.rating = getratesum/restos.revdata.length;
 
         console.log("rating:"+(getratesum/restos.revdata.length));
