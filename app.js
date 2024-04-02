@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const server = express();
 
@@ -118,6 +120,16 @@ console.log(restodata);
 const getUserList = require('./usergetlist').getUserList;
 const userdata = getUserList();
 console.log(userdata);
+
+hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex) {
+    console.log(likeThumb);
+    console.log(reviewIndex);
+    if (likeThumb[reviewIndex] != 0) {
+        return 'active'; 
+    } else {
+        return ''; 
+    }
+});
 
 server.get('/', function(req, resp){
   if (req.session.login_user && req.session.login_id) {
@@ -386,14 +398,32 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         }
 
         let getratesum = 0;
+        let likeThumb = "";
+        let dislikeThumb = "";
         for(let j = 0; j < restos.revdata.length; j++){
             for(let k = 0; k < restos.revdata[j].revrating.length; k++){
                 if(restos.revdata[j].revrating[k] == "★"){
                     getratesum+= 1;
                 }
             }
+    
+                if(restos.revdata[j].likes.includes(loggedInUser.user)){
+                    likeThumb+= 1;
+                }else {
+                    likeThumb+= 0;
+                }
+            
+           
+                if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+                    dislikeThumb+= 1;
+                }else {
+                    dislikeThumb+= 0;
+                }
+            
         }
 
+        console.log(likeThumb);
+        console.log(dislikeThumb);
         restos.rating = getratesum/restos.revdata.length;
 
         console.log("rating:"+(getratesum/restos.revdata.length));
@@ -404,8 +434,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             restodata   : restosJson,
             otherresto  : landmarkresto,
             user        : loggedInUser,
+            lThumbs   : likeThumb,
+            dThumbs: dislikeThumb,
             checkUser: isUser,
-            vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
+            vrating      : 100-(((getratesum/restos.revdata.length)/5)*100)
         });
     }
     }).catch(errorFn);
@@ -635,40 +667,58 @@ server.post('/reaction', function(req, resp){
     return;
   }
   //const updateQuery = { user: req.body.id };
-  const restouser = req.body.resto;
-  const action = req.body.action;
-  const revindex = req.body.revindex;
-  const comindex = req.body.comindex;
-  const doing = req.body.do;
-  var opposite="likes";
-  if(action==opposite){
-    opposite="dislikes";
-  }
-  restoModel.findOne({user: restouser}).then(function(vresto){
-  var temprevindex = vresto.revdata;
-   //review
-  if(comindex == -1){
-    console.log("action array" + temprevindex[revindex][comindex][action]);
-     
-  }else
-  {//commen
-    console.log("action array" + temprevindex[revindex][comindex][action]);
-    temprevindex[revindex][comindex][action].push(loggedInUser.user);
-    if(doing){
-      //push
-      var indexofuser = temprevindex[revindex][comindex][opposite].indexOf(loggedInUser.userimage);
-    }else{
+  console.log("req.body.rev: " + req.body.rev);
+  console.log("req.body.person: " + req.body.person);
 
-    }
-      
-      
-      //arr.splice(1,1);
-    }
+  userModel.findOne({name: req.body.person}).then(function(users){
+    console.log("username: " + users.user);
+    let username = users.user;
+    
+    restoModel.find({}).then(function(restos){
+      console.log('List successful');
+    
+      let found = 0; // all restaurants
+      for(let i = 0; i < restos.length && found == 0; i++)
+      { // all reviews in that restaurant
+        for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
+        {
+          if(restos[i].revdata[j]["rev"] == req.body.rev)
+          {
+            console.log("review found: " + restos[i].revdata[j]["rev"]);
+
+            if (req.body.action == "like"){
+                for (let y = 0; y < restos[i].revdata[j].dislikes.length; y++){
+                    if (restos[i].revdata[j].dislikes[y] == username){
+                        let spliced = restos[i].revdata[j].dislikes.splice(y, 1); 
+                        console.log("Removed element: " + spliced); 
+                        console.log("Remaining elements: " + restos[i].revdata[j].dislikes);
+                    }
+                }
+                restos[i].revdata[j].likes.push(username);
+                console.log("Likes: " + restos[i].revdata[j].likes); 
+            } else {
+                for (let x = 0; x < restos[i].revdata[j].likes.length; x++){
+                    if (restos[i].revdata[j].likes[x] == username){
+                        let spliced = restos[i].revdata[j].likes.splice(x, 1); 
+                        console.log("Removed element: " + spliced); 
+                        console.log("Remaining elements: " + restos[i].revdata[j].likes);
+                    }
+                }
+                restos[i].revdata[j].dislikes.push(username);
+                console.log("dislikes: " + restos[i].revdata[j].dislikes);
+            }
+            
+            restos[i].save();
+            resp.sendStatus(200);
+          }
+        }
+      }
+    }).catch(errorFn);
+  }).catch(errorFn);
   });
  
 
   
-});
   server.post('/change-profilepic', function(req, resp){
     if(req.session.login_id == undefined){
       resp.redirect('/?login=unlogged');
@@ -796,6 +846,27 @@ server.post('/change-restobio', function(req, resp){
   
     
 });
+
+server.post('/updateLikes', function(req, resp){
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
+    console.log("changerestobio");
+    const userbio= req.body.restodesc;
+    
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {description: userbio}).then(function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated Docs : ", docs);
+      }
+      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/');
+  });
+    
+      
+  });
 
 server.post('/deletecomment', function(req, resp){
   if(req.session.login_id == undefined){

@@ -119,6 +119,7 @@
                         <!--OTHER REVIEWS HERE-->
                         {{#each restodata.revdata as |review reviewIndex|}}
                         {{#if notdeleted}}
+                        
                             <div class = "reviewcontainer2">
                                 <div class = "reviewcontainerleft2">
                                     <img src = "{{this.revimg}}">
@@ -137,11 +138,11 @@
                                     
                                     <div class = "usereditbio2">
                                         <div class="thumbs">
-                                            <div class="like grow" onclick="likedislike({{restodata}}, 'likes' ,{{@index}}, -1)">
-                                                <i class="fa fa-thumbs-up like" aria-hidden="true" id="{{restodata.user}}-like-review-{{@index}}--1" >{{this.likes.length}}</i>
+                                            <div class="like grow" >
+                                                <i class="fa fa-thumbs-up like {{isActive ../lThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-like-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.likes.length}}</i>
                                             </div>
-                                            <div class="dislike grow" onclick="likedislike({{restodata}}, 'dislikes' ,{{@index}}, -1)">
-                                                <i class="fa fa-thumbs-down like" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{@index}}--1" >{{this.dislikes.length}}</i>
+                                            <div class="dislike grow" >
+                                                <i class="fa fa-thumbs-down like {{isActive ../dThumbs reviewIndex}}" aria-hidden="true" id="{{restodata.user}}-dislike-review-{{@index}}" data-rev-id="{{this.rev}}" data-person="{{../user.name}}">{{this.dislikes.length}}</i>
                                             </div>
                                             <button type="reply-button" class = "reply-button">Reply</button>
                                             {{#if hascomments}}
