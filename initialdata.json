@@ -44,7 +44,7 @@
                 "revrating": "★★★★★",
                 "rev": "the mushroom pepper steak!",
                 "hascomments": true,
-                "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
+                "likes" : ["prince01", "blix02", "micole05"],
                 "dislikes": ["mcdo01"],
                 "comments": 
                 [
@@ -68,7 +68,7 @@
                 "rev": "The breakfast options were fire as always!",
                 "hascomments": true,
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
-                "dislikes": ["mcdo01"],
+                "dislikes": [],
                 "comments": 
                 [
                     {

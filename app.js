@@ -361,12 +361,63 @@ server.post('/read-user', function(req, resp){
                             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                               loggedInUser = logged;
                               isUser = loggedInUser['linkname'];
+                              let getratesum = 0;
+                                let likeThumb = "";
+                                let dislikeThumb = "";
+                                let clikeThumb = "";
+                                let cdislikeThumb = "";
+                                let undeleted = 0;
+
+                                for(let j = 0; j < restos.revdata.length; j++){
+                                if(restos.revdata[j]["notdeleted"]==true){
+                                        for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+                                            if(restos.revdata[j].revrating[k] == "★" ){
+                                                getratesum+= 1;
+                                            }
+                                        }
+                                        undeleted+=1;
+                                        
+                                        if (restos.revdata[j].hascomments != false) {
+                                            for(let x = 0; x < restos.revdata[j].comments.length; x++){
+                                                if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
+                                                    clikeThumb+= 1;
+                                                }else {
+                                                    clikeThumb+= 0;
+                                                }
+                                                if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
+                                                    cdislikeThumb+= 1;
+                                                }else {
+                                                    cdislikeThumb+= 0;
+                                                }
+                                            }
+
+                                        }
+                                        if(restos.revdata[j].likes.includes(loggedInUser.user)){
+                                            likeThumb+= 1;
+                                        }else {
+                                            likeThumb+= 0;
+                                        }
+                                        if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+                                            dislikeThumb+= 1;
+                                        }else {
+                                            dislikeThumb+= 0;
+                                        }
+                                    }
+
+                                }
+
                               resp.render('restopage', {
                                   layout: 'index',
                                   title: 'Restaurant',
                                   restodata: restosJson,
                                   otherresto: otherrestos,
                                   user: loggedInUser,
+                                  lThumbs   : likeThumb,
+                                    dThumbs: dislikeThumb,
+                                    clThumbs   : clikeThumb,
+                                    cdThumbs: cdislikeThumb,
+                                    checkUser: isUser,
+                                    vrating      : 100-(((getratesum/undeleted)/5)*100),
                                   checkUser: isUser,
                                   sresto      : sresto
                               });
