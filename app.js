@@ -431,35 +431,36 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
         let likeThumb = "";
         let dislikeThumb = "";
         let undeleted = 0;
-        for(let l = 0; l < restos.revdata.length; l++){
-          if(restos.revdata[l]["notdeleted"]==true){
-          for(let k = 0; k < restos.revdata[l].revrating.length; k++){
-              if(restos.revdata[l].revrating[k] == "★" ){
+        for(let j = 0; j < restos.revdata.length; j++){
+          if(restos.revdata[j]["notdeleted"]==true){
+          for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+              if(restos.revdata[j].revrating[k] == "★" ){
                   getratesum+= 1;
               }
           }
           undeleted+=1;
+          if(restos.revdata[j].likes.includes(loggedInUser.user)){
+              likeThumb+= 1;
+          }else {
+              likeThumb+= 0;
+          }
+          if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+              dislikeThumb+= 1;
+          }else {
+              dislikeThumb+= 0;
+          }
+  
         }
         }
         
     
-        if(restos.revdata[j].likes.includes(loggedInUser.user)){
-          likeThumb+= 1;
-      }else {
-          likeThumb+= 0;
-      }
   
- 
-      if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
-          dislikeThumb+= 1;
-      }else {
-          dislikeThumb+= 0;
-      }
-  
-}
 
 console.log(likeThumb);
 console.log(dislikeThumb);
+ 
+      
+
         restos.rating = getratesum/restos.revdata.length;
 
 
@@ -477,7 +478,7 @@ console.log(dislikeThumb);
             vrating      : 100-(((getratesum/restos.revdata.length)/5)*100),
             sresto      : sresto
         });
-    
+    }
     }).catch(errorFn);
   });
 
