@@ -957,37 +957,18 @@ server.post('/deletecomment', function(req, resp){
   if(req.body.comin != -1){
     restoModel.find({ name: req.body.restoname }).then(function(restos){
 
-  
     let found = 0;
     for(let i = 0; i < restos.length && found == 0; i++)
     {
-      
       console.log("comment found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
       restos[i].revdata[req.body.revin].comments[req.body.comin]["notdeleted"] = false;
-      found = 1;
-
-      let getratesum = 0;
-      let undeleted = 0;
-      for(let l = 0; l < restos[i].revdata.length; l++){
-        if(restos[i].revdata[l]["notdeleted"]==true){
-        for(let k = 0; k < restos[i].revdata[l].revrating.length; k++){
-            if(restos[i].revdata[l].revrating[k] == "★" ){
-                getratesum+= 1;
-            }
-        }
-        undeleted+=1;
-      }
-      }
-      
-      restos[i].rating = getratesum/undeleted;
-
+      found = 1;  
       restos[i].save().then(function (result) {
         if(result){
           resp.sendStatus(200);
         }
       });
     }
-    
   }).catch(errorFn);
   }
   else {
@@ -1038,42 +1019,39 @@ server.post('/replycomment', function(req, resp){
   console.log("req.body.id: " + req.body.id);
   console.log("req.body.reply: " + req.body.reply);
   console.log("req.body.person: " + req.body.person);
+  console.log("req.body.resto: " + req.body.resto);
 
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
     let userimage = user.image;
     let userurl = user.urlname;
     
-    restoModel.find({}).then(function(restos){
+    restoModel.find({ name : req.body.resto} ).then(function(restos){
       console.log('List successful');
     
       let found = 0; // all restaurants
       for(let i = 0; i < restos.length && found == 0; i++)
       { // all reviews in that restaurant
-        for(let j = 0; j < restos[i].revdata.length && found == 0; j++)
-        {
-          if(restos[i].revdata[j]["rev"] == req.body.id)
-          {
-            console.log("review found: " + restos[i].revdata[j]["rev"]);
-            console.log("revdatalength found: " + restos[i].revdata[j].comments.length);
 
-            let newComment = {
-              comimg: userimage,
-              comname: req.body.person,
-              com: req.body.reply,
-              likes: [],
-              dislikes: [],
-              urlname: userurl,
-              notdeleted: true
-            };
-    
-            restos[i].revdata[j].comments.push(newComment);
-            restos[i].revdata[j]["hascomments"] = true;
-            found = 1;
-            restos[i].save();
-            resp.sendStatus(200);
-          }
-        }
+        console.log("review found: " + restos[i].revdata[req.body.id]["rev"]);
+        console.log("revdatalength found: " + restos[i].revdata[req.body.id].comments.length);
+
+        let newComment = {
+          comimg: userimage,
+          comname: req.body.person,
+          com: req.body.reply,
+          likes: [],
+          dislikes: [],
+          urlname: userurl,
+          notdeleted: true
+        };
+
+        restos[i].revdata[req.body.id].comments.push(newComment);
+        restos[i].revdata[req.body.id]["hascomments"] = true;
+        found = 1;
+        restos[i].save();
+        resp.sendStatus(200);
+
       }
     }).catch(errorFn);
   }).catch(errorFn);

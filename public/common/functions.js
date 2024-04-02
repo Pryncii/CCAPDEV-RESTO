@@ -571,26 +571,29 @@ $(document).on('click', '.delete-comment', function(){
   });
 });  
 
-$(document).on('click', '.reply-button', function(){
+$(document).on('click', '.replysend-button', function(){
   var reviewId = $(this).data('replyto-id');
   var person = $(this).data('person');
-  var reply = document.getElementById("reply-text-"+reviewId).value;
+  var reply = $("#reply-text-" + reviewId).val();
+  var resto = $(this).data('restoname');
+
   console.log("reviewId: " + reviewId);
   console.log("reply: " + reply);
   console.log("person: " + person);
-if(reply!=""){
-  $.post('/replycomment',{
-    id: reviewId, reply: reply, person: person,
-  }, function(data, status){
-    if(status === 'success'){
-      console.log('Reply request successful');
-      window.location.reload();
-    }
-  });
-}else{
-  alert("Kindly write a review before submitting.");
-}
-  
+  console.log("resto: " + resto);
+
+  if(reply!=""){
+    $.post('/replycomment',{
+      id: reviewId, reply: reply, person: person, resto: resto
+    }, function(data, status){
+      if(status === 'success'){
+        console.log('Reply request successful');
+        window.location.reload();
+      }
+    });
+  }else{
+    alert("Kindly write a review before submitting.");
+  }
 });  
 
 });//doc
