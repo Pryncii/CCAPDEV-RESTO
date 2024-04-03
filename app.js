@@ -526,8 +526,9 @@ server.post('/read-user', [ check('user').notEmpty(),
 
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
     if(req.session.login_id == undefined){
-      resp.redirect('/?login=unlogged');
-      return;
+      loggedInUser = {};
+      loggedInUser.user = "guest";
+      isUser = "guest";
     }
     
     const searchQuery = { landmark: req.params.landmark, 
@@ -623,10 +624,11 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
 })
 
 server.get('/restopage/:landmark/', function(req, resp){
-  if(req.session.login_id == undefined){
-    resp.redirect('/?login=unlogged');
-    return;
-  }
+    if(req.session.login_id == undefined){
+      loggedInUser = {};
+      loggedInUser.user = "guest";
+      isUser = "guest";
+    }
     const searchQuery = { landmark: req.params.landmark };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -651,6 +653,11 @@ server.get('/restopage/:landmark/', function(req, resp){
   });
 
   server.get('/menu-page', function(req, resp){
+    if(req.session.login_id == undefined){
+      loggedInUser = {};
+      loggedInUser.user = "guest";
+      isUser = "guest";
+    }
     resp.render('menu',{
         layout      : 'index',
         title       : 'Menu',
@@ -725,9 +732,11 @@ server.get('/profile-page/:urlname', function(req, resp){
 
   server.get('/showall/', function(req, resp){
     if(req.session.login_id == undefined){
-      resp.redirect('/?login=unlogged');
-      return;
+      loggedInUser = {};
+      loggedInUser.user = "guest";
+      isUser = "guest";
     }
+    
     let searchQuery;
     let regex;
     if(req.query.searchfield === undefined){
@@ -774,9 +783,11 @@ server.get('/profile-page/:urlname', function(req, resp){
 
   server.get('/showalladvanced/', function(req, resp){
     if(req.session.login_id == undefined){
-      resp.redirect('/?login=unlogged');
-      return;
+      loggedInUser = {};
+      loggedInUser.user = "guest";
+      isUser = "guest";
     }
+    
   // Initialize an empty search query object
     let searchQuery = {};
 
@@ -1195,7 +1206,10 @@ server.post('/reaction', function(req, resp){
   });
   
   server.post('/report-user', function(req, resp){
-
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = {user: req.body.username};
     const report = req.body.reportmsg;
     let reporteduser;
@@ -1218,7 +1232,10 @@ server.post('/reaction', function(req, resp){
   });
 
   server.post('/report-resto', function(req, resp){
-
+    if(req.session.login_id == undefined){
+      resp.redirect('/?login=unlogged');
+      return;
+    }
     const searchQuery = {name: req.body.restoname, landmark: req.body.landmark};
     const report = req.body.reportmsg;
     let reporteduser;
