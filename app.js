@@ -371,7 +371,6 @@ server.post('/read-user', [ check('user').notEmpty(),
                         title: 'Profile',
                         userdata: userJson,
                         user: loggedInUser,
-                        otherusers  : alluserdata,
                         checkUser: isUser,
                         otherusers: alluser,
                         sresto      : sresto
@@ -675,7 +674,6 @@ server.get('/profile-page/:urlname', function(req, resp){
               layout      : 'index',
               title       : 'Profile',
               userdata   : userJson,
-              otherusers  : alluserdata,
               user        : loggedInUser,
               checkUser: isUser,
               otherusers: alluser,
@@ -1169,10 +1167,15 @@ server.post('/reaction', function(req, resp){
       
         loggedInUser.imagesquare=img;
         loggedInUser.image=img;
-
-      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
+        userModel.updateMany(
+          { 'revdata.revname' : 'McDonalds' }, 
+          { $set: { 'revdata.$.revimg': img } } ).then(function () {
+            resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
+          }
+          )
    
   });
+
       
   });
   
