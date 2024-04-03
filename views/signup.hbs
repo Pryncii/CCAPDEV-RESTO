@@ -13,6 +13,7 @@
     <section class = "getin-section">
         <div class = "flexsignup">
             <div id = "login-box">
+                {{#if errorMessage}}<p class="red-text">{{errorMessage}}</p>{{/if}}
                 <form class = "loginform" action = "/create-user" method="post">
                     <!--<label for="lname">User Email</label><br>-->
                     <!--<input type="text" id="email" name="email"><br>-->

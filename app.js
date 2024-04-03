@@ -206,14 +206,14 @@ server.post('/create-user', [
         }).catch(err => reject(err)); // Handle database query errors
     });
 }),
-  check('username').notEmpty(),
-  check('password').notEmpty(),
+  check('username').notEmpty().withMessage("fields cannot be empty!"),
+  check('password').notEmpty().withMessage("fields cannot be empty!"),
   check('map').custom((value, { req }) => {
       if (req.body.estbowner === "yes" && !value) {
           throw new Error('Map field is required');
       }
       return true;
-  }),
+  }).withMessage("Map field cannot be empty!"),
   check('price').custom((value, { req }) => {
       if (req.body.estbowner === "yes" && (!value || isNaN(value))) {
           throw new Error('Price field is required');
@@ -221,9 +221,15 @@ server.post('/create-user', [
       return true;
   })
 ], function(req, resp){
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-      resp.redirect('/signup-page?=form_error');
+    const errors = validationResult(req).array();
+    console.log(errors);
+    if(!errors.length == 0){
+      resp.render('signup',{
+        layout      : 'index',
+        title       : 'Sign Up',
+        sresto      : sresto,
+        errorMessage: errors[0].msg
+    });
       return
     }
     let newModel, model;
