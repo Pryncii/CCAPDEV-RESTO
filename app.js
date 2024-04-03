@@ -40,7 +40,7 @@ server.use(session({
   store: new mongoStore({ 
     uri: 'mongodb://localhost:27017/restodb',
     collection: 'mySession',
-    expires: 1000*60*60 // 1 hour
+    expires: 10000000 * 60 * 60 * 24 * 7 * 3
   })
 }));
 
@@ -132,6 +132,8 @@ hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex, comme
     }
 });
 
+let weeks = new Date();
+weeks.setDate(weeks.getDate() + 21);
 
 var sresto = {
   U_Mall:[],
@@ -288,6 +290,7 @@ check('username').custom((value, { req }) => {
           restoModel.find({landmark: user.landmark, user: { $ne: user.name }}).lean().then(function(otherrestos) {
             req.session.login_user = user._id;
             req.session.login_id = req.sessionID;
+            req.session.expiry = weeks;
             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
               loggedInUser = logged;
               isUser = loggedInUser['linkname'];
@@ -329,6 +332,7 @@ check('username').custom((value, { req }) => {
               userModel.find({}).lean().then(function(alluser){
               req.session.login_user = user._id;
               req.session.login_id = req.sessionID;
+              req.session.expiry = weeks;
               userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                 loggedInUser = logged;
                 isUser = loggedInUser['urlname'];
@@ -377,6 +381,7 @@ server.post('/read-user', [ check('user').notEmpty(),
                   userModel.find({}).lean().then(function(alluser){
                   req.session.login_user = login._id;
                   req.session.login_id = req.sessionID;
+                  req.session.expiry = weeks;
                   userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                     loggedInUser = logged;
                     //console.log(loggedInUser)
@@ -388,7 +393,8 @@ server.post('/read-user', [ check('user').notEmpty(),
                         user: loggedInUser,
                         checkUser: isUser,
                         otherusers: alluser,
-                        sresto      : sresto
+                        sresto      : sresto,
+                        newlogin  :   true
                     });
                   })
                 })
@@ -417,6 +423,7 @@ server.post('/read-user', [ check('user').notEmpty(),
                           restoModel.find({landmark: restos.landmark, user: { $ne: restos.user }}).lean().then(function(otherrestos) {
                             req.session.login_user = restos._id;
                             req.session.login_id = req.sessionID;
+                            req.session.expiry = weeks;
                             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                               loggedInUser = logged;
                               isUser = loggedInUser['linkname'];
@@ -483,7 +490,8 @@ server.post('/read-user', [ check('user').notEmpty(),
                                     checkUser: isUser,
                                     vrating      : 100-(((getratesum/undeleted)/5)*100),
                                   checkUser: isUser,
-                                  sresto      : sresto
+                                  sresto      : sresto,
+                                  newlogin  :   true
                               });
                           })
                         })
@@ -743,7 +751,13 @@ server.get('/profile-page/:urlname', function(req, resp){
         searchQuery = {};
     } else {
         regex = new RegExp(req.query.searchfield, 'i');
-        searchQuery = {name: regex};
+        searchQuery = {
+          $or: [
+              { name: regex },
+              { description: regex }
+          ]
+        };
+      
     }
     //console.log(req.query.searchfield)
     restoModel.find(searchQuery).then(function(restos){
@@ -1606,6 +1620,18 @@ server.post('/editcomment', function(req, resp){
 
     }
   }).catch(errorFn); 
+});
+
+server.post('/extendsession', function(req, resp){
+  weeks.setDate(weeks.getDate() + 21); 
+  req.session.expiry = weeks;
+  resp.redirect('/profile-page/'+loggedInUser.urlname+'/?=sessionextended');
+});
+
+server.post('/extendrestosession', function(req, resp){
+  weeks.setDate(weeks.getDate() + 21); 
+  req.session.expiry = weeks;
+  resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/?=sessionextended');
 });
 
 

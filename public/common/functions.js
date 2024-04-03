@@ -26,6 +26,10 @@ function openReplies(id) {
 document.getElementById(id).style.display = "flex";
 }
 
+function hidePopup() {
+  document.getElementById('popupForm').style.display = 'none';
+}
+
 function closeReplies(id) {
 document.getElementById(id).style.display = "none";
 }

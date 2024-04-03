@@ -1275,7 +1275,17 @@ progress[value]::-webkit-progress-bar {
 
 }
 
-
+.popup-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #448753;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
 
 .getin-section {
   width: 100%;

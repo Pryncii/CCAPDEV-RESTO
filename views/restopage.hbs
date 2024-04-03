@@ -20,6 +20,15 @@
 
         <div class = "contentforotherpages">
             <div class = "flexbody">
+                {{#if newlogin}}
+                <div id="popupForm" class="popup-form">
+                    <form id="extendSessionForm" method="post" action="/extendrestosession">
+                        <p>Do you want to be remembered for three weeks?</p>
+                        <button type="submit" onclick="hidePopup()">Yes</button>
+                        <button type="button" onclick="hidePopup()">No</button>
+                    </form>
+                </div>
+                {{/if}}
                 <div class = "restopartandnamecontainer">
                     <div class = "userprofileselfname">
 <!--REMEMBER RESTO RATINGS-->
