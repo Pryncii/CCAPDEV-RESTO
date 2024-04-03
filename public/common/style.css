@@ -405,12 +405,20 @@ height:20px;
     padding-bottom: 15px;
 }
 
+#reviewtitle {
+    height: 40%;
+}
+
+#reviewcomment {
+    height: 60%;
+}
+
 textarea {
     width: 100%;
     height: 100%;
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     resize: none; /* Prevent resizing */
-  }
+}
 
 .review-form-container {
     text-align: right;
@@ -455,6 +463,13 @@ textarea {
 .rcmid2
 {
     color: #448753;
+}
+
+.rcmid2 b {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: georgia;
+    font-size: 20px;
 }
 
 .rcbottom2
@@ -849,7 +864,6 @@ progress[value]::-webkit-progress-bar {
 {
     border-radius: 50%;
     height: 100%;
-    width: 100%;
 }
 
 .reviewcontainerright
@@ -915,6 +929,15 @@ progress[value]::-webkit-progress-bar {
 .rcmid
 {
     height: 20%;
+    align-items: flex-end;
+    vertical-align: text-bottom;
+}
+
+.rcmid b {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: georgia;
+    font-size: 20px;
 }
 
 .rcbottom
@@ -923,6 +946,7 @@ progress[value]::-webkit-progress-bar {
     color: #448753;
     font-family: georgia;
     font-size: 20px;
+    align-items: center;
 }
 
 .sidebar{
@@ -1337,9 +1361,17 @@ progress[value]::-webkit-progress-bar {
     align-items: center;
   }
 
-  .red-text {
+.red-text {
     color: red;
-  }
+}
+
+.edited
+{
+    color: #c59b08;
+    font-family: georgia;
+    font-size: 20px;
+    padding-right: 10px;
+}
   
 
 

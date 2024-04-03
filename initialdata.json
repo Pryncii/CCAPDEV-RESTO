@@ -19,6 +19,7 @@
                 "revimg": "/common/Images/PFPs/Prince.jpg",
                 "revname": "Buencamino, Prince",
                 "revrating": "★★★★★",
+                "revtitle":"The best!!",
                 "rev": "Undebatebly the best fries and chicken nuggets in the world!",
                 "hascomments": true,
                 "likes" : [],
@@ -32,16 +33,19 @@
                         "likes" : [],
                         "dislikes": ["mcdo01", "prince01", "blix02"],
                         "urlname":"/profile-page/Chua_Micole",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Buencamino_Prince",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Ruiz, Chester",
                 "revrating": "★★★★★",
+                "revtitle": "would eat again!",
                 "rev": "the mushroom pepper steak!",
                 "hascomments": true,
                 "likes" : ["prince01", "blix02", "micole05"],
@@ -55,16 +59,19 @@
                         "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
                         "dislikes": [],
                         "urlname": "/restaurant/U_Mall/mcdonalds",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Ruiz_Chester",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
                 "revname": "Arco, Gaby",
                 "revrating": "★★★★★",
+                "revtitle": "so good!",
                 "rev": "The breakfast options were fire as always!",
                 "hascomments": true,
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
@@ -78,11 +85,13 @@
                         "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
                         "dislikes": [],
                         "urlname": "/restaurant/U_Mall/mcdonalds",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Arco_Gaby",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             }
         ],
         "reportdata": ["unhealthy food"]
@@ -108,29 +117,34 @@
                 "revimg": "/common/Images/PFPs/Prince.jpg",
                 "revname": "Buencamino, Prince",
                 "revrating": "★★★★☆",
+                "revtitle": "Spinach tree my beloved,,",
                 "rev": "Overrated but still good. But please bring back the spinach tree",
                 "hascomments": false,
                 "likes" : ["prince01", "blix02", "micole05"],
                 "dislikes": ["mcdo01"],
                 "urlname": "/profile-page/Buencamino_Prince",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Ruiz, Chester",
                 "revrating": "★★★★☆",
+                "revtitle": "farewell money",
                 "rev": "expensive.. but it is popular for a reason.",
                 "hascomments": false,
                 
                 "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Ruiz_Chester",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Blix.jpg",
                 "revname": "Lingat, Blix",
                 "revrating": "★★☆☆☆",
+                "revtitle": "my wallet will never recover",
                 "rev": "Very expensive, especially with inflation!",
                 "hascomments": true,
                 
@@ -146,35 +160,41 @@
                 "likes" : ["mcdo01", "prince01", "blix02", "micole05"],
                 "dislikes": [],
                         "urlname": "/profile-page/Chua_Micole",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Lingat_Blix",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
                 "revname": "Arco, Gaby",
                 "revrating": "★★★★★",
+                "revtitle": "do more sticker rewards!",
                 "rev": "The drinks were good and the sticker rewards even better!",
                 "hascomments": false,
                 
                 "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Arco_Gaby",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
                 "revname": "Chua, Micole",
                 "revrating": "☆☆☆☆☆",
+                "revtitle": "ew",
                 "rev": "Somehow, even worse than coffee bean.",
                 "hascomments": false,
                 
                 "likes" : ["prince01", "micole05"],
                 "dislikes": ["mcdo01", "blix02"],
                 "urlname": "/profile-page/Chua_Micole",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             }
         ],
         "reportdata": ["coffee tastes like dirty water", "I never got my name spelt right"]
@@ -200,6 +220,7 @@
                 "revimg": "/common/Images/PFPs/Blix.jpg",
                 "revname": "Lingat, Blix",
                 "revrating": "★★★★☆",
+                "revtitle": "cold food :(",
                 "rev": "Usually good but the mushroom soup I ordered was cold",
                 "hascomments": true,
                 
@@ -215,28 +236,33 @@
                         "likes" : ["micole05"],
                         "dislikes": ["mcdo01", "prince01", "blix02"],
                         "urlname": "/restaurant/U_Mall/kfc",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Lingat_Blix",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/catpfp.png",
                 "revname": "Ruiz, Chester",
                 "revrating": "★★★☆☆",
+                "revtitle": "meh",
                 "rev": "It's alright.",
                 "hascomments": false,
                 
                 "likes" : ["prince01", "micole05"],
                 "dislikes": ["mcdo01", "blix02"],
                 "urlname": "/profile-page/Ruiz_Chester",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Micole.jpg",
                 "revname": "Chua, Micole",
                 "revrating": "★★☆☆☆",
+                "revtitle": "spicy!!!",
                 "rev": "The sisig bowl was too spicy, should've put more warnings",
                 "hascomments": true,
                 
@@ -252,11 +278,13 @@
                         "likes" : ["prince01", "micole05"],
                         "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/restaurant/U_Mall/kfc",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Chua_Micole",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             }
         ],
         "reportdata": ["I got diarrhea"]
@@ -282,6 +310,7 @@
                 "revimg": "/common/Images/PFPs/Blix.jpg",
                 "revname": "Lingat, Blix",
                 "revrating": "★★★★★",
+                "revtitle": "Tacos good!",
                 "rev": "The tacos were magnificent, would come again!",
                 "hascomments": true,
                 
@@ -297,23 +326,27 @@
                         "likes" : ["prince01", "micole05"],
                         "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/profile-page/Arco_Gaby",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Lingat_Blix",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Gaby.jpg",
                 "revname": "Arco, Gaby",
                 "revrating": "★★★★★",
+                "revtitle": "worth!!",
                 "rev": "The carbonara was flavorful and worth the price!",
                 "hascomments": false,
                 
                 "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Arco_Gaby",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             }
         ],
         "reportdata": []
@@ -339,18 +372,21 @@
                 "revimg": "/common/Images/PFPs/Micole.jpg",
                 "revname": "Chua, Micole",
                 "revrating": "★★☆☆☆",
+                "revtitle": "mid",
                 "rev": "A steep price tag for mid drinks.",
                 "hascomments": false,
                 
                 "likes" : ["micole05"],
                 "dislikes": ["mcdo01", "prince01", "blix02"],
                 "urlname": "/profile-page/Chua_Micole",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             },
             {
                 "revimg": "/common/Images/PFPs/Prince.jpg",
                 "revname": "Buencamino, Prince",
                 "revrating": "★★★★★",
+                "revtitle":"Best drinks!",
                 "rev": "Much better than Starbucks!",
                 "hascomments": true,
                 
@@ -366,11 +402,13 @@
                         "likes" : ["prince01", "micole05"],
                         "dislikes": ["mcdo01", "blix02"],
                         "urlname": "/profile-page/Chua_Micole",
-                        "notdeleted": true
+                        "notdeleted": true,
+                        "isedited": false
                     }
                 ],
                 "urlname": "/profile-page/Buencamino_Prince",
-                "notdeleted": true
+                "notdeleted": true,
+                "isedited": false
             }
         ],
         "reportdata": ["There are never empty seats"]

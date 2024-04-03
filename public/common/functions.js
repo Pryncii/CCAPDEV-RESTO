@@ -546,8 +546,10 @@ form.addEventListener('submit', function(event) {
   var person = document.getElementById('review').getAttribute('data-person');
   var resto = document.getElementById('review').getAttribute('data-resto');
   var review = document.getElementById('reviewcomment').value;
+  var reviewtitle = document.getElementById('reviewtitle').value;
   console.log("person: " + person);
   console.log("review: " + review);
+  console.log("reviewtitle: " + reviewtitle);
   var rating = ""; 
 
   var ratingElements = 0;
@@ -563,9 +565,9 @@ form.addEventListener('submit', function(event) {
   console.log('IN review request');
   form.reset();
 
-  if(review!="" && !review.includes("Write a Review!")){
+  if(review!="" && !review.includes("Write a Review!") && reviewtitle!="" && !reviewtitle.includes("Review Title Here!")){
     $.post('/leavereview',{
-    review: review, person: person, rating: rating, resto: resto
+    review: review, person: person, rating: rating, resto: resto, reviewtitle: reviewtitle,
   }, function(data, status){
     if(status === 'success'){
       console.log('review request successful');
@@ -588,6 +590,7 @@ $(document).on('click', '.sendeditreview-button', function(){
   var restoname = $(this).data('resto');
   var username = $(this).data('person');
   var newcomment = $("#reviewcomment" + reviewIndex).val();
+  var newtitle = $("#reviewtitle" + reviewIndex).val();
 
   var rating = ""; 
 
@@ -605,15 +608,20 @@ $(document).on('click', '.sendeditreview-button', function(){
   console.log("restoname: " + restoname);
   console.log("username: " + username);
   console.log("newcomment: " + newcomment);
+  console.log("newtitle: " + newtitle);
 
-  $.post('/editreview',{
-    revin: reviewIndex, resto: restoname, person: username, newcom: newcomment, rating: rating
-  }, function(data, status){
-    if(status === 'success'){
-      console.log('Edit review request successful');
-      window.location.reload();
-    }
-  });
+  if(newcomment!="" && !newcomment.includes("Edit your review!") && newtitle!="" && !newtitle.includes("Review Title Here!")){
+    $.post('/editreview',{
+      revin: reviewIndex, resto: restoname, person: username, newcom: newcomment, rating: rating, newtitle: newtitle,
+    }, function(data, status){
+      if(status === 'success'){
+        console.log('Edit review request successful');
+        window.location.reload();
+      }
+    });
+  }else{
+    alert("Your review seems incomplete! Please ensure you delete the initial contents and write a review before submitting." );
+  }
 });
 
 // EDIT COMMENT

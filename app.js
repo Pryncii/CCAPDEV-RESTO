@@ -56,20 +56,22 @@ const commentSchema = new mongoose.Schema({
     dislikes: {type: [String]},
     urlname: { type: String},
     notdeleted: { type: Boolean },
+    isedited:{ type: Boolean },
 });
 
 const reviewSchema = new mongoose.Schema({
     revimg: { type: String },
     revname: { type: String },
     revrating: { type: String},
+    revtitle:{ type: String },
     rev: { type: String },
     hascomments: { type: Boolean },
     likes: {type: [String]},
     dislikes: {type: [String]},
     comments: [commentSchema],
     urlname: { type: String},
-    notdeleted: { type: Boolean }
-    
+    notdeleted: { type: Boolean },
+    isedited:{ type: Boolean },
 });
 
 const restoSchema = new mongoose.Schema({
@@ -1360,7 +1362,7 @@ server.post('/replycomment', function(req, resp){
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
     let userimage = user.image;
-    let userurl = user.urlname;
+    let userurl = '/profile-page/' + user.urlname;
     
     restoModel.find({ name : req.body.resto} ).then(function(restos){
       console.log('List successful');
@@ -1379,7 +1381,8 @@ server.post('/replycomment', function(req, resp){
           likes: [],
           dislikes: [],
           urlname: userurl,
-          notdeleted: true
+          notdeleted: true,
+          isedited: false,
         };
 
         restos[i].revdata[req.body.id].comments.push(newComment);
@@ -1404,6 +1407,8 @@ server.post('/leavereview', function(req, resp){
   //const updateQuery = { user: req.body.id };
   console.log("req.body.person: " + req.body.person);
   console.log("req.body.rating: " + req.body.rating);
+  console.log("req.body.review: " + req.body.review);
+  console.log("req.body.reviewtitle: " + req.body.reviewtitle);
 
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
@@ -1426,10 +1431,12 @@ server.post('/leavereview', function(req, resp){
           revname: req.body.person,
           revrating: req.body.rating,
           rev: req.body.review,
+          revtitle: req.body.reviewtitle,
           likes: [],
           dislikes: [],
           urlname: userurl,
-          notdeleted: true
+          notdeleted: true,
+          isedited: false,
         };
 
         restos[i].revdata.push(newReview);
@@ -1481,9 +1488,11 @@ server.post('/leavereview', function(req, resp){
                     revimg: restoimage,
                     revname: req.body.resto,
                     revrating: req.body.rating,
+                    revtitle: req.body.reviewtitle,
                     rev: req.body.review,
                     urlname: restourl,
-                    notdeleted: true
+                    notdeleted: true,
+                    isedited: false,
                   };
           
                   users2[i].revdata.push(newReview2);
@@ -1515,6 +1524,7 @@ server.post('/editreview', function(req, resp){
   console.log("req.body.resto: " + req.body.resto);
   console.log("req.body.newcom: " + req.body.newcom);
   console.log("req.body.rating: " + req.body.rating);
+  console.log("req.body.newtitle: " + req.body.newtitle);
 
   
   restoModel.find({ name : req.body.resto } ).then(function(restos){
@@ -1525,12 +1535,15 @@ server.post('/editreview', function(req, resp){
     for(let i = 0; i < restos.length && found == 0; i++)
     { // all reviews in that restaurant
 
+      console.log("review found: " + restos[i].revdata[req.body.revin]["revtitle"]);
       console.log("review found: " + restos[i].revdata[req.body.revin]["rev"]);
       console.log("review found: " + restos[i].revdata[req.body.revin]["revrating"]);
 
       let revcontent = restos[i].revdata[req.body.revin]["rev"];
+      restos[i].revdata[req.body.revin]["revtitle"] = req.body.newtitle;
       restos[i].revdata[req.body.revin]["rev"] = req.body.newcom;
       restos[i].revdata[req.body.revin]["revrating"] = req.body.rating;
+      restos[i].revdata[req.body.revin]["isedited"] = true;
       found = 1;
       restos[i].save();
 
@@ -1541,11 +1554,14 @@ server.post('/editreview', function(req, resp){
           { // make sure resto and review is the same as the one found
             if(users[k].revdata[j]["rev"] == revcontent && users[k].revdata[j]["revname"] == req.body.resto)
             {
+              console.log("profile review found: " + users[k].revdata[j]["revtitle"]);
               console.log("profile review found: " + users[k].revdata[j]["rev"]);
               console.log("profile review found: " + users[k].revdata[j]["revrating"]);
 
+              users[k].revdata[j]["revtitle"] = req.body.newtitle;
               users[k].revdata[j]["rev"] = req.body.newcom;
               users[k].revdata[j]["revrating"] = req.body.rating;
+              users[k].revdata[j]["isedited"] = true;
 
               found2 = 1;
               users[k].save().then(function (result) {
@@ -1583,6 +1599,7 @@ server.post('/editcomment', function(req, resp){
 
       console.log("review found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
       restos[i].revdata[req.body.revin].comments[req.body.comin]["com"] = req.body.newcom;
+      restos[i].revdata[req.body.revin].comments[req.body.comin]["isedited"] = true;
       found = 1;
       restos[i].save();
       resp.sendStatus(200);
