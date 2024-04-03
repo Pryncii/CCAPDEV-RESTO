@@ -104,6 +104,7 @@
                         </div>
                         <div class = "reviewlower">
                             <div class = "reviewtext">
+                                {{#eq checkUser user.urlname}}
                                 <form class="review-form-container" id="myForm" >
                                 <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
                                         <div class="rate">
@@ -121,6 +122,7 @@
                                        
                                     <button type="submitreview-button" class="editbio-button" id = "review" data-person="{{user.name}}" data-resto="{{restodata.name}}">Submit</button>
                                 </form>
+                                {{/eq}}
                             </div>
 
                         <!--OTHER REVIEWS HERE-->

@@ -206,7 +206,17 @@ server.post('/create-user', [
         }).catch(err => reject(err)); // Handle database query errors
     });
 }),
-  check('username').notEmpty().withMessage("fields cannot be empty!"),
+check('username').custom((value, { req }) => {
+  return new Promise((resolve, reject) => {
+      userModel.findOne({ user: req.body.username }).lean().then(function (userfound) {
+          if (userfound) {
+              reject('Other user exists');
+          } else {
+              resolve();
+          }
+      }).catch(err => reject(err)); // Handle database query errors
+  });
+}),
   check('password').notEmpty().withMessage("fields cannot be empty!"),
   check('map').custom((value, { req }) => {
       if (req.body.estbowner === "yes" && !value) {
@@ -1120,11 +1130,16 @@ server.post('/reaction', function(req, resp){
       pic = "/common/Images/PFPs/profile.webp";
       errormsg = "?invalid-img-format";
     }
-      userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).lean().then(function () {
+      userModel.findOneAndUpdate({name :loggedInUser.name}, {image: pic}).lean().then(function (updateduser) {
      
         loggedInUser.image=pic;
+        restoModel.updateMany(
+          { 'revdata.revname' : updateduser.name }, 
+          { $set: { 'revdata.$.revimg': pic } } ).then(function () {
+            resp.redirect('/profile-page/'+loggedInUser.urlname+'/'+errormsg);
+          }
+          )
         
-        resp.redirect('/profile-page/'+loggedInUser.urlname+'/'+errormsg);
       
   });
     
@@ -1163,12 +1178,12 @@ server.post('/reaction', function(req, resp){
         img = "/common/Images/PFPs/resto-default.jpg";
         errormsg = "?invalid-img-format"
       }
-    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img, imagesquare:img}).then(function () {
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img, imagesquare:img}).then(function (updateduser) {
       
         loggedInUser.imagesquare=img;
         loggedInUser.image=img;
         userModel.updateMany(
-          { 'revdata.revname' : 'McDonalds' }, 
+          { 'revdata.revname' : updateduser.name }, 
           { $set: { 'revdata.$.revimg': img } } ).then(function () {
             resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
           }
