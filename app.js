@@ -525,16 +525,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
 
     //options.returnDocument='after'
     restoModel.findOne(searchQuery).then(function(restos){
+      restoModel.find({landmark: restos.landmark, user: { $ne: restos.name }}).lean().then(function(landmarkresto) {
       //console.log(JSON.stringify(restos));
       if(restos != undefined && restos._id != null){
         const restosJson = restos.toJSON();
-        const landmarkresto = [];
-        for(let i = 0; i < restodata.length; i++){
-            if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
-                landmarkresto.push(restodata[i]);
-            }
-        }
-
         let getratesum = 0;
         let likeThumb = "";
         let dislikeThumb = "";
@@ -616,6 +610,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
     }
     }).catch(errorFn);
   });
+})
 
 server.get('/restopage/:landmark/', function(req, resp){
   if(req.session.login_id == undefined){
