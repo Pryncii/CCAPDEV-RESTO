@@ -269,7 +269,7 @@ server.post('/create-user', [
                   landmarkresto.push(restodata[i]);
               }
           }*/
-          restoModel.find({landmark: user.landmark, user: { $ne: user.user }}).lean().then(function(otherrestos) {
+          restoModel.find({landmark: user.landmark, user: { $ne: user.name }}).lean().then(function(otherrestos) {
             req.session.login_user = user._id;
             req.session.login_id = req.sessionID;
             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
@@ -321,7 +321,6 @@ server.post('/create-user', [
                     title       : 'Profile',
                     userdata    : userJson,
                     user        : loggedInUser,
-                    otherusers  : alluserdata,
                     checkUser   : isUser,
                     otherusers  : alluser,
                     sresto      : sresto
