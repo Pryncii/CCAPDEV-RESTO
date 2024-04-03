@@ -115,7 +115,8 @@
                             <div class = "reviewtext">
                                 {{#eq checkUser user.urlname}}
                                 <form class="review-form-container" id="myForm" >
-                                <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
+                                    <textarea name="review" id="reviewtitle" placeholder="Review Title Here!"></textarea>
+                                    <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
                                         <div class="rate">
                                             <input type="radio" id="star5-resto" name="rate-resto" value="5" autocomplete= "off"/>
                                             <label for="star5-resto" title="text"> 5 stars</label>
@@ -147,9 +148,12 @@
                                         <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
-                                        {{this.revrating}}
+                                        {{this.revrating}}<b>{{this.revtitle}}</b>
                                     </div>
                                     <div class = "rcbottom2">
+                                        {{#if isedited}}
+                                        <div class = "edited">(Review is edited)</div>
+                                        {{/if}}
                                         {{this.rev}}
                                     </div> 
                                     
@@ -169,7 +173,7 @@
                                             <button type="edit-button" class = "editbio-button" id = "editcomment" data-revindex="{{reviewIndex}}">Edit</button>
                                             <button type="delete-button" class = "report-button delete-comment" data-commentdelete-revindex="{{reviewIndex}}" data-commentdelete-comindex="-1" data-commentdelete-restoname="{{../restodata.name}}" data-commentdelete-username="{{this.revname}}">Delete</button>
                                             {{/eq}}
-<!--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+
                                             <div class="reply-container"   style="display: none;">
                                                 <textarea name="reply-text" id="reply-text-{{reviewIndex}}" rows="5" cols="50" placeholder="Write a reply!"></textarea>
                                                 <div class = "usereditbio">
@@ -178,6 +182,7 @@
                                             </div>
                                             
                                             <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
+                                                <textarea name="reviewtitle" id="reviewtitle{{reviewIndex}}" rows="2" cols="50" placeholder="Review Title Here!"></textarea>
                                                 <textarea name="review" id="reviewcomment{{reviewIndex}}" rows="5" cols="50" placeholder="Edit your review!"></textarea>
                                                 <div class="rate">
                                                     <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
@@ -211,6 +216,9 @@
                                                             <a href= "{{this.urlname}}">{{this.comname}}</a>
                                                         </div>
                                                         <div class = "rcbottom2">
+                                                            {{#if isedited}}
+                                                            <div class = "edited">(Comment is edited)</div>
+                                                            {{/if}}
                                                             {{this.com}}
                                                         </div> 
                                                         

@@ -13,25 +13,31 @@
             "revimg": "/common/Images/mcdo-umall-square.jpg",
             "revname": "McDonalds",
             "revrating": "★★★★★",
+            "revtitle":"The best!!",
             "rev": "Undebatebly the best fries and chicken nuggets in the world!",
             "urlname": "/restaurant/U_Mall/mcdonalds",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/coffeebean.jpg",
             "revname": "The Coffee Bean & Tea Leaf",
             "revrating": "★★★★★",
+            "revtitle":"Best drinks!",
             "rev": "Much better than Starbucks!",
             "urlname": "/restaurant/DLSU/coffee_bean",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/Starbssquare.png",
             "revname": "Starbucks",
             "revrating": "★★★★☆",
+            "revtitle": "Spinach tree my beloved,,",
             "rev": "Overrated but still good. But please bring back the spinach tree",
             "urlname": "/restaurant/Burgundy/starbucks",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         }
         ],
 
@@ -53,25 +59,31 @@
             "revimg": "/common/Images/armynavysquare.png",
             "revname": "Army Navy",
             "revrating": "★★★★★",
+            "revtitle": "Tacos good!",
             "rev": "The tacos were magnificent, would come again!",
             "urlname": "/restaurant/Burgundy/army_navy",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/kfcsquare.png",
             "revname": "KFC",
             "revrating": "★★★★☆",
+            "revtitle": "cold food :(",
             "rev": "Usually good but the mushroom soup I ordered was cold",
             "urlname": "/restaurant/U_Mall/kfc",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/Starbssquare.png",
             "revname": "Starbucks",
             "revrating": "★★☆☆☆",
+            "revtitle": "my wallet will never recover",
             "rev": "Very expensive, especially with inflation!",
             "urlname": "/restaurant/Burgundy/starbucks",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         }
         ],
 
@@ -92,25 +104,31 @@
             "revimg": "/common/Images/kfcsquare.png",
             "revname": "KFC",
             "revrating": "★★★☆☆",
+            "revtitle": "meh",
             "rev": "It's alright.",
             "urlname": "/restaurant/U_Mall/kfc",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/mcdo-umall-square.jpg",
             "revname": "McDonalds",
             "revrating": "★★★★★",
+            "revtitle": "would eat again!",
             "rev": "the mushroom pepper steak!",
             "urlname": "/restaurant/U_Mall/mcdonalds",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/Starbssquare.png",
             "revname": "Starbucks",
             "revrating": "★★★★☆",
+            "revtitle": "farewell money",
             "rev": "expensive.. but it is popular for a reason.",
             "urlname": "/restaurant/Burgundy/starbucks",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         }
         ],
         "reportdata": []
@@ -130,25 +148,31 @@
             "revimg": "/common/Images/mcdo-umall-square.jpg",
             "revname": "McDonalds",
             "revrating": "★★★★★",
+            "revtitle": "so good!",
             "rev": "The breakfast options were fire as always!",
             "urlname": "/restaurant/U_Mall/mcdonalds",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/armynavysquare.png",
             "revname": "Army Navy",
             "revrating": "★★★★★",
+            "revtitle": "worth!!",
             "rev": "The carbonara was flavorful and worth the price!",
             "urlname": "/restaurant/Burgundy/army_navy",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/Starbssquare.png",
             "revname": "Starbucks",
             "revrating": "★★★★★",
+            "revtitle": "do more sticker rewards!",
             "rev": "The drinks were good and the sticker rewards even better!",
             "urlname": "/restaurant/Burgundy/starbucks",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         }
         ],
         "reportdata": ["Replies the same message all the time", "may be a bot"]
@@ -168,25 +192,31 @@
             "revimg": "/common/Images/coffeebean.jpg",
             "revname": "The Coffee Bean & Tea Leaf",
             "revrating": "★★☆☆☆",
+            "revtitle": "mid",
             "rev": "A steep price tag for mid drinks.",
             "urlname": "/restaurant/DLSU/coffee_bean",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/kfcsquare.png",
             "revname": "KFC",
             "revrating": "★★☆☆☆",
+            "revtitle": "spicy!!!",
             "rev": "The sisig bowl was too spicy, should've put more warnings",
             "urlname": "/restaurant/U_Mall/kfc",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         },
         {
             "revimg": "/common/Images/Starbssquare.png",
             "revname": "Starbucks",
             "revrating": "☆☆☆☆☆",
+            "revtitle": "ew",
             "rev": "Somehow, even worse than coffee bean.",
             "urlname": "/restaurant/Burgundy/starbucks",
-            "notdeleted": true
+            "notdeleted": true,
+            "isedited": false
         }
         ],
         "reportdata": ["Extremely negative behavior", "Never likes anything", "Why is she allowed here."]

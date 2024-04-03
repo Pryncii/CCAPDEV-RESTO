@@ -31,7 +31,7 @@
                 {{/if}}
                 <div class = "userprofileself">
                     <div class = "userprofileselfname">
-                        {{userdata.name}} ({{userdata.user}})
+                        <b>{{userdata.name}} ({{userdata.user}})</b>
                     </div>
                     <div class = "userprofileselfpfpnbio">
                         <div class = "userprofilepfp">
@@ -40,7 +40,7 @@
                         <div class = "userprofilebio">
                             <div class = "userbio">
                                 <div id = "info" style="display: inline-block;">
-                                Bio/Information: <br>{{userdata.description}}
+                                <b>Bio/Information:</b> <br>{{userdata.description}}
                                 </div>
                                 <form class="review-form-container" action = "/report-user/" onsubmit="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
                                     <textarea name="reportmsg" id="reportmsg" placeholder = "What's the issue?"></textarea>
@@ -111,9 +111,12 @@
                                         <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid">
-                                        {{this.revrating}}
+                                        {{this.revrating}}<b>{{this.revtitle}}</b>
                                     </div>
                                     <div class = "rcbottom">
+                                        {{#if isedited}}
+                                        <div class = "edited">(Review is edited)</div>
+                                        {{/if}}
                                         {{this.rev}}
                                     </div>
                                 </div>
