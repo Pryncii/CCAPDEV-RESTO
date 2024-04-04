@@ -1820,7 +1820,7 @@ process.on('SIGTERM',finalClose);
 process.on('SIGINT',finalClose);  
 process.on('SIGQUIT', finalClose);
 
-const mod_c = require('./controller');
+const mod_c = require('./controller/routes');
 mod_c.add(server);
 
 const port = process.env.PORT | 3000;
