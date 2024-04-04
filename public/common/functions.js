@@ -704,7 +704,7 @@ $(document).on('click', '.replysend-button', function(){
     }, function(data, status){
       if(status === 'success'){
         console.log('Reply request successful');
-        if(data.logged != undefined || data.resto == undefined){
+        if(data.logged != undefined){
           window.location.reload();
         } else {
           window.location.href = '/?login=unlogged';

@@ -636,7 +636,8 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
             cdThumbs: cdislikeThumb,
             checkUser: isUser,
             vrating      : 100-(((getratesum/undeleted)/5)*100),
-            sresto      : sresto
+            sresto      : sresto,
+            isResto:     loggedInUser.urlname
         });
     }
     }).catch(errorFn);
@@ -1444,6 +1445,7 @@ server.post('/replycomment', function(req, resp){
   //if its a resto commenting
   if(req.body.person == req.body.resto)
   {
+    resp.send({logged: req.session.login_id});
     restoModel.findOne({name: req.body.person}).then(function(user){
       console.log("user: " + user);
       let userimage = user.imagesquare;
@@ -1475,6 +1477,7 @@ server.post('/replycomment', function(req, resp){
           found = 1;
           restos[i].save();
           resp.sendStatus(200);
+          resp.send({logged: req.session.login_id});
 
         }
       }).catch(errorFn);
@@ -1513,6 +1516,7 @@ server.post('/replycomment', function(req, resp){
           found = 1;
           restos[i].save();
           resp.sendStatus(200);
+          resp.send({logged: req.session.login_id});
 
         }
       }).catch(errorFn);
@@ -1526,13 +1530,13 @@ server.post('/leavereview', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
-
   //const updateQuery = { user: req.body.id };
   console.log("req.body.person: " + req.body.person);
   console.log("req.body.rating: " + req.body.rating);
   console.log("req.body.review: " + req.body.review);
   console.log("req.body.reviewtitle: " + req.body.reviewtitle);
-
+  if(req.session.login_id != undefined){
+    resp.send({logged: req.session.login_id});
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
     console.log("user url: " + user.urlname);
@@ -1542,6 +1546,10 @@ server.post('/leavereview', function(req, resp){
     //add to resto model
     restoModel.find({}).then(function(restos){
       console.log('List successful');
+      for(let i = 0; i < restos.length; i++){
+        if(restos[i]._id == req.session.login_id){
+        }
+      }
     
       let found = 0; // all restaurants
       for(let i = 0; i < restos.length && found == 0; i++)
@@ -1591,6 +1599,7 @@ server.post('/leavereview', function(req, resp){
       }
 
       restoModel.findOne({name: req.body.resto}).then(function(resto2){
+        resp.send({logged: req.session.login_id});
           console.log("resto: " + resto2);
           console.log("resto url: " + resto2.urlname);
           let restoimage = resto2.imagesquare;
@@ -1636,6 +1645,9 @@ server.post('/leavereview', function(req, resp){
       }).catch(errorFn);
     }).catch(errorFn);
   }).catch(errorFn);
+} else {
+  resp.send({logged: req.session.login_id});
+}
 });
    
 server.post('/editreview', function(req, resp){

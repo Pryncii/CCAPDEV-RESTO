@@ -122,8 +122,8 @@
                         </div>
                         <div class = "reviewlower">
                             <div class = "reviewtext">
-                                
                                 <form class="review-form-container" id="myForm" >
+                                     {{#if isResto}}
                                     <textarea name="review" id="reviewtitle" placeholder="Review Title Here!"></textarea>
                                     <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
                                                                   
@@ -147,6 +147,7 @@
                                         </div>
                                        
                                     <button type="submitreview-button" class="editbio-button" id = "review" data-person="{{user.name}}" data-resto="{{restodata.name}}">Submit</button>
+                                    {{/if}}
                                 </form>
                                 
                             </div>
