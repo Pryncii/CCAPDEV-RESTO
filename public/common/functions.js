@@ -6,6 +6,10 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
+function toggleMediaButton(id) {
+  document.getElementById(id).style.display = "inline";
+}
+
 function openReviews(id) {
 document.getElementById(id).style.display = "block";
 }
@@ -551,6 +555,8 @@ form.addEventListener('submit', function(event) {
   var resto = document.getElementById('review').getAttribute('data-resto');
   var review = document.getElementById('reviewcomment').value;
   var reviewtitle = document.getElementById('reviewtitle').value;
+  var reviewimg = document.getElementById('reviewmedia-img').value;
+  var reviewvid = document.getElementById('reviewmedia-vid').value;
   console.log("person: " + person);
   console.log("review: " + review);
   console.log("reviewtitle: " + reviewtitle);
@@ -681,6 +687,7 @@ $(document).on('click', '.delete-comment', function(){
 
 // REPLYING TO REVIEWS
 $(document).on('click', '.replysend-button', function(){
+
   var reviewId = $(this).data('replyto-id');
   var person = $(this).data('person');
   var reply = $("#reply-text-" + reviewId).val();
