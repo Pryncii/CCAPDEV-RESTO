@@ -38,6 +38,7 @@ function closeReplies(id) {
 document.getElementById(id).style.display = "none";
 }
 
+
 function openEstabl() {
 if (document.getElementById("estbownerbtn1").checked) {
   document.getElementById("elandm").style.display = "inline";
@@ -594,6 +595,7 @@ form.addEventListener('submit', function(event) {
   }
 });
 
+
 // EDIT REVIEW
 $(document).on('click', '.sendeditreview-button', function(){
   var reviewIndex = $(this).data('revindex');
@@ -706,6 +708,8 @@ $(document).on('click', '.replysend-button', function(){
     alert("Kindly write a review before submitting.");
   }
 });  
+
+
 
 });//doc
 

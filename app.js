@@ -154,26 +154,25 @@ for(r of aresto){
 });
 
 server.get('/', function(req, resp){
-
-
-  if (req.session.login_user && req.session.login_id) {
-    req.session.destroy(function(err) {
-      if (err) {
-        console.error('Error destroying session:', err);
-        resp.status(500).send('Internal Server Error');
-      } else {
-        resp.redirect('/');
-      }
-    });
-  } else {
-    // If no session to destroy, render the main menu
     resp.render('main', {
       layout: 'index',
       title: 'Main Menu',
       sresto: sresto
     });
-  }
 });
+
+server.get('/logout', function(req, resp){
+if (req.session.login_user && req.session.login_id) {
+  req.session.destroy(function(err) {
+    if (err) {
+      console.error('Error destroying session:', err);
+      resp.status(500).send('Internal Server Error');
+    } else {
+      resp.redirect('/');
+    }
+  });
+}
+})
 
 //Use this to determine the user who's logged in
 let loggedInUser;
@@ -188,6 +187,8 @@ server.get('/login-page', function(req, resp){
         sresto      : sresto
     });
   } else if(req.session.login_id && req.session.expiry > today) {
+    userModel.findOne({ _id: req.session.login_user }).lean().then(function (userfound) {
+    loggedInUser = userfound;
     resp.render('login',{
       layout      : 'index',
       title       : 'Login',
@@ -196,6 +197,7 @@ server.get('/login-page', function(req, resp){
       link        : '/profile-page/'+loggedInUser.urlname+'/',
       name        : loggedInUser.name
   });
+});
   }
 });
 
