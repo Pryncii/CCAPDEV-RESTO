@@ -1277,7 +1277,7 @@ server.post('/reaction', function(req, resp){
 server.post('/change-restobio', function(req, resp){
   if(req.session.login_id == undefined){
     resp.redirect('/?login=unlogged');
-    releaverturn;
+    return;
   }
   console.log("changerestobio");
   const userbio= req.body.restodesc;
@@ -1468,6 +1468,7 @@ server.post('/leavereview', function(req, resp){
           revimg: userimage,
           revname: req.body.person,
           revrating: req.body.rating,
+          revtitle: req.body.reviewtitle,
           rev: req.body.review,
           likes: [],
           dislikes: [],
@@ -1573,7 +1574,7 @@ server.post('/editreview', function(req, resp){
     let found2 = 0;
     for(let i = 0; i < restos.length && found == 0; i++)
     { // all reviews in that restaurant
-
+      console.log("review found: " + restos[i].revdata[req.body.revin]["revtitle"]);
       console.log("review found: " + restos[i].revdata[req.body.revin]["rev"]);
       console.log("review found: " + restos[i].revdata[req.body.revin]["revrating"]);
 
@@ -1592,9 +1593,11 @@ server.post('/editreview', function(req, resp){
           { // make sure resto and review is the same as the one found
             if(users[k].revdata[j]["rev"] == revcontent && users[k].revdata[j]["revname"] == req.body.resto)
             {
+              console.log("profile review found: " + users[k].revdata[j]["revtitle"]);
               console.log("profile review found: " + users[k].revdata[j]["rev"]);
               console.log("profile review found: " + users[k].revdata[j]["revrating"]);
 
+              users[k].revdata[j]["revtitle"] = req.body.newtitle;
               users[k].revdata[j]["rev"] = req.body.newcom;
               users[k].revdata[j]["revrating"] = req.body.rating;
               users[k].revdata[j]["isedited"] = true;
