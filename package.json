@@ -1,0 +1,20 @@
+{
+    "name": "ccapdev-mco-3",
+    "version": "1.0.0",
+    "description": "Final Project",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "keywords": [
+      "node",
+      "javascript",
+      "mongoose"
+    ],
+    "author": "Group 4",
+    "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^6.2.0"
+    }
+  }
+  

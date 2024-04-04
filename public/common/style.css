@@ -737,19 +737,26 @@ progress[value]::-webkit-progress-bar {
     width: 130px;
 }
 
-#reviewmedia-img
+.vidtextarea
 {
     height: 20%;
     width: 100%;
+}
+
+.imgtextarea
+{
+    height: 20%;
+    width: 100%;
+}
+
+.texthiddden {
     display: none;
 }
 
-#reviewmedia-vid
-{
-    height: 20%;
-    width: 100%;
-    display: none;
+.textappear {
+    display: inline;
 }
+
 
 .reply-button
 {
