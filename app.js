@@ -1485,6 +1485,7 @@ server.post('/replycomment', function(req, resp){
         found = 1;
         restos[i].save();
         resp.sendStatus(200);
+        resp.send({logged: req.session.login_id})
 
       }
     }).catch(errorFn);
@@ -1499,6 +1500,7 @@ server.post('/leavereview', function(req, resp){
     resp.redirect('/?login=unlogged');
     return;
   }
+
   //const updateQuery = { user: req.body.id };
   console.log("req.body.person: " + req.body.person);
   console.log("req.body.rating: " + req.body.rating);
@@ -1600,6 +1602,8 @@ server.post('/leavereview', function(req, resp){
                   found = 1;
                   users2[i].save();
                   resp.sendStatus(200);
+                  resp.send({logged: req.session.login_id});
+
               }
             }
           }).catch(errorFn);

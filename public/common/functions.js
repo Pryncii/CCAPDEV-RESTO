@@ -579,7 +579,12 @@ form.addEventListener('submit', function(event) {
       $('input[name="rate-resto"]').prop('checked', false); // Clear radio buttons
       var ratingElementsL = document.querySelectorAll('input[name="rate-resto"]:checked');
       console.log("ratingElementsL: " + ratingElementsL.length);
-      window.location.reload();
+      if(data.logged != undefined){
+        window.location.reload();
+      } else {
+        window.location.href = '/?login=unlogged';
+        alert("LOGIN AS A USER TO USE FEATURE");
+      }
       
     }
   });
@@ -692,7 +697,12 @@ $(document).on('click', '.replysend-button', function(){
     }, function(data, status){
       if(status === 'success'){
         console.log('Reply request successful');
-        window.location.reload();
+        if(data.logged != undefined || data.resto == undefined){
+          window.location.reload();
+        } else {
+          window.location.href = '/?login=unlogged';
+          alert("LOGIN AS A USER TO USE FEATURE");
+        }
       }
     });
   }else{
