@@ -32,7 +32,7 @@ server.use(express.static('public'));
 const mongoose = require('mongoose');
 // Define the database URI
 const dbURI = 'mongodb+srv://princebuencamino:luPL7JN0OU5OKJS1@cluster0.46y950k.mongodb.net/restodb';
-
+const envURI = process.env.dbURI;
 // Connect to MongoDB
 mongoose.connect(dbURI).catch (error => console.log(error));
 
