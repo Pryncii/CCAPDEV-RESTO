@@ -127,8 +127,8 @@
                                     <textarea name="review" id="reviewtitle" maxlength="55" placeholder="Review Title Here!"></textarea>
                                     <textarea name="review" id="reviewcomment" maxlength="120" placeholder="Write a Review!"></textarea>
                                                                   
-                                    <textarea name="review" class="imgtextarea" id="reviewmedia-img" placeholder="Image Media Here!"></textarea>
-                                    <textarea name="review" class="vidtextarea" id="reviewmedia-vid" placeholder="Video Media Here!"></textarea>
+                                    <textarea name="review" class="imgtextarea texthiddden" id="reviewmedia-img" placeholder="Image Media Here!"></textarea>
+                                    <textarea name="review" class="vidtextarea texthiddden" id="reviewmedia-vid" placeholder="Video Media Here!"></textarea>
                                     <button type="button" class="imgvid-button editbio-button" id = "review-vid" onclick="toggleMediaButton('reviewmedia-vid', 'review-vid');">Add Video</button>
                                     <button type="button" class="imgvid-button editbio-button" id = "review-img" onclick="toggleMediaButton('reviewmedia-img', 'review-img');">Add Image</button>     
                                     
@@ -208,6 +208,11 @@
                                             <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
                                                 <textarea name="reviewtitle" maxlength="55" id="reviewtitle{{reviewIndex}}" rows="2" cols="50" placeholder="Review Title Here!"></textarea>
                                                 <textarea name="review" maxlength="120" id="reviewcomment{{reviewIndex}}" rows="5" cols="50" placeholder="Edit your review!"></textarea>
+                                                <textarea name="review" class="imgtextarea texthiddden" id="reviewmedia-img{{reviewIndex}}" placeholder="Image Media Here!"></textarea>
+                                                <textarea name="review" class="vidtextarea texthiddden" id="reviewmedia-vid{{reviewIndex}}" placeholder="Video Media Here!"></textarea>
+                                                <button type="button" class="imgvid-button editbio-button" id = "review-vid{{reviewIndex}}" onclick="toggleMediaButton('reviewmedia-vid{{reviewIndex}}', 'review-vid{{reviewIndex}}');">Add Video</button>
+                                                <button type="button" class="imgvid-button editbio-button" id = "review-img{{reviewIndex}}" onclick="toggleMediaButton('reviewmedia-img{{reviewIndex}}', 'review-img{{reviewIndex}}');">Add Image</button>     
+                                    
                                                 <div class="rate">
                                                     <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
                                                     <label for="star5-resto{{reviewIndex}}" title="text"> 5 stars</label>

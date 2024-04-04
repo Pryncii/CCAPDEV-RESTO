@@ -1715,6 +1715,10 @@ server.post('/editreview', function(req, resp){
   console.log("req.body.newcom: " + req.body.newcom);
   console.log("req.body.rating: " + req.body.rating);
   console.log("req.body.newtitle: " + req.body.newtitle);
+  console.log("req.body.hasimg: " + req.body.hasimg);
+  console.log("req.body.hasimg: " + req.body.hasvid);
+  console.log("req.body.newvid: " + req.body.newvid);
+  console.log("req.body.newimg: " + req.body.newimg);
 
   
   restoModel.find({ name : req.body.resto } ).then(function(restos){
@@ -1731,6 +1735,10 @@ server.post('/editreview', function(req, resp){
       let revcontent = restos[i].revdata[req.body.revin]["rev"];
       restos[i].revdata[req.body.revin]["revtitle"] = req.body.newtitle;
       restos[i].revdata[req.body.revin]["rev"] = req.body.newcom;
+      restos[i].revdata[req.body.revin]["hasimg"] = req.body.hasimg;
+      restos[i].revdata[req.body.revin]["revimgpost"] = req.body.newimg;
+      restos[i].revdata[req.body.revin]["hasvid"] = req.body.hasvid,
+      restos[i].revdata[req.body.revin]["revvid"] = req.body.newvid,
       restos[i].revdata[req.body.revin]["revrating"] = req.body.rating;
       restos[i].revdata[req.body.revin]["isedited"] = true;
       found = 1;
@@ -1748,6 +1756,10 @@ server.post('/editreview', function(req, resp){
               console.log("profile review found: " + users[k].revdata[j]["revrating"]);
 
               users[k].revdata[j]["revtitle"] = req.body.newtitle;
+              users[k].revdata[j]["hasimg"] = req.body.hasimg;
+              users[k].revdata[j]["revimgpost"] = req.body.newimg;
+              users[k].revdata[j]["hasvid"] = req.body.hasvid,
+              users[k].revdata[j]["revvid"] = req.body.newvid,
               users[k].revdata[j]["rev"] = req.body.newcom;
               users[k].revdata[j]["revrating"] = req.body.rating;
               users[k].revdata[j]["isedited"] = true;
@@ -1820,8 +1832,9 @@ process.on('SIGTERM',finalClose);
 process.on('SIGINT',finalClose);  
 process.on('SIGQUIT', finalClose);
 
+/*
 const mod_c = require('./controller/routes');
-mod_c.add(server);
+mod_c.add(server);*/
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){

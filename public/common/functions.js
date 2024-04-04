@@ -7,12 +7,14 @@ function closeForm() {
 }
 
 function toggleMediaButton(id, changeid) {
-  if (document.getElementById(id).style.display == "inline") {
-    document.getElementById(id).style.display = "none";
+  if (document.getElementById(id).classList.contains("textappear")) {
+    document.getElementById(id).classList.add("texthiddden");
+    document.getElementById(id).classList.remove("textappear");
     var newadd = document.getElementById(changeid).textContent.replace("Remove", "Add");
     document.getElementById(changeid).textContent = newadd;
   } else {
-    document.getElementById(id).style.display = "inline";
+    document.getElementById(id).classList.remove("texthiddden");
+    document.getElementById(id).classList.add("textappear");
     var newremove = document.getElementById(changeid).textContent.replace("Add","Remove");
     document.getElementById(changeid).textContent = newremove;
   }
@@ -566,8 +568,8 @@ form.addEventListener('submit', function(event) {
   var reviewtitle = document.getElementById('reviewtitle').value;
   var reviewimg = document.getElementById('reviewmedia-img').value;
   var reviewvid = document.getElementById('reviewmedia-vid').value;
-  var hasreviewvid = (document.getElementById('reviewmedia-vid').style.display == "inline");
-  var hasreviewimg = (document.getElementById('reviewmedia-img').style.display == "inline");
+  var hasreviewvid = (document.getElementById('reviewmedia-vid').classList.contains("textappear"));
+  var hasreviewimg = (document.getElementById('reviewmedia-img').classList.contains("textappear"));
 
   console.log("person: " + person);
   console.log("review: " + review);
@@ -623,6 +625,10 @@ $(document).on('click', '.sendeditreview-button', function(){
   var username = $(this).data('person');
   var newcomment = $("#reviewcomment" + reviewIndex).val();
   var newtitle = $("#reviewtitle" + reviewIndex).val();
+  var newimg = $("#reviewmedia-img" + reviewIndex).val();
+  var newvid = $("#reviewmedia-vid" + reviewIndex).val();
+  var hasnewreviewvid = (document.getElementById('reviewmedia-vid'+reviewIndex).classList.contains("textappear"));
+  var hasnewreviewimg = (document.getElementById('reviewmedia-img'+reviewIndex).classList.contains("textappear"));
 
   var rating = ""; 
 
@@ -641,10 +647,16 @@ $(document).on('click', '.sendeditreview-button', function(){
   console.log("username: " + username);
   console.log("newcomment: " + newcomment);
   console.log("newtitle: " + newtitle);
+  console.log("newvid: " + hasnewreviewvid);
+  console.log("newvid: " + newvid);
+  console.log("newvid: " + hasnewreviewimg);
+  console.log("newimg: " + newimg);
 
-  if(newcomment!="" && !newcomment.includes("Edit your review!") && newtitle!="" && !newtitle.includes("Review Title Here!")){
+  if(newcomment!="" && !newcomment.includes("Edit your review!") && newtitle!="" && !newtitle.includes("Review Title Here!") 
+  && ((!newvid.includes("Video Media Here!") && newvid!="" && hasnewreviewvid) || !hasnewreviewvid) && ((!newimg.includes("Image Media Here!") && newimg!="" && hasnewreviewimg)  || !hasnewreviewimg)){
     $.post('/editreview',{
       revin: reviewIndex, resto: restoname, person: username, newcom: newcomment, rating: rating, newtitle: newtitle,
+      newimg: newimg, newvid: newvid, hasimg: hasnewreviewimg, hasvid: hasnewreviewvid
     }, function(data, status){
       if(status === 'success'){
         console.log('Edit review request successful');
