@@ -40,7 +40,7 @@
                         <div class = "userprofilebio">
                             <div class = "userbio">
                                 <div id = "info" style="display: inline-block;">
-                                <b>Bio/Information:</b> <br>{{userdata.description}}
+                                <b>Bio/Information:</b> <br><div class="wrap">{{userdata.description}}</div>
                                 </div>
                                 <form class="review-form-container" action = "/report-user/" onsubmit="alerting(reportmsg, 'report')"method ="post" style="display: none;" id = "reporter">
                                     <textarea name="reportmsg" id="reportmsg" placeholder = "What's the issue?"></textarea>
@@ -49,7 +49,7 @@
                                     <button type="submitreview-button" class="editbio-button"  >Submit</button>
                                 </form>
                                 <form class="review-form-container" action = "/change-userbio/" method ="post" style="display: none;" id = "biochanger">
-                                    <textarea name="userbio" placeholder = "Enter New Bio!"></textarea>
+                                    <textarea name="userbio" maxlength="160"  placeholder = "Enter New Bio!"></textarea>
                                     <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
                                 <form class="review-form-container" action = "/change-profilepic/" method ="post" style="display: none;" id = "picchanger">

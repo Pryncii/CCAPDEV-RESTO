@@ -45,7 +45,7 @@
                         <div class = "descandbuttons">
                             <div class = "restodesc" id="restodescid">
                                 <span>Description</span>
-                                <p id = "info" style="display: inline-block;">
+                                <p id = "info" style="display: inline-block;" class="wrap">
                                     {{restodata.description}}
                                 </p>
                                 <form class="review-form-container"  action = "/report-resto/" method ="post" style="display: none;" id = "reporter">
@@ -61,8 +61,8 @@
                                     <button type="submitreview-button" class="editbio-button">Submit</button>
                                 </form>
                                 <form class="review-form-container" action = "/change-restobio/" method = "post" style="display: none;" id = "biochanger">
-                                    <textarea name="restodesc" placeholder = "Enter New Description!"></textarea>
-                                    <button type="submitreview-button" class="editbio-button">Submit</button>
+                                    <textarea name="restodesc" maxlength="350" placeholder = "Enter New Description!"></textarea>
+                                    <button type="submitreview-button"   class="editbio-button">Submit</button>
                                 </form>
                             </div>
                             <div class = "usereditbio">
@@ -124,8 +124,8 @@
                             <div class = "reviewtext">
                                 <form class="review-form-container" id="myForm" >
                                      {{#if isResto}}
-                                    <textarea name="review" id="reviewtitle" placeholder="Review Title Here!"></textarea>
-                                    <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
+                                    <textarea name="review" id="reviewtitle" maxlength="55" placeholder="Review Title Here!"></textarea>
+                                    <textarea name="review" id="reviewcomment" maxlength="120" placeholder="Write a Review!"></textarea>
                                                                   
                                     <textarea name="review" class="imgtextarea" id="reviewmedia-img" placeholder="Image Media Here!"></textarea>
                                     <textarea name="review" class="vidtextarea" id="reviewmedia-vid" placeholder="Video Media Here!"></textarea>
@@ -165,13 +165,13 @@
                                         <a href= "{{this.urlname}}">{{this.revname}}</a>
                                     </div>
                                     <div class = "rcmid2">
-                                        {{this.revrating}}<b>{{this.revtitle}}</b>
+                                        {{this.revrating}}<b><div class="wrap">{{this.revtitle}}</div></b>
                                     </div>
                                     <div class = "rcbottom2">
                                         {{#if isedited}}
                                         <div class = "edited">(Review is edited)</div>
                                         {{/if}}
-                                        {{this.rev}}
+                                        <div class="wrap">{{this.rev}}</div>
                                     </div> 
                                     
                                     <div class = "usereditbio2">
@@ -199,8 +199,8 @@
                                             </div>
                                             
                                             <div class="reply-container" style="display: none;" id = "editrevform{{reviewIndex}}">
-                                                <textarea name="reviewtitle" id="reviewtitle{{reviewIndex}}" rows="2" cols="50" placeholder="Review Title Here!"></textarea>
-                                                <textarea name="review" id="reviewcomment{{reviewIndex}}" rows="5" cols="50" placeholder="Edit your review!"></textarea>
+                                                <textarea name="reviewtitle" maxlength="55" id="reviewtitle{{reviewIndex}}" rows="2" cols="50" placeholder="Review Title Here!"></textarea>
+                                                <textarea name="review" maxlength="120" id="reviewcomment{{reviewIndex}}" rows="5" cols="50" placeholder="Edit your review!"></textarea>
                                                 <div class="rate">
                                                     <input type="radio" id="star5-resto{{reviewIndex}}" name="rate-resto" value="5" autocomplete= "off"/>
                                                     <label for="star5-resto{{reviewIndex}}" title="text"> 5 stars</label>
@@ -255,7 +255,7 @@
                                                                 
                                                             </div>
                                                             <div class="reply-container"   style="display: none;" rows="5" cols="50" id = "editform{{reviewIndex}}-{{commentIndex}}">
-                                                                    <textarea name="reviewtextB" id="reviewcomment{{reviewIndex}}-{{commentIndex}}" placeholder="Edit your review!"></textarea>
+                                                                    <textarea name="reviewtextB" id="reviewcomment{{reviewIndex}}-{{commentIndex}}"  maxlength="250" placeholder="Edit your review!"></textarea>
                                                                     <div class = "usereditbio">
                                                                         <button type="button" class="sendedit-button" data-person="{{this.comname}}" data-resto="{{../../restodata.name}}" data-revindex="{{reviewIndex}}" data-comindex="{{commentIndex}}">Submit</button>
                                                                     </div>
