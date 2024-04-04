@@ -109,9 +109,9 @@
                     </div>
                     <div class = "userprofilereviewright">
                         <div class = "reviewupper">
-                            Recent Reviews
+                            Search Reviews
                         </div>
-                        <form id="revsearch" >
+                        <form id="revsearch" action = "/restaurant/{{restodata.landmark}}/{{restodata.linkname}}" method = "get">
                             <input type="text" name ="searchquery" id="searchquery" />
                             <input type="submit" id="revsearch-submit" value="Search" data-landmark="{{restodata.landmark}}" data-resto="{{restodata.linkname}}"/>
                         </form>

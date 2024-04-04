@@ -534,137 +534,6 @@ server.post('/read-user', [ check('user').notEmpty(),
 });
 
 
-server.get('/restaurant/:landmark/:linkname?searchquery=:search', function(req, resp){
-  if(req.session.login_id == undefined){
-    loggedInUser = {};
-    loggedInUser.user = "guest";
-    isUser = "guest";
-  }
-  
-  const searchQuery = { landmark: req.params.landmark, 
-                        linkname: req.params.linkname};
-
-   /*                     
-  let searchQuery;
-  let regex;
-  if(req.query.searchfield === undefined){
-      searchQuery = {};
-  } else {
-      regex = new RegExp(req.query.searchfield, 'i');
-      searchQuery = {
-        $or: [
-            { name: regex },
-            { description: regex }
-        ]
-      };
-    
-  }*/
-
-  //options.returnDocument='after'
-  restoModel.findOne(searchQuery).then(function(restos){
-    restoModel.find({landmark: restos.landmark, user: { $ne: restos.name }}).lean().then(function(landmarkresto) {
-    //console.log(JSON.stringify(restos));
-    let restosq = restos;
-    if(restos != undefined && restos._id != null){
-
-      let temprev = new Array();
-    let search = new RegExp(req.params.search, 'i');
-  // Initialize an empty search query object
-  if(req.params.search!=undefined){//if there is a search
-    console.log(req.params.search);
-    for(r of restos.revdata){//loop through each review in resto 
-        if(r.rev.search(search)!=-1 || r.revtitle.search(search)!=-1){ // if the searchquery can be found in title/review
-          temprev.push(r);
-          console.log(r);
-      }
-    }
-    restosq.revdata = temprev;
-  }
-   
-
-      const restosJson = restosq;
-      let getratesum = 0;
-      let likeThumb = "";
-      let dislikeThumb = "";
-      let clikeThumb = [];
-      let cdislikeThumb = [];
-      let undeleted = 0;
-      
-      for(let j = 0; j < restos.revdata.length; j++){
-        if(restos.revdata[j]["notdeleted"]==true){
-              for(let k = 0; k < restos.revdata[j].revrating.length; k++){
-                  if(restos.revdata[j].revrating[k] == "★" ){
-                      getratesum+= 1;
-                  }
-              }
-              undeleted+=1;
-              let likeComm = "";
-              let dislikeComm = "";
-              if (restos.revdata[j].hascomments != false) {
-                  
-                  for(let x = 0; x < restos.revdata[j].comments.length; x++){
-                     
-                      if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
-                          likeComm+= 1;
-                      }else {
-                          likeComm+= 0;
-                      }
-                      if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
-                          dislikeComm+= 1;
-                      }else {
-                          dislikeComm+= 0;
-                      }
-                  }
-              }
-              clikeThumb.push(likeComm);
-              cdislikeThumb.push(dislikeComm);
-              if(restos.revdata[j].likes.includes(loggedInUser.user)){
-                  likeThumb+= 1;
-              }else {
-                  likeThumb+= 0;
-              }
-              if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
-                  dislikeThumb+= 1;
-              }else {
-                  dislikeThumb+= 0;
-              }
-          }
-  
-      }
-      
-      
-  
-
-
-
-      //console.log("likes:"+likeThumb);
-      //console.log("dislikes:"+dislikeThumb);
-      //console.log("clikes:"+clikeThumb);
-      //console.log("cdislikes:"+cdislikeThumb);
-      restosq.rating = getratesum/undeleted;
-
-
-
-      //console.log("rating:"+(getratesum/undeleted));
-      
-      resp.render('restopage',{
-          layout      : 'index',
-          title       : 'Restaurant',
-          restodata   : restosJson,
-          otherresto  : landmarkresto,
-          user        : loggedInUser,
-          lThumbs   : likeThumb,
-          dThumbs: dislikeThumb,
-          clThumbs   : clikeThumb,
-          cdThumbs: cdislikeThumb,
-          checkUser: isUser,
-          vrating      : 100-(((getratesum/undeleted)/5)*100),
-          sresto      : sresto
-      });
-  }
-  }).catch(errorFn);
-});
-})
 
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
     if(req.session.login_id == undefined){
@@ -683,10 +552,25 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
       //console.log(JSON.stringify(restos));
       
       if(restos != undefined && restos._id != null){
-
-     
-
-        const restosJson = restos.toJSON();
+      var restosq = restos;
+      console.log(req.query.searchquery);
+        if(req.query.searchquery!=undefined){
+          
+           let temprev = new Array();
+        let search = new RegExp(req.query.searchquery, 'i');
+      // Initialize an empty search query object
+        console.log(req.body.search);
+        for(r of restos.revdata){//loop through each review in resto 
+            if(r.rev.search(search)!=-1 || r.revtitle.search(search)!=-1){ // if the searchquery can be found in title/review
+              temprev.push(r);
+              console.log(r);
+          }
+        }
+        restosq.revdata = temprev;
+      
+        }
+       
+        const restosJson = restosq.toJSON();
         let getratesum = 0;
         let likeThumb = "";
         let dislikeThumb = "";
