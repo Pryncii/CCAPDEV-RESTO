@@ -1,6 +1,15 @@
-const responder = require('../models/Responder');
+const responder = require('../models/data');
 
 function add(server){
+  function errorFn(err){
+    console.log('Error fond. Please trace!');
+    console.error(err);
+  }
+  
+  const restoModel = responder.appdata['restoModel'];
+  const userModel = responder.appdata['userModel'];
+
+
   server.get('/', function(req, resp){
     resp.render('main', {
       layout: 'index',
@@ -1401,6 +1410,11 @@ server.post('/leavereview', function(req, resp){
   console.log("req.body.rating: " + req.body.rating);
   console.log("req.body.review: " + req.body.review);
   console.log("req.body.reviewtitle: " + req.body.reviewtitle);
+  console.log("req.body.hasimg: " + req.body.hasimg);
+  console.log("req.body.reviewimg: " + req.body.reviewimg);
+  console.log("req.body.hasvid: " + req.body.hasvid);
+  console.log("req.body.reviewvid: " + req.body.reviewvid);
+  
   if(req.session.login_id != undefined){
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
@@ -1428,7 +1442,7 @@ server.post('/leavereview', function(req, resp){
           revrating: req.body.rating,
           revtitle: req.body.reviewtitle,
           hasimg: req.body.hasimg,
-          revimg: req.body.reviewimg,
+          revimgpost: req.body.reviewimg,
           hasvid: req.body.hasvid,
           revvid: req.body.reviewvid,
           rev: req.body.review,
@@ -1489,7 +1503,11 @@ server.post('/leavereview', function(req, resp){
                     revimg: restoimage,
                     revname: req.body.resto,
                     revrating: req.body.rating,
-                    revtitle: req.body.reviewtitle, 
+                    revtitle: req.body.reviewtitle,
+                    hasimg: req.body.hasimg,
+                    revimgpost: req.body.reviewimg,
+                    hasvid: req.body.hasvid,
+                    revvid: req.body.reviewvid,
                     rev: req.body.review,
                     urlname: restourl,
                     notdeleted: true,
