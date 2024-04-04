@@ -6,8 +6,16 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
-function toggleMediaButton(id) {
-  document.getElementById(id).style.display = "inline";
+function toggleMediaButton(id, changeid) {
+  if (document.getElementById(id).style.display == "inline") {
+    document.getElementById(id).style.display = "none";
+    var newadd = document.getElementById(changeid).textContent.replace("Remove", "Add");
+    document.getElementById(changeid).textContent = newadd;
+  } else {
+    document.getElementById(id).style.display = "inline";
+    var newremove = document.getElementById(changeid).textContent.replace("Add","Remove");
+    document.getElementById(changeid).textContent = newremove;
+  }
 }
 
 function openReviews(id) {

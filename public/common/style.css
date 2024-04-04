@@ -732,6 +732,11 @@ progress[value]::-webkit-progress-bar {
     display: inline;
 }
 
+.imgvid-button
+{
+    width: 130px;
+}
+
 #reviewmedia-img
 {
     height: 20%;
