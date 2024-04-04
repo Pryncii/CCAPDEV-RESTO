@@ -28,8 +28,25 @@ server.set('view engine', 'hbs');
 
 server.use(express.static('public'));
 
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/restodb') .catch (error => console.log(error));
+// Define the database URI
+const dbURI = 'mongodb+srv://princebuencamino:luPL7JN0OU5OKJS1@cluster0.46y950k.mongodb.net/restodb';
+
+// Connect to MongoDB
+mongoose.connect(dbURI).catch (error => console.log(error));
+
+// Get the default connection
+const db = mongoose.connection;
+
+// Event handlers for the connection
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB successfully.');
+});
+
+module.exports = db;
+
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
 
@@ -38,7 +55,7 @@ server.use(session({
   saveUninitialized: true, 
   resave: false,
   store: new mongoStore({ 
-    uri: 'mongodb://localhost:27017/restodb',
+    uri: 'mongodb+srv://princebuencamino:luPL7JN0OU5OKJS1@cluster0.46y950k.mongodb.net/restodb',
     collection: 'mySession',
     expires: 10000000 * 60 * 60 * 24 * 7 * 3
   })
