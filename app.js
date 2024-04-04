@@ -178,7 +178,7 @@ for(r of aresto){
 //Use this to determine the user who's logged in
 let loggedInUser;
 let isUser;
-
+//comment
 server.get('/', function(req, resp){
     resp.render('main', {
       layout: 'index',
