@@ -2,7 +2,7 @@
 
 const express = require('express');
 const server = express();
-const {check, validationResult} = require('express-validator');
+
 const bodyParser = require('body-parser');
 server.use(express.json()); 
 server.use(express.urlencoded({ extended: true }));
@@ -40,7 +40,7 @@ server.use(session({
   store: new mongoStore({ 
     uri: 'mongodb://localhost:27017/restodb',
     collection: 'mySession',
-    expires: 10000000 * 60 * 60 * 24 * 7 * 3
+    expires: 1000*60*60 // 1 hour
   })
 }));
 
@@ -56,7 +56,6 @@ const commentSchema = new mongoose.Schema({
     dislikes: {type: [String]},
     urlname: { type: String},
     notdeleted: { type: Boolean },
-    isedited:{ type: Boolean },
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -70,8 +69,8 @@ const reviewSchema = new mongoose.Schema({
     dislikes: {type: [String]},
     comments: [commentSchema],
     urlname: { type: String},
-    notdeleted: { type: Boolean },
-    isedited:{ type: Boolean },
+    notdeleted: { type: Boolean }
+    
 });
 
 const restoSchema = new mongoose.Schema({
@@ -134,8 +133,6 @@ hbs.handlebars.registerHelper('isActive', function(likeThumb, reviewIndex, comme
     }
 });
 
-let weeks = new Date();
-weeks.setDate(weeks.getDate() + 21);
 
 var sresto = {
   U_Mall:[],
@@ -198,54 +195,8 @@ server.get('/signup-page', function(req, resp){
 });
 
 
-server.post('/create-user', [
-  check('fname').custom((value, { req }) => {
-    return new Promise((resolve, reject) => {
-        userModel.findOne({ name: req.body.fname }).lean().then(function (userfound) {
-            if (userfound) {
-                reject('Other user exists');
-            } else {
-                resolve();
-            }
-        }).catch(err => reject(err)); // Handle database query errors
-    });
-}),
-check('username').custom((value, { req }) => {
-  return new Promise((resolve, reject) => {
-      userModel.findOne({ user: req.body.username }).lean().then(function (userfound) {
-          if (userfound) {
-              reject('Other user exists');
-          } else {
-              resolve();
-          }
-      }).catch(err => reject(err)); // Handle database query errors
-  });
-}),
-  check('password').notEmpty().withMessage("fields cannot be empty!"),
-  check('map').custom((value, { req }) => {
-      if (req.body.estbowner === "yes" && !value) {
-          throw new Error('Map field is required');
-      }
-      return true;
-  }).withMessage("Map field cannot be empty!"),
-  check('price').custom((value, { req }) => {
-      if (req.body.estbowner === "yes" && (!value || isNaN(value))) {
-          throw new Error('Price field is required');
-      }
-      return true;
-  })
-], function(req, resp){
-    const errors = validationResult(req).array();
-    console.log(errors);
-    if(!errors.length == 0){
-      resp.render('signup',{
-        layout      : 'index',
-        title       : 'Sign Up',
-        sresto      : sresto,
-        errorMessage: errors[0].msg
-    });
-      return
-    }
+server.post('/create-user', function(req, resp){
+
     let newModel, model;
     const selectedRadioValue = req.body.estbowner;
 
@@ -289,10 +240,9 @@ check('username').custom((value, { req }) => {
                   landmarkresto.push(restodata[i]);
               }
           }*/
-          restoModel.find({landmark: user.landmark, user: { $ne: user.name }}).lean().then(function(otherrestos) {
+          restoModel.find({landmark: user.landmark, user: { $ne: user.user }}).lean().then(function(otherrestos) {
             req.session.login_user = user._id;
             req.session.login_id = req.sessionID;
-            req.session.expiry = weeks;
             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
               loggedInUser = logged;
               isUser = loggedInUser['linkname'];
@@ -334,7 +284,6 @@ check('username').custom((value, { req }) => {
               userModel.find({}).lean().then(function(alluser){
               req.session.login_user = user._id;
               req.session.login_id = req.sessionID;
-              req.session.expiry = weeks;
               userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                 loggedInUser = logged;
                 isUser = loggedInUser['urlname'];
@@ -343,6 +292,7 @@ check('username').custom((value, { req }) => {
                     title       : 'Profile',
                     userdata    : userJson,
                     user        : loggedInUser,
+                    otherusers  : alluserdata,
                     checkUser   : isUser,
                     otherusers  : alluser,
                     sresto      : sresto
@@ -357,19 +307,9 @@ check('username').custom((value, { req }) => {
   });
 
 
-server.post('/read-user', [ check('user').notEmpty(),
-                          check('pass').notEmpty()], function(req, resp){
+server.post('/read-user', function(req, resp){
   //console.log('Finding user');
-  const errors = validationResult(req);
-    if(!errors.isEmpty()){
-      resp.render('login',{
-        layout      : 'index',
-        title       : 'Login',
-        errorMessage: 'Fields cannot be empty!',
-        sresto      : sresto
-       });
-      return
-    }
+  
   const searchQuery = { user: req.body.user};
   //look for the user
   //compare if the password of the user matches the encrypted one 
@@ -383,7 +323,6 @@ server.post('/read-user', [ check('user').notEmpty(),
                   userModel.find({}).lean().then(function(alluser){
                   req.session.login_user = login._id;
                   req.session.login_id = req.sessionID;
-                  req.session.expiry = weeks;
                   userModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                     loggedInUser = logged;
                     //console.log(loggedInUser)
@@ -393,10 +332,10 @@ server.post('/read-user', [ check('user').notEmpty(),
                         title: 'Profile',
                         userdata: userJson,
                         user: loggedInUser,
+                        otherusers  : alluserdata,
                         checkUser: isUser,
                         otherusers: alluser,
-                        sresto      : sresto,
-                        newlogin  :   true
+                        sresto      : sresto
                     });
                   })
                 })
@@ -425,7 +364,6 @@ server.post('/read-user', [ check('user').notEmpty(),
                           restoModel.find({landmark: restos.landmark, user: { $ne: restos.user }}).lean().then(function(otherrestos) {
                             req.session.login_user = restos._id;
                             req.session.login_id = req.sessionID;
-                            req.session.expiry = weeks;
                             restoModel.findOne({_id: req.session.login_user}).lean().then(function(logged) {
                               loggedInUser = logged;
                               isUser = loggedInUser['linkname'];
@@ -492,8 +430,7 @@ server.post('/read-user', [ check('user').notEmpty(),
                                     checkUser: isUser,
                                     vrating      : 100-(((getratesum/undeleted)/5)*100),
                                   checkUser: isUser,
-                                  sresto      : sresto,
-                                  newlogin  :   true
+                                  sresto      : sresto
                               });
                           })
                         })
@@ -534,175 +471,114 @@ server.post('/read-user', [ check('user').notEmpty(),
 });
 
 
-
 server.get('/restaurant/:landmark/:linkname', function(req, resp){
-    if(req.session.login_id == undefined){
-      loggedInUser = {};
-      loggedInUser.user = "guest";
-      isUser = "guest";
-    }
-    
-    const searchQuery = { landmark: req.params.landmark, 
-                          linkname: req.params.linkname};
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
+  
+  const searchQuery = { landmark: req.params.landmark, 
+                        linkname: req.params.linkname};
 
-     
-    //options.returnDocument='after'
-    restoModel.findOne(searchQuery).then(function(restos){
-      restoModel.find({landmark: restos.landmark, user: { $ne: restos.name }}).lean().then(function(landmarkresto) {
-      //console.log(JSON.stringify(restos));
-      
-      if(restos != undefined && restos._id != null){
-      var restosq = restos;
-      console.log(req.query.searchquery);
-        if(req.query.searchquery!=undefined){
-          
-           let temprev = new Array();
-        let search = new RegExp(req.query.searchquery, 'i');
-      // Initialize an empty search query object
-        console.log(req.body.search);
-        for(r of restos.revdata){//loop through each review in resto 
-            if(r.rev.search(search)!=-1 || r.revtitle.search(search)!=-1){ // if the searchquery can be found in title/review 
-              temprev.push(r);
-              console.log(r);
+  //options.returnDocument='after'
+  restoModel.findOne(searchQuery).then(function(restos){
+    //console.log(JSON.stringify(restos));
+    if(restos != undefined && restos._id != null){
+      const restosJson = restos.toJSON();
+      const landmarkresto = [];
+      for(let i = 0; i < restodata.length; i++){
+          if(restodata[i]["landmark"] == req.params.landmark && restodata[i]["linkname"] != req.params.linkname){
+              landmarkresto.push(restodata[i]);
           }
-        }
-        restosq.revdata = temprev;
+      }
+
+      let getratesum = 0;
+      let likeThumb = "";
+      let dislikeThumb = "";
+      let clikeThumb = [];
+      let cdislikeThumb = [];
+      let undeleted = 0;
       
-        }
-       
-        const restosJson = restosq.toJSON();
-        let getratesum = 0;
-        let likeThumb = "";
-        let dislikeThumb = "";
-        let clikeThumb = [];
-        let cdislikeThumb = [];
-        let undeleted = 0;
-        
-        for(let j = 0; j < restos.revdata.length; j++){
-          if(restos.revdata[j]["notdeleted"]==true){
-                for(let k = 0; k < restos.revdata[j].revrating.length; k++){
-                    if(restos.revdata[j].revrating[k] == "★" ){
-                        getratesum+= 1;
-                    }
-                }
-                undeleted+=1;
-                let likeComm = "";
-                let dislikeComm = "";
-                if (restos.revdata[j].hascomments != false) {
-                    
-                    for(let x = 0; x < restos.revdata[j].comments.length; x++){
-                       
-                        if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
-                            likeComm+= 1;
-                        }else {
-                            likeComm+= 0;
-                        }
-                        if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
-                            dislikeComm+= 1;
-                        }else {
-                            dislikeComm+= 0;
-                        }
-                    }
-                }
-                clikeThumb.push(likeComm);
-                cdislikeThumb.push(dislikeComm);
-                if(restos.revdata[j].likes.includes(loggedInUser.user)){
-                    likeThumb+= 1;
-                }else {
-                    likeThumb+= 0;
-                }
-                if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
-                    dislikeThumb+= 1;
-                }else {
-                    dislikeThumb+= 0;
-                }
-            }
-    
-        }
-        
-        
-    
+      for(let j = 0; j < restos.revdata.length; j++){
+        if(restos.revdata[j]["notdeleted"]==true){
+              for(let k = 0; k < restos.revdata[j].revrating.length; k++){
+                  if(restos.revdata[j].revrating[k] == "★" ){
+                      getratesum+= 1;
+                  }
+              }
+              undeleted+=1;
+              let likeComm = "";
+              let dislikeComm = "";
+              if (restos.revdata[j].hascomments != false) {
+                  
+                  for(let x = 0; x < restos.revdata[j].comments.length; x++){
+                     
+                      if(restos.revdata[j].comments[x].likes.includes(loggedInUser.user)){
+                          likeComm+= 1;
+                      }else {
+                          likeComm+= 0;
+                      }
+                      if(restos.revdata[j].comments[x].dislikes.includes(loggedInUser.user)){
+                          dislikeComm+= 1;
+                      }else {
+                          dislikeComm+= 0;
+                      }
+                  }
+              }
+              clikeThumb.push(likeComm);
+              cdislikeThumb.push(dislikeComm);
+              if(restos.revdata[j].likes.includes(loggedInUser.user)){
+                  likeThumb+= 1;
+              }else {
+                  likeThumb+= 0;
+              }
+              if(restos.revdata[j].dislikes.includes(loggedInUser.user)){
+                  dislikeThumb+= 1;
+              }else {
+                  dislikeThumb+= 0;
+              }
+          }
+  
+      }
+      
+      
   
 
 
-        //console.log("likes:"+likeThumb);
-        //console.log("dislikes:"+dislikeThumb);
-        //console.log("clikes:"+clikeThumb);
-        //console.log("cdislikes:"+cdislikeThumb);
-        restos.rating = getratesum/undeleted;
+
+      //console.log("likes:"+likeThumb);
+      //console.log("dislikes:"+dislikeThumb);
+      //console.log("clikes:"+clikeThumb);
+      //console.log("cdislikes:"+cdislikeThumb);
+      restos.rating = getratesum/undeleted;
 
 
 
-        //console.log("rating:"+(getratesum/undeleted));
-        
-        resp.render('restopage',{
-            layout      : 'index',
-            title       : 'Restaurant',
-            restodata   : restosJson,
-            otherresto  : landmarkresto,
-            user        : loggedInUser,
-            lThumbs   : likeThumb,
-            dThumbs: dislikeThumb,
-            clThumbs   : clikeThumb,
-            cdThumbs: cdislikeThumb,
-            checkUser: isUser,
-            vrating      : 100-(((getratesum/undeleted)/5)*100),
-            sresto      : sresto
-        });
-    }
-    }).catch(errorFn);
-  });
-})
-
-server.get('/restaurant/:landmark/:linkname/:text', function(req, resp){
-  if(req.session.login_id == undefined){
-    loggedInUser = {};
-    loggedInUser.user = "guest";
-    isUser = "guest";
-  }
- 
-
-  restoModel.find({user:req.body.resto}).then(function(restos){
-    console.log('List successful');
-    let vals = [];
-    let counts = 0;
-    let subval = [];
-    for(const item of restos){
-      //console.log(item.name);
+      //console.log("rating:"+(getratesum/undeleted));
       
-      subval.push({
-            name: item.name,
-            linkname: item.linkname,
-            image: item.imagesquare,
-            landmark: item.landmark
-        });
-        //console.log("subval");
-        //console.log(subval);
-        counts+=1;
-        if(counts == 4){
-          counts=0;
-          vals.push( subval);
-          subval = new Array();
-        }
-    }
-    vals.push( subval);
-    resp.render('showall',{
-      layout: 'index',
-      title:  "Show All",
-      restos:  vals,
-      user        : loggedInUser,
-      checkUser: isUser,
-      sresto      : sresto
-    });
+      resp.render('restopage',{
+          layout      : 'index',
+          title       : 'Restaurant',
+          restodata   : restosJson,
+          otherresto  : landmarkresto,
+          user        : loggedInUser,
+          lThumbs   : likeThumb,
+          dThumbs: dislikeThumb,
+          clThumbs   : clikeThumb,
+          cdThumbs: cdislikeThumb,
+          checkUser: isUser,
+          vrating      : 100-(((getratesum/undeleted)/5)*100),
+          sresto      : sresto
+      });
+  }
   }).catch(errorFn);
 });
 
 server.get('/restopage/:landmark/', function(req, resp){
-    if(req.session.login_id == undefined){
-      loggedInUser = {};
-      loggedInUser.user = "guest";
-      isUser = "guest";
-    }
+  if(req.session.login_id == undefined){
+    resp.redirect('/?login=unlogged');
+    return;
+  }
     const searchQuery = { landmark: req.params.landmark };
     restoModel.find(searchQuery).then(function(restos){
       console.log('List successful');
@@ -727,11 +603,6 @@ server.get('/restopage/:landmark/', function(req, resp){
   });
 
   server.get('/menu-page', function(req, resp){
-    if(req.session.login_id == undefined){
-      loggedInUser = {};
-      loggedInUser.user = "guest";
-      isUser = "guest";
-    }
     resp.render('menu',{
         layout      : 'index',
         title       : 'Menu',
@@ -765,6 +636,7 @@ server.get('/profile-page/:urlname', function(req, resp){
               layout      : 'index',
               title       : 'Profile',
               userdata   : userJson,
+              otherusers  : alluserdata,
               user        : loggedInUser,
               checkUser: isUser,
               otherusers: alluser,
@@ -806,24 +678,16 @@ server.get('/profile-page/:urlname', function(req, resp){
 
   server.get('/showall/', function(req, resp){
     if(req.session.login_id == undefined){
-      loggedInUser = {};
-      loggedInUser.user = "guest";
-      isUser = "guest";
+      resp.redirect('/?login=unlogged');
+      return;
     }
-    
     let searchQuery;
     let regex;
     if(req.query.searchfield === undefined){
         searchQuery = {};
     } else {
         regex = new RegExp(req.query.searchfield, 'i');
-        searchQuery = {
-          $or: [
-              { name: regex },
-              { description: regex }
-          ]
-        };
-      
+        searchQuery = {name: regex};
     }
     //console.log(req.query.searchfield)
     restoModel.find(searchQuery).then(function(restos){
@@ -863,11 +727,9 @@ server.get('/profile-page/:urlname', function(req, resp){
 
   server.get('/showalladvanced/', function(req, resp){
     if(req.session.login_id == undefined){
-      loggedInUser = {};
-      loggedInUser.user = "guest";
-      isUser = "guest";
+      resp.redirect('/?login=unlogged');
+      return;
     }
-    
   // Initialize an empty search query object
     let searchQuery = {};
 
@@ -1221,16 +1083,11 @@ server.post('/reaction', function(req, resp){
       pic = "/common/Images/PFPs/profile.webp";
       errormsg = "?invalid-img-format";
     }
-      userModel.findOneAndUpdate({name :loggedInUser.name}, {image: pic}).lean().then(function (updateduser) {
+      userModel.findOneAndUpdate({user:loggedInUser.user}, {image: pic}).lean().then(function () {
      
         loggedInUser.image=pic;
-        restoModel.updateMany(
-          { 'revdata.revname' : updateduser.name }, 
-          { $set: { 'revdata.$.revimg': pic } } ).then(function () {
-            resp.redirect('/profile-page/'+loggedInUser.urlname+'/'+errormsg);
-          }
-          )
         
+        resp.redirect('/profile-page/'+loggedInUser.urlname+'/'+errormsg);
       
   });
     
@@ -1269,27 +1126,19 @@ server.post('/reaction', function(req, resp){
         img = "/common/Images/PFPs/resto-default.jpg";
         errormsg = "?invalid-img-format"
       }
-    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img, imagesquare:img}).then(function (updateduser) {
+    restoModel.findOneAndUpdate({user:loggedInUser.user}, {image:img, imagesquare:img}).then(function () {
       
         loggedInUser.imagesquare=img;
         loggedInUser.image=img;
-        userModel.updateMany(
-          { 'revdata.revname' : updateduser.name }, 
-          { $set: { 'revdata.$.revimg': img } } ).then(function () {
-            resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
-          }
-          )
+
+      resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/'+errormsg);
    
   });
-
       
   });
   
   server.post('/report-user', function(req, resp){
-    if(req.session.login_id == undefined){
-      resp.redirect('/?login=unlogged');
-      return;
-    }
+
     const searchQuery = {user: req.body.username};
     const report = req.body.reportmsg;
     let reporteduser;
@@ -1312,10 +1161,7 @@ server.post('/reaction', function(req, resp){
   });
 
   server.post('/report-resto', function(req, resp){
-    if(req.session.login_id == undefined){
-      resp.redirect('/?login=unlogged');
-      return;
-    }
+
     const searchQuery = {name: req.body.restoname, landmark: req.body.landmark};
     const report = req.body.reportmsg;
     let reporteduser;
@@ -1543,8 +1389,6 @@ server.post('/leavereview', function(req, resp){
   //const updateQuery = { user: req.body.id };
   console.log("req.body.person: " + req.body.person);
   console.log("req.body.rating: " + req.body.rating);
-  console.log("req.body.review: " + req.body.review);
-  console.log("req.body.reviewtitle: " + req.body.reviewtitle);
 
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
@@ -1571,8 +1415,7 @@ server.post('/leavereview', function(req, resp){
           likes: [],
           dislikes: [],
           urlname: userurl,
-          notdeleted: true,
-          isedited: false,
+          notdeleted: true
         };
 
         restos[i].revdata.push(newReview);
@@ -1627,8 +1470,7 @@ server.post('/leavereview', function(req, resp){
                     revtitle: req.body.reviewtitle, 
                     rev: req.body.review,
                     urlname: restourl,
-                    notdeleted: true,
-                    isedited: false,
+                    notdeleted: true
                   };
           
                   users2[i].revdata.push(newReview2);
@@ -1660,7 +1502,6 @@ server.post('/editreview', function(req, resp){
   console.log("req.body.resto: " + req.body.resto);
   console.log("req.body.newcom: " + req.body.newcom);
   console.log("req.body.rating: " + req.body.rating);
-  console.log("req.body.newtitle: " + req.body.newtitle);
 
   
   restoModel.find({ name : req.body.resto } ).then(function(restos){
@@ -1679,7 +1520,6 @@ server.post('/editreview', function(req, resp){
       restos[i].revdata[req.body.revin]["revtitle"] = req.body.newtitle; 
       restos[i].revdata[req.body.revin]["rev"] = req.body.newcom;
       restos[i].revdata[req.body.revin]["revrating"] = req.body.rating;
-      restos[i].revdata[req.body.revin]["isedited"] = true;
       found = 1;
       restos[i].save();
 
@@ -1697,7 +1537,6 @@ server.post('/editreview', function(req, resp){
               users[k].revdata[j]["revtitle"] = req.body.newtitle; 
               users[k].revdata[j]["rev"] = req.body.newcom;
               users[k].revdata[j]["revrating"] = req.body.rating;
-              users[k].revdata[j]["isedited"] = true;
 
               found2 = 1;
               users[k].save().then(function (result) {
@@ -1735,25 +1574,12 @@ server.post('/editcomment', function(req, resp){
 
       console.log("review found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
       restos[i].revdata[req.body.revin].comments[req.body.comin]["com"] = req.body.newcom;
-      restos[i].revdata[req.body.revin].comments[req.body.comin]["isedited"] = true;
       found = 1;
       restos[i].save();
       resp.sendStatus(200);
 
     }
   }).catch(errorFn); 
-});
-
-server.post('/extendsession', function(req, resp){
-  weeks.setDate(weeks.getDate() + 21); 
-  req.session.expiry = weeks;
-  resp.redirect('/profile-page/'+loggedInUser.urlname+'/?=sessionextended');
-});
-
-server.post('/extendrestosession', function(req, resp){
-  weeks.setDate(weeks.getDate() + 21); 
-  req.session.expiry = weeks;
-  resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/?=sessionextended');
 });
 
 
