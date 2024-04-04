@@ -682,6 +682,7 @@ $(document).on('click', '.delete-comment', function(){
 
 // REPLYING TO REVIEWS
 $(document).on('click', '.replysend-button', function(){
+
   var reviewId = $(this).data('replyto-id');
   var person = $(this).data('person');
   var reply = $("#reply-text-" + reviewId).val();

@@ -857,6 +857,13 @@ progress[value]::-webkit-progress-bar {
     flex-direction: column;
 }
 
+.reviewsearch
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
 .reviewcontainer
 {
     display: flex;

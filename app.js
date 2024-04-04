@@ -1294,47 +1294,89 @@ server.post('/replycomment', function(req, resp){
     return;
   }
   //const updateQuery = { user: req.body.id };
+
   console.log("req.body.id: " + req.body.id);
   console.log("req.body.reply: " + req.body.reply);
   console.log("req.body.person: " + req.body.person);
   console.log("req.body.resto: " + req.body.resto);
 
-  userModel.findOne({name: req.body.person}).then(function(user){
-    console.log("user: " + user);
-    let userimage = user.image;
-    let userurl = user.urlname;
-    
-    restoModel.find({ name : req.body.resto} ).then(function(restos){
-      console.log('List successful');
-    
-      let found = 0; // all restaurants
-      for(let i = 0; i < restos.length && found == 0; i++)
-      { // all reviews in that restaurant
-
-        console.log("review found: " + restos[i].revdata[req.body.id]["rev"]);
-        console.log("revdatalength found: " + restos[i].revdata[req.body.id].comments.length);
-
-        let newComment = {
-          comimg: userimage,
-          comname: req.body.person,
-          com: req.body.reply,
-          likes: [],
-          dislikes: [],
-          urlname: userurl,
-          notdeleted: true
-        };
-
-        restos[i].revdata[req.body.id].comments.push(newComment);
-        restos[i].revdata[req.body.id]["hascomments"] = true;
-        found = 1;
-        restos[i].save();
-        resp.sendStatus(200);
-
-      }
-    }).catch(errorFn);
-  }).catch(errorFn);
-
+  //if its a resto commenting
+  if(req.body.person == req.body.resto)
+  {
+    restoModel.findOne({name: req.body.person}).then(function(user){
+      console.log("user: " + user);
+      let userimage = user.imagesquare;
+      let userurl = '/restaurant/' + user.landmark + "/" + user.linkname;
+      
+      restoModel.find({ name : req.body.resto} ).then(function(restos){
+        console.log('List successful');
+      
+        let found = 0; // all restaurants
+        for(let i = 0; i < restos.length && found == 0; i++)
+        { // all reviews in that restaurant
   
+          console.log("review found: " + restos[i].revdata[req.body.id]["rev"]);
+          console.log("revdatalength found: " + restos[i].revdata[req.body.id].comments.length);
+  
+          let newComment = {
+            comimg: userimage,
+            comname: req.body.person,
+            com: req.body.reply,
+            likes: [],
+            dislikes: [],
+            urlname: userurl,
+            notdeleted: true,
+            isedited: false,
+          };
+  
+          restos[i].revdata[req.body.id].comments.push(newComment);
+          restos[i].revdata[req.body.id]["hascomments"] = true;
+          found = 1;
+          restos[i].save();
+          resp.sendStatus(200);
+  
+        }
+      }).catch(errorFn);
+    }).catch(errorFn);
+  }
+  else
+  {
+    userModel.findOne({name: req.body.person}).then(function(user){
+      console.log("user: " + user);
+      let userimage = user.image;
+      let userurl = '/profile-page/' + user.urlname;
+      
+      restoModel.find({ name : req.body.resto} ).then(function(restos){
+        console.log('List successful');
+      
+        let found = 0; // all restaurants
+        for(let i = 0; i < restos.length && found == 0; i++)
+        { // all reviews in that restaurant
+  
+          console.log("review found: " + restos[i].revdata[req.body.id]["rev"]);
+          console.log("revdatalength found: " + restos[i].revdata[req.body.id].comments.length);
+  
+          let newComment = {
+            comimg: userimage,
+            comname: req.body.person,
+            com: req.body.reply,
+            likes: [],
+            dislikes: [],
+            urlname: userurl,
+            notdeleted: true,
+            isedited: false,
+          };
+  
+          restos[i].revdata[req.body.id].comments.push(newComment);
+          restos[i].revdata[req.body.id]["hascomments"] = true;
+          found = 1;
+          restos[i].save();
+          resp.sendStatus(200);
+  
+        }
+      }).catch(errorFn);
+    }).catch(errorFn);
+  }
 });
 
 
