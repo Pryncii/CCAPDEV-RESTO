@@ -558,9 +558,13 @@ form.addEventListener('submit', function(event) {
   var reviewtitle = document.getElementById('reviewtitle').value;
   var reviewimg = document.getElementById('reviewmedia-img').value;
   var reviewvid = document.getElementById('reviewmedia-vid').value;
+  var hasreviewvid = (document.getElementById('reviewmedia-vid').style.display == "inline");
+  var hasreviewimg = (document.getElementById('reviewmedia-img').style.display == "inline");
+
   console.log("person: " + person);
   console.log("review: " + review);
-  console.log("reviewtitle: " + reviewtitle);
+  console.log("reviewimg: " + reviewimg);
+  console.log("reviewvid: " + reviewvid);
   var rating = ""; 
 
   var ratingElements = 0;
@@ -576,9 +580,10 @@ form.addEventListener('submit', function(event) {
   console.log('IN review request');
   form.reset();
 
-  if(review!="" && !review.includes("Write a Review!") && reviewtitle!="" && !reviewtitle.includes("Review Title Here!")){
+  if(review!="" && !review.includes("Write a Review!") && reviewtitle!="" && !reviewtitle.includes("Review Title Here!") 
+      && (!reviewvid.includes("Image Media Here!") && hasreviewvid) && (!reviewimg.includes("Video Media Here!") && hasreviewimg)){
     $.post('/leavereview',{
-    review: review, person: person, rating: rating, resto: resto, reviewtitle: reviewtitle,
+    review: review, person: person, rating: rating, resto: resto, reviewtitle: reviewtitle, hasimg: hasreviewimg, reviewimg: reviewimg, hasvid: hasreviewvid, reviewvid: reviewvid
   }, function(data, status){
     if(status === 'success'){
       console.log('review request successful');
