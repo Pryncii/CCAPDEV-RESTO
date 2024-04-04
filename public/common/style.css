@@ -1427,6 +1427,11 @@ progress[value]::-webkit-progress-bar {
     font-size: 20px;
     padding-right: 10px;
 }
+
+.vidimg {
+    width: 50%;
+    height: 80%;
+}
   
 
 

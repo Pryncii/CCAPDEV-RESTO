@@ -563,10 +563,13 @@ form.addEventListener('submit', function(event) {
 
   console.log("person: " + person);
   console.log("review: " + review);
+  console.log("reviewimg: " + !review.includes("Write a Review!"));
   console.log("reviewimg: " + reviewimg);
   console.log("reviewvid: " + reviewvid);
-  console.log("reviewimg: " + !(reviewvid.includes("Video Media Here!") && hasreviewvid));
-  console.log("reviewvid: " + !(reviewimg.includes("Image Media Here!") && hasreviewimg));
+  console.log("reviewimg: " + !reviewvid.includes("Video Media Here!"));
+  console.log("reviewvid: " + hasreviewvid);
+  console.log("reviewimg: " + ((!reviewvid.includes("Video Media Here!") && hasreviewvid) || !hasreviewvid));
+  console.log("reviewvid: " + ((!reviewimg.includes("Image Media Here!") && hasreviewimg)  || !hasreviewimg));
   var rating = ""; 
 
   var ratingElements = 0;
@@ -585,7 +588,7 @@ form.addEventListener('submit', function(event) {
 
 
   if(review!="" && !review.includes("Write a Review!") && reviewtitle!="" && !reviewtitle.includes("Review Title Here!") 
-      && !(reviewvid.includes("Video Media Here!") && hasreviewvid) && !(reviewimg.includes("Image Media Here!") && hasreviewimg)){
+      && ((!reviewvid.includes("Video Media Here!") && reviewvid!="" && hasreviewvid) || !hasreviewvid) && ((!reviewimg.includes("Image Media Here!") && reviewimg!="" && hasreviewimg)  || !hasreviewimg)){
     $.post('/leavereview',{
     review: review, person: person, rating: rating, resto: resto, reviewtitle: reviewtitle, hasimg: hasreviewimg, reviewimg: reviewimg, hasvid: hasreviewvid, reviewvid: reviewvid
   }, function(data, status){

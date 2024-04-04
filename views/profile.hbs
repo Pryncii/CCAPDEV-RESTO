@@ -118,6 +118,12 @@
                                         <div class = "edited">(Review is edited)</div>
                                         {{/if}}
                                         {{this.rev}}
+                                        {{#if hasimg}}
+                                        </br><img class="vidimg" src="{{this.revimgpost}}">
+                                        {{/if}}
+                                        {{#if hasvid}}
+                                        </bR><iframe class="vidimg" src="{{this.revvid}}"></iframe>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
