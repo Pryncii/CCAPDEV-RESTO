@@ -701,3 +701,20 @@ $(document).on('click', '.replysend-button', function(){
 });  
 
 });//doc
+
+//ADD REVIEW
+var form = document.getElementById('revsearch');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  var restoLandmark= document.getElementById('revsearch-submit').getAttribute('data-person');
+  var restoname = document.getElementById('revsearch-submit').getAttribute('data-resto');
+  var searchQuery = document.getElementById('searchquery').value;
+ 
+       
+  form.reset();
+
+  
+window.location.href = "/restaurant/"+restoLandmark+"/"+restoname+"/"+searchQuery;
+});

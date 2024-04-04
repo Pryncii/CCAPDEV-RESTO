@@ -111,6 +111,13 @@
                         <div class = "reviewupper">
                             Recent Reviews
                         </div>
+                        <form id="revsearch" >
+                            <input type="text" name ="searchquery" id="searchquery" />
+                            <input type="submit" id="revsearch-submit" value="Search" data-landmark="{{restodata.landmark}}" data-resto="{{restodata.linkname}}"/>
+                        </form>
+                        <div class = "reviewupper">
+                            Recent Reviews
+                        </div>
                         <div class = "reviewlower">
                             <div class = "reviewtext">
                                 {{#eq checkUser user.urlname}}
