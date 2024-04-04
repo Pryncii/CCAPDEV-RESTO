@@ -171,7 +171,14 @@
                                         {{#if isedited}}
                                         <div class = "edited">(Review is edited)</div>
                                         {{/if}}
-                                        <div class="wrap">{{this.rev}}</div>
+                                        <div class="wrap">{{this.rev}}
+                                        {{#if hasimg}}
+                                        <img src="{{reviewimg}}">
+                                        {{/if}}
+                                        {{#if hasvid}}
+                                        <src="{{reviewvid}}">
+                                        {{/if}}
+                                        </div>
                                     </div> 
                                     
                                     <div class = "usereditbio2">
