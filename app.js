@@ -172,11 +172,10 @@ if (req.session.login_user && req.session.login_id) {
     if (err) {
       console.error('Error destroying session:', err);
       resp.status(500).send('Internal Server Error');
-    } else {
-      resp.redirect('/');
     }
   });
 }
+resp.redirect('/');
 })
 
 server.get('/login-page', function(req, resp){
