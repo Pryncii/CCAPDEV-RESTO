@@ -21,6 +21,14 @@
                 <button type="editpfp-button" class = "editpfp-button"  onclick="window.location.href='/menu-page'">Submit</button>
                 <a href="signup-page" style="color:#04AA6D">Create new account?</a></form>
                 {{#if errorMessage}}<p class="red-text">{{errorMessage}}</p>{{/if}}
+                {{#if link}}
+                <label for="user">Remembered User: {{name}}</label><br>
+                <div class = "remembered">
+                    <a href="{{link}}">
+                    <img src="{{img}}">
+                    </a>
+                </div>
+                {{/if}}
             </div>
         </div>
     </section>

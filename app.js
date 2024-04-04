@@ -180,12 +180,23 @@ let loggedInUser;
 let isUser;
 
 server.get('/login-page', function(req, resp){
- 
+  const today = new Date();
+ if(req.session.login_id == undefined || req.session.expiry <= today){
     resp.render('login',{
         layout      : 'index',
         title       : 'Login',
         sresto      : sresto
     });
+  } else if(req.session.login_id && req.session.expiry > today) {
+    resp.render('login',{
+      layout      : 'index',
+      title       : 'Login',
+      sresto      : sresto,
+      img         : loggedInUser.image,
+      link        : '/profile-page/'+loggedInUser.urlname+'/',
+      name        : loggedInUser.name
+  });
+  }
 });
 
 server.get('/signup-page', function(req, resp){
@@ -1445,7 +1456,6 @@ server.post('/replycomment', function(req, resp){
   //if its a resto commenting
   if(req.body.person == req.body.resto)
   {
-    resp.send({logged: req.session.login_id});
     restoModel.findOne({name: req.body.person}).then(function(user){
       console.log("user: " + user);
       let userimage = user.imagesquare;
@@ -1477,7 +1487,6 @@ server.post('/replycomment', function(req, resp){
           found = 1;
           restos[i].save();
           resp.sendStatus(200);
-          resp.send({logged: req.session.login_id});
 
         }
       }).catch(errorFn);
@@ -1516,11 +1525,11 @@ server.post('/replycomment', function(req, resp){
           found = 1;
           restos[i].save();
           resp.sendStatus(200);
-          resp.send({logged: req.session.login_id});
 
         }
       }).catch(errorFn);
     }).catch(errorFn);
+    
   }
 });
 
@@ -1536,7 +1545,6 @@ server.post('/leavereview', function(req, resp){
   console.log("req.body.review: " + req.body.review);
   console.log("req.body.reviewtitle: " + req.body.reviewtitle);
   if(req.session.login_id != undefined){
-    resp.send({logged: req.session.login_id});
   userModel.findOne({name: req.body.person}).then(function(user){
     console.log("user: " + user);
     console.log("user url: " + user.urlname);
@@ -1637,7 +1645,6 @@ server.post('/leavereview', function(req, resp){
                   found = 1;
                   users2[i].save();
                   resp.sendStatus(200);
-                  resp.send({logged: req.session.login_id});
 
               }
             }
@@ -1645,9 +1652,7 @@ server.post('/leavereview', function(req, resp){
       }).catch(errorFn);
     }).catch(errorFn);
   }).catch(errorFn);
-} else {
-  resp.send({logged: req.session.login_id});
-}
+} 
 });
    
 server.post('/editreview', function(req, resp){
