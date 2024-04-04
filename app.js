@@ -151,11 +151,16 @@ var sresto = {
   R_Square:[],
   Man_Res:[]
 }
+
 restoModel.find({}).then(function(aresto){
 for(r of aresto){
   sresto[r.landmark].push({linkname: r.linkname, name: r.name});
 }
 });
+
+//Use this to determine the user who's logged in
+let loggedInUser;
+let isUser;
 
 server.get('/', function(req, resp){
     resp.render('main', {
@@ -178,10 +183,6 @@ if (req.session.login_user && req.session.login_id) {
 }
 })
 
-//Use this to determine the user who's logged in
-let loggedInUser;
-let isUser;
-
 server.get('/login-page', function(req, resp){
   const today = new Date();
  if(req.session.login_id == undefined || req.session.expiry <= today){
@@ -191,16 +192,28 @@ server.get('/login-page', function(req, resp){
         sresto      : sresto
     });
   } else if(req.session.login_id && req.session.expiry > today) {
-    userModel.findOne({ _id: req.session.login_user }).lean().then(function (userfound) {
-    loggedInUser = userfound;
-    resp.render('login',{
-      layout      : 'index',
-      title       : 'Login',
-      sresto      : sresto,
-      img         : loggedInUser.image,
-      link        : '/profile-page/'+loggedInUser.urlname+'/',
-      name        : loggedInUser.name
+    userModel.findOne({ _id: req.session.login_user }).then(function (userfound) {
+    if(userfound){
+      resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+        sresto      : sresto,
+        img         : loggedInUser.image,
+        link        : '/profile-page/'+loggedInUser.urlname+'/',
+        name        : loggedInUser.name
+    });
+    } else {
+      restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
+      resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+        sresto      : sresto,
+        img         : loggedInUser.image,
+        link:     '/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/',
+        name        : loggedInUser.name
+    });
   });
+    }
 });
   }
 });
