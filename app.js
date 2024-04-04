@@ -187,16 +187,30 @@ server.get('/login-page', function(req, resp){
         sresto      : sresto
     });
   } else if(req.session.login_id && req.session.expiry > today) {
-    userModel.findOne({ _id: req.session.login_user }).lean().then(function (userfound) {
-    loggedInUser = userfound;
-    resp.render('login',{
-      layout      : 'index',
-      title       : 'Login',
-      sresto      : sresto,
-      img         : loggedInUser.image,
-      link        : '/profile-page/'+loggedInUser.urlname+'/',
-      name        : loggedInUser.name
+    userModel.findOne({ _id: req.session.login_user }).then(function (userfound) {
+    if(userfound){
+      loggedInUser = userfound;
+      resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+        sresto      : sresto,
+        img         : loggedInUser.image,
+        link        : '/profile-page/'+loggedInUser.urlname+'/',
+        name        : loggedInUser.name
+    });
+    } else {
+      restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
+      loggedInUser = restofound;
+      resp.render('login',{
+        layout      : 'index',
+        title       : 'Login',
+        sresto      : sresto,
+        img         : loggedInUser.image,
+        link:     '/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/',
+        name        : loggedInUser.name
+    });
   });
+    }
 });
   }
 });
