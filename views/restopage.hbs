@@ -124,6 +124,13 @@
                                 <form class="review-form-container" id="myForm" >
                                     <textarea name="review" id="reviewtitle" placeholder="Review Title Here!"></textarea>
                                     <textarea name="review" id="reviewcomment" placeholder="Write a Review!"></textarea>
+                                                                  
+                                    <textarea name="review" class="imgtextarea" id="reviewmedia-img" placeholder="Image Media Here!"></textarea>
+                                    <textarea name="review" class="vidtextarea" id="reviewmedia-vid" placeholder="Video Media Here!"></textarea>
+                                    <button type="button" class="editbio-button" id = "review-vid" onclick="toggleMediaButton('reviewmedia-vid');">Add Video</button>
+                                    <button type="button" class="editbio-button" id = "review-img" onclick="toggleMediaButton('reviewmedia-img');">Add Image</button>     
+                                    
+
                                         <div class="rate">
                                             <input type="radio" id="star5-resto" name="rate-resto" value="5" autocomplete= "off"/>
                                             <label for="star5-resto" title="text"> 5 stars</label>
@@ -136,9 +143,11 @@
                                             <input type="radio" id="star1-resto" name="rate-resto" value="1"  autocomplete= "off"/>
                                             <label for="star1-resto" title="text"> 1 star</label>
                                         </div>
-                                       
-                                    <button type="submitreview-button" class="editbio-button" id = "review" data-person="{{user.name}}" data-resto="{{restodata.name}}">Submit</button>
+
+                                
+                                    <button type="submit" class="editbio-button" id = "review" data-person="{{user.name}}" data-resto="{{restodata.name}}">Submit</button>
                                 </form>
+                                    
                                 {{/eq}}
                             </div>
 
