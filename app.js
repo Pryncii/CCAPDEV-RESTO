@@ -159,7 +159,7 @@ server.get('/login-page', function(req, resp){
     } else {
       restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
         if(restofound){
-          resp.redirect('/restaurant/'+userfound.landmark+'/'+userfound.linkname+'/');
+          resp.redirect('/restaurant/'+restofound.landmark+'/'+restofound.linkname+'/');
         }
   else {
     resp.render('login',{
