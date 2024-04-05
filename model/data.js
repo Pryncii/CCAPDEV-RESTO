@@ -1,4 +1,21 @@
 
+const mongoose = require('mongoose');
+// Define the database URI
+const dbURI = 'mongodb+srv://princebuencamino:luPL7JN0OU5OKJS1@cluster0.46y950k.mongodb.net/restodb';
+const envURI = process.env.dbURI;
+// Connect to MongoDB
+mongoose.connect(dbURI).catch (error => console.log(error));
+
+// Get the default connection
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB successfully.');
+});
+
+module.exports = db;
+
 const commentSchema = new mongoose.Schema({
     comimg: { type: String },
     comname: { type: String },
