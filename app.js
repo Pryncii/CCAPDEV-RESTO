@@ -153,15 +153,15 @@ server.get('/login-page', function(req, resp){
         sresto      : sresto
     });
   } else if(req.session.login_id && req.session.expiry > today) {
-    userModel.findOne({ _id: req.session.login_user }).then(function (userfound) {
+    userModel.findOne({ _id: req.session.login_user }).lean().then(function (userfound) {
     if(userfound){
       resp.render('login',{
         layout      : 'index',
         title       : 'Login',
         sresto      : sresto,
-        img         : loggedInUser.image,
-        link        : '/profile-page/'+loggedInUser.urlname+'/',
-        name        : loggedInUser.name
+        img         : userfound.image,
+        link        : '/profile-page/'+userfound.urlname+'/',
+        name        : userfound.name
     }).catch(errorFn);
     } else {
       restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
@@ -170,9 +170,9 @@ server.get('/login-page', function(req, resp){
         layout      : 'index',
         title       : 'Login',
         sresto      : sresto,
-        img         : loggedInUser.image,
-        link:     '/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/',
-        name        : loggedInUser.name
+        img         : restofound.image,
+        link:     '/restaurant/'+restofound.landmark+'/'+restofound.linkname+'/',
+        name        : restofound.name
     }).catch(errorFn);
   } else {
     resp.render('login',{
