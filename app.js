@@ -153,28 +153,15 @@ server.get('/login-page', function(req, resp){
         sresto      : sresto
     });
   } else if(req.session.login_id && req.session.expiry > today) {
-    userModel.findOne({ _id: req.session.login_user }).then(function (userfound) {
+    userModel.findOne({ _id: req.session.login_user }).lean().then(function (userfound) {
     if(userfound){
-      resp.render('login',{
-        layout      : 'index',
-        title       : 'Login',
-        sresto      : sresto,
-        img         : loggedInUser.image,
-        link        : '/profile-page/'+loggedInUser.urlname+'/',
-        name        : loggedInUser.name
-    }).catch(errorFn);
+      resp.redirect('/profile-page/'+userfound.urlname+'/');
     } else {
-      restoModel.findOne({ _id: req.session.login_user }).then(function (restofound) {
+      restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
         if(restofound){
-      resp.render('login',{
-        layout      : 'index',
-        title       : 'Login',
-        sresto      : sresto,
-        img         : loggedInUser.image,
-        link:     '/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/',
-        name        : loggedInUser.name
-    }).catch(errorFn);
-  } else {
+          resp.redirect('/restaurant/'+restofound.landmark+'/'+restofound.linkname+'/');
+        }
+  else {
     resp.render('login',{
       layout      : 'index',
       title       : 'Login',
@@ -1374,6 +1361,7 @@ server.post('/deletecomment', function(req, resp){
   //user -> revdata
   //resto -> revdata -> comment
 
+  // FOR DELETING COMMENTS THAT ARE IN REVIEW
   if(req.body.comin != -1){
     restoModel.find({ name: req.body.restoname }).then(function(restos){
 
@@ -1404,7 +1392,7 @@ server.post('/deletecomment', function(req, resp){
   }).catch(errorFn);
   }
   else {
-    // FOR DELETING COMMENTS THAT ARE IN REVIEW
+    //DELETING REVIEWS
     restoModel.find({ name: req.body.restoname }).then(function(restos){
       let found = 0;
       let found2 = 0;
@@ -1415,6 +1403,21 @@ server.post('/deletecomment', function(req, resp){
         found = 1;
         let revcontent = restos[i].revdata[req.body.revin]["rev"];
         let revresto = restos[i]["name"];
+
+        let newrevs = [];
+        for(let pls = 0; pls <  restos[i].revdata.length;)
+        {
+          if(restos[i].revdata[req.body.revin] == restos[i].revdata[pls]){
+            pls++;
+          }
+          else{
+            newrevs.push(restos[i].revdata[pls]);
+            pls++;
+            console.log(restos[i].revdata[pls]);
+          }        
+        }
+        restos[i].revdata = newrevs;
+        console.log(newrevs);
         restos[i].save();
       
         userModel.find({ name: req.body.username }).then(function(users){
@@ -1798,9 +1801,7 @@ process.on('SIGTERM',finalClose);
 process.on('SIGINT',finalClose);  
 process.on('SIGQUIT', finalClose);
 
-/*
-const mod_c = require('./controller/routes');
-mod_c.add(server);*/
+//REPUSHS
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){
