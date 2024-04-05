@@ -1374,6 +1374,7 @@ server.post('/deletecomment', function(req, resp){
   //user -> revdata
   //resto -> revdata -> comment
 
+  // FOR DELETING COMMENTS THAT ARE IN REVIEW
   if(req.body.comin != -1){
     restoModel.find({ name: req.body.restoname }).then(function(restos){
 
@@ -1392,7 +1393,7 @@ server.post('/deletecomment', function(req, resp){
   }).catch(errorFn);
   }
   else {
-    // FOR DELETING COMMENTS THAT ARE IN REVIEW
+    //DELETING REVIEWS
     restoModel.find({ name: req.body.restoname }).then(function(restos){
       let found = 0;
       let found2 = 0;
@@ -1403,6 +1404,21 @@ server.post('/deletecomment', function(req, resp){
         found = 1;
         let revcontent = restos[i].revdata[req.body.revin]["rev"];
         let revresto = restos[i]["name"];
+
+        let newrevs = [];
+        for(let pls = 0; pls <  restos[i].revdata.length;)
+        {
+          if(restos[i].revdata[req.body.revin] == restos[i].revdata[pls]){
+            pls++;
+          }
+          else{
+            newrevs.push(restos[i].revdata[pls]);
+            pls++;
+            console.log(restos[i].revdata[pls]);
+          }        
+        }
+        restos[i].revdata = newrevs;
+        console.log(newrevs);
         restos[i].save();
       
         userModel.find({ name: req.body.username }).then(function(users){
