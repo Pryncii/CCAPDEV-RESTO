@@ -104,6 +104,7 @@ for(r of aresto){
 //Use this to determine the user who's logged in
 let loggedInUser;
 let isUser;
+
 //comment
 server.get('/', function(req, resp){
     resp.render('main', {
@@ -1747,10 +1748,11 @@ server.post('/extendrestosession', function(req, resp){
   resp.redirect('/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/?=sessionextended');
 });
 
+const modelmongo = require('./model/data.js');  
 
 function finalClose(){
     console.log('Close connection at the end!');
-    mongoose.connection.close();
+    modelmongo.mongoose.connection.close();
     process.exit();
 }
 
