@@ -162,9 +162,10 @@ server.get('/login-page', function(req, resp){
         img         : loggedInUser.image,
         link        : '/profile-page/'+loggedInUser.urlname+'/',
         name        : loggedInUser.name
-    });
+    }).catch(errorFn);
     } else {
       restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
+        if(restofound){
       resp.render('login',{
         layout      : 'index',
         title       : 'Login',
@@ -172,7 +173,14 @@ server.get('/login-page', function(req, resp){
         img         : loggedInUser.image,
         link:     '/restaurant/'+loggedInUser.landmark+'/'+loggedInUser.linkname+'/',
         name        : loggedInUser.name
-    });
+    }).catch(errorFn);
+  } else {
+    resp.render('login',{
+      layout      : 'index',
+      title       : 'Login',
+      sresto      : sresto
+  });
+  }
   });
     }
 });
