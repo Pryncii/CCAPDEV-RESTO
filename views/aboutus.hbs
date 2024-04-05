@@ -1,0 +1,38 @@
+
+
+<div class = "flexmain">
+    {{> header}}
+    
+    <div class = "headerright">
+        <button type="logout-btn" class = "logout-btn"  onclick="window.location.href='/logout'">Logout</button>
+        {{#eq checkUser user.urlname}}
+        <a href="/profile-page/{{user.urlname}}"><img src = "{{user.image}}"></a>
+        {{/eq}}
+        
+        {{#eq checkUser user.linkname}}
+        <a href="/restaurant/{{user.landmark}}/{{user.linkname}}"><img src = "{{user.imagesquare}}"></a>
+        {{/eq}}
+    </div>
+</div>
+</div>
+<div class="headerholder"></div>
+<div class="inside">
+    {{> sidebar}}
+    <div class = "content">
+    <div class="aboutus-list">
+        NPM PACKAGES
+    <ul>
+        <li>bcrypt: ^5.1.1</li>
+        <li>body-parser: ^1.20.2</li>
+        <li>connect-mongodb-session: ^5.0.0</li>
+        <li>express: ^4.19.2</li>
+        <li>express-handlebars: ^7.1.2</li>
+        <li>express-session: ^1.18.0</li>
+        <li>express-validator: ^7.0.1</li>
+        <li>mongodb: ^6.3.0,</li>
+        <li>bson:"^6.2.0,</li>
+        <li>mongoose: ^8.0.3</li>
+    </ul>
+    </div>
+</div>
+</div>

@@ -115,6 +115,23 @@ server.get('/', function(req, resp){
     });
 });
 
+server.get('/aboutus', function(req, resp){
+  if(req.session.login_id == undefined){
+    loggedInUser = {};
+    loggedInUser.user = "guest";
+    isUser = "guest";
+  }
+  resp.render('aboutus',{
+    layout      : 'index',
+    title       : "About Us",
+    user        : loggedInUser,
+    checkUser: isUser,
+    sresto      : sresto
+});
+});
+
+
+
 server.get('/logout', function(req, resp){
 if (req.session.login_user && req.session.login_id) {
   req.session.destroy(function(err) {

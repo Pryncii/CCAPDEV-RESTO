@@ -1,3 +1,23 @@
+.aboutus-list{
+
+    flex-direction: column;
+    display: flex;
+    align-self: center;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 40px;
+    background-color: #448753;
+    width:50%;
+    color: white;
+    margin: auto;
+}
+
+.aboutus-list > ul{
+    font-size: 25px;
+    color: white;
+    text-align: left;
+}
+
 /*stars*/
 #outer {
     position:relative;
@@ -183,6 +203,7 @@ height:20px;
     font-size: 150px;
     color:white;
     text-align: center;
+    align-content: center;
     background-image: url("https://miro.medium.com/v2/resize:fit:3840/1*s0F0i9hHCwc756pbaYCWrQ.png");
 }
 

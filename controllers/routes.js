@@ -1628,6 +1628,22 @@ server.post('/editcomment', function(req, resp){
   }).catch(errorFn); 
 });
 
+
+server.get('/aboutus', function(req, resp){
+  if(req.session.login_id == undefined){
+    loggedInUser = {};
+    loggedInUser.user = "guest";
+    isUser = "guest";
+  }
+  resp.render('aboutus',{
+    layout      : 'index',
+    title       : "About Us",
+    user        : loggedInUser,
+    checkUser: isUser,
+    sresto      : sresto
+});
+});
+
 server.post('/extendsession', function(req, resp){
   weeks.setDate(weeks.getDate() + 21); 
   req.session.expiry = weeks;
