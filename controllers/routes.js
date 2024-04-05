@@ -1,4 +1,4 @@
-const responder = require('../models/data');
+const responder = require('../model/data');
 
 function add(server){
   function errorFn(err){

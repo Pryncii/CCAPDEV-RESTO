@@ -22,6 +22,8 @@ const hbs = handlebars.create({
     }
 });
 
+
+
 // Set handlebars engine
 server.engine('hbs', hbs.engine);
 server.set('view engine', 'hbs');
@@ -105,7 +107,6 @@ for(r of aresto){
 let loggedInUser;
 let isUser;
 
-//comment
 server.get('/', function(req, resp){
     resp.render('main', {
       layout: 'index',

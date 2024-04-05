@@ -82,11 +82,6 @@ let appdata = {
     'userModel'   : userModel
 };
 
-function finalClose(){
-    console.log('Close connection at the end!');
-    mongoose.connection.close();
-    process.exit();
-}
 
 module.exports.appdata = appdata;
 module.exports.mongoose = mongoose;
