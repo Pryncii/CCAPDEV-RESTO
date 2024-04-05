@@ -307,13 +307,15 @@ server.post('/read-user', [ check('user').notEmpty(),
                               loggedInUser = logged;
                               isUser = loggedInUser['linkname'];
                               let getratesum = 0;
-                                let likeThumb = "";
-                                let dislikeThumb = "";
+                                let likeThumb = 0;
+                                let dislikeThumb = 0;
                                 let clikeThumb = [];
                                 let cdislikeThumb = [];
                                 let undeleted = 0;
 
                                 for(let j = 0; j < restos.revdata.length; j++){
+                                  let likeComm = 0;
+                                        let dislikeComm = 0;
                                 if(restos.revdata[j]["notdeleted"]==true){
                                         for(let k = 0; k < restos.revdata[j].revrating.length; k++){ 
                                             if(restos.revdata[j].revrating[k] == "★" ){ 
@@ -321,8 +323,7 @@ server.post('/read-user', [ check('user').notEmpty(),
                                             }
                                         }
                                         undeleted+=1;
-                                        let likeComm = "";
-                                        let dislikeComm = "";
+                                        
                                         if (restos.revdata[j].hascomments != false) {
                                             
                                             for(let x = 0; x < restos.revdata[j].comments.length; x++){
@@ -447,13 +448,15 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
 
       const restosJson = restosq.toJSON();
       let getratesum = 0;
-      let likeThumb = "";
-      let dislikeThumb = "";
+      let likeThumb = 0;
+      let dislikeThumb = 0;
       let clikeThumb = [];
       let cdislikeThumb = [];
       let undeleted = 0;
         
       for(let j = 0; j < restos.revdata.length; j++){
+        let likeComm = 0;
+          let dislikeComm = 0;
         if(restos.revdata[j]["notdeleted"]==true){
           for(let k = 0; k < restos.revdata[j].revrating.length; k++){
               if(restos.revdata[j].revrating[k] == "★" ){
@@ -461,8 +464,7 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
               }
           }
           undeleted+=1;
-          let likeComm = "";
-          let dislikeComm = "";
+          
 
           if (restos.revdata[j].hascomments != false) {   
             for(let x = 0; x < restos.revdata[j].comments.length; x++){
