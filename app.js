@@ -1408,7 +1408,7 @@ server.post('/deletecomment', function(req, resp){
         let newrevs = [];
         for(let pls = 0; pls <  restos[i].revdata.length;)
         {
-          if(restos[i].revdata[req.body.revin]["rev"] == restos[i].revdata[pls]["rev"]){
+          if(restos[i].revdata[req.body.revin] == restos[i].revdata[pls]){
             pls++;
           }
           else{
