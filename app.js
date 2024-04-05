@@ -1383,6 +1383,18 @@ server.post('/deletecomment', function(req, resp){
       console.log("comment found: " + restos[i].revdata[req.body.revin].comments[req.body.comin]["com"]);
       restos[i].revdata[req.body.revin].comments[req.body.comin]["notdeleted"] = false;
       found = 1;  
+      
+      let count=0;
+      for(comment of restos[i].revdata[req.body.revin].comments){
+        if(comment.notdeleted){
+          count+=1;
+        }
+      }
+      
+      if(count==0){
+        restos[i].revdata[req.body.revin].hascomments=false;
+      }
+      
       restos[i].save().then(function (result) {
         if(result){
           resp.sendStatus(200);
