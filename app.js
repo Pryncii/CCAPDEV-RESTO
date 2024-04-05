@@ -164,7 +164,7 @@ server.get('/login-page', function(req, resp){
         name        : loggedInUser.name
     }).catch(errorFn);
     } else {
-      restoModel.findOne({ _id: req.session.login_user }).then(function (restofound) {
+      restoModel.findOne({ _id: req.session.login_user }).lean().then(function (restofound) {
         if(restofound){
       resp.render('login',{
         layout      : 'index',
