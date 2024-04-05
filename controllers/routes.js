@@ -314,15 +314,16 @@ server.post('/read-user', [ check('user').notEmpty(),
                                 let undeleted = 0;
 
                                 for(let j = 0; j < restos.revdata.length; j++){
-                                if(restos.revdata[j]["notdeleted"]==true){
+                                  let likeComm = "";
+                                  let dislikeComm = "";
+                                
                                         for(let k = 0; k < restos.revdata[j].revrating.length; k++){ 
                                             if(restos.revdata[j].revrating[k] == "★" ){ 
                                                 getratesum+= 1;
                                             }
                                         }
-                                        undeleted+=1;
-                                        let likeComm = "";
-                                        let dislikeComm = "";
+                                       
+                                        
                                         if (restos.revdata[j].hascomments != false) {
                                             
                                             for(let x = 0; x < restos.revdata[j].comments.length; x++){
@@ -350,6 +351,8 @@ server.post('/read-user', [ check('user').notEmpty(),
                                         }else {
                                             dislikeThumb+= 0;
                                         }
+                                    if(restos.revdata[j]["notdeleted"]==true){ 
+                                          undeleted+=1;
                                     }
 
                                 }
@@ -454,16 +457,16 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
       let undeleted = 0;
         
       for(let j = 0; j < restos.revdata.length; j++){
-        if(restos.revdata[j]["notdeleted"]==true){
+        let likeComm = "";
+        let dislikeComm = "";
+        
           for(let k = 0; k < restos.revdata[j].revrating.length; k++){
               if(restos.revdata[j].revrating[k] == "★" ){
                   getratesum+= 1;
               }
           }
-          undeleted+=1;
-          let likeComm = "";
-          let dislikeComm = "";
-
+          
+          
           if (restos.revdata[j].hascomments != false) {   
             for(let x = 0; x < restos.revdata[j].comments.length; x++){
                 
@@ -491,7 +494,10 @@ server.get('/restaurant/:landmark/:linkname', function(req, resp){
           }else {
               dislikeThumb+= 0;
           }
-        }
+
+          if(restos.revdata[j]["notdeleted"]==true){
+            undeleted+=1;
+          }
       }
 
       //console.log("likes:"+likeThumb);
