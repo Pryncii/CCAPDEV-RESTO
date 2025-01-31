@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "73188be5-de65-4b9f-91ce-ab8b6629a044",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Client Browser",
@@ -154,6 +154,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -237,7 +238,6 @@
               ]
             },
             "id": "aa7293bb-d241-42ce-931a-89ab396838a9",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Web Application",
@@ -276,6 +276,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -359,7 +360,6 @@
               ]
             },
             "id": "6f527e07-618c-4f74-82a3-e26b801c2cb8",
-            "zIndex": 3,
             "data": {
               "type": "tm.Store",
               "name": "MongoDB",
@@ -399,6 +399,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -482,7 +483,6 @@
               ]
             },
             "id": "0a2e0b1c-da29-4246-88db-166f227f8edf",
-            "zIndex": 4,
             "data": {
               "type": "tm.Store",
               "name": "Ethereum Node",
@@ -701,7 +701,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Authentication\nResponse",
-              "description": "",
+              "description": "Either render dashboard or an error message",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -723,8 +723,12 @@
             },
             "vertices": [
               {
+                "x": 420,
+                "y": 252.66999999999996
+              },
+              {
                 "x": 390,
-                "y": 260
+                "y": 280
               }
             ]
           }
