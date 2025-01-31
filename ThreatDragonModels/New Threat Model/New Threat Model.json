@@ -1713,7 +1713,7 @@
           },
           {
             "position": {
-              "x": 370,
+              "x": 375,
               "y": 155
             },
             "size": {
@@ -1996,7 +1996,7 @@
             },
             "vertices": [
               {
-                "x": 310,
+                "x": 320,
                 "y": 180
               }
             ]
@@ -2021,7 +2021,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "",
+              "name": "Candidate registration\nForm",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -2033,9 +2033,9 @@
               "threats": []
             },
             "labels": [
-              ""
+              "Candidate registration\nForm"
             ],
-            "id": "feff30bf-4ae5-4b19-8ac0-dbdbb87830d1",
+            "id": "e9221ea1-9aa2-459b-a949-4bf06ec2632e",
             "source": {
               "cell": "e88cf071-25b4-4e67-8b4d-0e42d20a2b6a"
             },
@@ -2044,10 +2044,94 @@
             },
             "vertices": [
               {
-                "x": 310,
-                "y": 250
+                "x": 320,
+                "y": 260
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Candidate\nDetails",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Candidate\nDetails"
+            ],
+            "id": "54ee523f-043e-46c2-b440-8053b16e921b",
+            "source": {
+              "cell": "e78a95ea-0edd-477f-b955-963a17ee4373"
+            },
+            "target": {
+              "cell": "e88cf071-25b4-4e67-8b4d-0e42d20a2b6a"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Complete candidate information",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Complete candidate information"
+            ],
+            "id": "b5d5f437-751b-4e90-9fc3-90216c302dc3",
+            "source": {
+              "cell": "e88cf071-25b4-4e67-8b4d-0e42d20a2b6a"
+            },
+            "target": {
+              "cell": "eeb5e507-8163-49b4-89db-2d3555a0f9c4"
+            }
           }
         ]
       },
