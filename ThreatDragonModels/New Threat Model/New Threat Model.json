@@ -2860,7 +2860,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Voter Browser"
+                "text": "Client Browser"
               },
               "body": {
                 "stroke": "#333333",
@@ -2870,6 +2870,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -2953,16 +2954,22 @@
               ]
             },
             "id": "f1e84eb3-6305-4a00-8688-9bf5f1ad7efa",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
-              "name": "Voter Browser",
+              "name": "Client Browser",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": []
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -2989,6 +2996,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -3072,7 +3080,6 @@
               ]
             },
             "id": "c32b334a-04dd-45fc-9856-592ae9af05a6",
-            "zIndex": 2,
             "data": {
               "type": "tm.Store",
               "name": "MongoDB",
@@ -3112,6 +3119,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -3195,7 +3203,6 @@
               ]
             },
             "id": "2158d245-8e9d-443a-9e81-398f3b5f203b",
-            "zIndex": 3,
             "data": {
               "type": "tm.Store",
               "name": "Ethereum Node",
@@ -3232,6 +3239,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -3315,7 +3323,6 @@
               ]
             },
             "id": "d8379f05-3eb0-45e2-afbe-76114d0a1890",
-            "zIndex": 4,
             "data": {
               "type": "tm.Process",
               "name": "Web Application",
