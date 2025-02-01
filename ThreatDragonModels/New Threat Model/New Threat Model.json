@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "65f52313-1c5e-4bf1-bfb9-934ec18ef490",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Web Application",
@@ -160,6 +160,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -243,7 +244,6 @@
               ]
             },
             "id": "014a9b70-2ec1-4022-974e-ed2ec75f943c",
-            "zIndex": 2,
             "data": {
               "type": "tm.Store",
               "name": "MongoDB",
@@ -283,6 +283,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -366,7 +367,6 @@
               ]
             },
             "id": "384929e9-3d46-406c-8408-27c8b52e8380",
-            "zIndex": 3,
             "data": {
               "type": "tm.Store",
               "name": "Ethereum Node",
@@ -384,8 +384,8 @@
           },
           {
             "position": {
-              "x": 189,
-              "y": 190
+              "x": 159,
+              "y": 180
             },
             "size": {
               "width": 112.5,
@@ -403,6 +403,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -486,7 +487,6 @@
               ]
             },
             "id": "cc4cf143-7204-44cb-a599-e19788b28d43",
-            "zIndex": 4,
             "data": {
               "type": "tm.Actor",
               "name": "Client Browser",
@@ -497,92 +497,6 @@
               "providesAuthentication": false,
               "threats": []
             }
-          },
-          {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "Trust Boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "Trust Boundary"
-                  }
-                }
-              }
-            ],
-            "id": "4fb453c3-b951-4115-aa3a-08d07b58505e",
-            "source": {
-              "x": 360,
-              "y": 30
-            },
-            "target": {
-              "x": 360,
-              "y": 400
-            },
-            "vertices": [
-              {
-                "x": 380,
-                "y": 220
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Voter Credentials",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Voter Credentials"
-            ],
-            "id": "b6cc04bd-2f7a-4474-a0c4-2b1df34dc571",
-            "source": {
-              "cell": "cc4cf143-7204-44cb-a599-e19788b28d43"
-            },
-            "target": {
-              "cell": "65f52313-1c5e-4bf1-bfb9-934ec18ef490"
-            },
-            "vertices": [
-              {
-                "x": 390,
-                "y": 180
-              }
-            ]
           },
           {
             "shape": "flow",
@@ -627,7 +541,7 @@
             },
             "vertices": [
               {
-                "x": 460,
+                "x": 450,
                 "y": 130
               }
             ]
@@ -700,6 +614,56 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "Voter Credentials",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Voter Credentials"
+            ],
+            "id": "b6cc04bd-2f7a-4474-a0c4-2b1df34dc571",
+            "source": {
+              "cell": "cc4cf143-7204-44cb-a599-e19788b28d43",
+              "port": "419befa2-a71d-4521-bd24-256437467857"
+            },
+            "target": {
+              "cell": "65f52313-1c5e-4bf1-bfb9-934ec18ef490",
+              "port": "ae278fdc-f429-40be-8cfc-cec1bb4433b7"
+            },
+            "vertices": [
+              {
+                "x": 360,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "Authentication\nResponse",
               "description": "",
               "outOfScope": false,
@@ -716,7 +680,8 @@
             ],
             "id": "49379753-c828-44c3-b69f-9b266b0b74da",
             "source": {
-              "cell": "65f52313-1c5e-4bf1-bfb9-934ec18ef490"
+              "cell": "65f52313-1c5e-4bf1-bfb9-934ec18ef490",
+              "port": "ae278fdc-f429-40be-8cfc-cec1bb4433b7"
             },
             "target": {
               "cell": "cc4cf143-7204-44cb-a599-e19788b28d43",
@@ -724,12 +689,46 @@
             },
             "vertices": [
               {
-                "x": 380,
+                "x": 370,
                 "y": 240
-              },
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
               {
-                "x": 320,
-                "y": 240
+                "attrs": {
+                  "label": {
+                    "text": "Trust Boundary"
+                  }
+                }
+              }
+            ],
+            "id": "4fb453c3-b951-4115-aa3a-08d07b58505e",
+            "source": {
+              "x": 380,
+              "y": 30
+            },
+            "target": {
+              "x": 380,
+              "y": 400
+            },
+            "vertices": [
+              {
+                "x": 360,
+                "y": 210
               }
             ]
           }
