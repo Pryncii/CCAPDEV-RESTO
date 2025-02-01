@@ -2184,7 +2184,7 @@
         "cells": [
           {
             "position": {
-              "x": 130,
+              "x": 140,
               "y": 220
             },
             "size": {
@@ -2203,6 +2203,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -2286,7 +2287,6 @@
               ]
             },
             "id": "e13a96aa-1b68-4716-b204-f0cdd9f876bc",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Client Browser",
@@ -2297,140 +2297,6 @@
               "providesAuthentication": false,
               "threats": []
             }
-          },
-          {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "Trust Boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "Trust Boundary"
-                  }
-                }
-              }
-            ],
-            "id": "75d5ceb6-d1bd-4021-8f2c-ec5488d39498",
-            "source": {
-              "x": 280,
-              "y": 130
-            },
-            "target": {
-              "x": 300,
-              "y": 380
-            },
-            "vertices": [
-              {
-                "x": 320,
-                "y": 260
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Admin Request",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Admin Request"
-            ],
-            "id": "4cbecb03-9035-4000-a90e-dd95a63d1bfd",
-            "source": {
-              "cell": "e13a96aa-1b68-4716-b204-f0cdd9f876bc"
-            },
-            "target": {
-              "cell": "20a2ec05-3581-498b-9cc0-e6a2a222b4f2"
-            },
-            "vertices": [
-              {
-                "x": 340,
-                "y": 210
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Candidate Registration\nForm if 1 request",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Candidate Registration\nForm if 1 request"
-            ],
-            "id": "6f16c0f7-fd05-4951-a03b-5dfe390c40fe",
-            "source": {
-              "cell": "20a2ec05-3581-498b-9cc0-e6a2a222b4f2"
-            },
-            "target": {
-              "cell": "e13a96aa-1b68-4716-b204-f0cdd9f876bc"
-            },
-            "vertices": [
-              {
-                "x": 330,
-                "y": 300
-              }
-            ]
           },
           {
             "shape": "flow",
@@ -2475,6 +2341,144 @@
             }
           },
           {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Trust Boundary"
+                  }
+                }
+              }
+            ],
+            "id": "75d5ceb6-d1bd-4021-8f2c-ec5488d39498",
+            "source": {
+              "x": 360,
+              "y": 50
+            },
+            "target": {
+              "x": 370,
+              "y": 450
+            },
+            "vertices": [
+              {
+                "x": 340,
+                "y": 250
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Candidate Registration\nForm if 1 request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Candidate Registration\nForm if 1 request"
+            ],
+            "id": "6f16c0f7-fd05-4951-a03b-5dfe390c40fe",
+            "source": {
+              "x": 420,
+              "y": 250
+            },
+            "target": {
+              "cell": "e13a96aa-1b68-4716-b204-f0cdd9f876bc",
+              "port": "38690288-31bf-40f2-a730-bf08b02a2a9c"
+            },
+            "vertices": [
+              {
+                "x": 340,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Admin Request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Admin Request"
+            ],
+            "id": "4cbecb03-9035-4000-a90e-dd95a63d1bfd",
+            "source": {
+              "cell": "e13a96aa-1b68-4716-b204-f0cdd9f876bc",
+              "port": "38690288-31bf-40f2-a730-bf08b02a2a9c"
+            },
+            "target": {
+              "cell": "20a2ec05-3581-498b-9cc0-e6a2a222b4f2",
+              "port": "fa2afb13-b58b-462f-aae6-61cca67fa359"
+            },
+            "vertices": [
+              {
+                "x": 340,
+                "y": 210
+              }
+            ]
+          },
+          {
             "position": {
               "x": 420,
               "y": 200
@@ -2495,6 +2499,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -2578,7 +2583,6 @@
               ]
             },
             "id": "20a2ec05-3581-498b-9cc0-e6a2a222b4f2",
-            "zIndex": 11,
             "data": {
               "type": "tm.Process",
               "name": "Web Application",
@@ -2617,6 +2621,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -2700,7 +2705,6 @@
               ]
             },
             "id": "e8360109-29e8-496d-8d0c-d57f6fff5ff8",
-            "zIndex": 12,
             "data": {
               "type": "tm.Store",
               "name": "MongoDB",
@@ -2740,6 +2744,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -2823,7 +2828,6 @@
               ]
             },
             "id": "c87ad7e4-83ee-4057-a5c4-00bfa428b940",
-            "zIndex": 13,
             "data": {
               "type": "tm.Store",
               "name": "Ethereum Node",
