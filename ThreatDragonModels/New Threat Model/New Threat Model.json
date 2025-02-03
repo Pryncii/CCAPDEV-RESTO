@@ -1469,7 +1469,7 @@
         "cells": [
           {
             "position": {
-              "x": 140,
+              "x": 130,
               "y": 200
             },
             "size": {
@@ -1626,7 +1626,7 @@
             },
             "vertices": [
               {
-                "x": 370,
+                "x": 360,
                 "y": 150
               }
             ]
@@ -1674,7 +1674,7 @@
             },
             "vertices": [
               {
-                "x": 370,
+                "x": 360,
                 "y": 260
               }
             ]
@@ -1802,8 +1802,104 @@
             },
             "vertices": [
               {
-                "x": 370,
+                "x": 360,
                 "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Voter registration form\nif 1 request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Voter registration form\nif 1 request"
+            ],
+            "id": "5e845e46-7b81-42d6-a95b-c953f34b0226",
+            "source": {
+              "cell": "83b6256b-d4ac-44d1-a7a0-9095cf40657c"
+            },
+            "target": {
+              "cell": "ee0d627c-8a97-4c63-b529-c1285fe9b3b8"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Form with voter details",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Form with voter details"
+            ],
+            "id": "ae6ef7b1-5cff-4f91-9593-f21ec07a46ed",
+            "source": {
+              "cell": "ee0d627c-8a97-4c63-b529-c1285fe9b3b8"
+            },
+            "target": {
+              "cell": "83b6256b-d4ac-44d1-a7a0-9095cf40657c"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 120
               }
             ]
           },
