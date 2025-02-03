@@ -928,7 +928,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Admin \nauthorization\nresponse",
+              "name": "Admin \nPermission\nresponse",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -940,7 +940,7 @@
               "threats": []
             },
             "labels": [
-              "Admin \nauthorization\nresponse"
+              "Admin \nPermission\nresponse"
             ],
             "id": "64ebd391-63bb-45b7-a110-c529d2215ab4",
             "source": {
@@ -976,7 +976,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Admin\n authorization\nrequest",
+              "name": "Admin\nPermission\nrequest",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -988,7 +988,7 @@
               "threats": []
             },
             "labels": [
-              "Admin\n authorization\nrequest"
+              "Admin\nPermission\nrequest"
             ],
             "id": "b3da6e71-4d48-4c65-b5f0-c775ad7bc8c5",
             "source": {
