@@ -2414,7 +2414,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Voter/s details (csv or form)",
+              "name": "Candidate/s details (csv or form)",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -2426,7 +2426,7 @@
               "threats": []
             },
             "labels": [
-              "Voter/s details (csv or form)"
+              "Candidate/s details (csv or form)"
             ],
             "id": "ff4271ab-ff7f-4780-9983-e1a371fd80f6",
             "source": {
