@@ -2594,7 +2594,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Form with voter Details",
+              "name": "Form with Candidate Details",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -2606,7 +2606,7 @@
               "threats": []
             },
             "labels": [
-              "Form with voter Details"
+              "Form with Candidate Details"
             ],
             "id": "3b31495f-e788-4469-bce2-0a0b0fc5eb2a",
             "source": {
