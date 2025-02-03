@@ -518,7 +518,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Authorization\nRequest",
+              "name": "Voter Permission\nRequest",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -530,7 +530,7 @@
               "threats": []
             },
             "labels": [
-              "Authorization\nRequest"
+              "Voter Permission\nRequest"
             ],
             "id": "fb5d70b9-63f7-4d65-9f87-d3dcf4ba651c",
             "source": {
@@ -566,7 +566,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Authorization\nResponse",
+              "name": "Voter Permission\nResponse",
               "description": "Either error message\nor render dashboard",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -578,7 +578,7 @@
               "threats": []
             },
             "labels": [
-              "Authorization\nResponse"
+              "Voter Permission\nResponse"
             ],
             "id": "1199d5b1-426e-469c-a839-4c47bc4a8b07",
             "source": {
@@ -589,7 +589,7 @@
             },
             "vertices": [
               {
-                "x": 550,
+                "x": 560,
                 "y": 130
               }
             ]
